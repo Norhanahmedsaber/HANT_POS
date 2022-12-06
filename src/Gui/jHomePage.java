@@ -6,8 +6,13 @@ public class jHomePage extends javax.swing.JFrame {
 
     public jHomePage() {
         initComponents();
+<<<<<<< HEAD
+        _jLoginPage = new jLoginPage(this);
+        _jSignUpPage = new jSignUpPage();
+=======
         _jLoginPage = new jLoginPage();
         _jSignUpPage = new jSignUpPage(this);
+>>>>>>> master
     }
 
     @SuppressWarnings("unchecked")
