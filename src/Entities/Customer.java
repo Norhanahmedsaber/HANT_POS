@@ -1,4 +1,8 @@
 package Entities;
+
+import java.util.ArrayList;
+import java.util.UUID;
+
 public class Customer {
     // id (GUID)
     public String name;
@@ -9,4 +13,7 @@ public class Customer {
     public int income;
     // public enum gender;
     public int age;
+    public ArrayList<UUID> itemIds;
+    public ArrayList<Item> items;
+    
 }

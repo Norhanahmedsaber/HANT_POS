@@ -1,6 +1,7 @@
 package Interfaces;
 
 import Entities.Item;
+import java.util.ArrayList;
 import java.util.UUID;
 
 public interface IItemServices {
@@ -9,4 +10,5 @@ public interface IItemServices {
     Item getById(UUID itemId);
     // UUID to be figured
     void update(UUID ItemId, Item item);
+    ArrayList<Item> getAllItems();
 }
