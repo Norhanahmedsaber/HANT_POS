@@ -3,17 +3,24 @@ import Entities.User;
 import Interfaces.IAccountServices;
 
 public class AccountServices implements IAccountServices{
-
+    
+    public static String us ="norhan" ;
+    
+    public static String pass ="123" ;
+    
+    
     @Override
-    public User login(String username, String password) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public boolean login(String username, String password) {
+        return us.equals(username) && pass.equals(password);
     }
 
     @Override
     public void signUp(User user) {
+
         System.out.println("User Signed Up");
         
         System.out.println(user.name+ " " + user.userName+ " " + user.role);
+
     }
     
 }
