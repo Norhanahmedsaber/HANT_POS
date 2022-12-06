@@ -106,6 +106,9 @@ public class jHomePage extends javax.swing.JFrame {
         jPanel4.repaint();
         jPanel4.revalidate();
     }
+    public void Home() {
+        switchPanels(jPanel1);
+    }
     public static void main(String args[]) {
 
         try {

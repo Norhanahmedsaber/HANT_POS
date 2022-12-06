@@ -9,7 +9,7 @@ public class jLoginPage extends javax.swing.JPanel {
     public jLoginPage(jHomePage jhp) {
         initComponents();
         _jHomePage = jhp;
-        _jMainPage = new jMainPage(); 
+        _jMainPage = new jMainPage(jhp); 
         _AccountServices=new AccountServices();
 
     }
@@ -21,9 +21,10 @@ public class jLoginPage extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jusername = new javax.swing.JTextField();
-        jpassword = new javax.swing.JTextField();
         jlogin = new javax.swing.JButton();
         error = new javax.swing.JLabel();
+        jpassword = new javax.swing.JPasswordField();
+        jBack = new javax.swing.JButton();
 
         jLabel1.setText("UserName");
 
@@ -32,12 +33,6 @@ public class jLoginPage extends javax.swing.JPanel {
         jusername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jusernameActionPerformed(evt);
-            }
-        });
-
-        jpassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jpasswordActionPerformed(evt);
             }
         });
 
@@ -54,6 +49,15 @@ public class jLoginPage extends javax.swing.JPanel {
         });
 
         error.setForeground(new java.awt.Color(255, 0, 0));
+
+        jpassword.setText("jPasswordField1");
+
+        jBack.setText("Back");
+        jBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jBackMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -77,6 +81,10 @@ public class jLoginPage extends javax.swing.JPanel {
                         .addGap(175, 175, 175)
                         .addComponent(error)))
                 .addContainerGap(56, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jBack)
+                .addGap(74, 74, 74))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,7 +101,9 @@ public class jLoginPage extends javax.swing.JPanel {
                     .addComponent(jpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
                 .addComponent(jlogin)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jBack)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -126,21 +136,24 @@ public class jLoginPage extends javax.swing.JPanel {
         }else error.setText("");
         if( _AccountServices.login( jusername.getText(), jpassword.getText()) )
         {
+            jusername.setText("");
+            jpassword.setText("");
             _jHomePage.switchPanels(_jMainPage);
         }
-        
         else
         {     
             error.setText("Password or Username dont match!");
-
         } 
            
     }//GEN-LAST:event_jloginMouseClicked
 
+    private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
+        _jHomePage.Home();
+        jusername.setText("");
+        jpassword.setText("");
+        
+    }//GEN-LAST:event_jBackMouseClicked
 
-    private void jpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jpasswordActionPerformed
     
    
     private AccountServices _AccountServices;
@@ -148,10 +161,11 @@ public class jLoginPage extends javax.swing.JPanel {
     private final jHomePage _jHomePage;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel error;
+    private javax.swing.JButton jBack;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton jlogin;
-    private javax.swing.JTextField jpassword;
+    private javax.swing.JPasswordField jpassword;
     private javax.swing.JTextField jusername;
     // End of variables declaration//GEN-END:variables
 }

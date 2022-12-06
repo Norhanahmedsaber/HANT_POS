@@ -2,12 +2,13 @@ package Gui;
 
 import Entities.User;
 import Services.AccountServices;
+import java.util.UUID;
 
 public class jSignUpPage extends javax.swing.JPanel {
     public jSignUpPage(jHomePage jhp) {
         initComponents();
         _jHomePage = jhp;
-        _jMainPage = new jMainPage();
+        _jMainPage = new jMainPage(jhp);
         _AccountServices = new AccountServices();
         _jLoginPage = new jLoginPage(jhp);
     }
@@ -28,6 +29,7 @@ public class jSignUpPage extends javax.swing.JPanel {
         jErrorName = new javax.swing.JLabel();
         jErrorUsername = new javax.swing.JLabel();
         jErrorPassword = new javax.swing.JLabel();
+        jBack = new javax.swing.JButton();
 
         jLabel5.setText("Name ");
 
@@ -69,6 +71,13 @@ public class jSignUpPage extends javax.swing.JPanel {
         jErrorPassword.setForeground(new java.awt.Color(255, 0, 0));
         jErrorPassword.setToolTipText("");
 
+        jBack.setText("Back");
+        jBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jBackMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -96,6 +105,8 @@ public class jSignUpPage extends javax.swing.JPanel {
                 .addContainerGap(95, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jBack)
+                .addGap(18, 18, 18)
                 .addComponent(jAddAccount)
                 .addGap(36, 36, 36))
         );
@@ -125,7 +136,9 @@ public class jSignUpPage extends javax.swing.JPanel {
                     .addComponent(jRolesCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(18, 18, 18)
-                .addComponent(jAddAccount)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jAddAccount)
+                    .addComponent(jBack))
                 .addGap(23, 23, 23))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -172,7 +185,6 @@ public class jSignUpPage extends javax.swing.JPanel {
         }else jErrorUsername.setText("");
 
         if(jUsernameField.getText().contains(" ")){
-            System.out.println("hhhhhhhh");
             jErrorUsername.setText("Cannot contain spaces");
             return;
         }else jErrorUsername.setText("");
@@ -190,13 +202,27 @@ public class jSignUpPage extends javax.swing.JPanel {
             
         }else jErrorPassword.setText("");
         User user = new User();
+        user.id = UUID.randomUUID();    
         user.name = jNameField.getText();
         user.userName = jUsernameField.getText();
         user.password = jPasswordField.getText();
         user.role =(String) jRolesCombo.getSelectedItem();
         _AccountServices.signUp(user);
+        _jHomePage.Home();
+        jNameField.setText("");
+        jPasswordField.setText("");
+        jUsernameField.setText("");
+        jRolesCombo.selectWithKeyChar('U');
         _jHomePage.switchPanels(_jLoginPage);
     }//GEN-LAST:event_jAddAccountMouseClicked
+
+    private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
+        _jHomePage.Home();
+        jNameField.setText("");
+        jPasswordField.setText("");
+        jUsernameField.setText("");
+        jRolesCombo.selectWithKeyChar('U');
+    }//GEN-LAST:event_jBackMouseClicked
     
     private final jMainPage _jMainPage;
     private final jLoginPage _jLoginPage;
@@ -205,6 +231,7 @@ public class jSignUpPage extends javax.swing.JPanel {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jAddAccount;
+    private javax.swing.JButton jBack;
     private javax.swing.JLabel jErrorName;
     private javax.swing.JLabel jErrorPassword;
     private javax.swing.JLabel jErrorUsername;
