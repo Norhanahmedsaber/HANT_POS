@@ -7,5 +7,5 @@ public class User {
     public String name;
     public String userName;
     public String password;// hash
-    public Role role;
+    public String role;
 }

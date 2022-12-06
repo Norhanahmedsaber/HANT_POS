@@ -3,10 +3,8 @@ package Gui;
 import java.awt.Container;
 import javax.swing.JRootPane;
 
-
 public class jLoginPage extends javax.swing.JPanel {
 
-  
     public jLoginPage(jHomePage jhp) {
         initComponents();
         _jMainPage = new jMainPage();
@@ -88,7 +86,6 @@ public class jLoginPage extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jloginActionPerformed
     
-
     @Override
     public JRootPane getRootPane() {
         return super.getRootPane(); //To change body of generated methods, choose Tools | Templates.
