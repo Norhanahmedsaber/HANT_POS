@@ -5,6 +5,7 @@
  */
 package Gui;
 
+import Services.AccountServices;
 import java.awt.Container;
 import javax.swing.JRootPane;
 
@@ -19,9 +20,9 @@ public class jLoginPage extends javax.swing.JPanel {
      */
     public jLoginPage(jHomePage jhp) {
         initComponents();
-        _jMainPage = new jMainPage();
         _jHomePage = jhp;
-        _jChooseItem=new jChooseItem();
+        _jMainPage = new jMainPage(); 
+        _AccountServices=new AccountServices();
     }
 
     /**
@@ -35,17 +36,24 @@ public class jLoginPage extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        jusername = new javax.swing.JTextField();
+        jpassword = new javax.swing.JTextField();
         jlogin = new javax.swing.JButton();
+        error = new javax.swing.JLabel();
 
         jLabel1.setText("UserName");
 
         jLabel2.setText("Password");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jusername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jusernameActionPerformed(evt);
+            }
+        });
+
+        jpassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jpasswordActionPerformed(evt);
             }
         });
 
@@ -61,44 +69,53 @@ public class jLoginPage extends javax.swing.JPanel {
             }
         });
 
+        error.setForeground(new java.awt.Color(255, 0, 0));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jlogin, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(49, 49, 49)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
-                            .addComponent(jTextField2))))
+                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jlogin, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(49, 49, 49)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jusername, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+                                    .addComponent(jpassword)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(175, 175, 175)
+                        .addComponent(error)))
                 .addContainerGap(56, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(127, 127, 127)
+                .addGap(108, 108, 108)
+                .addComponent(error)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jusername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
                 .addComponent(jlogin)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jusernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jusernameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jusernameActionPerformed
 
     private void jloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jloginActionPerformed
         // TODO add your handling code here:
@@ -116,16 +133,41 @@ public class jLoginPage extends javax.swing.JPanel {
     }
 
     private void jloginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jloginMouseClicked
-        _jHomePage.switchPanels(_jMainPage);
+        if(jusername.getText().isEmpty()) {
+            error.setText("Username Is Empty!");
+            return;
+        }else error.setText(""); 
+        if(jpassword.getText().isEmpty()) {
+            error.setText("password Is Empty!");
+            return;
+        }else error.setText("");
+        if( _AccountServices.login( jusername.getText(), jpassword.getText()) )
+        {
+            _jHomePage.switchPanels(_jMainPage);
+        }
+        
+        else
+        {     
+            error.setText("Password or Username dont match!");
+
+        } 
+           
     }//GEN-LAST:event_jloginMouseClicked
-    private  jChooseItem _jChooseItem;
+
+    private void jpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jpasswordActionPerformed
+    
+   
+    private AccountServices _AccountServices;
     private jMainPage _jMainPage ;
     private jHomePage _jHomePage;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel error;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JButton jlogin;
+    private javax.swing.JTextField jpassword;
+    private javax.swing.JTextField jusername;
     // End of variables declaration//GEN-END:variables
 }
