@@ -3,7 +3,7 @@ public class jSignUpPage extends javax.swing.JPanel {
     public jSignUpPage(jHomePage jhp) {
         initComponents();
         _jHomePage = jhp;
-        _JMainPage = new JMainPage();
+        _jMainPage = new jMainPage();
     }
 
     @SuppressWarnings("unchecked")
@@ -136,9 +136,9 @@ public class jSignUpPage extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void jAddAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAddAccountMouseClicked
-        _jHomePage.switchPanels(_JMainPage);
+        _jHomePage.switchPanels(_jMainPage);
     }//GEN-LAST:event_jAddAccountMouseClicked
-    private JMainPage _JMainPage;
+    private jMainPage _jMainPage;
     private jHomePage _jHomePage;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jAddAccount;
