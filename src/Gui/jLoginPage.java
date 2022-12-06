@@ -50,8 +50,6 @@ public class jLoginPage extends javax.swing.JPanel {
 
         error.setForeground(new java.awt.Color(255, 0, 0));
 
-        jpassword.setText("jPasswordField1");
-
         jBack.setText("Back");
         jBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
