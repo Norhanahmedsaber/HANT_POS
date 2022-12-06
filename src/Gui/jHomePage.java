@@ -3,7 +3,6 @@ package Gui;
 import javax.swing.JPanel;
 public class jHomePage extends javax.swing.JFrame {
 
-
     public jHomePage() {
         initComponents();
         _jLoginPage = new jLoginPage(this);

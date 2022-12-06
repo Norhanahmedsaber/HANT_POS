@@ -4,18 +4,14 @@ import Services.AccountServices;
 import java.awt.Container;
 import javax.swing.JRootPane;
 
-
 public class jLoginPage extends javax.swing.JPanel {
 
-  
     public jLoginPage(jHomePage jhp) {
         initComponents();
         _jHomePage = jhp;
-<<<<<<< HEAD
         _jMainPage = new jMainPage(); 
         _AccountServices=new AccountServices();
-=======
->>>>>>> de788ba2a71256bae16169ed3b89a37f0649fb2b
+
     }
 
     @SuppressWarnings("unchecked")
@@ -109,7 +105,6 @@ public class jLoginPage extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jloginActionPerformed
     
-
     @Override
     public JRootPane getRootPane() {
         return super.getRootPane(); //To change body of generated methods, choose Tools | Templates.
@@ -142,19 +137,15 @@ public class jLoginPage extends javax.swing.JPanel {
            
     }//GEN-LAST:event_jloginMouseClicked
 
-<<<<<<< HEAD
+
     private void jpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jpasswordActionPerformed
     
    
     private AccountServices _AccountServices;
-    private jMainPage _jMainPage ;
-    private jHomePage _jHomePage;
-=======
     private final jMainPage _jMainPage ;
     private final jHomePage _jHomePage;
->>>>>>> de788ba2a71256bae16169ed3b89a37f0649fb2b
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel error;
     private javax.swing.JLabel jLabel1;

@@ -1,9 +1,15 @@
 package Gui;
+
+import Entities.User;
+import Services.AccountServices;
+
 public class jSignUpPage extends javax.swing.JPanel {
     public jSignUpPage(jHomePage jhp) {
         initComponents();
         _jHomePage = jhp;
         _jMainPage = new jMainPage();
+        _AccountServices = new AccountServices();
+        _jLoginPage = new jLoginPage(jhp);
     }
 
     @SuppressWarnings("unchecked")
@@ -14,11 +20,14 @@ public class jSignUpPage extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jNameField = new javax.swing.JTextField();
+        jUsernameField = new javax.swing.JTextField();
+        jPasswordField = new javax.swing.JPasswordField();
+        jRolesCombo = new javax.swing.JComboBox<>();
         jAddAccount = new javax.swing.JButton();
+        jErrorName = new javax.swing.JLabel();
+        jErrorUsername = new javax.swing.JLabel();
+        jErrorPassword = new javax.swing.JLabel();
 
         jLabel5.setText("Name ");
 
@@ -28,16 +37,16 @@ public class jSignUpPage extends javax.swing.JPanel {
 
         jLabel8.setText("password");
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        jUsernameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                jUsernameFieldActionPerformed(evt);
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User", "Manager", " ", " " }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        jRolesCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User", "Manager", " ", " " }));
+        jRolesCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                jRolesComboActionPerformed(evt);
             }
         });
 
@@ -53,29 +62,37 @@ public class jSignUpPage extends javax.swing.JPanel {
             }
         });
 
+        jErrorName.setForeground(new java.awt.Color(255, 0, 0));
+
+        jErrorUsername.setForeground(new java.awt.Color(255, 0, 0));
+
+        jErrorPassword.setForeground(new java.awt.Color(255, 0, 0));
+        jErrorPassword.setToolTipText("");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel8)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(39, 39, 39)
-                                .addComponent(jLabel6)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel5)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel8)))
                         .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBox1, 0, 192, Short.MAX_VALUE)
-                            .addComponent(jTextField4)
-                            .addComponent(jPasswordField1))))
+                            .addComponent(jRolesCombo, 0, 192, Short.MAX_VALUE)
+                            .addComponent(jUsernameField)
+                            .addComponent(jErrorPassword)
+                            .addComponent(jPasswordField, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jErrorName)
+                        .addComponent(jNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jErrorUsername)))
                 .addContainerGap(95, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -85,23 +102,29 @@ public class jSignUpPage extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(58, 58, 58)
+                .addGap(31, 31, 31)
+                .addComponent(jErrorName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                    .addComponent(jNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addComponent(jErrorUsername)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                    .addComponent(jUsernameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jErrorPassword)
+                .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                    .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                    .addComponent(jRolesCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addGap(18, 18, 18)
                 .addComponent(jAddAccount)
                 .addGap(23, 23, 23))
         );
@@ -127,28 +150,71 @@ public class jSignUpPage extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ComponentAdded
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void jRolesComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRolesComboActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_jRolesComboActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void jUsernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUsernameFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_jUsernameFieldActionPerformed
 
     private void jAddAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAddAccountMouseClicked
-        _jHomePage.switchPanels(_jMainPage);
+        // check name is valid
+        if(jNameField.getText().isEmpty()) {
+            jErrorName.setText("Cannot be Empty");
+            return;
+        }else jErrorName.setText("");
+        
+        // check user name is valid
+        if(jUsernameField.getText().isEmpty()) {
+            jErrorUsername.setText("Cannot be Empty");
+            return;
+        }else jErrorUsername.setText("");
+
+        if(jUsernameField.getText().contains(" ")){
+            System.out.println("hhhhhhhh");
+            jErrorUsername.setText("Cannot contain spaces");
+            return;
+        }else jErrorUsername.setText("");
+        
+          
+        // check password is valid
+        if(jPasswordField.getText().isEmpty()) {
+            jErrorPassword.setText("Cannot be Empty");
+            return;
+        }else jErrorPassword.setText("");
+        
+        if(jPasswordField.getText().length() < 8){
+            jErrorPassword.setText("Cannot be less than 8 chars");
+            return;
+            
+        }else jErrorPassword.setText("");
+        User user = new User();
+        user.name = jNameField.getText();
+        user.userName = jUsernameField.getText();
+        user.password = jPasswordField.getText();
+        user.role =(String) jRolesCombo.getSelectedItem();
+        _AccountServices.signUp(user);
+        _jHomePage.switchPanels(_jLoginPage);
     }//GEN-LAST:event_jAddAccountMouseClicked
-    private jMainPage _jMainPage;
-    private jHomePage _jHomePage;
+    
+    private final jMainPage _jMainPage;
+    private final jLoginPage _jLoginPage;
+    private final jHomePage _jHomePage;
+    private final AccountServices _AccountServices;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jAddAccount;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jErrorName;
+    private javax.swing.JLabel jErrorPassword;
+    private javax.swing.JLabel jErrorUsername;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jNameField;
+    private javax.swing.JPasswordField jPasswordField;
+    private javax.swing.JComboBox<String> jRolesCombo;
+    private javax.swing.JTextField jUsernameField;
     // End of variables declaration//GEN-END:variables
 }
