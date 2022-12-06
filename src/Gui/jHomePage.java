@@ -18,7 +18,7 @@ public class jHomePage extends javax.swing.JFrame {
      */
     public jHomePage() {
         initComponents();
-        _jLoginPage = new jLoginPage();
+        _jLoginPage = new jLoginPage(this);
         _jSignUpPage = new jSignUpPage();
     }
 

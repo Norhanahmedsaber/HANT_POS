@@ -5,6 +5,9 @@
  */
 package Gui;
 
+import java.awt.Container;
+import javax.swing.JRootPane;
+
 /**
  *
  * @author norha
@@ -14,8 +17,11 @@ public class jLoginPage extends javax.swing.JPanel {
     /**
      * Creates new form jLoginPage
      */
-    public jLoginPage() {
+    public jLoginPage(jHomePage jhp) {
         initComponents();
+        _jMainPage = new jMainPage();
+        _jHomePage = jhp;
+        _jChooseItem=new jChooseItem();
     }
 
     /**
@@ -31,7 +37,7 @@ public class jLoginPage extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jlogin = new javax.swing.JButton();
 
         jLabel1.setText("UserName");
 
@@ -43,15 +49,15 @@ public class jLoginPage extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setText("login");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jlogin.setText("login");
+        jlogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                jloginMouseClicked(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jlogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jloginActionPerformed(evt);
             }
         });
 
@@ -62,7 +68,7 @@ public class jLoginPage extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlogin, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -85,7 +91,7 @@ public class jLoginPage extends javax.swing.JPanel {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
-                .addComponent(jButton1)
+                .addComponent(jlogin)
                 .addContainerGap(41, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -94,20 +100,32 @@ public class jLoginPage extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jloginActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jloginActionPerformed
+    
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1MouseClicked
+    @Override
+    public JRootPane getRootPane() {
+        return super.getRootPane(); //To change body of generated methods, choose Tools | Templates.
+    }
 
+    @Override
+    public Container getParent() {
+        return super.getParent(); //To change body of generated methods, choose Tools | Templates.
+    }
 
+    private void jloginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jloginMouseClicked
+        _jHomePage.switchPanels(_jMainPage);
+    }//GEN-LAST:event_jloginMouseClicked
+    private  jChooseItem _jChooseItem;
+    private jMainPage _jMainPage ;
+    private jHomePage _jHomePage;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JButton jlogin;
     // End of variables declaration//GEN-END:variables
 }

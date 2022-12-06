@@ -9,12 +9,12 @@ package Gui;
  *
  * @author norha
  */
-public class jLog extends javax.swing.JPanel {
+public class jItemData extends javax.swing.JPanel {
 
     /**
-     * Creates new form jLog
+     * Creates new form jItemData
      */
-    public jLog() {
+    public jItemData() {
         initComponents();
     }
 
