@@ -12,6 +12,7 @@ public class jViewItems extends javax.swing.JPanel {
         initComponents();
         _jHomePage = jhp;
         _jMainPage = jmp;
+        _ItemServices = new ItemServices();
     }
 
     @SuppressWarnings("unchecked")
