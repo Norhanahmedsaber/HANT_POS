@@ -152,8 +152,6 @@ public class jLoginPage extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jBackMouseClicked
 
-    
-   
     private AccountServices _AccountServices;
     private final jMainPage _jMainPage ;
     private final jHomePage _jHomePage;

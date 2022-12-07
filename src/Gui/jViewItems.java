@@ -1,5 +1,9 @@
 package Gui;
 
+import Entities.Item;
+import javax.swing.table.DefaultTableModel;
+import Services.ItemServices;
+import java.util.ArrayList;
 public class jViewItems extends javax.swing.JPanel {
 
 
@@ -7,6 +11,8 @@ public class jViewItems extends javax.swing.JPanel {
         initComponents();
         _jHomePage = jhp;
         _jMainPage = jmp;
+        _ItemServices =new ItemServices();
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -39,13 +45,13 @@ public class jViewItems extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "name", "description ", "price", "category ", "updatedAt", "createdAt"
             }
         ));
         jScrollPane2.setViewportView(jTable1);
@@ -56,10 +62,11 @@ public class jViewItems extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 168, Short.MAX_VALUE))
+                .addGap(0, 221, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -71,10 +78,7 @@ public class jViewItems extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jBack))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jBack)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -100,12 +104,25 @@ public class jViewItems extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    public void showItems (){
+        String [] titles= {"Name","describtion","Category","Price","CreatedAt","UpdatedAt"};
+        DefaultTableModel model = new DefaultTableModel(titles,0);
+        jTable1.setModel(model);
+        ArrayList<Item> _items = _ItemServices.getAllItems(); 
+     
+        for (int i=0;i<_items.size();i++)
+        { 
+            Item item = _items.get(i);
+            Object [] items = {item.name,item.description,item.category,item.price,item.createdAt,item.updatedAt} ;
+            model.addRow(items);
+        }
+      }
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
         _jHomePage.switchPanels(_jMainPage);
     }//GEN-LAST:event_jBackMouseClicked
-    private jMainPage _jMainPage;
-    private jHomePage _jHomePage;
+    private final ItemServices _ItemServices;
+    private final jMainPage _jMainPage;
+    private final jHomePage _jHomePage;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBack;
     private javax.swing.JComboBox<String> jComboBox1;

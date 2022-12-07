@@ -30,11 +30,6 @@ public class jMainPage extends javax.swing.JPanel {
                 jNewitemMouseClicked(evt);
             }
         });
-        jNewitem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jNewitemActionPerformed(evt);
-            }
-        });
 
         jViewitems.setText("View Items");
         jViewitems.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -49,21 +44,11 @@ public class jMainPage extends javax.swing.JPanel {
                 jViewcustomersMouseClicked(evt);
             }
         });
-        jViewcustomers.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jViewcustomersActionPerformed(evt);
-            }
-        });
 
         jLog.setText("Log");
         jLog.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLogMouseClicked(evt);
-            }
-        });
-        jLog.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jLogActionPerformed(evt);
             }
         });
 
@@ -73,21 +58,11 @@ public class jMainPage extends javax.swing.JPanel {
                 jNewcustomerMouseClicked(evt);
             }
         });
-        jNewcustomer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jNewcustomerActionPerformed(evt);
-            }
-        });
 
         jButton1.setText("Logout");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
-            }
-        });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
             }
         });
 
@@ -128,26 +103,6 @@ public class jMainPage extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jNewitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNewitemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jNewitemActionPerformed
-
-    private void jLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLogActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLogActionPerformed
-
-    private void jViewcustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jViewcustomersActionPerformed
-
-    }//GEN-LAST:event_jViewcustomersActionPerformed
-
-    private void jNewcustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNewcustomerActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jNewcustomerActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jNewcustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jNewcustomerMouseClicked
         _jHomePage.switchPanels(_jNewCustomer);
     }//GEN-LAST:event_jNewcustomerMouseClicked
@@ -162,6 +117,7 @@ public class jMainPage extends javax.swing.JPanel {
 
     private void jViewitemsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jViewitemsMouseClicked
         _jHomePage.switchPanels(_jViewItems);
+        _jViewItems.showItems();
     }//GEN-LAST:event_jViewitemsMouseClicked
 
     private void jLogMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLogMouseClicked
