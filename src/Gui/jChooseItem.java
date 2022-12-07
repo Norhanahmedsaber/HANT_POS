@@ -1,13 +1,10 @@
 package Gui;
 
 public class jChooseItem extends javax.swing.JPanel {
-
-
     public jChooseItem(jNewCustomer jnc,jHomePage jhp ) {
         initComponents();
         _jNewCustomer = jnc;
-        _jHomePage = jhp;
-        
+        _jHomePage = jhp;  
     }
 
 

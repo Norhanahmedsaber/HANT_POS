@@ -16,7 +16,6 @@ public class Customer {
     public String job;
     // public enum gender;
     public String gender;
-    
     public int age;
     public ArrayList<UUID> itemIds;
     public ArrayList<Item> items;

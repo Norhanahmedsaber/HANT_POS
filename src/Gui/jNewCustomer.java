@@ -250,7 +250,6 @@ public class jNewCustomer extends javax.swing.JPanel {
     }//GEN-LAST:event_jChooseItemMouseClicked
     
     private final CustomerServices _CustomerServices;
-    
     private final jChooseItem _jChooseItem;
     private final jMainPage _jMainPage;
     private final jHomePage _jHomePage;
