@@ -4,9 +4,9 @@ import Interfaces.IAccountServices;
 
 public class AccountServices implements IAccountServices{
     
-    public static String us ="norhan" ;
+    public static String us ="s7s" ;
     
-    public static String pass ="123" ;
+    public static String pass ="anas" ;
     
     
     @Override
