@@ -128,8 +128,8 @@ public class jViewItems extends javax.swing.JPanel {
             DefaultTableModel model = new DefaultTableModel(titles,0);
             jTable1.setModel(model);
             ArrayList<Item> _items = _ItemServices.getAllItems();  
-           String search=jsearchitems.getText();
-           String Sortitemsby=(String)jsortitemsby.getSelectedItem();
+            String search=jsearchitems.getText();
+            String Sortitemsby=(String)jsortitemsby.getSelectedItem();
             ArrayList<Item> _filtereditems = _jfilterItems.filter(_items,search,Sortitemsby);  
             for (int i=0;i<_filtereditems .size();i++)
             { 
