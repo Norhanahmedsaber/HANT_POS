@@ -42,6 +42,11 @@ public class jMainPage extends javax.swing.JPanel {
                 jViewitemsMouseClicked(evt);
             }
         });
+        jViewitems.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jViewitemsActionPerformed(evt);
+            }
+        });
 
         jViewcustomers.setText("View Customers");
         jViewcustomers.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -162,8 +167,10 @@ public class jMainPage extends javax.swing.JPanel {
     }//GEN-LAST:event_jNewitemMouseClicked
 
     private void jViewitemsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jViewitemsMouseClicked
-        _jViewItems.showItems();
+
         _jHomePage.switchPanels(_jViewItems);
+                _jViewItems.showItems();
+
     }//GEN-LAST:event_jViewitemsMouseClicked
 
     private void jLogMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLogMouseClicked
@@ -173,6 +180,10 @@ public class jMainPage extends javax.swing.JPanel {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         _jHomePage.Home();
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jViewitemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jViewitemsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jViewitemsActionPerformed
     private final jNewCustomer _jNewCustomer;
     private final jViewCustomers _jViewCustomers;
     private final jViewItems _jViewItems;

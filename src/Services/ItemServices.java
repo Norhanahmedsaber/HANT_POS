@@ -6,9 +6,10 @@ import java.util.UUID;
 
 public class ItemServices implements IItemServices {
     public static ArrayList<Item> items = new ArrayList<Item>();
+
     @Override
     public void create(Item item) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        items.add(item);
     }
 
     @Override

@@ -4,6 +4,8 @@ import Entities.Item;
 import Services.ItemServices;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import utils.filterItems;
+
 
 public class jViewItems extends javax.swing.JPanel {
 
@@ -12,22 +14,27 @@ public class jViewItems extends javax.swing.JPanel {
         initComponents();
         _jHomePage = jhp;
         _jMainPage = jmp;
+         _jfilterItems=new filterItems();
+         //_jNewItem = new jNewItem(jhp,this);
+     //_ItemServices=new ItemServices();
+        _ItemServices = new ItemServices();
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jsortitemsby = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jsearchitems = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jBack = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jadditem = new javax.swing.JButton();
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jsortitemsby.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel1.setText("All Items :");
 
@@ -55,6 +62,13 @@ public class jViewItems extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(jTable1);
 
+        jadditem.setText("Add Item");
+        jadditem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jadditemMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -71,11 +85,13 @@ public class jViewItems extends javax.swing.JPanel {
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1)
-                            .addComponent(jComboBox1, 0, 256, Short.MAX_VALUE))
+                            .addComponent(jsearchitems)
+                            .addComponent(jsortitemsby, 0, 256, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jadditem)
+                        .addGap(63, 63, 63)
                         .addComponent(jBack))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -88,42 +104,53 @@ public class jViewItems extends javax.swing.JPanel {
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jsearchitems, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
-                        .addComponent(jComboBox1)))
+                        .addComponent(jsortitemsby)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jBack)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBack)
+                    .addComponent(jadditem))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
     public void showItems (){
-        String [] titles= {"Name","describtion","Category","Price","CreatedAt","UpdatedAt"};
-        DefaultTableModel model = new DefaultTableModel(titles,0);
-        jTable1.setModel(model);
-        ArrayList<Item> _items = _ItemServices.getAllItems(); 
-     
-        for (int i=0;i<_items.size();i++)
-        { 
-            Item item = _items.get(i);
-            Object [] items = {item.name,item.description,item.category,item.price,item.createdAt,item.updatedAt} ;
-            model.addRow(items);
+            String [] titles= {"Name","describtion","Category","Price","CreatedAt","UpdatedAt"};
+            DefaultTableModel model = new DefaultTableModel(titles,0);
+            jTable1.setModel(model);
+            ArrayList<Item> _items = _ItemServices.getAllItems();  
+            String search=jsearchitems.getText();
+            String Sortitemsby=(String)jsortitemsby.getSelectedItem();
+            ArrayList<Item> _filtereditems = _jfilterItems.filter(_items,search,Sortitemsby);  
+            for (int i=0;i<_filtereditems .size();i++)
+            { 
+                Item item = _filtereditems .get(i);
+                Object [] items = {item.name,item.description,item.category,item.price,item.createdAt,item.updatedAt} ;
+                model.addRow(items);
+            }
         }
-      }
+    
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
         _jHomePage.switchPanels(_jMainPage);
     }//GEN-LAST:event_jBackMouseClicked
+
+    private void jadditemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jadditemMouseClicked
+       _jHomePage.switchPanels(_jNewItem);
+    }//GEN-LAST:event_jadditemMouseClicked
     private ItemServices _ItemServices;
     private jMainPage _jMainPage;
-    private jHomePage _jHomePage;
+    private  jHomePage _jHomePage;
+    private jNewItem _jNewItem;
+    private final filterItems _jfilterItems;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBack;
     private javax.swing.JComboBox<String> jComboBox1;
@@ -132,6 +159,8 @@ public class jViewItems extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton jadditem;
+    private javax.swing.JTextField jsearchitems;
+    private javax.swing.JComboBox<String> jsortitemsby;
     // End of variables declaration//GEN-END:variables
 }
