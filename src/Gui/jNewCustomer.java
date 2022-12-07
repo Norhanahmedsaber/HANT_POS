@@ -2,6 +2,7 @@ package Gui;
 
 import Entities.Customer;
 import Services.CustomerServices;
+import java.util.Date;
 
 public class jNewCustomer extends javax.swing.JPanel {
 
@@ -240,7 +241,7 @@ public class jNewCustomer extends javax.swing.JPanel {
         _Customer.address = jAddressField.getText();
         _Customer.gender = (String)jGenderComboBox.getSelectedItem();
         _Customer.phoneNumber = jPhoneNoField.getText();
-        
+        _Customer.purchaseDate=new Date();
         _CustomerServices.create(_Customer);
         
     }//GEN-LAST:event_jAddCustomerMouseClicked
