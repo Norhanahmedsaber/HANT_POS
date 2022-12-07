@@ -8,7 +8,7 @@ public class jViewItems extends javax.swing.JPanel {
         _jHomePage = jhp;
         _jMainPage = jmp;
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
