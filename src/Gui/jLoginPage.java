@@ -30,21 +30,10 @@ public class jLoginPage extends javax.swing.JPanel {
 
         jLabel2.setText("Password");
 
-        jusername.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jusernameActionPerformed(evt);
-            }
-        });
-
         jlogin.setText("login");
         jlogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jloginMouseClicked(evt);
-            }
-        });
-        jlogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jloginActionPerformed(evt);
             }
         });
 
@@ -104,14 +93,6 @@ public class jLoginPage extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jusernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jusernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jusernameActionPerformed
-
-    private void jloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jloginActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jloginActionPerformed
     
     @Override
     public JRootPane getRootPane() {
@@ -148,13 +129,12 @@ public class jLoginPage extends javax.swing.JPanel {
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
         _jHomePage.Home();
         jusername.setText("");
-        jpassword.setText("");
-        
+        jpassword.setText(""); 
     }//GEN-LAST:event_jBackMouseClicked
 
     
    
-    private AccountServices _AccountServices;
+    private final AccountServices _AccountServices;
     private final jMainPage _jMainPage ;
     private final jHomePage _jHomePage;
     // Variables declaration - do not modify//GEN-BEGIN:variables

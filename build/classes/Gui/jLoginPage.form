@@ -85,9 +85,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jusername">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jusernameActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jlogin">
       <Properties>
@@ -95,7 +92,6 @@
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jloginMouseClicked"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jloginActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="error">
