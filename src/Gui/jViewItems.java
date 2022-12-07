@@ -1,5 +1,10 @@
 package Gui;
 
+import Entities.Item;
+import Services.ItemServices;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 public class jViewItems extends javax.swing.JPanel {
 
 
@@ -100,10 +105,23 @@ public class jViewItems extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    public void showItems (){
+        String [] titles= {"Name","describtion","Category","Price","CreatedAt","UpdatedAt"};
+        DefaultTableModel model = new DefaultTableModel(titles,0);
+        jTable1.setModel(model);
+        ArrayList<Item> _items = _ItemServices.getAllItems(); 
+     
+        for (int i=0;i<_items.size();i++)
+        { 
+            Item item = _items.get(i);
+            Object [] items = {item.name,item.description,item.category,item.price,item.createdAt,item.updatedAt} ;
+            model.addRow(items);
+        }
+      }
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
         _jHomePage.switchPanels(_jMainPage);
     }//GEN-LAST:event_jBackMouseClicked
+    private ItemServices _ItemServices;
     private jMainPage _jMainPage;
     private jHomePage _jHomePage;
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -162,6 +162,7 @@ public class jMainPage extends javax.swing.JPanel {
     }//GEN-LAST:event_jNewitemMouseClicked
 
     private void jViewitemsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jViewitemsMouseClicked
+        _jViewItems.showItems();
         _jHomePage.switchPanels(_jViewItems);
     }//GEN-LAST:event_jViewitemsMouseClicked
 
