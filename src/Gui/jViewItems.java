@@ -17,6 +17,7 @@ public class jViewItems extends javax.swing.JPanel {
          _jfilterItems=new filterItems();
          //_jNewItem = new jNewItem(jhp,this);
      //_ItemServices=new ItemServices();
+        _ItemServices = new ItemServices();
     }
 
     @SuppressWarnings("unchecked")
