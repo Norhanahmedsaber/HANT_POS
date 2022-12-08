@@ -3,6 +3,7 @@ package Gui;
 import Entities.Item;
 import Services.ItemServices;
 import java.util.ArrayList;
+import java.util.UUID;
 import javax.swing.table.DefaultTableModel;
 import utils.filterItems;
 
@@ -30,8 +31,9 @@ public class jViewItems extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jBack = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jItem = new javax.swing.JTable();
         jadditem = new javax.swing.JButton();
+        jdelete = new javax.swing.JButton();
 
         jsortitemsby.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NameAscendingly", "NameDescendingly", "DateAscendingly", "DateDescendingly", "Category" }));
         jsortitemsby.addActionListener(new java.awt.event.ActionListener() {
@@ -59,7 +61,7 @@ public class jViewItems extends javax.swing.JPanel {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jItem.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -70,12 +72,19 @@ public class jViewItems extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(jItem);
 
         jadditem.setText("Add Item");
         jadditem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jadditemMouseClicked(evt);
+            }
+        });
+
+        jdelete.setText("delete");
+        jdelete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jdeleteMouseClicked(evt);
             }
         });
 
@@ -99,7 +108,9 @@ public class jViewItems extends javax.swing.JPanel {
                             .addComponent(jsortitemsby, 0, 256, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(35, 35, 35)
+                        .addComponent(jdelete)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jadditem)
                         .addGap(63, 63, 63)
                         .addComponent(jBack))
@@ -129,14 +140,15 @@ public class jViewItems extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBack)
-                    .addComponent(jadditem))
+                    .addComponent(jadditem)
+                    .addComponent(jdelete))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
     public void showItems (){
             String [] titles= {"Id", "Name","Category","Price","CreatedAt"};
             DefaultTableModel model = new DefaultTableModel(titles,0);
-            jTable1.setModel(model);
+            jItem.setModel(model);
             ArrayList<Item> _items = _ItemServices.getAllItems();  
             String search=jsearchitems.getText();
             String Sortitemsby=(String)jsortitemsby.getSelectedItem();
@@ -150,6 +162,17 @@ public class jViewItems extends javax.swing.JPanel {
                 }
             }
         }
+    private UUID deleteItem()
+    {
+         DefaultTableModel m = (DefaultTableModel) jItem.getModel();
+          if(jItem.getSelectedRow() != -1) {
+            UUID id = (UUID) m.getValueAt(jItem.getSelectedRow(), 0);
+            m.removeRow(jItem.getSelectedRow());
+            return id;
+        }else{
+            return null;
+        }
+    }
     
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
         _jHomePage.switchPanels(_jMainPage);
@@ -169,6 +192,15 @@ public class jViewItems extends javax.swing.JPanel {
         showItems();
     }//GEN-LAST:event_jsortitemsbyActionPerformed
 
+    private void jdeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jdeleteMouseClicked
+
+        UUID id = deleteItem();
+        if(id!= null)
+        {
+            _ItemServices.delete(deleteItem());
+        }
+    }//GEN-LAST:event_jdeleteMouseClicked
+
     private final ItemServices _ItemServices;
     private final jMainPage _jMainPage;
     private final jHomePage _jHomePage;
@@ -176,12 +208,13 @@ public class jViewItems extends javax.swing.JPanel {
     private final filterItems _jfilterItems;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBack;
+    private javax.swing.JTable jItem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton jadditem;
+    private javax.swing.JButton jdelete;
     private javax.swing.JTextField jsearchitems;
     private javax.swing.JComboBox<String> jsortitemsby;
     // End of variables declaration//GEN-END:variables

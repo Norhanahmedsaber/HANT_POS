@@ -3,6 +3,7 @@ package Gui;
 import Entities.Customer;
 import Services.CustomerServices;
 import java.util.ArrayList;
+import java.util.UUID;
 import javax.swing.table.DefaultTableModel;
 import utils.filterCustomers;
 
@@ -16,9 +17,9 @@ public final class jViewCustomers extends javax.swing.JPanel {
         _filterCustomers = new filterCustomers(); 
     }
 public void renderData() { 
-        String[] cols = {"Name", "Email", "PurchaseDate", "PhoneNumber"}; 
+        String[] cols = {"ID","Name", "Email", "PurchaseDate", "PhoneNumber"}; 
         DefaultTableModel model = new DefaultTableModel(cols, 0); 
-        jItemsTable.setModel(model); 
+        jCustomersTable.setModel(model); 
         ArrayList<Customer> customers = _CustomerServices.getAll(); 
         if(!customers.isEmpty()) { 
             String searchName = jSearchName.getText(); 
@@ -27,12 +28,23 @@ public void renderData() {
             if(!filteredCustomers.isEmpty()){ 
                 for(int i=0;i<filteredCustomers.size();i++) { 
                     Customer customer = filteredCustomers.get(i); 
-                    Object[] objs = {customer.name, customer.email, customer.purchaseDate, customer.phoneNumber}; 
+                    Object[] objs = {customer.id, customer.name, customer.email, customer.purchaseDate, customer.phoneNumber}; 
                     model.addRow(objs); 
                 } 
             } 
         } 
     }
+private UUID deleteCustomer()
+{
+        DefaultTableModel m = (DefaultTableModel) jCustomersTable.getModel();
+          if(jCustomersTable.getSelectedRow() != -1) {
+            UUID id = (UUID) m.getValueAt(jCustomersTable.getSelectedRow(), 0);
+            m.removeRow(jCustomersTable.getSelectedRow());
+            return id;
+        }else{
+            return null;
+        }
+}
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -43,8 +55,9 @@ public void renderData() {
         jSortBy = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jBack = new javax.swing.JButton();
+        jDelete = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jItemsTable = new javax.swing.JTable();
+        jCustomersTable = new javax.swing.JTable();
 
         jLabel2.setText("search by name :");
 
@@ -72,17 +85,25 @@ public void renderData() {
             }
         });
 
-        jItemsTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+        jDelete.setText("Delete");
+        jDelete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jDeleteMouseClicked(evt);
+            }
+        });
 
+        jCustomersTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Name", "Purchase Date", "Phone", "Email"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jItemsTable.setToolTipText("");
-        jItemsTable.setColumnSelectionAllowed(true);
-        jScrollPane2.setViewportView(jItemsTable);
+        jScrollPane2.setViewportView(jCustomersTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -90,24 +111,28 @@ public void renderData() {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSearchName)
-                            .addComponent(jSortBy, 0, 256, Short.MAX_VALUE)))
+                            .addComponent(jSortBy, 0, 445, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jBack, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jDelete)
+                        .addGap(48, 48, 48)
+                        .addComponent(jBack, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,11 +147,13 @@ public void renderData() {
                     .addComponent(jSortBy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBack)
-                .addContainerGap())
+                .addGap(45, 45, 45)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBack)
+                    .addComponent(jDelete))
+                .addGap(42, 42, 42))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -144,6 +171,14 @@ public void renderData() {
        renderData();
     }//GEN-LAST:event_jSearchNameKeyTyped
 
+    private void jDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDeleteMouseClicked
+        UUID id = deleteCustomer();
+        if(id!= null)
+        {
+            _CustomerServices.delete(deleteCustomer());
+        }
+    }//GEN-LAST:event_jDeleteMouseClicked
+
     
     private final filterCustomers _filterCustomers; 
     private final CustomerServices _CustomerServices; 
@@ -152,7 +187,8 @@ public void renderData() {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBack;
-    private javax.swing.JTable jItemsTable;
+    private javax.swing.JTable jCustomersTable;
+    private javax.swing.JButton jDelete;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

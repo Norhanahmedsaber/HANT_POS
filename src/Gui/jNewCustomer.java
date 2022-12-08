@@ -4,6 +4,7 @@ import Entities.Customer;
 import Services.CustomerServices;
 import java.awt.event.KeyEvent;
 import java.util.Date;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -205,6 +206,7 @@ public class jNewCustomer extends javax.swing.JPanel {
     }
     public void saveCustomerData(){
         Customer _Customer =new Customer();
+        _Customer.id = UUID.randomUUID();
         _Customer.name = jNameField.getText().trim();
         _Customer.age = Integer.parseInt(jAgeField.getText().trim());
         _Customer.job = jJobField.getText().trim();
