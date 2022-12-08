@@ -3,16 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Java%20Project/hant/src/Gui/jNewItem.java</file>
-            <file>file:/D:/Java%20Project/hant/src/Gui/jMainPage.java</file>
-            <file>file:/D:/Java%20Project/hant/src/Services/AccountServices.java</file>
-            <file>file:/D:/Java%20Project/hant/src/Services/CustomerServices.java</file>
-            <file>file:/D:/Java%20Project/hant/src/Gui/jViewCustomers.java</file>
-            <file>file:/D:/Java%20Project/hant/src/Gui/jChooseItem.java</file>
-            <file>file:/D:/Java%20Project/hant/src/Services/ItemServices.java</file>
-            <file>file:/D:/Java%20Project/hant/src/Gui/jHomePage.java</file>
-            <file>file:/D:/Java%20Project/hant/src/Gui/jNewCustomer.java</file>
-            <file>file:/D:/Java%20Project/hant/src/Gui/jLoginPage.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/java%20project/hant/src/utils/filterCustomers.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/java%20project/hant/src/Gui/jHomePage.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/java%20project/hant/src/Gui/jNewItem.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/java%20project/hant/src/Gui/jViewCustomers.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/java%20project/hant/src/Gui/jViewItems.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/java%20project/hant/src/Gui/jChooseItem.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/java%20project/hant/src/Gui/jLoginPage.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/java%20project/hant/src/Entities/Customer.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/java%20project/hant/src/Gui/jNewCustomer.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/java%20project/hant/src/Gui/jViewCustomer.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/java%20project/hant/src/utils/filterItems.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/java%20project/hant/src/Gui/jSignUpPage.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/java%20project/hant/src/Gui/jItemData.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/java%20project/hant/src/Gui/jMainPage.java</file>
         </group>
     </open-files>
 </project-private>

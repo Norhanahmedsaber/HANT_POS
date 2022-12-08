@@ -30,21 +30,11 @@ public class jMainPage extends javax.swing.JPanel {
                 jNewitemMouseClicked(evt);
             }
         });
-        jNewitem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jNewitemActionPerformed(evt);
-            }
-        });
 
         jViewitems.setText("View Items");
         jViewitems.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jViewitemsMouseClicked(evt);
-            }
-        });
-        jViewitems.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jViewitemsActionPerformed(evt);
             }
         });
 
@@ -54,21 +44,11 @@ public class jMainPage extends javax.swing.JPanel {
                 jViewcustomersMouseClicked(evt);
             }
         });
-        jViewcustomers.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jViewcustomersActionPerformed(evt);
-            }
-        });
 
         jLog.setText("Log");
         jLog.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLogMouseClicked(evt);
-            }
-        });
-        jLog.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jLogActionPerformed(evt);
             }
         });
 
@@ -78,21 +58,11 @@ public class jMainPage extends javax.swing.JPanel {
                 jNewcustomerMouseClicked(evt);
             }
         });
-        jNewcustomer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jNewcustomerActionPerformed(evt);
-            }
-        });
 
         jButton1.setText("Logout");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
-            }
-        });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
             }
         });
 
@@ -102,17 +72,16 @@ public class jMainPage extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLog)
-                        .addComponent(jViewcustomers))
-                    .addComponent(jNewcustomer))
-                .addGap(78, 78, 78)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jNewitem)
-                    .addComponent(jViewitems)
-                    .addComponent(jButton1))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jViewcustomers, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jNewcustomer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLog, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jNewitem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jViewitems, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(51, 51, 51))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,37 +90,17 @@ public class jMainPage extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jNewcustomer)
                     .addComponent(jNewitem))
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jViewcustomers)
                     .addComponent(jViewitems))
-                .addGap(57, 57, 57)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLog)
                     .addComponent(jButton1))
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jNewitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNewitemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jNewitemActionPerformed
-
-    private void jLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLogActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLogActionPerformed
-
-    private void jViewcustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jViewcustomersActionPerformed
-
-    }//GEN-LAST:event_jViewcustomersActionPerformed
-
-    private void jNewcustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNewcustomerActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jNewcustomerActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jNewcustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jNewcustomerMouseClicked
         _jHomePage.switchPanels(_jNewCustomer);
@@ -182,10 +131,6 @@ public class jMainPage extends javax.swing.JPanel {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         _jHomePage.Home();
     }//GEN-LAST:event_jButton1MouseClicked
-
-    private void jViewitemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jViewitemsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jViewitemsActionPerformed
     private final jNewCustomer _jNewCustomer;
     private final jViewCustomers _jViewCustomers;
     private final jViewItems _jViewItems;

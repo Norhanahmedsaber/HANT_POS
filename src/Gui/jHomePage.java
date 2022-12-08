@@ -28,11 +28,6 @@ public class jHomePage extends javax.swing.JFrame {
                 jSignUpMouseClicked(evt);
             }
         });
-        jSignUp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jSignUpActionPerformed(evt);
-            }
-        });
 
         jsignin.setText("Sign in");
         jsignin.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -87,16 +82,13 @@ public class jHomePage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSignUpActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jSignUpActionPerformed
-
     private void jsigninActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jsigninActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jsigninActionPerformed
 
     private void jSignUpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSignUpMouseClicked
         switchPanels(_jSignUpPage);
+        _jSignUpPage.jNameField.grabFocus();
     }//GEN-LAST:event_jSignUpMouseClicked
 
     private void jsigninMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jsigninMouseClicked

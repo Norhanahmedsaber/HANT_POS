@@ -2,6 +2,7 @@ package Gui;
 
 import Entities.User;
 import Services.AccountServices;
+import java.awt.event.KeyEvent;
 import java.util.UUID;
 
 public class jSignUpPage extends javax.swing.JPanel {
@@ -13,6 +14,82 @@ public class jSignUpPage extends javax.swing.JPanel {
         _jLoginPage = new jLoginPage(jhp);
     }
 
+    public boolean isValidName() {
+        // is empty (nameField)
+        if(jNameField.getText().trim().isEmpty()) {
+           jErrorName.setText("Cant be empty!");
+           return false;
+        }else jErrorName.setText("");
+        //is valid (Name)
+        for (int i=0 ; i < jNameField.getText().trim().length();i++){
+            char x = jNameField.getText().trim().charAt(i);
+            if(!(x >= 'a' && x <= 'z' || x >= 'A' && x <= 'Z' || x==' ')){
+            jErrorName.setText("you must enter chars only.");
+            return false;
+            }else jErrorName.setText("");
+        }
+        return true;
+    }
+    public boolean isValidUserName() {
+        // is empty (UserNameField)
+        if(jUsernameField.getText().trim().isEmpty()) {
+           jErrorUsername.setText("Cant be empty!");
+           return false;
+        }else jErrorName.setText("");
+        return true;
+    }
+    public boolean isValidPassword() {
+        // is empty (password)
+        if(jPasswordField.getText().trim().isEmpty()) {
+           jErrorPassword.setText("Cant be empty!");
+           return false;
+        }else jErrorPassword.setText("");
+        // is valid (password)
+        if (jPasswordField.getText().trim().length() != 8){
+            jErrorPassword.setText("your password length must be 8.");
+            return false;
+        }else jErrorPassword.setText("");
+        return true;
+    }
+    public boolean checkAllValidations(){
+        if(!isValidName()){
+            return false;
+        }
+        if (!isValidUserName()){
+            return false;
+        }
+        if (!isValidPassword()){
+            return false;
+        }
+        return true;
+    }
+    public void saveUserData(){
+        User user = new User();
+        user.id = UUID.randomUUID();    
+        user.name = jNameField.getText();
+        user.userName = jUsernameField.getText();
+        user.password = jPasswordField.getText();
+        user.role =(String) jRolesCombo.getSelectedItem();
+        _AccountServices.signUp(user);
+    }
+    public void clearSignUpPage(){
+        jNameField.setText("");
+        jPasswordField.setText("");
+        jUsernameField.setText("");
+        jRolesCombo.selectWithKeyChar('U');
+    }
+    public void goToLogInPage(){
+        _jHomePage.Home();
+        _jHomePage.switchPanels(_jLoginPage);
+    }
+    public void addAccountButton(){
+        if(!checkAllValidations()){
+            return;
+        }
+        saveUserData();
+        clearSignUpPage();
+        goToLogInPage();
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -39,16 +116,28 @@ public class jSignUpPage extends javax.swing.JPanel {
 
         jLabel8.setText("password");
 
-        jUsernameField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jUsernameFieldActionPerformed(evt);
+        jNameField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jNameFieldKeyPressed(evt);
+            }
+        });
+
+        jUsernameField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jUsernameFieldKeyPressed(evt);
+            }
+        });
+
+        jPasswordField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPasswordFieldKeyPressed(evt);
             }
         });
 
         jRolesCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User", "Manager", " ", " " }));
-        jRolesCombo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRolesComboActionPerformed(evt);
+        jRolesCombo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jRolesComboKeyPressed(evt);
             }
         });
 
@@ -58,9 +147,9 @@ public class jSignUpPage extends javax.swing.JPanel {
                 jAddAccountMouseClicked(evt);
             }
         });
-        jAddAccount.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jAddAccountActionPerformed(evt);
+        jAddAccount.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jAddAccountKeyPressed(evt);
             }
         });
 
@@ -84,54 +173,52 @@ public class jSignUpPage extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel6)
+                    .addComponent(jBack)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jUsernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jErrorUsername)
+                            .addComponent(jErrorName)
+                            .addComponent(jErrorPassword))
+                        .addGap(0, 54, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel5)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel6)
-                                .addComponent(jLabel8)))
-                        .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jRolesCombo, 0, 192, Short.MAX_VALUE)
-                            .addComponent(jUsernameField)
-                            .addComponent(jErrorPassword)
-                            .addComponent(jPasswordField, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jErrorName)
-                        .addComponent(jNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jErrorUsername)))
-                .addContainerGap(95, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jBack)
-                .addGap(18, 18, 18)
-                .addComponent(jAddAccount)
-                .addGap(36, 36, 36))
+                            .addComponent(jAddAccount)
+                            .addComponent(jRolesCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jErrorName)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel5)
-                    .addComponent(jNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
-                .addComponent(jErrorUsername)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jErrorName)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel7)
-                    .addComponent(jUsernameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jUsernameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jErrorUsername)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jErrorPassword)
-                .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addGap(13, 13, 13)
+                    .addComponent(jLabel8)
+                    .addComponent(jErrorPassword))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRolesCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
@@ -139,90 +226,48 @@ public class jSignUpPage extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jAddAccount)
                     .addComponent(jBack))
-                .addGap(23, 23, 23))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jAddAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAddAccountActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jAddAccountActionPerformed
-
-    private void jPasswordField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField2ActionPerformed
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jComboBox1ComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_jComboBox1ComponentAdded
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ComponentAdded
-
-    private void jRolesComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRolesComboActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRolesComboActionPerformed
-
-    private void jUsernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUsernameFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jUsernameFieldActionPerformed
-
     private void jAddAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAddAccountMouseClicked
-        // check name is valid
-        if(jNameField.getText().isEmpty()) {
-            jErrorName.setText("Cannot be Empty");
-            return;
-        }else jErrorName.setText("");
-        
-        // check user name is valid
-        if(jUsernameField.getText().isEmpty()) {
-            jErrorUsername.setText("Cannot be Empty");
-            return;
-        }else jErrorUsername.setText("");
-
-        if(jUsernameField.getText().contains(" ")){
-            jErrorUsername.setText("Cannot contain spaces");
-            return;
-        }else jErrorUsername.setText("");
-        
-          
-        // check password is valid
-        if(jPasswordField.getText().isEmpty()) {
-            jErrorPassword.setText("Cannot be Empty");
-            return;
-        }else jErrorPassword.setText("");
-        
-        if(jPasswordField.getText().length() < 8){
-            jErrorPassword.setText("Cannot be less than 8 chars");
-            return;
-            
-        }else jErrorPassword.setText("");
-        User user = new User();
-        user.id = UUID.randomUUID();    
-        user.name = jNameField.getText();
-        user.userName = jUsernameField.getText();
-        user.password = jPasswordField.getText();
-        user.role =(String) jRolesCombo.getSelectedItem();
-        _AccountServices.signUp(user);
-        _jHomePage.Home();
-        jNameField.setText("");
-        jPasswordField.setText("");
-        jUsernameField.setText("");
-        jRolesCombo.selectWithKeyChar('U');
-        _jHomePage.switchPanels(_jLoginPage);
+        addAccountButton();
     }//GEN-LAST:event_jAddAccountMouseClicked
 
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
         _jHomePage.Home();
-        jNameField.setText("");
-        jPasswordField.setText("");
-        jUsernameField.setText("");
-        jRolesCombo.selectWithKeyChar('U');
+        clearSignUpPage();
     }//GEN-LAST:event_jBackMouseClicked
+
+    private void jAddAccountKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jAddAccountKeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            addAccountButton();
+        }
+    }//GEN-LAST:event_jAddAccountKeyPressed
+
+    private void jRolesComboKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jRolesComboKeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            addAccountButton();
+        }
+    }//GEN-LAST:event_jRolesComboKeyPressed
+
+    private void jPasswordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldKeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            addAccountButton();
+        }
+    }//GEN-LAST:event_jPasswordFieldKeyPressed
+
+    private void jUsernameFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jUsernameFieldKeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            addAccountButton();
+        }
+    }//GEN-LAST:event_jUsernameFieldKeyPressed
+
+    private void jNameFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jNameFieldKeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            addAccountButton();
+        }
+    }//GEN-LAST:event_jNameFieldKeyPressed
     
     private final jMainPage _jMainPage;
     private final jLoginPage _jLoginPage;
@@ -239,7 +284,7 @@ public class jSignUpPage extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JTextField jNameField;
+    public javax.swing.JTextField jNameField;
     private javax.swing.JPasswordField jPasswordField;
     private javax.swing.JComboBox<String> jRolesCombo;
     private javax.swing.JTextField jUsernameField;
