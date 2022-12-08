@@ -50,7 +50,12 @@ public void renderData() {
 
         jLabel3.setText("sort by :");
 
-        jSortBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jSortBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Name", "Date" }));
+        jSortBy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSortByActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("All Customers :");
 
@@ -122,6 +127,10 @@ public void renderData() {
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
         _jHomePage.switchPanels(_jMainPage);
     }//GEN-LAST:event_jBackMouseClicked
+
+    private void jSortByActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSortByActionPerformed
+        renderData();
+    }//GEN-LAST:event_jSortByActionPerformed
     
     private final filterCustomers _filterCustomers; 
     private final CustomerServices _CustomerServices; 
