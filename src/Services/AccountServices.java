@@ -11,7 +11,8 @@ public class AccountServices implements IAccountServices{
     
     @Override
     public boolean login(String username, String password) {
-        return us.equals(username) && pass.equals(password);
+        //return us.equals(username) && pass.equals(password);
+        return true;
     }
 
     @Override

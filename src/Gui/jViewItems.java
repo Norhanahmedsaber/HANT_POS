@@ -15,8 +15,7 @@ public class jViewItems extends javax.swing.JPanel {
         _jHomePage = jhp;
         _jMainPage = jmp;
          _jfilterItems=new filterItems();
-         //_jNewItem = new jNewItem(jhp,this);
-     //_ItemServices=new ItemServices();
+         _jNewItem = new jNewItem(jhp,this);
         _ItemServices = new ItemServices();
     }
 
@@ -146,10 +145,10 @@ public class jViewItems extends javax.swing.JPanel {
     private void jadditemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jadditemMouseClicked
        _jHomePage.switchPanels(_jNewItem);
     }//GEN-LAST:event_jadditemMouseClicked
-    private ItemServices _ItemServices;
-    private jMainPage _jMainPage;
-    private  jHomePage _jHomePage;
-    private jNewItem _jNewItem;
+    private final ItemServices _ItemServices;
+    private final jMainPage _jMainPage;
+    private final jHomePage _jHomePage;
+    private final jNewItem _jNewItem;
     private final filterItems _jfilterItems;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBack;
