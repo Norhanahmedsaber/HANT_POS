@@ -157,6 +157,7 @@ public class jViewItems extends javax.swing.JPanel {
 
     private void jadditemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jadditemMouseClicked
        _jHomePage.switchPanels(_jNewItem);
+       _jNewItem.jid.grabFocus();
     }//GEN-LAST:event_jadditemMouseClicked
 
 
