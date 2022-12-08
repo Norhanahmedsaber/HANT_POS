@@ -4,6 +4,7 @@ import Entities.Item;
 import Services.ItemServices;
 import java.awt.event.KeyEvent;
 import java.util.Date;
+import java.util.UUID;
 import javax.swing.JPanel;
 
 public class jNewItem extends javax.swing.JPanel {
@@ -13,6 +14,10 @@ public class jNewItem extends javax.swing.JPanel {
         _jHomePage = jhp;
         _parent = parent;
         _itemServices = new ItemServices();
+       
+    }
+    void resetpannel()
+    {
     }
     public void createItem()
      {
@@ -292,12 +297,53 @@ public class jNewItem extends javax.swing.JPanel {
     }//GEN-LAST:event_jDescriptionActionPerformed
 
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
-        // check where you came from
+      if(_parent instanceof jViewItems)
+      {
+          jViewItems viewitems= (jViewItems) _parent;
+          
+          viewitems.showItems();
+      }
         _jHomePage.switchPanels(_parent);
     }//GEN-LAST:event_jBackMouseClicked
 
     private void jAddItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAddItemMouseClicked
-                createItem();
+
+        createItem();
+        if (jid.getText().isEmpty())
+        {
+            jErrorid.setText("please Enter This");
+            return;
+        }else jErrorid.setText(""); 
+        if(jDescription.getText().isEmpty())
+        {
+            jErrordescription.setText("please Enter This");
+            return;
+        }else jErrordescription.setText("");
+        if(jprice.getText().isEmpty())
+        {
+            System.out.print("hhhhhhhh");
+            jErrorPrice.setText("please Enter This");
+            return;
+        }else jErrorPrice.setText("");
+        //if(jentrydate.getText().isEmpty())
+        //{
+        //    jErrorentrydate.setText("please Enter This");
+        //    return;
+        //}else jErrorentrydate.setText("");
+        if(jcatgory.getText().isEmpty())
+        {
+            jErrorcatgory.setText("Please Enter This");
+            return;
+        }else jErrorcatgory.setText("");
+
+        Item item =  new Item();
+        item.id = UUID.randomUUID();
+        item.name=jid.getText();
+        item.category=jcatgory.getText();
+        item.description=jDescription.getText();
+        item.price=Integer.parseInt(jprice.getText());
+        item.createdAt=new Date(); 
+        _itemServices.create(item);
     }//GEN-LAST:event_jAddItemMouseClicked
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed

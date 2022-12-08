@@ -31,5 +31,11 @@ public class ItemServices implements IItemServices {
     public ArrayList<Item> getAllItems() {
         return items;
     }
+
+    @Override
+    public void addItemsToCustomer(UUID customerId, ArrayList<UUID> itemsIds) {
+        System.out.println("Added Succesfully");
+    }
+    
     
 }
