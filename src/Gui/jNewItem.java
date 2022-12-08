@@ -13,6 +13,10 @@ public class jNewItem extends javax.swing.JPanel {
         _jHomePage = jhp;
         _parent = parent;
         _itemServices = new ItemServices();
+       
+    }
+    void resetpannel()
+    {
     }
 
     @SuppressWarnings("unchecked")
@@ -212,7 +216,12 @@ public class jNewItem extends javax.swing.JPanel {
     }//GEN-LAST:event_jDescriptionActionPerformed
 
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
-        // check where you came from
+      if(_parent instanceof jViewItems)
+      {
+          jViewItems viewitems= (jViewItems) _parent;
+          
+          viewitems.showItems();
+      }
         _jHomePage.switchPanels(_parent);
     }//GEN-LAST:event_jBackMouseClicked
 
