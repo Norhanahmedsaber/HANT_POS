@@ -30,13 +30,15 @@
                           <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jSearch" max="32767" attributes="0"/>
-                              <Component id="jItemsComboBox" pref="409" max="32767" attributes="0"/>
+                              <Component id="jItemsCombo" pref="409" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
+                      <Component id="jRemove" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jAdd" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jBack" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -55,7 +57,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jItemsComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jItemsCombo" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="140" max="-2" attributes="0"/>
@@ -65,6 +67,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jBack" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jAdd" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jRemove" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="21" max="32767" attributes="0"/>
           </Group>
@@ -99,8 +102,11 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jSearch">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jItemsComboBox">
+    <Component class="javax.swing.JComboBox" name="jItemsCombo">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
@@ -157,5 +163,13 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="jRemove">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Remove"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jRemoveMouseClicked"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>

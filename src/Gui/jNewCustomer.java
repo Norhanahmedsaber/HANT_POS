@@ -570,7 +570,10 @@ public class jNewCustomer extends javax.swing.JPanel {
     }//GEN-LAST:event_jAddCustomerMouseClicked
 
     private void jChooseItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jChooseItemMouseClicked
+        _jChooseItem.resetPanel();
+        _jChooseItem.renderData();
         _jHomePage.switchPanels(_jChooseItem);
+        _jChooseItem.jSearch.grabFocus();
     }//GEN-LAST:event_jChooseItemMouseClicked
 
     private void jHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jHomeMouseClicked

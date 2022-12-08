@@ -123,18 +123,20 @@ public class jViewItems extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     public void showItems (){
-            String [] titles= {"Name","describtion","Category","Price","CreatedAt","UpdatedAt"};
+            String [] titles= {"Name","Category","Price","CreatedAt"};
             DefaultTableModel model = new DefaultTableModel(titles,0);
             jTable1.setModel(model);
             ArrayList<Item> _items = _ItemServices.getAllItems();  
             String search=jsearchitems.getText();
             String Sortitemsby=(String)jsortitemsby.getSelectedItem();
             ArrayList<Item> _filtereditems = _jfilterItems.filter(_items,search,Sortitemsby);  
-            for (int i=0;i<_filtereditems .size();i++)
-            { 
-                Item item = _filtereditems .get(i);
-                Object [] items = {item.name,item.description,item.category,item.price,item.createdAt,item.updatedAt} ;
-                model.addRow(items);
+            if(!_filtereditems.isEmpty()) {
+                for (int i=0;i<_filtereditems .size();i++)
+                { 
+                    Item item = _filtereditems .get(i);
+                    Object [] items = { item.name,item.category,item.price,item.createdAt } ;
+                    model.addRow(items);
+                }
             }
         }
     
