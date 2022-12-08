@@ -3,15 +3,15 @@ package Gui;
 import Entities.Item;
 import Services.ItemServices;
 import java.util.Date;
+import javax.swing.JPanel;
 
 public class jNewItem extends javax.swing.JPanel {
 
-    public jNewItem(jHomePage jhp, jMainPage jmp) {
+    public jNewItem(jHomePage jhp,JPanel parent) {
         initComponents();
         _jHomePage = jhp;
-        _jMainPage = jmp;
+        _parent = parent;
         _itemServices = new ItemServices();
-        
     }
 
     @SuppressWarnings("unchecked")
@@ -211,7 +211,8 @@ public class jNewItem extends javax.swing.JPanel {
     }//GEN-LAST:event_jDescriptionActionPerformed
 
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
-        _jHomePage.switchPanels(_jMainPage);
+        // check where you came from
+        _jHomePage.switchPanels(_parent);
     }//GEN-LAST:event_jBackMouseClicked
 
     private void jAddItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAddItemMouseClicked
@@ -254,9 +255,10 @@ public class jNewItem extends javax.swing.JPanel {
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
-    private ItemServices _itemServices;
-    private jMainPage _jMainPage;
-    private jHomePage _jHomePage;
+    
+    private final JPanel _parent;
+    private final ItemServices _itemServices;
+    private final jHomePage _jHomePage;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jAddItem;
     private javax.swing.JButton jBack;

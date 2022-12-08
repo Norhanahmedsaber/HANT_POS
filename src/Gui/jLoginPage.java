@@ -105,14 +105,14 @@ public class jLoginPage extends javax.swing.JPanel {
     }
 
     private void jloginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jloginMouseClicked
-        if(jusername.getText().isEmpty()) {
-            error.setText("Username Is Empty!");
-            return;
-        }else error.setText(""); 
-        if(jpassword.getText().isEmpty()) {
-            error.setText("password Is Empty!");
-            return;
-        }else error.setText("");
+//        if(jusername.getText().isEmpty()) {
+//            error.setText("Username Is Empty!");
+//            return;
+//        }else error.setText(""); 
+//        if(jpassword.getText().isEmpty()) {
+//            error.setText("password Is Empty!");
+//            return;
+//        }else error.setText("");
         if( _AccountServices.login( jusername.getText(), jpassword.getText()) )
         {
             jusername.setText("");
