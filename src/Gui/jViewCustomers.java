@@ -48,6 +48,12 @@ public void renderData() {
 
         jLabel2.setText("search by name :");
 
+        jSearchName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jSearchNameKeyTyped(evt);
+            }
+        });
+
         jLabel3.setText("sort by :");
 
         jSortBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -122,6 +128,11 @@ public void renderData() {
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
         _jHomePage.switchPanels(_jMainPage);
     }//GEN-LAST:event_jBackMouseClicked
+
+    private void jSearchNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSearchNameKeyTyped
+        // TODO add your handling code here:
+       renderData();
+    }//GEN-LAST:event_jSearchNameKeyTyped
     
     private final filterCustomers _filterCustomers; 
     private final CustomerServices _CustomerServices; 
