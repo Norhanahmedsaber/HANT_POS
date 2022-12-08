@@ -33,7 +33,12 @@ public class jViewItems extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         jadditem = new javax.swing.JButton();
 
-        jsortitemsby.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jsortitemsby.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NameAscendingly", "NameDescendingly", "DateAscendingly", "DateDescendingly", "Category" }));
+        jsortitemsby.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jsortitemsbyActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("All Items :");
 
@@ -154,9 +159,15 @@ public class jViewItems extends javax.swing.JPanel {
        _jHomePage.switchPanels(_jNewItem);
     }//GEN-LAST:event_jadditemMouseClicked
 
+
     private void jsearchitemsKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jsearchitemsKeyTyped
         showItems();
     }//GEN-LAST:event_jsearchitemsKeyTyped
+
+    private void jsortitemsbyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jsortitemsbyActionPerformed
+        showItems();
+    }//GEN-LAST:event_jsortitemsbyActionPerformed
+
     private final ItemServices _ItemServices;
     private final jMainPage _jMainPage;
     private final jHomePage _jHomePage;
