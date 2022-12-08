@@ -23,7 +23,7 @@ public void renderData() {
         if(!customers.isEmpty()) { 
             String searchName = jSearchName.getText(); 
             String sortBy = (String) jSortBy.getSelectedItem(); 
-            ArrayList<Customer> filteredCustomers = _filterCustomers.filter(customers, searchName, sortBy); 
+            ArrayList<Customer> filteredCustomers = _filterCustomers.filter(customers, searchName,sortBy); 
             if(!filteredCustomers.isEmpty()){ 
                 for(int i=0;i<filteredCustomers.size();i++) { 
                     Customer customer = filteredCustomers.get(i); 
@@ -56,7 +56,12 @@ public void renderData() {
 
         jLabel3.setText("sort by :");
 
-        jSortBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jSortBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NameAscendingly", "NameDescendingly", "DateAscendingly", "DateDescendingly" }));
+        jSortBy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSortByActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("All Customers :");
 
@@ -129,10 +134,16 @@ public void renderData() {
         _jHomePage.switchPanels(_jMainPage);
     }//GEN-LAST:event_jBackMouseClicked
 
+
+    private void jSortByActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSortByActionPerformed
+        renderData();
+    }//GEN-LAST:event_jSortByActionPerformed
+
     private void jSearchNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSearchNameKeyTyped
         // TODO add your handling code here:
        renderData();
     }//GEN-LAST:event_jSearchNameKeyTyped
+
     
     private final filterCustomers _filterCustomers; 
     private final CustomerServices _CustomerServices; 
