@@ -33,7 +33,12 @@ public class jViewItems extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         jadditem = new javax.swing.JButton();
 
-        jsortitemsby.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jsortitemsby.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NameAscendingly", "NameDescendingly", "DateAscendingly", "DateDescendingly", "Category" }));
+        jsortitemsby.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jsortitemsbyActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("All Items :");
 
@@ -145,6 +150,10 @@ public class jViewItems extends javax.swing.JPanel {
     private void jadditemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jadditemMouseClicked
        _jHomePage.switchPanels(_jNewItem);
     }//GEN-LAST:event_jadditemMouseClicked
+
+    private void jsortitemsbyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jsortitemsbyActionPerformed
+        showItems();
+    }//GEN-LAST:event_jsortitemsbyActionPerformed
     private final ItemServices _ItemServices;
     private final jMainPage _jMainPage;
     private final jHomePage _jHomePage;
@@ -152,7 +161,6 @@ public class jViewItems extends javax.swing.JPanel {
     private final filterItems _jfilterItems;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBack;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
