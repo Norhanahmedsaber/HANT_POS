@@ -33,7 +33,7 @@ public class jViewItems extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         jadditem = new javax.swing.JButton();
 
-        jsortitemsby.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NameAscendingly", "NameDescendingly", "DateAscendingly", "DateDescendingly", "Category" }));
+        jsortitemsby.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NameAscendingly", "NameDescendingly", "DateAscendingly", "DateDescendingly", "Category", "Price" }));
         jsortitemsby.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jsortitemsbyActionPerformed(evt);

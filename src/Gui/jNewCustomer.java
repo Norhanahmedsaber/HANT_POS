@@ -1,9 +1,13 @@
 package Gui;
 
 import Entities.Customer;
+import Entities.Item;
 import Services.CustomerServices;
+import Services.ItemServices;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,6 +19,16 @@ public class jNewCustomer extends javax.swing.JPanel {
         _jHomePage = jhp;
         _jMainPage = jmp;
         _CustomerServices = new CustomerServices();
+         _chosenitems=new ArrayList<Item>();
+         _jItemServices=new ItemServices();
+    }
+    public ArrayList<Item> getselecteditems()
+    { 
+        return _chosenitems ;
+    }
+    public void setselecteditems(ArrayList<Item> selecteditems)
+    {
+        _chosenitems=selecteditems;
     }
 
     
@@ -164,7 +178,8 @@ public class jNewCustomer extends javax.swing.JPanel {
         return true;
     }
     public boolean isValidChooseItem(){
-        return true;
+       
+        return !_chosenitems.isEmpty();
     }
     
     public boolean checkAllValidations(){
@@ -205,6 +220,7 @@ public class jNewCustomer extends javax.swing.JPanel {
     }
     public void saveCustomerData(){
         Customer _Customer =new Customer();
+        _Customer.id=UUID.randomUUID();
         _Customer.name = jNameField.getText().trim();
         _Customer.age = Integer.parseInt(jAgeField.getText().trim());
         _Customer.job = jJobField.getText().trim();
@@ -215,7 +231,14 @@ public class jNewCustomer extends javax.swing.JPanel {
         _Customer.gender = (String)jGenderComboBox.getSelectedItem();
         _Customer.phoneNumber = jPhoneNoField.getText().trim();
         _Customer.purchaseDate=new Date();
-        _CustomerServices.create(_Customer);
+        ArrayList<UUID> itemsid =new ArrayList<UUID>();
+        for(int i=0; i<getselecteditems().size();i++)
+        {
+          itemsid.add( _chosenitems.get(i).id);
+        }
+         _CustomerServices.create(_Customer);
+        _jItemServices.addItemsToCustomer(_Customer.id, itemsid);
+        
     }
     public void clearNewCustomerPage() {
         jNameField.setText("");
@@ -567,6 +590,7 @@ public class jNewCustomer extends javax.swing.JPanel {
 
     private void jAddCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAddCustomerMouseClicked
         addCustomerButton();
+        
     }//GEN-LAST:event_jAddCustomerMouseClicked
 
     private void jChooseItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jChooseItemMouseClicked
@@ -638,7 +662,8 @@ public class jNewCustomer extends javax.swing.JPanel {
     private final jChooseItem _jChooseItem;
     private final jMainPage _jMainPage;
     private final jHomePage _jHomePage;
-    
+    public ArrayList<Item> _chosenitems;
+    private ItemServices _jItemServices;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jAddCustomer;
     private javax.swing.JLabel jAddedCustomer;

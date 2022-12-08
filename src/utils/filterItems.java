@@ -85,6 +85,16 @@ public class filterItems {
              
             return items ;
         }
+             else if (sortedby=="Price")
+        { 
+             Collections.sort(items,new Comparator<Item>() {
+                public int compare(Item i1, Item i2) {
+                    return (Integer.toString(i1.price).compareTo(Integer.toString(i2.price)));
+                }
+            });
+        
+            return items ;
+        }
        
 
       return items ;
