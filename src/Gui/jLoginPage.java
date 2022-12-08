@@ -1,9 +1,7 @@
 package Gui;
 
 import Services.AccountServices;
-import java.awt.Container;
-import javax.swing.JRootPane;
-
+import java.awt.event.KeyEvent;
 public class jLoginPage extends javax.swing.JPanel {
 
     public jLoginPage(jHomePage jhp) {
@@ -11,7 +9,6 @@ public class jLoginPage extends javax.swing.JPanel {
         _jHomePage = jhp;
         _jMainPage = new jMainPage(jhp); 
         _AccountServices=new AccountServices();
-
     }
 
     @SuppressWarnings("unchecked")
@@ -38,6 +35,12 @@ public class jLoginPage extends javax.swing.JPanel {
         });
 
         error.setForeground(new java.awt.Color(255, 0, 0));
+
+        jpassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jpasswordKeyPressed(evt);
+            }
+        });
 
         jBack.setText("Back");
         jBack.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -94,17 +97,7 @@ public class jLoginPage extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     
-    @Override
-    public JRootPane getRootPane() {
-        return super.getRootPane(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Container getParent() {
-        return super.getParent(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void jloginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jloginMouseClicked
+    public void login() {
 //        if(jusername.getText().isEmpty()) {
 //            error.setText("Username Is Empty!");
 //            return;
@@ -123,7 +116,10 @@ public class jLoginPage extends javax.swing.JPanel {
         {     
             error.setText("Password or Username dont match!");
         } 
-           
+          
+    }
+    private void jloginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jloginMouseClicked
+        login();
     }//GEN-LAST:event_jloginMouseClicked
 
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
@@ -131,6 +127,12 @@ public class jLoginPage extends javax.swing.JPanel {
         jusername.setText("");
         jpassword.setText(""); 
     }//GEN-LAST:event_jBackMouseClicked
+
+    private void jpasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jpasswordKeyPressed
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            login();
+        }
+    }//GEN-LAST:event_jpasswordKeyPressed
 
     
    
@@ -144,6 +146,6 @@ public class jLoginPage extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton jlogin;
     private javax.swing.JPasswordField jpassword;
-    private javax.swing.JTextField jusername;
+    public javax.swing.JTextField jusername;
     // End of variables declaration//GEN-END:variables
 }

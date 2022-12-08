@@ -85,6 +85,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jusername">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="jlogin">
       <Properties>
@@ -102,6 +105,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JPasswordField" name="jpassword">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jpasswordKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jBack">
       <Properties>
