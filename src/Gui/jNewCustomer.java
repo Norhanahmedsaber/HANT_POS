@@ -228,9 +228,9 @@ public class jNewCustomer extends javax.swing.JPanel {
         jJobField.setText("");
     } 
     public void addCustomerButton(){
-        if(!checkAllValidations()){
+       /* if(!checkAllValidations()){
            return;
-        }else
+        }else*/
         saveCustomerData();
         
         // messege added successfully 
