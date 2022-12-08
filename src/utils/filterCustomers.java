@@ -8,7 +8,8 @@ import java.util.Comparator;
 public class filterCustomers {
     public ArrayList<Customer> filter(ArrayList<Customer> customers, String searchName, String sortBy) {
        
-        return Search(customers, searchName );
+       return Sortby( Search(customers, searchName ),sortBy);
+        
     }
     
     

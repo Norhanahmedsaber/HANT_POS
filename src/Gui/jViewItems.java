@@ -134,7 +134,7 @@ public class jViewItems extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     public void showItems (){
-            String [] titles= {"Name","Category","Price","CreatedAt"};
+            String [] titles= {"Id", "Name","Category","Price","CreatedAt"};
             DefaultTableModel model = new DefaultTableModel(titles,0);
             jTable1.setModel(model);
             ArrayList<Item> _items = _ItemServices.getAllItems();  
@@ -145,7 +145,7 @@ public class jViewItems extends javax.swing.JPanel {
                 for (int i=0;i<_filtereditems .size();i++)
                 { 
                     Item item = _filtereditems .get(i);
-                    Object [] items = { item.name,item.category,item.price,item.createdAt } ;
+                    Object [] items = { item.id, item.name,item.category,item.price,item.createdAt } ;
                     model.addRow(items);
                 }
             }
@@ -157,6 +157,7 @@ public class jViewItems extends javax.swing.JPanel {
 
     private void jadditemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jadditemMouseClicked
        _jHomePage.switchPanels(_jNewItem);
+       _jNewItem.jid.grabFocus();
     }//GEN-LAST:event_jadditemMouseClicked
 
 

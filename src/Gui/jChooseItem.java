@@ -3,6 +3,7 @@ package Gui;
 import Entities.Item;
 import Services.ItemServices;
 import java.util.ArrayList;
+import java.util.UUID;
 import javax.swing.table.DefaultTableModel;
 import utils.filterItems;
 
@@ -14,8 +15,20 @@ public class jChooseItem extends javax.swing.JPanel {
         _ItemServices = new ItemServices();
         _filterItems = new filterItems();
     }
+    public void done() {
+        DefaultTableModel m = (DefaultTableModel) jAddedItems.getModel();
+        ArrayList<UUID> uuids = new ArrayList<UUID>();
+        for (int count = 0; count < m.getRowCount(); count++){
+            uuids.add((UUID) m.getValueAt(count, 0));
+        }
+        if(!uuids.isEmpty()) {
+            _ItemServices.addItemsToCustomer(UUID.randomUUID(), uuids);
+            resetPanel();
+            _jHomePage.switchPanels(_jNewCustomer);
+        }else jError.setText("Please Select at Least 1 Item!");
+    }
     public void resetPanel() {
-        String [] titles= {"Name","Category","Price","CreatedAt"};
+        String [] titles= {"Id", "Name","Category","Price","CreatedAt"};
         DefaultTableModel model = new DefaultTableModel(titles,0);
         jItems.setModel(model);
         DefaultTableModel model2 = new DefaultTableModel(titles,0);
@@ -23,6 +36,7 @@ public class jChooseItem extends javax.swing.JPanel {
         jAddedItems.setModel(model);
         jSearch.setText("");
         jItemsCombo.selectWithKeyChar('n');
+        jError.setText("");
     }
     private void removeItemFromPreviewTable() {
         if(jAddedItems.getSelectedRow() != -1) {
@@ -32,8 +46,7 @@ public class jChooseItem extends javax.swing.JPanel {
     }
     private void addItemToPreviewTable() {
         int row = jItems.getSelectedRow();
-        System.out.println(jItems.getSelectedRow());
-        int colNumber = 4;
+        int colNumber = 5;
         Object[] result = new Object[colNumber];
         for (int i = 0; i < colNumber; i++) {
             result[i] = jItems.getModel().getValueAt(row, i);
@@ -51,7 +64,7 @@ public class jChooseItem extends javax.swing.JPanel {
                 DefaultTableModel model = (DefaultTableModel) jItems.getModel();
                 for(int i=0;i<filteredItems.size();i++) {
                     Item item = filteredItems.get(i);
-                    Object[] data = { item.name, item.category, item.price, item.createdAt };
+                    Object[] data = { item.id, item.name, item.category, item.price, item.createdAt };
                     model.addRow(data);
                 }
             }
@@ -72,6 +85,8 @@ public class jChooseItem extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         jAddedItems = new javax.swing.JTable();
         jRemove = new javax.swing.JButton();
+        jDone = new javax.swing.JButton();
+        jError = new javax.swing.JLabel();
 
         jBack.setText("Back");
         jBack.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -126,25 +141,37 @@ public class jChooseItem extends javax.swing.JPanel {
             }
         });
 
+        jDone.setText("Done");
+        jDone.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jDoneMouseClicked(evt);
+            }
+        });
+
+        jError.setForeground(new java.awt.Color(255, 0, 0));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(19, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel2))
-                            .addGap(90, 90, 90)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jSearch)
-                                .addComponent(jItemsCombo, 0, 409, Short.MAX_VALUE))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
+                        .addGap(90, 90, 90)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jSearch)
+                            .addComponent(jItemsCombo, 0, 409, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jDone)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jError)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jRemove)
                         .addGap(18, 18, 18)
                         .addComponent(jAdd)
@@ -171,7 +198,9 @@ public class jChooseItem extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBack)
                     .addComponent(jAdd)
-                    .addComponent(jRemove))
+                    .addComponent(jRemove)
+                    .addComponent(jDone)
+                    .addComponent(jError))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -187,6 +216,10 @@ public class jChooseItem extends javax.swing.JPanel {
     private void jRemoveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRemoveMouseClicked
         removeItemFromPreviewTable();
     }//GEN-LAST:event_jRemoveMouseClicked
+
+    private void jDoneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDoneMouseClicked
+        done();
+    }//GEN-LAST:event_jDoneMouseClicked
     private final ItemServices _ItemServices;
     private final jNewCustomer _jNewCustomer;
     private final jHomePage _jHomePage;
@@ -195,6 +228,8 @@ public class jChooseItem extends javax.swing.JPanel {
     private javax.swing.JButton jAdd;
     private javax.swing.JTable jAddedItems;
     private javax.swing.JButton jBack;
+    private javax.swing.JButton jDone;
+    private javax.swing.JLabel jError;
     private javax.swing.JTable jItems;
     private javax.swing.JComboBox<String> jItemsCombo;
     private javax.swing.JLabel jLabel2;
