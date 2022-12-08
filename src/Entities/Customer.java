@@ -9,7 +9,7 @@ public class Customer {
     public String name;
     public String nationalId;
     public String phoneNumber;
-    public String address;
+    public String city;
     public Date purchaseDate;
     public String email;
     public int income;
