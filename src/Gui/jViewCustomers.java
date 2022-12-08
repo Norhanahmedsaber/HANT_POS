@@ -23,7 +23,7 @@ public void renderData() {
         if(!customers.isEmpty()) { 
             String searchName = jSearchName.getText(); 
             String sortBy = (String) jSortBy.getSelectedItem(); 
-            ArrayList<Customer> filteredCustomers = _filterCustomers.filter(customers, searchName, sortBy); 
+            ArrayList<Customer> filteredCustomers = _filterCustomers.filter(customers, searchName,sortBy); 
             if(!filteredCustomers.isEmpty()){ 
                 for(int i=0;i<filteredCustomers.size();i++) { 
                     Customer customer = filteredCustomers.get(i); 
@@ -50,7 +50,7 @@ public void renderData() {
 
         jLabel3.setText("sort by :");
 
-        jSortBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Name", "Date" }));
+        jSortBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NameAscendingly", "NameDescendingly", "DateAscendingly", "DateDescendingly" }));
         jSortBy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jSortByActionPerformed(evt);
