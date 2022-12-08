@@ -8,8 +8,8 @@ import java.util.Comparator;
 public class filterItems {
     public ArrayList<Item> filter(ArrayList<Item> items,String search,String sortitemby) {
        ArrayList <Item> filtered = search(items, search);
-        return filtered;
-       
+       ArrayList <Item> sorted = Sortby(filtered , sortitemby);
+        return sorted;       
     }
     public ArrayList<Item> search(ArrayList<Item> items , String search )
     {
