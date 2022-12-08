@@ -3,6 +3,7 @@ package Gui;
 import Entities.Item;
 import Services.ItemServices;
 import java.util.Date;
+import java.util.UUID;
 import javax.swing.JPanel;
 
 public class jNewItem extends javax.swing.JPanel {
@@ -244,6 +245,7 @@ public class jNewItem extends javax.swing.JPanel {
         }else jErrorcatgory.setText("");
 
         Item item =  new Item();
+        item.id = UUID.randomUUID();
         item.name=jid.getText();
         item.category=jcatgory.getText();
         item.description=jDescription.getText();

@@ -11,4 +11,5 @@ public interface IItemServices {
     // UUID to be figured
     void update(UUID ItemId, Item item);
     ArrayList<Item> getAllItems();
+    void addItemsToCustomer(UUID customerId, ArrayList<UUID> itemsIds);
 }
