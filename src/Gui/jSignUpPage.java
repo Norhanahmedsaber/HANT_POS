@@ -35,7 +35,7 @@ public class jSignUpPage extends javax.swing.JPanel {
         if(jUsernameField.getText().trim().isEmpty()) {
            jErrorUsername.setText("Cant be empty!");
            return false;
-        }else jErrorName.setText("");
+        }else jErrorUsername.setText("");
         return true;
     }
     public boolean isValidPassword() {
@@ -45,8 +45,8 @@ public class jSignUpPage extends javax.swing.JPanel {
            return false;
         }else jErrorPassword.setText("");
         // is valid (password)
-        if (jPasswordField.getText().trim().length() != 8){
-            jErrorPassword.setText("your password length must be 8.");
+        if (jPasswordField.getText().trim().length() < 8){
+            jErrorPassword.setText("your password length must be greate than 8.");
             return false;
         }else jErrorPassword.setText("");
         return true;
