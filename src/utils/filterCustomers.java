@@ -7,9 +7,22 @@ import java.util.Comparator;
 
 public class filterCustomers {
     public ArrayList<Customer> filter(ArrayList<Customer> customers, String searchName, String sortBy) {
-      // public  search(searchName);
-       Sortby(customers,sortBy);
-       return customers;
+       
+        return Search(customers, searchName );
+    }
+    
+    
+    public ArrayList<Customer> Search( ArrayList<Customer> customers , String searchName )
+    {
+        ArrayList <Customer> customerAfterSearch = new ArrayList<Customer>();
+        for( int i=0 ; i<customers.size() ; i++)
+        {
+            if(customers.get(i).name.contains(searchName.toLowerCase().trim()))
+            {
+                customerAfterSearch.add(customers.get(i));
+            }
+        }
+        return customerAfterSearch ;
     }
     
    public ArrayList<Customer> Sortby (ArrayList<Customer> customers,String sortedby)

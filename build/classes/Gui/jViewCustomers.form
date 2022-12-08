@@ -76,6 +76,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jSearchName">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jSearchNameKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
