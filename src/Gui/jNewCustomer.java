@@ -220,7 +220,7 @@ public class jNewCustomer extends javax.swing.JPanel {
     }
     public void saveCustomerData(){
         Customer _Customer =new Customer();
-        _Customer.id=UUID.randomUUID();
+        _Customer.id = UUID.randomUUID();
         _Customer.name = jNameField.getText().trim();
         _Customer.age = Integer.parseInt(jAgeField.getText().trim());
         _Customer.job = jJobField.getText().trim();

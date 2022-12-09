@@ -5,7 +5,8 @@ import java.util.Date;
 import java.util.UUID;
 
 public class Customer {
-     public UUID id;
+    // id (GUID)
+    public UUID id;
     public String name;
     public String nationalId;
     public String phoneNumber;

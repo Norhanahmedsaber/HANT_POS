@@ -61,6 +61,7 @@ public class jNewItem extends javax.swing.JPanel {
             return ;
         }
         item.createdAt=new Date(); 
+        item.id=UUID.randomUUID();
         _itemServices.create(item);
         jid.setText("");
         jDescription.setText("");
@@ -70,6 +71,7 @@ public class jNewItem extends javax.swing.JPanel {
        
          
      }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -310,7 +312,6 @@ public class jNewItem extends javax.swing.JPanel {
     private void jAddItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAddItemMouseClicked
 
         createItem();
-
     }//GEN-LAST:event_jAddItemMouseClicked
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
