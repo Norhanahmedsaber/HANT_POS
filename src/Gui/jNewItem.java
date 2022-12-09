@@ -49,6 +49,7 @@ public class jNewItem extends javax.swing.JPanel {
         }else jErrorcatgory.setText("");
 
         Item item =  new Item();
+        item.id = UUID.randomUUID();
         item.name=jid.getText();
         item.category=jcatgory.getText();
         item.description=jDescription.getText();
@@ -309,41 +310,7 @@ public class jNewItem extends javax.swing.JPanel {
     private void jAddItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAddItemMouseClicked
 
         createItem();
-        if (jid.getText().isEmpty())
-        {
-            jErrorid.setText("please Enter This");
-            return;
-        }else jErrorid.setText(""); 
-        if(jDescription.getText().isEmpty())
-        {
-            jErrordescription.setText("please Enter This");
-            return;
-        }else jErrordescription.setText("");
-        if(jprice.getText().isEmpty())
-        {
-            System.out.print("hhhhhhhh");
-            jErrorPrice.setText("please Enter This");
-            return;
-        }else jErrorPrice.setText("");
-        //if(jentrydate.getText().isEmpty())
-        //{
-        //    jErrorentrydate.setText("please Enter This");
-        //    return;
-        //}else jErrorentrydate.setText("");
-        if(jcatgory.getText().isEmpty())
-        {
-            jErrorcatgory.setText("Please Enter This");
-            return;
-        }else jErrorcatgory.setText("");
 
-        Item item =  new Item();
-        item.id = UUID.randomUUID();
-        item.name=jid.getText();
-        item.category=jcatgory.getText();
-        item.description=jDescription.getText();
-        item.price=Integer.parseInt(jprice.getText());
-        item.createdAt=new Date(); 
-        _itemServices.create(item);
     }//GEN-LAST:event_jAddItemMouseClicked
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed

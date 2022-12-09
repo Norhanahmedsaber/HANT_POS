@@ -3,8 +3,10 @@ package Gui;
 import Entities.Item;
 import Services.ItemServices;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.UUID;
 import javax.swing.table.DefaultTableModel;
+import sun.security.x509.PKIXExtensions;
 import utils.filterItems;
 
 public class jChooseItem extends javax.swing.JPanel {
@@ -16,16 +18,28 @@ public class jChooseItem extends javax.swing.JPanel {
         _filterItems = new filterItems();
     }
     public void done() {
-        DefaultTableModel m = (DefaultTableModel) jAddedItems.getModel();
-        ArrayList<UUID> uuids = new ArrayList<UUID>();
-        for (int count = 0; count < m.getRowCount(); count++){
-            uuids.add((UUID) m.getValueAt(count, 0));
+        DefaultTableModel m= (DefaultTableModel) jAddedItems.getModel();
+        int row=m.getRowCount();
+        int col=5;
+        ArrayList<Item> items =new ArrayList<Item>();
+        for (int r=0;r<row;r++)
+        {   
+            Object [] itemdata=new Object[col];
+            for(int c=0;c<col;c++)
+            {
+                itemdata[c]= m.getValueAt(r, c);
+            }
+            Item item =new Item();
+            item.id=(UUID) itemdata[0];
+            item.name= (String) itemdata[1];
+            item.category=(String) itemdata[2];
+            item.price=(int) itemdata[3];
+            item.createdAt=(Date) itemdata[4];
+            items.add(item);
         }
-        if(!uuids.isEmpty()) {
-            _ItemServices.addItemsToCustomer(UUID.randomUUID(), uuids);
-            resetPanel();
-            _jHomePage.switchPanels(_jNewCustomer);
-        }else jError.setText("Please Select at Least 1 Item!");
+        _jNewCustomer.setselecteditems(items);
+        _jHomePage.switchPanels(_jNewCustomer);
+        
     }
     public void resetPanel() {
         String [] titles= {"Id", "Name","Category","Price","CreatedAt"};
@@ -42,17 +56,21 @@ public class jChooseItem extends javax.swing.JPanel {
         if(jAddedItems.getSelectedRow() != -1) {
             DefaultTableModel m = (DefaultTableModel) jAddedItems.getModel();
             m.removeRow(jAddedItems.getSelectedRow());
+            
          }
     }
     private void addItemToPreviewTable() {
-        int row = jItems.getSelectedRow();
-        int colNumber = 5;
-        Object[] result = new Object[colNumber];
-        for (int i = 0; i < colNumber; i++) {
-            result[i] = jItems.getModel().getValueAt(row, i);
+        int row = jItems.getSelectedRow();//check ! -1
+        if(row!=-1)
+        {
+            int colNumber = 5;
+            Object[] result = new Object[colNumber];
+            for (int i = 0; i < colNumber; i++) {
+                result[i] = jItems.getModel().getValueAt(row, i);
+            }
+            DefaultTableModel model = (DefaultTableModel) jAddedItems.getModel();
+            model.addRow(result);
         }
-        DefaultTableModel model = (DefaultTableModel) jAddedItems.getModel();
-        model.addRow(result);
     }
     public void renderData() {
         ArrayList<Item> items = _ItemServices.getAllItems();
@@ -64,10 +82,19 @@ public class jChooseItem extends javax.swing.JPanel {
                 DefaultTableModel model = (DefaultTableModel) jItems.getModel();
                 for(int i=0;i<filteredItems.size();i++) {
                     Item item = filteredItems.get(i);
+                    System.err.println(item.id);
                     Object[] data = { item.id, item.name, item.category, item.price, item.createdAt };
                     model.addRow(data);
                 }
             }
+        }
+        ArrayList<Item> item =_jNewCustomer.getselecteditems();
+        DefaultTableModel m=(DefaultTableModel) jAddedItems.getModel();
+        for(int i=0;i<item.size();i++)
+        {
+            Item it= item.get(i);
+            Object[] data= { it.id, it.name, it.category, it.price, it.createdAt };
+            m.addRow(data);
         }
     }
     @SuppressWarnings("unchecked")
