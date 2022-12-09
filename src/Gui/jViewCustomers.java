@@ -14,7 +14,7 @@ public final class jViewCustomers extends javax.swing.JPanel {
         _jHomePage = jhp; 
         _jMainPage = jmp; 
         _CustomerServices = new CustomerServices(); 
-        _filterCustomers = new filterCustomers(); 
+        _filterCustomers = new filterCustomers();
     }
 public void renderData() { 
         String[] cols = {"ID","Name", "Email", "PurchaseDate", "PhoneNumber"}; 
