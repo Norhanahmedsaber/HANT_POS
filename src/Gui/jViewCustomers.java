@@ -170,7 +170,7 @@ private UUID deleteCustomer()
         UUID id = deleteCustomer();
         if(id!= null)
         {
-            _CustomerServices.delete(deleteCustomer());
+            _CustomerServices.delete(id);
         }
     }//GEN-LAST:event_jDeleteMouseClicked
 
