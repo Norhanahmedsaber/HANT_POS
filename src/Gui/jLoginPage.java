@@ -1,5 +1,6 @@
 package Gui;
 
+import Entities.User;
 import Services.AccountServices;
 import java.awt.event.KeyEvent;
 public class jLoginPage extends javax.swing.JPanel {
@@ -110,11 +111,14 @@ public class jLoginPage extends javax.swing.JPanel {
 //            error.setText("password Is Empty!");
 //            return;
 //        }else error.setText("");
-        if( _AccountServices.login( jusername.getText(), jpassword.getText()) )
+        User loggedIn = _AccountServices.login( jusername.getText(), jpassword.getText());
+        if(loggedIn != null)
         {
             jusername.setText("");
             jpassword.setText("");
+            System.out.println("Hello, " + loggedIn.name);
             _jHomePage.switchPanels(_jMainPage);
+            _jHomePage.loggedInUser = loggedIn;
         }
         else
         {     

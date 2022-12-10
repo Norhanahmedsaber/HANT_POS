@@ -4,15 +4,13 @@ import Interfaces.IAccountServices;
 
 public class AccountServices implements IAccountServices{
     
-    public static String us ="s7s" ;
-    
-    public static String pass ="anas" ;
-    
-    
+    public User user = new User();
+
     @Override
-    public boolean login(String username, String password) {
+    public User login(String username, String password) {
         //return us.equals(username) && pass.equals(password);
-        return true;
+        user.name = username;
+        return user;
     }
 
     @Override

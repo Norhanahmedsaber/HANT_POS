@@ -22,7 +22,7 @@ public class jMainPage extends javax.swing.JPanel {
         jViewcustomers = new javax.swing.JButton();
         jLog = new javax.swing.JButton();
         jNewcustomer = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jLogout = new javax.swing.JButton();
 
         jNewitem.setText("New Item");
         jNewitem.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -59,10 +59,10 @@ public class jMainPage extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setText("Logout");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLogout.setText("Logout");
+        jLogout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                jLogoutMouseClicked(evt);
             }
         });
 
@@ -80,7 +80,7 @@ public class jMainPage extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jNewitem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jViewitems, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(51, 51, 51))
         );
         layout.setVerticalGroup(
@@ -97,7 +97,7 @@ public class jMainPage extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLog)
-                    .addComponent(jButton1))
+                    .addComponent(jLogout))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -128,9 +128,10 @@ public class jMainPage extends javax.swing.JPanel {
         _jHomePage.switchPanels(_jLog);
     }//GEN-LAST:event_jLogMouseClicked
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void jLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLogoutMouseClicked
+        _jHomePage.loggedInUser = null;
         _jHomePage.Home();
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_jLogoutMouseClicked
     private final jNewCustomer _jNewCustomer;
     private final jViewCustomers _jViewCustomers;
     private final jViewItems _jViewItems;
@@ -138,8 +139,8 @@ public class jMainPage extends javax.swing.JPanel {
     private final jLog _jLog;
     private final jHomePage _jHomePage;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jLog;
+    private javax.swing.JButton jLogout;
     private javax.swing.JButton jNewcustomer;
     private javax.swing.JButton jNewitem;
     private javax.swing.JButton jViewcustomers;
