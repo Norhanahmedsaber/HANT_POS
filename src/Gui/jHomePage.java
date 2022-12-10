@@ -1,5 +1,6 @@
 package Gui;
 
+import Entities.User;
 import javax.swing.JPanel;
 public class jHomePage extends javax.swing.JFrame {
 
@@ -121,6 +122,7 @@ public class jHomePage extends javax.swing.JFrame {
             }
         });
     }
+    public User loggedInUser;
     private final jLoginPage _jLoginPage;
     private final jSignUpPage _jSignUpPage;
     // Variables declaration - do not modify//GEN-BEGIN:variables
