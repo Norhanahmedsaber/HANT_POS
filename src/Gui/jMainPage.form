@@ -18,7 +18,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="jAddusers" max="32767" attributes="0"/>
                   <Component id="jViewcustomers" alignment="0" max="32767" attributes="0"/>
                   <Component id="jNewcustomer" alignment="0" max="32767" attributes="0"/>
                   <Component id="jLog" alignment="0" max="32767" attributes="0"/>
@@ -27,7 +28,8 @@
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jNewitem" max="32767" attributes="0"/>
                   <Component id="jViewitems" alignment="0" pref="143" max="32767" attributes="0"/>
-                  <Component id="jButton1" max="32767" attributes="0"/>
+                  <Component id="jLogout" max="32767" attributes="0"/>
+                  <Component id="jViewusers" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
           </Group>
@@ -49,9 +51,13 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLog" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLogout" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="36" max="32767" attributes="0"/>
+              <EmptySpace pref="11" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jAddusers" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jViewusers" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
           </Group>
       </Group>
     </DimensionLayout>
@@ -97,12 +103,28 @@
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jNewcustomerMouseClicked"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="jLogout">
       <Properties>
         <Property name="text" type="java.lang.String" value="Logout"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton1MouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLogoutMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jAddusers">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Add Users"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jAddusersMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jViewusers">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="View Users"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jViewusersMouseClicked"/>
       </Events>
     </Component>
   </SubComponents>

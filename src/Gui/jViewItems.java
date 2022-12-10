@@ -2,6 +2,7 @@ package Gui;
 
 import Entities.Item;
 import Services.ItemServices;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.UUID;
 import javax.swing.table.DefaultTableModel;
@@ -248,6 +249,7 @@ public class jViewItems extends javax.swing.JPanel {
             jErrorShowItem.setText("Please choose item from table");
         }
     }//GEN-LAST:event_jShowItemMouseClicked
+
     private boolean toggle;
     private final jViewItem _jViewItem;
     private final ItemServices _ItemServices;

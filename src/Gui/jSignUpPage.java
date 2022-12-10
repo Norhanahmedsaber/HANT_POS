@@ -6,12 +6,12 @@ import java.awt.event.KeyEvent;
 import java.util.UUID;
 
 public class jSignUpPage extends javax.swing.JPanel {
-    public jSignUpPage(jHomePage jhp) {
+    public jSignUpPage(jHomePage jhp , jMainPage jmp) {
         initComponents();
         _jHomePage = jhp;
-        _jMainPage = new jMainPage(jhp);
+        _jMainPage = jmp;
         _AccountServices = new AccountServices();
-        _jLoginPage = new jLoginPage(jhp);
+        
     }
 
     public boolean isValidName() {
@@ -78,17 +78,13 @@ public class jSignUpPage extends javax.swing.JPanel {
         jUsernameField.setText("");
         jRolesCombo.selectWithKeyChar('U');
     }
-    public void goToLogInPage(){
-        _jHomePage.Home();
-        _jHomePage.switchPanels(_jLoginPage);
-    }
+    
     public void addAccountButton(){
         if(!checkAllValidations()){
             return;
         }
         saveUserData();
         clearSignUpPage();
-        goToLogInPage();
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -235,7 +231,7 @@ public class jSignUpPage extends javax.swing.JPanel {
     }//GEN-LAST:event_jAddAccountMouseClicked
 
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
-        _jHomePage.Home();
+        _jHomePage.switchPanels(_jMainPage);
         clearSignUpPage();
     }//GEN-LAST:event_jBackMouseClicked
 
@@ -270,7 +266,6 @@ public class jSignUpPage extends javax.swing.JPanel {
     }//GEN-LAST:event_jNameFieldKeyPressed
     
     private final jMainPage _jMainPage;
-    private final jLoginPage _jLoginPage;
     private final jHomePage _jHomePage;
     private final AccountServices _AccountServices;
     

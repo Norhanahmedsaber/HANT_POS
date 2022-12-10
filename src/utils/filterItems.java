@@ -34,7 +34,7 @@ public class filterItems {
     
      public ArrayList<Item> Sortby (ArrayList<Item> items,String sortedby , boolean toggle)
    {
-             if (sortedby=="Name" && toggle==false)
+        if (sortedby=="Name" && toggle==false)
         {     
             Collections.sort(items,new Comparator<Item>() {
                 @Override
@@ -67,7 +67,7 @@ public class filterItems {
              
             return items ;
         }
-         else if (sortedby=="Date" && toggle==true)
+       else if (sortedby=="Date" && toggle==true)
         { 
              Collections.sort(items,new Comparator<Item>() {
                 @Override
@@ -78,7 +78,7 @@ public class filterItems {
              Collections.reverse(items);
             return items ;
         }
-             else if (sortedby=="Category" && toggle==true)
+       else if (sortedby=="Category" && toggle==false)
         { 
              Collections.sort(items,new Comparator<Item>() {
                 public int compare(Item i1, Item i2) {
@@ -88,7 +88,17 @@ public class filterItems {
              
             return items ;
         }
-             else if (sortedby=="Price" && toggle== true)
+       else if (sortedby=="Category" && toggle==true)
+        { 
+             Collections.sort(items,new Comparator<Item>() {
+                public int compare(Item i1, Item i2) {
+                    return (i1.category.compareTo(i2.category));
+                }
+            });
+            Collections.reverse(items);
+            return items ;
+        }
+       else if (sortedby=="Price" && toggle== false)
         { 
              Collections.sort(items,new Comparator<Item>() {
                 @Override
@@ -97,6 +107,17 @@ public class filterItems {
                 }
             });
         
+            return items ;
+        }
+      else if (sortedby=="Price" && toggle== true)
+        { 
+             Collections.sort(items,new Comparator<Item>() {
+                @Override
+                public int compare(Item i1, Item i2) {
+                    return (Integer.toString(i1.price).compareTo(Integer.toString(i2.price)));
+                }
+            });
+            Collections.reverse(items);
             return items ;
         }
        
