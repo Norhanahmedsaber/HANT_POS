@@ -13,18 +13,34 @@ public class CustomerServices implements ICustomerServices  {
  
     @Override 
     public void delete(UUID customerId) { 
-        customers.remove(customerId);
-        System.out.println("heehe");
+        customers.remove(getById(customerId));
     } 
  
     @Override 
     public Customer getById(UUID customerId) { 
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody 
+        for(int i=0;i<customers.size();i++) {
+            if(customers.get(i).id == customerId) {
+                return customers.get(i);
+            }
+        }
+        return null; 
     } 
  
     @Override 
     public void update(UUID customerId, Customer customer) { 
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody 
+        for(int i=0;i<customers.size();i++) {
+            if(customers.get(i).id == customerId) {
+                customers.get(i).name = customer.name;
+                customers.get(i).age = customer.age;
+                customers.get(i).job = customer.job;
+                customers.get(i).nationalId = customer.nationalId;
+                customers.get(i).income = customer.income;
+                customers.get(i).email = customer.email;
+                customers.get(i).city = customer.city;
+                customers.get(i).gender = customer.gender;
+                customers.get(i).phoneNumber = customer.phoneNumber;
+            }
+        }
     } 
  
     @Override 

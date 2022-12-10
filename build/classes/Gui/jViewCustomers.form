@@ -19,7 +19,7 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jScrollPane2" pref="530" max="32767" attributes="0"/>
+                  <Component id="jScrollPane2" pref="518" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel3" min="-2" pref="57" max="-2" attributes="0"/>
@@ -32,7 +32,6 @@
                               <Component id="jSortBy" min="-2" pref="93" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jToggleSort" min="-2" pref="47" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -42,6 +41,8 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jDelete" min="-2" pref="150" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="jviewCustomer" min="-2" pref="142" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="jBack" min="-2" pref="150" max="-2" attributes="0"/>
                   </Group>
@@ -74,6 +75,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jBack" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jDelete" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jviewCustomer" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
@@ -160,6 +162,14 @@
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jToggleSortMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jviewCustomer">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Show Customer"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jviewCustomerMouseClicked"/>
       </Events>
     </Component>
   </SubComponents>
