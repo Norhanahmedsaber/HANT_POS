@@ -58,7 +58,7 @@ public class jSignUpPage extends javax.swing.JPanel {
         if (!isValidUserName()){
             return false;
         }
-        if (!isValidPassword()){
+        if(!isValidPassword()){
             return false;
         }
         return true;

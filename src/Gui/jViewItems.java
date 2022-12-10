@@ -211,7 +211,7 @@ public class jViewItems extends javax.swing.JPanel {
         UUID id = deleteItem();
         if(id!= null)
         {
-            _ItemServices.delete(deleteItem());
+            _ItemServices.delete(id);
         }
     }//GEN-LAST:event_jdeleteMouseClicked
 

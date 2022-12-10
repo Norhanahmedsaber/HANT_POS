@@ -53,7 +53,11 @@
                           </Group>
                           <Component id="jScrollPane2" alignment="0" min="-2" pref="410" max="-2" attributes="0"/>
                       </Group>
+<<<<<<< HEAD
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+=======
+                      <EmptySpace max="32767" attributes="0"/>
+>>>>>>> 82334a1d16a3c5fea3b976d319e0a0152d3f8128
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>

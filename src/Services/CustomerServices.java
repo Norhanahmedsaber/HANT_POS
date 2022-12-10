@@ -19,7 +19,12 @@ public class CustomerServices implements ICustomerServices  {
  
     @Override 
     public Customer getById(UUID customerId) { 
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody 
+        for(int i=0;i<customers.size();i++) {
+            if(customers.get(i).id == customerId) {
+                return customers.get(i);
+            }
+        }
+        return null;
     } 
  
     @Override 
