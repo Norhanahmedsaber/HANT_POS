@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 import javax.swing.table.DefaultTableModel;
-import sun.security.x509.PKIXExtensions;
 import utils.filterItems;
 
 public class jChooseItem extends javax.swing.JPanel {
@@ -77,7 +76,7 @@ public class jChooseItem extends javax.swing.JPanel {
         if(!items.isEmpty()) {
             String search = jSearch.getText();
             String sortBy = (String) jItemsCombo.getSelectedItem();
-            ArrayList<Item> filteredItems = _filterItems.filter(items, search, sortBy);
+            ArrayList<Item> filteredItems = _filterItems.filter(items, search, sortBy, false);
             if(!filteredItems.isEmpty()) {
                 DefaultTableModel model = (DefaultTableModel) jItems.getModel();
                 for(int i=0;i<filteredItems.size();i++) {

@@ -18,8 +18,10 @@ public class jViewItems extends javax.swing.JPanel {
          _jfilterItems=new filterItems();
          _jNewItem = new jNewItem(jhp,this);
         _ItemServices = new ItemServices();
+        _jViewItem = new jViewItem(jhp,this);
         toggle=false;
     }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -36,6 +38,8 @@ public class jViewItems extends javax.swing.JPanel {
         jadditem = new javax.swing.JButton();
         jdelete = new javax.swing.JButton();
         jToggleSort = new javax.swing.JButton();
+        jErrorShowItem = new javax.swing.JLabel();
+        jShowItem = new javax.swing.JButton();
 
         jsortitemsby.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Name", "Date", "Category", "Price" }));
 
@@ -92,6 +96,15 @@ public class jViewItems extends javax.swing.JPanel {
             }
         });
 
+        jErrorShowItem.setForeground(new java.awt.Color(255, 0, 51));
+
+        jShowItem.setText("Show Item");
+        jShowItem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jShowItemMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -104,24 +117,32 @@ public class jViewItems extends javax.swing.JPanel {
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jsearchitems, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jsortitemsby, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jToggleSort, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jdelete)
-                                .addGap(46, 46, 46)
-                                .addComponent(jadditem)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jBack))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jsearchitems, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jsortitemsby, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jToggleSort, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jErrorShowItem, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jBack)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jdelete)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jShowItem)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jadditem)))
+                        .addContainerGap(22, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,15 +157,18 @@ public class jViewItems extends javax.swing.JPanel {
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jToggleSort))
                 .addGap(22, 22, 22)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
+                    .addComponent(jErrorShowItem))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBack)
                     .addComponent(jadditem)
-                    .addComponent(jdelete))
-                .addContainerGap())
+                    .addComponent(jdelete)
+                    .addComponent(jBack)
+                    .addComponent(jShowItem))
+                .addGap(58, 58, 58))
         );
     }// </editor-fold>//GEN-END:initComponents
     public void showItems (){
@@ -164,8 +188,7 @@ public class jViewItems extends javax.swing.JPanel {
                 }
             }
         }
-    private UUID deleteItem()
-    {
+    private UUID deleteItem(){
          DefaultTableModel m = (DefaultTableModel) jItem.getModel();
           if(jItem.getSelectedRow() != -1) {
             UUID id = (UUID) m.getValueAt(jItem.getSelectedRow(), 0);
@@ -175,7 +198,16 @@ public class jViewItems extends javax.swing.JPanel {
             return null;
         }
     }
-    
+    public Item getSelectedItem(){
+        int row = jItem.getSelectedRow();//check ! -1
+        if(row!=-1){
+            jErrorShowItem.setText("");
+            UUID choosedItemId = (UUID)(jItem.getModel().getValueAt(row, 0));
+            Item choosedItem = _ItemServices.getById(choosedItemId);
+            return choosedItem;
+        }
+        return null;
+    }
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
         _jHomePage.switchPanels(_jMainPage);
     }//GEN-LAST:event_jBackMouseClicked
@@ -204,7 +236,19 @@ public class jViewItems extends javax.swing.JPanel {
        showItems();
     
     }//GEN-LAST:event_jToggleSortMouseClicked
+
+    private void jShowItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jShowItemMouseClicked
+        Item item =getSelectedItem();
+        if(item != null){
+            _jViewItem.choosedItem = item;
+            _jHomePage.switchPanels(_jViewItem);
+            _jViewItem.renderData();
+        }else{
+            jErrorShowItem.setText("Please choose item from table");
+        }
+    }//GEN-LAST:event_jShowItemMouseClicked
     private boolean toggle;
+    private final jViewItem _jViewItem;
     private final ItemServices _ItemServices;
     private final jMainPage _jMainPage;
     private final jHomePage _jHomePage;
@@ -212,11 +256,13 @@ public class jViewItems extends javax.swing.JPanel {
     private final filterItems _jfilterItems;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBack;
+    private javax.swing.JLabel jErrorShowItem;
     private javax.swing.JTable jItem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton jShowItem;
     private javax.swing.JButton jToggleSort;
     private javax.swing.JButton jadditem;
     private javax.swing.JButton jdelete;
