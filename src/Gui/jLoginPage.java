@@ -27,6 +27,17 @@ public class jLoginPage extends javax.swing.JPanel {
 
         jLabel2.setText("Password");
 
+        jusername.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jusernameMouseClicked(evt);
+            }
+        });
+        jusername.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jusernameKeyPressed(evt);
+            }
+        });
+
         jlogin.setText("login");
         jlogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -126,6 +137,16 @@ public class jLoginPage extends javax.swing.JPanel {
             login();
         }
     }//GEN-LAST:event_jpasswordKeyPressed
+
+    private void jusernameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jusernameMouseClicked
+        
+    }//GEN-LAST:event_jusernameMouseClicked
+
+    private void jusernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jusernameKeyPressed
+            if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+                login();
+            }
+    }//GEN-LAST:event_jusernameKeyPressed
 
     
    
