@@ -16,61 +16,99 @@ public class jNewItem extends javax.swing.JPanel {
         _itemServices = new ItemServices();
        
     }
-    void resetpannel()
-    {
+    public void resetNewitemPage(){
+        jNameField.setText("");
+        jDescriptionField.setText("");
+        jCatgoryField.setText("");
+        jPriceField.setText("");  
     }
-    public void createItem()
-     {
-         if (jIdField.getText().isEmpty())
+    public boolean checkAllValidations(){
+        
+        if(!isValidName()){
+            return false;
+        }
+        if (!isValidDescription()){
+            return false;
+        }
+        if (!isValidPrice()){
+            return false;
+        }
+        if (!isValidCatgory()){
+            return false;
+        }
+        return true;
+    }
+    public boolean isValidName(){
+        
+        // chck name is empty
+        if (jNameField.getText().trim().isEmpty())
         {
-            jErrorId.setText("please Enter This");
-            return;
-        }else jErrorId.setText(""); 
-        if(jDescriptionField.getText().isEmpty())
+            jErrorName.setText("Cant be empty!");
+            return false;
+        }else jErrorName.setText("");
+        
+        
+        // check name is valid
+        for(int i=0 ; i < jNameField.getText().trim().length();i++){
+            char x = jNameField.getText().trim().charAt(i);
+            if(!(x >= 'a' && x <= 'z' || x >= 'A' && x <= 'Z' || x==' ')){
+            jErrorName.setText("you must enter chars only.");
+            return false;
+            }else jErrorName.setText("");
+        }
+        return true;
+    }
+    public boolean isValidDescription(){
+        if(jDescriptionField.getText().trim().isEmpty())
         {
-            jErrorDescription.setText("please Enter This");
-            return;
+            jErrorDescription.setText("Cant be empty!");
+            return false;
         }else jErrorDescription.setText("");
-        if(jPriceField.getText().isEmpty())
-        {
-            System.out.print("hhhhhhhh");
-            jErrorPrice.setText("please Enter This");
-            return;
+        return true;
+    }
+    public boolean isValidPrice(){
+        // is empty (Price)
+        if(jPriceField.getText().trim().isEmpty()) {
+           jErrorPrice.setText("Cant be empty!");
+           return false;
         }else jErrorPrice.setText("");
-        //if(jentrydate.getText().isEmpty())
-        //{
-        //    jErrorentrydate.setText("please Enter This");
-        //    return;
-        //}else jErrorentrydate.setText("");
+        
+        // is valid (Price)
+        try {
+            Integer.parseInt(jPriceField.getText());
+        }catch(NumberFormatException e) {
+            jErrorPrice.setText("you must enter number.");
+            return false;
+        }
+        return true;
+    }
+    public boolean isValidCatgory(){
         if(jCatgoryField.getText().isEmpty())
         {
-            jErrorCatgory.setText("Please Enter This");
-            return;
+            jErrorCatgory.setText("Cant be empty!");
+            return false;
         }else jErrorCatgory.setText("");
-
+        
+        return true;
+    }
+    public void saveItemData(){
         Item item =  new Item();
-        item.id = UUID.randomUUID();
-        item.name=jIdField.getText();
+        item.price=Integer.parseInt(jPriceField.getText());
+        item.name=jNameField.getText();
         item.category=jCatgoryField.getText();
         item.description=jDescriptionField.getText();
-        try{
-            
-            item.price=Integer.parseInt(jPriceField.getText());
-        }catch(NumberFormatException e ){
-            jErrorPrice.setText("you must enter number, chars not allowed.");
-            return ;
-        }
         item.createdAt=new Date(); 
         item.id=UUID.randomUUID();
         _itemServices.create(item);
-        jIdField.setText("");
-        jDescriptionField.setText("");
-        jCatgoryField.setText("");
-        jPriceField.setText("");
+    }
+    public void addItemButton(){
+        if(!checkAllValidations()){
+           return;
+        }else
+        saveItemData();
         jAddedSuccessfuly.setText("Added Succesfully");
-       
-         
-     }
+        resetNewitemPage();
+    }
     
 
     @SuppressWarnings("unchecked")
@@ -83,12 +121,12 @@ public class jNewItem extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jAddItem = new javax.swing.JButton();
-        jIdField = new javax.swing.JTextField();
+        jNameField = new javax.swing.JTextField();
         jPriceField = new javax.swing.JTextField();
         jDescriptionField = new javax.swing.JTextField();
         jCatgoryField = new javax.swing.JTextField();
         jBack = new javax.swing.JButton();
-        jErrorId = new javax.swing.JLabel();
+        jErrorName = new javax.swing.JLabel();
         jErrorDescription = new javax.swing.JLabel();
         jErrorPrice = new javax.swing.JLabel();
         jErrorCatgory = new javax.swing.JLabel();
@@ -96,7 +134,7 @@ public class jNewItem extends javax.swing.JPanel {
 
         jLabel0.setText("New Item :");
 
-        jLabel1.setText("ID");
+        jLabel1.setText("Name");
 
         jLabel2.setText("Description");
 
@@ -116,9 +154,9 @@ public class jNewItem extends javax.swing.JPanel {
             }
         });
 
-        jIdField.addKeyListener(new java.awt.event.KeyAdapter() {
+        jNameField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jIdFieldKeyPressed(evt);
+                jNameFieldKeyPressed(evt);
             }
         });
 
@@ -147,7 +185,8 @@ public class jNewItem extends javax.swing.JPanel {
             }
         });
 
-        jErrorId.setForeground(new java.awt.Color(255, 0, 51));
+        jErrorName.setForeground(new java.awt.Color(255, 0, 51));
+        jErrorName.setToolTipText("");
 
         jErrorDescription.setForeground(new java.awt.Color(255, 0, 51));
 
@@ -179,14 +218,14 @@ public class jNewItem extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jAddedSuccessfuly, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jIdField, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jDescriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jPriceField, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jCatgoryField, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE))))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jErrorCatgory)
-                    .addComponent(jErrorId)
+                    .addComponent(jErrorName)
                     .addComponent(jErrorDescription)
                     .addComponent(jErrorPrice))
                 .addContainerGap(103, Short.MAX_VALUE))
@@ -199,8 +238,8 @@ public class jNewItem extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jIdField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jErrorId))
+                    .addComponent(jNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jErrorName))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -237,38 +276,37 @@ public class jNewItem extends javax.swing.JPanel {
     }//GEN-LAST:event_jBackMouseClicked
 
     private void jAddItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAddItemMouseClicked
-
-        createItem();
+        addItemButton();
     }//GEN-LAST:event_jAddItemMouseClicked
 
-    private void jIdFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jIdFieldKeyPressed
+    private void jNameFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jNameFieldKeyPressed
         if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
-             createItem();
+            addItemButton();
         }
 
-    }//GEN-LAST:event_jIdFieldKeyPressed
+    }//GEN-LAST:event_jNameFieldKeyPressed
 
     private void jAddItemKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jAddItemKeyPressed
          if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
-            createItem();
+            addItemButton();
         }
     }//GEN-LAST:event_jAddItemKeyPressed
 
     private void jDescriptionFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jDescriptionFieldKeyPressed
          if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
-            createItem();
+            addItemButton();
         }
     }//GEN-LAST:event_jDescriptionFieldKeyPressed
 
     private void jCatgoryFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCatgoryFieldKeyPressed
         if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
-            createItem();
+            addItemButton();
         }
     }//GEN-LAST:event_jCatgoryFieldKeyPressed
 
     private void jPriceFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPriceFieldKeyPressed
          if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
-             createItem();
+             addItemButton();
         }
     }//GEN-LAST:event_jPriceFieldKeyPressed
     
@@ -283,14 +321,14 @@ public class jNewItem extends javax.swing.JPanel {
     private javax.swing.JTextField jDescriptionField;
     private javax.swing.JLabel jErrorCatgory;
     private javax.swing.JLabel jErrorDescription;
-    private javax.swing.JLabel jErrorId;
+    private javax.swing.JLabel jErrorName;
     private javax.swing.JLabel jErrorPrice;
-    public javax.swing.JTextField jIdField;
     private javax.swing.JLabel jLabel0;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    public javax.swing.JTextField jNameField;
     private javax.swing.JTextField jPriceField;
     // End of variables declaration//GEN-END:variables
 }

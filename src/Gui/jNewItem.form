@@ -36,7 +36,7 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jAddedSuccessfuly" max="32767" attributes="0"/>
                           <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                              <Component id="jIdField" min="-2" pref="202" max="-2" attributes="0"/>
+                              <Component id="jNameField" min="-2" pref="202" max="-2" attributes="0"/>
                               <Component id="jDescriptionField" min="-2" pref="202" max="-2" attributes="0"/>
                               <Component id="jPriceField" min="-2" pref="202" max="-2" attributes="0"/>
                           </Group>
@@ -47,7 +47,7 @@
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jErrorCatgory" min="-2" max="-2" attributes="0"/>
-                  <Component id="jErrorId" min="-2" max="-2" attributes="0"/>
+                  <Component id="jErrorName" min="-2" max="-2" attributes="0"/>
                   <Component id="jErrorDescription" min="-2" max="-2" attributes="0"/>
                   <Component id="jErrorPrice" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -63,8 +63,8 @@
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jIdField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jErrorId" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jNameField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jErrorName" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -104,7 +104,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="ID"/>
+        <Property name="text" type="java.lang.String" value="Name"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
@@ -131,9 +131,9 @@
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jAddItemKeyPressed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jIdField">
+    <Component class="javax.swing.JTextField" name="jNameField">
       <Events>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jIdFieldKeyPressed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jNameFieldKeyPressed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -162,11 +162,12 @@
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jBackMouseClicked"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="jErrorId">
+    <Component class="javax.swing.JLabel" name="jErrorName">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="0" red="ff" type="rgb"/>
         </Property>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jErrorDescription">

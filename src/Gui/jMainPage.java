@@ -150,7 +150,7 @@ public class jMainPage extends javax.swing.JPanel {
 
     private void jNewitemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jNewitemMouseClicked
         _jHomePage.switchPanels(_jNewItem);
-        _jNewItem.jIdField.grabFocus();
+        _jNewItem.jNameField.grabFocus();
     }//GEN-LAST:event_jNewitemMouseClicked
 
     private void jViewitemsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jViewitemsMouseClicked
