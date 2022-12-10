@@ -2,6 +2,7 @@ package Gui;
 
 import Entities.Item;
 import Services.ItemServices;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.UUID;
 import javax.swing.table.DefaultTableModel;
@@ -204,6 +205,7 @@ public class jViewItems extends javax.swing.JPanel {
        showItems();
     
     }//GEN-LAST:event_jToggleSortMouseClicked
+    
     private boolean toggle;
     private final ItemServices _ItemServices;
     private final jMainPage _jMainPage;

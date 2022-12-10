@@ -16,6 +16,7 @@ public class jChooseItem extends javax.swing.JPanel {
         _jHomePage = jhp;
         _ItemServices = new ItemServices();
         _filterItems = new filterItems();
+        toggle = false;
     }
     public void done() {
         DefaultTableModel m= (DefaultTableModel) jAddedItems.getModel();
@@ -77,12 +78,13 @@ public class jChooseItem extends javax.swing.JPanel {
         if(!items.isEmpty()) {
             String search = jSearch.getText();
             String sortBy = (String) jItemsCombo.getSelectedItem();
-            ArrayList<Item> filteredItems = _filterItems.filter(items, search, sortBy);
+            ArrayList<Item> filteredItems = _filterItems.filter(items, search, sortBy , toggle);
             if(!filteredItems.isEmpty()) {
-                DefaultTableModel model = (DefaultTableModel) jItems.getModel();
+                String [] titles= {"Id", "Name","Category","Price","CreatedAt"};
+                DefaultTableModel model = new DefaultTableModel(titles,0);
+                jItems.setModel(model);
                 for(int i=0;i<filteredItems.size();i++) {
                     Item item = filteredItems.get(i);
-                    System.err.println(item.id);
                     Object[] data = { item.id, item.name, item.category, item.price, item.createdAt };
                     model.addRow(data);
                 }
@@ -114,6 +116,7 @@ public class jChooseItem extends javax.swing.JPanel {
         jRemove = new javax.swing.JButton();
         jDone = new javax.swing.JButton();
         jError = new javax.swing.JLabel();
+        jToggleSort = new javax.swing.JButton();
 
         jBack.setText("Back");
         jBack.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -177,6 +180,13 @@ public class jChooseItem extends javax.swing.JPanel {
 
         jError.setForeground(new java.awt.Color(255, 0, 0));
 
+        jToggleSort.setText("↓↑\n");
+        jToggleSort.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jToggleSortMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -191,9 +201,12 @@ public class jChooseItem extends javax.swing.JPanel {
                             .addComponent(jLabel3)
                             .addComponent(jLabel2))
                         .addGap(90, 90, 90)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jSearch)
-                            .addComponent(jItemsCombo, 0, 409, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jItemsCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32)
+                                .addComponent(jToggleSort, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jDone)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -216,8 +229,9 @@ public class jChooseItem extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jItemsCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
+                    .addComponent(jItemsCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jToggleSort))
+                .addGap(22, 22, 22)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -228,7 +242,7 @@ public class jChooseItem extends javax.swing.JPanel {
                     .addComponent(jRemove)
                     .addComponent(jDone)
                     .addComponent(jError))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -247,6 +261,13 @@ public class jChooseItem extends javax.swing.JPanel {
     private void jDoneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDoneMouseClicked
         done();
     }//GEN-LAST:event_jDoneMouseClicked
+
+    private void jToggleSortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleSortMouseClicked
+        toggle = !toggle;
+        renderData();
+
+    }//GEN-LAST:event_jToggleSortMouseClicked
+    private boolean toggle;
     private final ItemServices _ItemServices;
     private final jNewCustomer _jNewCustomer;
     private final jHomePage _jHomePage;
@@ -265,6 +286,7 @@ public class jChooseItem extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JTextField jSearch;
+    private javax.swing.JButton jToggleSort;
     // End of variables declaration//GEN-END:variables
 
     

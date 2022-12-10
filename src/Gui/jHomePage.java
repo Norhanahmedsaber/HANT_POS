@@ -1,12 +1,13 @@
 package Gui;
 
+import Entities.User;
 import javax.swing.JPanel;
 public class jHomePage extends javax.swing.JFrame {
 
     public jHomePage() {
         initComponents();
         _jLoginPage = new jLoginPage(this);
-        _jSignUpPage = new jSignUpPage(this);
+        loginUser = null;
     }
 
     @SuppressWarnings("unchecked")
@@ -15,19 +16,11 @@ public class jHomePage extends javax.swing.JFrame {
 
         jPanel4 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jSignUp = new javax.swing.JButton();
         jsignin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel4.setLayout(new java.awt.CardLayout());
-
-        jSignUp.setText("sign up");
-        jSignUp.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jSignUpMouseClicked(evt);
-            }
-        });
 
         jsignin.setText("Sign in");
         jsignin.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -42,19 +35,15 @@ public class jHomePage extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSignUp, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
-                    .addComponent(jsignin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jsignin, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(jSignUp, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(118, 118, 118)
                 .addComponent(jsignin, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(423, Short.MAX_VALUE))
         );
 
         jPanel4.add(jPanel1, "card2");
@@ -76,11 +65,6 @@ public class jHomePage extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jSignUpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSignUpMouseClicked
-        switchPanels(_jSignUpPage);
-        _jSignUpPage.jNameField.grabFocus();
-    }//GEN-LAST:event_jSignUpMouseClicked
 
     private void jsigninMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jsigninMouseClicked
         switchPanels(_jLoginPage);
@@ -121,12 +105,11 @@ public class jHomePage extends javax.swing.JFrame {
             }
         });
     }
+    public User loginUser;
     private final jLoginPage _jLoginPage;
-    private final jSignUpPage _jSignUpPage;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JButton jSignUp;
     private javax.swing.JButton jsignin;
     // End of variables declaration//GEN-END:variables
 }

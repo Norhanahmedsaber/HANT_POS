@@ -11,6 +11,21 @@ public class jMainPage extends javax.swing.JPanel {
         _jViewItems = new jViewItems(jhp, this);
         _jViewCustomers = new jViewCustomers(jhp, this);
         _jLog = new jLog(jhp, this);
+        _jSignUpPage = new jSignUpPage(jhp,this );
+      
+    }
+    public void checkRole(){
+        if(_jHomePage.loginUser.role != "manager")
+        {
+            jAddusers.disable();
+            jViewusers.disable();
+        }
+        else
+        {
+            jAddusers.enable();
+            jViewusers.enable();
+        }
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -22,7 +37,9 @@ public class jMainPage extends javax.swing.JPanel {
         jViewcustomers = new javax.swing.JButton();
         jLog = new javax.swing.JButton();
         jNewcustomer = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jLogout = new javax.swing.JButton();
+        jAddusers = new javax.swing.JButton();
+        jViewusers = new javax.swing.JButton();
 
         jNewitem.setText("New Item");
         jNewitem.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -59,10 +76,24 @@ public class jMainPage extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setText("Logout");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLogout.setText("Logout");
+        jLogout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                jLogoutMouseClicked(evt);
+            }
+        });
+
+        jAddusers.setText("Add Users");
+        jAddusers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jAddusersMouseClicked(evt);
+            }
+        });
+
+        jViewusers.setText("View Users");
+        jViewusers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jViewusersMouseClicked(evt);
             }
         });
 
@@ -72,15 +103,17 @@ public class jMainPage extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jViewcustomers, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jNewcustomer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLog, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jAddusers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jViewcustomers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jNewcustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLog, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jNewitem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jViewitems, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jViewusers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(51, 51, 51))
         );
         layout.setVerticalGroup(
@@ -97,8 +130,11 @@ public class jMainPage extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLog)
-                    .addComponent(jButton1))
-                .addContainerGap(36, Short.MAX_VALUE))
+                    .addComponent(jLogout))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jAddusers)
+                    .addComponent(jViewusers)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -128,9 +164,19 @@ public class jMainPage extends javax.swing.JPanel {
         _jHomePage.switchPanels(_jLog);
     }//GEN-LAST:event_jLogMouseClicked
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void jLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLogoutMouseClicked
         _jHomePage.Home();
-    }//GEN-LAST:event_jButton1MouseClicked
+        _jHomePage.loginUser=null;
+    }//GEN-LAST:event_jLogoutMouseClicked
+
+    private void jAddusersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAddusersMouseClicked
+        _jHomePage.switchPanels(_jSignUpPage);
+    }//GEN-LAST:event_jAddusersMouseClicked
+
+    private void jViewusersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jViewusersMouseClicked
+       
+    }//GEN-LAST:event_jViewusersMouseClicked
+    private final jSignUpPage _jSignUpPage;
     private final jNewCustomer _jNewCustomer;
     private final jViewCustomers _jViewCustomers;
     private final jViewItems _jViewItems;
@@ -138,11 +184,13 @@ public class jMainPage extends javax.swing.JPanel {
     private final jLog _jLog;
     private final jHomePage _jHomePage;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jAddusers;
     private javax.swing.JButton jLog;
+    private javax.swing.JButton jLogout;
     private javax.swing.JButton jNewcustomer;
     private javax.swing.JButton jNewitem;
     private javax.swing.JButton jViewcustomers;
     private javax.swing.JButton jViewitems;
+    private javax.swing.JButton jViewusers;
     // End of variables declaration//GEN-END:variables
 }
