@@ -42,8 +42,8 @@ public class jLog extends javax.swing.JPanel {
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
         _jHomePage.switchPanels(_jMainPage);
     }//GEN-LAST:event_jBackMouseClicked
-    private jMainPage _jMainPage;
-    private jHomePage _jHomePage;
+    private final jMainPage _jMainPage;
+    private final jHomePage _jHomePage;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBack;
     // End of variables declaration//GEN-END:variables

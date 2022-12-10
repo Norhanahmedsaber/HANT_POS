@@ -205,11 +205,14 @@ public void renderData() {
     }//GEN-LAST:event_jSearchNameKeyTyped
 
     private void jDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDeleteMouseClicked
-        UUID id = deleteCustomer();
+       if(_jMainPage.checkRole())
+       {
+            UUID id = deleteCustomer();
         if(id!= null)
         {
             _CustomerServices.delete(deleteCustomer());
         }
+       }else return;
     }//GEN-LAST:event_jDeleteMouseClicked
 
     private void jToggleSortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleSortMouseClicked
@@ -237,7 +240,7 @@ public void renderData() {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBack;
     private javax.swing.JTable jCustomersTable;
-    private javax.swing.JButton jDelete;
+    public javax.swing.JButton jDelete;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
