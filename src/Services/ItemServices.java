@@ -21,7 +21,7 @@ public class ItemServices implements IItemServices {
 
     @Override
     public Item getById(UUID itemId) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return null; 
     }
 
     @Override

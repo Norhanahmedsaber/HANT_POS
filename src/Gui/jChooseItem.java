@@ -10,6 +10,7 @@ import sun.security.x509.PKIXExtensions;
 import utils.filterItems;
 
 public class jChooseItem extends javax.swing.JPanel {
+    
     public jChooseItem(jNewCustomer jnc,jHomePage jhp ) {
         initComponents();
         _jNewCustomer = jnc;
@@ -97,6 +98,7 @@ public class jChooseItem extends javax.swing.JPanel {
             m.addRow(data);
         }
     }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

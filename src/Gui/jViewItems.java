@@ -9,8 +9,6 @@ import utils.filterItems;
 
 
 public class jViewItems extends javax.swing.JPanel {
-
-
     public jViewItems(jHomePage jhp, jMainPage jmp) {
         initComponents();
         _jHomePage = jhp;
@@ -18,6 +16,7 @@ public class jViewItems extends javax.swing.JPanel {
          _jfilterItems=new filterItems();
          _jNewItem = new jNewItem(jhp,this);
         _ItemServices = new ItemServices();
+        _jViewItem = new jViewItem();
     }
 
     @SuppressWarnings("unchecked")
@@ -34,6 +33,8 @@ public class jViewItems extends javax.swing.JPanel {
         jItem = new javax.swing.JTable();
         jadditem = new javax.swing.JButton();
         jdelete = new javax.swing.JButton();
+        jShowItem = new javax.swing.JButton();
+        jErrorShowItem = new javax.swing.JLabel();
 
         jsortitemsby.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NameAscendingly", "NameDescendingly", "DateAscendingly", "DateDescendingly", "Category", "Price" }));
 
@@ -83,6 +84,15 @@ public class jViewItems extends javax.swing.JPanel {
             }
         });
 
+        jShowItem.setText("ShowItem");
+        jShowItem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jShowItemMouseClicked(evt);
+            }
+        });
+
+        jErrorShowItem.setForeground(new java.awt.Color(255, 0, 51));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -95,21 +105,29 @@ public class jViewItems extends javax.swing.JPanel {
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jsearchitems, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jsortitemsby, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jsearchitems)
+                                    .addComponent(jsortitemsby, 0, 286, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jErrorShowItem, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jBack)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jdelete)
-                                .addGap(46, 46, 46)
-                                .addComponent(jadditem)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jBack))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(10, Short.MAX_VALUE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jShowItem)
+                                .addGap(8, 8, 8)
+                                .addComponent(jadditem))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,18 +141,21 @@ public class jViewItems extends javax.swing.JPanel {
                     .addComponent(jsortitemsby, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(24, 24, 24)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jErrorShowItem))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBack)
                     .addComponent(jadditem)
-                    .addComponent(jdelete))
+                    .addComponent(jdelete)
+                    .addComponent(jShowItem))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-    public void showItems (){
+    public void showItems(){
             String [] titles= {"Id", "Name","Category","Price","CreatedAt"};
             DefaultTableModel model = new DefaultTableModel(titles,0);
             jItem.setModel(model);
@@ -151,8 +172,7 @@ public class jViewItems extends javax.swing.JPanel {
                 }
             }
         }
-    private UUID deleteItem()
-    {
+    private UUID deleteItem(){
          DefaultTableModel m = (DefaultTableModel) jItem.getModel();
           if(jItem.getSelectedRow() != -1) {
             UUID id = (UUID) m.getValueAt(jItem.getSelectedRow(), 0);
@@ -161,6 +181,16 @@ public class jViewItems extends javax.swing.JPanel {
         }else{
             return null;
         }
+    }
+    public Item getSelectedItem(){
+        int row = jItem.getSelectedRow();//check ! -1
+        if(row!=-1){
+            jErrorShowItem.setText("");
+            UUID choosedItemId = (UUID)(jItem.getModel().getValueAt(row, 0));
+            Item choosedItem = _ItemServices.getById(choosedItemId);
+            return choosedItem;
+        }
+        return null;
     }
     
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
@@ -171,7 +201,6 @@ public class jViewItems extends javax.swing.JPanel {
        _jHomePage.switchPanels(_jNewItem);
        _jNewItem.jIdField.grabFocus();
     }//GEN-LAST:event_jadditemMouseClicked
-
 
     private void jsearchitemsKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jsearchitemsKeyTyped
         showItems();
@@ -186,6 +215,17 @@ public class jViewItems extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jdeleteMouseClicked
 
+    private void jShowItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jShowItemMouseClicked
+        Item item =getSelectedItem();
+        if(item != null){
+            _jViewItem.choosedItem = item;
+            _jHomePage.switchPanels(_jViewItem);
+        }else{
+            jErrorShowItem.setText("Please choose item from table");
+        }  
+    }//GEN-LAST:event_jShowItemMouseClicked
+
+    private final jViewItem _jViewItem;
     private final ItemServices _ItemServices;
     private final jMainPage _jMainPage;
     private final jHomePage _jHomePage;
@@ -193,11 +233,13 @@ public class jViewItems extends javax.swing.JPanel {
     private final filterItems _jfilterItems;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBack;
+    private javax.swing.JLabel jErrorShowItem;
     private javax.swing.JTable jItem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton jShowItem;
     private javax.swing.JButton jadditem;
     private javax.swing.JButton jdelete;
     private javax.swing.JTextField jsearchitems;
