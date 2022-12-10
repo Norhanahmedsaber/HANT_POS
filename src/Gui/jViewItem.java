@@ -2,12 +2,25 @@
 package Gui;
 
 import Entities.Item;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 
 public class jViewItem extends javax.swing.JPanel {
 
-    public jViewItem() {
+    public jViewItem(jHomePage jhp,jViewItems  jvi) {
         initComponents();
+        _jHomePage = jhp;
+        _jViewItems = jvi;
         choosedItem = null;
+    }
+    public void renderData(){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");     
+        jNameField.setText(choosedItem.name);
+        jCatgoryField.setText(choosedItem.category);
+        jCreatedAt.setText(dateFormat.format(choosedItem.createdAt));
+        jDescriptionField.setText(choosedItem.description);
+        jPriceField.setText(Integer.toString(choosedItem.price));
     }
 
     @SuppressWarnings("unchecked")
@@ -44,6 +57,11 @@ public class jViewItem extends javax.swing.JPanel {
         jLabel1.setText("Name");
 
         jBack.setText("Back");
+        jBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jBackMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -131,7 +149,14 @@ public class jViewItem extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
+        _jHomePage.switchPanels(_jViewItems);
+    }//GEN-LAST:event_jBackMouseClicked
+
     public Item choosedItem;
+    private final jHomePage _jHomePage;
+    private final jViewItems _jViewItems;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBack;
     private javax.swing.JButton jButton1;

@@ -16,7 +16,7 @@ public class jViewItems extends javax.swing.JPanel {
          _jfilterItems=new filterItems();
          _jNewItem = new jNewItem(jhp,this);
         _ItemServices = new ItemServices();
-        _jViewItem = new jViewItem();
+        _jViewItem = new jViewItem(jhp,this);
     }
 
     @SuppressWarnings("unchecked")
@@ -192,6 +192,7 @@ public class jViewItems extends javax.swing.JPanel {
         }
         return null;
     }
+
     
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
         _jHomePage.switchPanels(_jMainPage);
@@ -220,9 +221,10 @@ public class jViewItems extends javax.swing.JPanel {
         if(item != null){
             _jViewItem.choosedItem = item;
             _jHomePage.switchPanels(_jViewItem);
+            _jViewItem.renderData();
         }else{
             jErrorShowItem.setText("Please choose item from table");
-        }  
+        }
     }//GEN-LAST:event_jShowItemMouseClicked
 
     private final jViewItem _jViewItem;
