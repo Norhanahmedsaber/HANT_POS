@@ -15,6 +15,8 @@ public final class jViewCustomers extends javax.swing.JPanel {
         _jMainPage = jmp; 
         _CustomerServices = new CustomerServices(); 
         _filterCustomers = new filterCustomers();
+        _jViewCustomer= new jViewCustomer();
+        //_chosencustomer=new Customer();
     }
 public void renderData() { 
         String[] cols = {"ID","Name", "Email", "PurchaseDate", "PhoneNumber"}; 
@@ -45,6 +47,18 @@ private UUID deleteCustomer()
             return null;
         }
 }
+
+    
+private Customer selectcustomer()
+{ 
+    DefaultTableModel m = (DefaultTableModel) jCustomersTable.getModel();
+        if(jCustomersTable.getSelectedRow() != -1){
+            UUID id = (UUID) m.getValueAt(jCustomersTable.getSelectedRow(), 0);
+           return  _CustomerServices.getById(id);
+    }
+        else return null;
+       
+}
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -58,6 +72,7 @@ private UUID deleteCustomer()
         jDelete = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jCustomersTable = new javax.swing.JTable();
+        jviewCustomer = new javax.swing.JButton();
 
         jLabel2.setText("search by name :");
 
@@ -105,6 +120,19 @@ private UUID deleteCustomer()
         ));
         jScrollPane2.setViewportView(jCustomersTable);
 
+        jviewCustomer.setText("view Customer");
+        jviewCustomer.setPreferredSize(new java.awt.Dimension(59, 25));
+        jviewCustomer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jviewCustomerMouseClicked(evt);
+            }
+        });
+        jviewCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jviewCustomerActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,6 +154,8 @@ private UUID deleteCustomer()
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(jviewCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jBack, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -145,10 +175,12 @@ private UUID deleteCustomer()
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBack)
-                    .addComponent(jDelete))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jBack)
+                        .addComponent(jDelete))
+                    .addComponent(jviewCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -174,12 +206,24 @@ private UUID deleteCustomer()
         }
     }//GEN-LAST:event_jDeleteMouseClicked
 
-    
+    private void jviewCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jviewCustomerMouseClicked
+       Customer customer = selectcustomer();
+         if (customer!=null)
+         { _jViewCustomer._chosencustomer=customer;
+             _jViewCustomer.renderData();
+             _jHomePage.switchPanels(_jViewCustomer);
+         }
+    }//GEN-LAST:event_jviewCustomerMouseClicked
+
+    private void jviewCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jviewCustomerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jviewCustomerActionPerformed
+    private  jViewCustomer _jViewCustomer;
     private final filterCustomers _filterCustomers; 
     private final CustomerServices _CustomerServices; 
     private final jMainPage _jMainPage; 
     private final jHomePage _jHomePage;
-    
+   // public Customer _chosencustomer;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBack;
     private javax.swing.JTable jCustomersTable;
@@ -190,5 +234,6 @@ private UUID deleteCustomer()
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jSearchName;
     private javax.swing.JComboBox<String> jSortBy;
+    private javax.swing.JButton jviewCustomer;
     // End of variables declaration//GEN-END:variables
 }

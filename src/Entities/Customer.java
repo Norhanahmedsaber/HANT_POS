@@ -11,11 +11,11 @@ public class Customer {
     public String nationalId;
     public String phoneNumber;
     public String city;
+    public String workAddress;
     public Date purchaseDate;
     public String email;
     public int income;
     public String job;
-    // public enum gender;
     public String gender;
     public int age;
     public ArrayList<UUID> itemIds;

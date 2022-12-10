@@ -37,6 +37,8 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jDelete" min="-2" pref="150" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="jviewCustomer" min="-2" pref="135" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="jBack" min="-2" pref="150" max="-2" attributes="0"/>
                   </Group>
@@ -62,12 +64,15 @@
               <Component id="jLabel1" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane2" min="-2" pref="110" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jBack" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jDelete" alignment="3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jBack" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jDelete" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jviewCustomer" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -148,5 +153,17 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="jviewCustomer">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="view Customer"/>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[59, 25]"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jviewCustomerMouseClicked"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jviewCustomerActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>
