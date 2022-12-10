@@ -208,13 +208,14 @@ public class jViewItems extends javax.swing.JPanel {
         }
         return null;
     }
+    
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
         _jHomePage.switchPanels(_jMainPage);
     }//GEN-LAST:event_jBackMouseClicked
 
     private void jadditemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jadditemMouseClicked
        _jHomePage.switchPanels(_jNewItem);
-       _jNewItem.jIdField.grabFocus();
+       _jNewItem.jNameField.grabFocus();
     }//GEN-LAST:event_jadditemMouseClicked
 
 
@@ -234,10 +235,10 @@ public class jViewItems extends javax.swing.JPanel {
     private void jToggleSortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleSortMouseClicked
        toggle = !toggle;
        showItems();
-    
     }//GEN-LAST:event_jToggleSortMouseClicked
 
     private void jShowItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jShowItemMouseClicked
+        _jViewItem.resetViewItemPage();
         Item item =getSelectedItem();
         if(item != null){
             _jViewItem.choosedItem = item;

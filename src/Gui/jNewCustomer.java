@@ -22,17 +22,13 @@ public class jNewCustomer extends javax.swing.JPanel {
          _chosenitems=new ArrayList<Item>();
          _jItemServices=new ItemServices();
     }
-    public ArrayList<Item> getselecteditems()
-    { 
+    public ArrayList<Item> getselecteditems(){ 
         return _chosenitems ;
     }
-    public void setselecteditems(ArrayList<Item> selecteditems)
-    {
+    public void setselecteditems(ArrayList<Item> selecteditems){
         _chosenitems=selecteditems;
     }
 
-    
- 
     public boolean isValidName() {
         // is empty (nameField)
         if(jNameField.getText().trim().isEmpty()) {
@@ -589,8 +585,7 @@ public class jNewCustomer extends javax.swing.JPanel {
     }//GEN-LAST:event_jBackMouseClicked
 
     private void jAddCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAddCustomerMouseClicked
-        addCustomerButton();
-        
+        addCustomerButton();  
     }//GEN-LAST:event_jAddCustomerMouseClicked
 
     private void jChooseItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jChooseItemMouseClicked
