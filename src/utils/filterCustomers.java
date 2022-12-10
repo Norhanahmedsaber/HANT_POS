@@ -6,9 +6,9 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class filterCustomers {
-    public ArrayList<Customer> filter(ArrayList<Customer> customers, String searchName, String sortBy) {
+    public ArrayList<Customer> filter(ArrayList<Customer> customers, String searchName, String sortBy , boolean toggle ) {
        
-       return Sortby( Search(customers, searchName ),sortBy);
+       return Sortby( Search(customers, searchName ),sortBy,toggle);
         
     }
     
@@ -26,9 +26,10 @@ public class filterCustomers {
         return customerAfterSearch ;
     }
     
-   public ArrayList<Customer> Sortby (ArrayList<Customer> customers,String sortedby)
+   public ArrayList<Customer> Sortby (ArrayList<Customer> customers,String sortedby , boolean toggle)
    {
-             if (sortedby=="NameAscendingly")
+       // sortby name  Ascendingly :
+             if (sortedby=="Name"&& toggle == true)
         {     
             Collections.sort(customers,new Comparator<Customer>() {
                 public int compare(Customer c1, Customer c2) {
@@ -38,7 +39,8 @@ public class filterCustomers {
             return customers ;
 
         } 
-       else if (sortedby=="NameDescendingly")
+        // sortby name  Descendingly:
+       else if (sortedby=="Name"&& toggle== false )
         {     
             Collections.sort(customers,new Comparator<Customer>() {
                 public int compare(Customer c1, Customer c2) {
@@ -48,8 +50,9 @@ public class filterCustomers {
             Collections.reverse(customers);
             return customers ;
 
-        }          
-       else if (sortedby=="DateAscendingly")
+        } 
+       // sortby Date Ascendingly :
+       else if (sortedby=="Date" && toggle== true)
         { 
              Collections.sort(customers,new Comparator<Customer>() {
                 public int compare(Customer c1, Customer c2) {
@@ -59,7 +62,8 @@ public class filterCustomers {
              
             return customers ;
         }
-         else if (sortedby=="DateDescendingly")
+         // sortby Date  Descendingly:
+         else if (sortedby=="Date" && toggle== false)
         { 
              Collections.sort(customers,new Comparator<Customer>() {
                 public int compare(Customer c1, Customer c2) {

@@ -6,9 +6,9 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class filterItems {
-    public ArrayList<Item> filter(ArrayList<Item> items,String search,String sortitemby) {
+    public ArrayList<Item> filter(ArrayList<Item> items,String search,String sortitemby , boolean toggle) {
        ArrayList <Item> filtered = search(items, search);
-       ArrayList <Item> sorted = Sortby(filtered , sortitemby);
+       ArrayList <Item> sorted = Sortby(filtered , sortitemby ,toggle);
         return sorted;       
     }
     public ArrayList<Item> search(ArrayList<Item> items , String search )
@@ -32,11 +32,12 @@ public class filterItems {
     }
     
     
-     public ArrayList<Item> Sortby (ArrayList<Item> items,String sortedby)
+     public ArrayList<Item> Sortby (ArrayList<Item> items,String sortedby , boolean toggle)
    {
-             if (sortedby=="NameAscendingly")
+             if (sortedby=="Name" && toggle==false)
         {     
             Collections.sort(items,new Comparator<Item>() {
+                @Override
                 public int compare(Item i1, Item i2) {
                     return i1.name.compareTo(i2.name);
                 }
@@ -44,9 +45,10 @@ public class filterItems {
             return items ;
 
         } 
-       else if (sortedby=="NameDescendingly")
+       else if (sortedby=="Name" && toggle== true )
         {     
             Collections.sort(items,new Comparator<Item>() {
+                @Override
                 public int compare(Item i1, Item i2) {
                     return i1.name.compareTo(i2.name);
                 }
@@ -55,7 +57,7 @@ public class filterItems {
             return items ;
 
         }          
-       else if (sortedby=="DateAscendingly")
+       else if (sortedby=="Date" && toggle== false)
         { 
              Collections.sort(items,new Comparator<Item>() {
                 public int compare(Item i1, Item i2) {
@@ -65,9 +67,10 @@ public class filterItems {
              
             return items ;
         }
-         else if (sortedby=="DateDescendingly")
+         else if (sortedby=="Date" && toggle==true)
         { 
              Collections.sort(items,new Comparator<Item>() {
+                @Override
                 public int compare(Item i1, Item i2) {
                     return (i1.createdAt.compareTo(i2.createdAt));
                 }
@@ -75,7 +78,7 @@ public class filterItems {
              Collections.reverse(items);
             return items ;
         }
-             else if (sortedby=="Category")
+             else if (sortedby=="Category" && toggle==true)
         { 
              Collections.sort(items,new Comparator<Item>() {
                 public int compare(Item i1, Item i2) {
@@ -85,9 +88,10 @@ public class filterItems {
              
             return items ;
         }
-             else if (sortedby=="Price")
+             else if (sortedby=="Price" && toggle== true)
         { 
              Collections.sort(items,new Comparator<Item>() {
+                @Override
                 public int compare(Item i1, Item i2) {
                     return (Integer.toString(i1.price).compareTo(Integer.toString(i2.price)));
                 }

@@ -2,6 +2,7 @@ package Gui;
 
 import Entities.Customer;
 import Services.CustomerServices;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.UUID;
 import javax.swing.table.DefaultTableModel;
@@ -15,6 +16,7 @@ public final class jViewCustomers extends javax.swing.JPanel {
         _jMainPage = jmp; 
         _CustomerServices = new CustomerServices(); 
         _filterCustomers = new filterCustomers();
+        toggle = false;
     }
 public void renderData() { 
         String[] cols = {"ID","Name", "Email", "PurchaseDate", "PhoneNumber"}; 
@@ -23,8 +25,8 @@ public void renderData() {
         ArrayList<Customer> customers = _CustomerServices.getAll(); 
         if(!customers.isEmpty()) { 
             String searchName = jSearchName.getText(); 
-            String sortBy = (String) jSortBy.getSelectedItem(); 
-            ArrayList<Customer> filteredCustomers = _filterCustomers.filter(customers, searchName,sortBy); 
+            String sortBy = (String) jSortBy.getSelectedItem();
+            ArrayList<Customer> filteredCustomers = _filterCustomers.filter(customers, searchName,sortBy , toggle ); 
             if(!filteredCustomers.isEmpty()){ 
                 for(int i=0;i<filteredCustomers.size();i++) { 
                     Customer customer = filteredCustomers.get(i); 
@@ -58,6 +60,7 @@ private UUID deleteCustomer()
         jDelete = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jCustomersTable = new javax.swing.JTable();
+        jToggleSort = new javax.swing.JButton();
 
         jLabel2.setText("search by name :");
 
@@ -69,7 +72,7 @@ private UUID deleteCustomer()
 
         jLabel3.setText("sort by :");
 
-        jSortBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NameAscendingly", "NameDescendingly", "DateAscendingly", "DateDescendingly" }));
+        jSortBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Name", "Date" }));
         jSortBy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jSortByActionPerformed(evt);
@@ -105,6 +108,13 @@ private UUID deleteCustomer()
         ));
         jScrollPane2.setViewportView(jCustomersTable);
 
+        jToggleSort.setText("↓↑\n");
+        jToggleSort.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jToggleSortMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -112,15 +122,19 @@ private UUID deleteCustomer()
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(57, 57, 57)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSearchName)
-                            .addComponent(jSortBy, 0, 391, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jSortBy, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jToggleSort, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -137,11 +151,13 @@ private UUID deleteCustomer()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSearchName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSortBy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jSortBy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jToggleSort)))
+                .addGap(43, 43, 43)
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -174,7 +190,13 @@ private UUID deleteCustomer()
         }
     }//GEN-LAST:event_jDeleteMouseClicked
 
-    
+    private void jToggleSortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleSortMouseClicked
+        // TODO add your handling code here:
+        toggle = !toggle;
+        renderData();
+    }//GEN-LAST:event_jToggleSortMouseClicked
+
+    private boolean toggle ;
     private final filterCustomers _filterCustomers; 
     private final CustomerServices _CustomerServices; 
     private final jMainPage _jMainPage; 
@@ -190,5 +212,6 @@ private UUID deleteCustomer()
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jSearchName;
     private javax.swing.JComboBox<String> jSortBy;
+    private javax.swing.JButton jToggleSort;
     // End of variables declaration//GEN-END:variables
 }
