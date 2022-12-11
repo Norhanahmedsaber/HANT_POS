@@ -7,7 +7,7 @@ import java.util.Comparator;
 public class FilterUsers { 
     
     public ArrayList<User> filter(ArrayList<User> users, String searchName, String sortBy , boolean toggle ) {
-        
+         
        return SortBy( Search(users, searchName ),sortBy,toggle);  
     }
     public ArrayList<User> Search( ArrayList<User> customers , String searchName ){
