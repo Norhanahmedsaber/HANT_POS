@@ -2,7 +2,6 @@ package Gui;
 
 import Entities.Customer;
 import Services.CustomerServices;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.UUID;
 import javax.swing.table.DefaultTableModel;
@@ -20,7 +19,7 @@ public final class jViewCustomers extends javax.swing.JPanel {
         //_chosencustomer=new Customer();]
         toggle = false;
     }
-public void renderData() { 
+    public void renderData() { 
         String[] cols = {"ID","Name", "Email", "PurchaseDate", "PhoneNumber"}; 
         DefaultTableModel model = new DefaultTableModel(cols, 0); 
         jCustomersTable.setModel(model); 
@@ -38,8 +37,7 @@ public void renderData() {
             } 
         } 
     }
-    private UUID deleteCustomer()
-    {
+    private UUID deleteCustomer(){
             DefaultTableModel m = (DefaultTableModel) jCustomersTable.getModel();
               if(jCustomersTable.getSelectedRow() != -1) {
                 UUID id = (UUID) m.getValueAt(jCustomersTable.getSelectedRow(), 0);
@@ -49,8 +47,7 @@ public void renderData() {
                 return null;
             }
     }
-    private Customer selectcustomer()
-    { 
+    private Customer selectcustomer(){ 
         DefaultTableModel m = (DefaultTableModel) jCustomersTable.getModel();
             if(jCustomersTable.getSelectedRow() != -1){
                 UUID id = (UUID) m.getValueAt(jCustomersTable.getSelectedRow(), 0);
@@ -59,6 +56,7 @@ public void renderData() {
             else return null;
 
     }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
