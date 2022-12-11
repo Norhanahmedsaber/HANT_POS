@@ -1,6 +1,7 @@
 package Interfaces;
 
 import Entities.Customer;
+import Entities.Item;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -11,4 +12,5 @@ public interface ICustomerServices {
     Customer getById(UUID customerId);
     // UUID to be figured
     void update(UUID customerId, Customer customer);
+    ArrayList<Item> getAssignedItems(UUID customerId);
 }
