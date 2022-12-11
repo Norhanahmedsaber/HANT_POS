@@ -13,8 +13,9 @@ public class AccountServices implements IAccountServices{
     @Override
     public User login(String username, String password) {
         //return us.equals(username) && pass.equals(password);
-        
-        return new User();
+        User user = new User();
+        user.role = "manager";
+        return user;
     }
 
     @Override
