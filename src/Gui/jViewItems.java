@@ -19,7 +19,7 @@ public class jViewItems extends javax.swing.JPanel {
          _jfilterItems=new filterItems();
          _jNewItem = new jNewItem(jhp,this);
         _ItemServices = new ItemServices();
-        _jViewItem = new jViewItem(jhp,this);
+        _jViewItem = new jViewItem(jhp,this,jmp);
         toggle=false;
     }
     
@@ -216,8 +216,10 @@ public class jViewItems extends javax.swing.JPanel {
     }//GEN-LAST:event_jBackMouseClicked
 
     private void jadditemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jadditemMouseClicked
-       _jHomePage.switchPanels(_jNewItem);
-       _jNewItem.jNameField.grabFocus();
+       if(_jMainPage.canCreateItem()) {
+           _jHomePage.switchPanels(_jNewItem);
+        _jNewItem.jNameField.grabFocus();
+       }
     }//GEN-LAST:event_jadditemMouseClicked
 
 
@@ -227,14 +229,14 @@ public class jViewItems extends javax.swing.JPanel {
 
     private void jdeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jdeleteMouseClicked
        
-         if(_jMainPage.checkRole())
+        if(_jMainPage.canDeleteItem())
         {
-             UUID id = deleteItem();
-             if(id!= null)
-          {
-              _ItemServices.delete(deleteItem());
-          } 
-        }else return;   
+            UUID id = deleteItem();
+            if(id!= null)
+            {
+                _ItemServices.delete(deleteItem());
+            } 
+        }
     }//GEN-LAST:event_jdeleteMouseClicked
 
     private void jToggleSortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleSortMouseClicked
@@ -255,7 +257,7 @@ public class jViewItems extends javax.swing.JPanel {
     }//GEN-LAST:event_jShowItemMouseClicked
 
     private boolean toggle;
-    private final jViewItem _jViewItem;
+    public final jViewItem _jViewItem;
     private final ItemServices _ItemServices;
     private final jMainPage _jMainPage;
     private final jHomePage _jHomePage;
@@ -271,7 +273,7 @@ public class jViewItems extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jShowItem;
     private javax.swing.JButton jToggleSort;
-    private javax.swing.JButton jadditem;
+    public javax.swing.JButton jadditem;
     public javax.swing.JButton jdelete;
     private javax.swing.JTextField jsearchitems;
     private javax.swing.JComboBox<String> jsortitemsby;

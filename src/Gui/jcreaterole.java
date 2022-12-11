@@ -181,6 +181,61 @@ public class jcreaterole extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+
+    private void JCreateCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JCreateCustomerMouseClicked
+        //_jRole.canCreateCustomer=true;
+          if (JCreateCustomer.isSelected())
+         {
+             System.out.println("selecteddgfh ");
+         }
+         else
+             System.out.println("not selecteddf ");
+    }//GEN-LAST:event_JCreateCustomerMouseClicked
+
+    private void jViewCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jViewCustomerMouseClicked
+        _jRole.canViewCustomers=true;
+    }//GEN-LAST:event_jViewCustomerMouseClicked
+
+    private void JDeleteCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JDeleteCustomerMouseClicked
+       _jRole.canDeleteCustomer=true;
+    }//GEN-LAST:event_JDeleteCustomerMouseClicked
+
+    private void jUpdateCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jUpdateCustomerMouseClicked
+     _jRole.canUpdateCustomer=true;
+    }//GEN-LAST:event_jUpdateCustomerMouseClicked
+
+    private void jCreateItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCreateItemMouseClicked
+        _jRole.canCreateItem=true;
+    }//GEN-LAST:event_jCreateItemMouseClicked
+
+    private void jViewItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jViewItemMouseClicked
+        _jRole.canViewItems=true;
+    }//GEN-LAST:event_jViewItemMouseClicked
+
+    private void jDeleteItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDeleteItemMouseClicked
+        _jRole.canDeleteItem=true;
+    }//GEN-LAST:event_jDeleteItemMouseClicked
+
+    private void jUpdateItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jUpdateItemMouseClicked
+        _jRole.canUpdateItem=true;
+    }//GEN-LAST:event_jUpdateItemMouseClicked
+
+    private void jCreateUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCreateUserMouseClicked
+        _jRole.canCreateUser=true;
+    }//GEN-LAST:event_jCreateUserMouseClicked
+
+    private void jViewUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jViewUserMouseClicked
+        _jRole.canViewUsers=true;
+    }//GEN-LAST:event_jViewUserMouseClicked
+
+    private void jCreateLogsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCreateLogsMouseClicked
+        
+    }//GEN-LAST:event_jCreateLogsMouseClicked
+
+    private void JviewLogsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JviewLogsMouseClicked
+       _jRole.canViewLogs=true;
+    }//GEN-LAST:event_JviewLogsMouseClicked
+
     private void jDoneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDoneMouseClicked
         assighnPermissions();
         jChosedPermissions.setText("Permissions are assigned successfully");
@@ -192,7 +247,20 @@ public class jcreaterole extends javax.swing.JPanel {
        jChosedPermissions.setText("");
        clearCreateRolePage();
     }//GEN-LAST:event_jBackMouseClicked
+
     private final jHomePage _jHomePage;
+
+
+    private void JCreateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCreateCustomerActionPerformed
+         if (JCreateCustomer.isSelected())
+         {
+             System.out.println("selected ");
+         }
+         else
+             System.out.println("selected ");
+             
+    }//GEN-LAST:event_JCreateCustomerActionPerformed
+    
     private Role _jRole;
     private final jMainPage _jMainPage;
     private final RoleServices _RoleServices;

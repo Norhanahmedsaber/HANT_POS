@@ -1,10 +1,13 @@
 package Gui;
 
+import Entities.Role;
 import Entities.User;
 import Services.AccountServices;
+import Services.RoleServices;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.UUID;
- 
+import javax.swing.DefaultComboBoxModel;
 
 public class jSignUpPage extends javax.swing.JPanel {
     public jSignUpPage(jHomePage jhp , jMainPage jmp) {
@@ -12,8 +15,7 @@ public class jSignUpPage extends javax.swing.JPanel {
         _jHomePage = jhp;
         _jMainPage = jmp;
         _AccountServices = new AccountServices();
-        
-        
+        _RoleServices = new RoleServices();
     }
 
     public boolean isValidName() {
@@ -71,7 +73,7 @@ public class jSignUpPage extends javax.swing.JPanel {
         user.name = jNameField.getText();
         user.userName = jUsernameField.getText();
         user.password = jPasswordField.getText();
-        user.role =(String) jRolesCombo.getSelectedItem();
+        user.role = _RoleServices.getByName((String) jRolesCombo.getSelectedItem());
         _AccountServices.signUp(user);
     }
     public void clearSignUpPage(){
@@ -79,6 +81,13 @@ public class jSignUpPage extends javax.swing.JPanel {
         jPasswordField.setText("");
         jUsernameField.setText("");
         jRolesCombo.selectWithKeyChar('U');
+        ArrayList<Role> roles = _RoleServices.getAll();
+        String[] names = new String[roles.size()];
+        for(int i=0;i<roles.size();i++){
+            names[i] = roles.get(i).name;
+        }
+        DefaultComboBoxModel model = new DefaultComboBoxModel(names);
+        jRolesCombo.setModel(model);
     }
     
     public void addAccountButton(){
@@ -270,6 +279,7 @@ public class jSignUpPage extends javax.swing.JPanel {
     private final jMainPage _jMainPage;
     private final jHomePage _jHomePage;
     private final AccountServices _AccountServices;
+    private final RoleServices _RoleServices;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jAddAccount;
     private javax.swing.JButton jBack;

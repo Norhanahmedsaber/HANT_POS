@@ -2,7 +2,6 @@ package Gui;
 
 import Entities.Customer;
 import Services.CustomerServices;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.UUID;
 import javax.swing.table.DefaultTableModel;
@@ -16,11 +15,10 @@ public final class jViewCustomers extends javax.swing.JPanel {
         _jMainPage = jmp; 
         _CustomerServices = new CustomerServices(); 
         _filterCustomers = new filterCustomers();
-        _jViewCustomer= new jViewCustomer(this, jhp);
-        //_chosencustomer=new Customer();]
+        _jViewCustomer= new jViewCustomer(this, jhp, jmp);
         toggle = false;
     }
-public void renderData() { 
+    public void renderData() { 
         String[] cols = {"ID","Name", "Email", "PurchaseDate", "PhoneNumber"}; 
         DefaultTableModel model = new DefaultTableModel(cols, 0); 
         jCustomersTable.setModel(model); 
@@ -38,8 +36,7 @@ public void renderData() {
             } 
         } 
     }
-    private UUID deleteCustomer()
-    {
+    private UUID deleteCustomer(){
             DefaultTableModel m = (DefaultTableModel) jCustomersTable.getModel();
               if(jCustomersTable.getSelectedRow() != -1) {
                 UUID id = (UUID) m.getValueAt(jCustomersTable.getSelectedRow(), 0);
@@ -49,8 +46,7 @@ public void renderData() {
                 return null;
             }
     }
-    private Customer selectcustomer()
-    { 
+    private Customer selectcustomer(){ 
         DefaultTableModel m = (DefaultTableModel) jCustomersTable.getModel();
             if(jCustomersTable.getSelectedRow() != -1){
                 UUID id = (UUID) m.getValueAt(jCustomersTable.getSelectedRow(), 0);
@@ -59,6 +55,7 @@ public void renderData() {
             else return null;
 
     }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -205,14 +202,14 @@ public void renderData() {
     }//GEN-LAST:event_jSearchNameKeyTyped
 
     private void jDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDeleteMouseClicked
-       if(_jMainPage.checkRole())
-       {
-            UUID id = deleteCustomer();
-        if(id!= null)
+        if(_jMainPage.canDeleteCustomer())
         {
-            _CustomerServices.delete(deleteCustomer());
+            UUID id = deleteCustomer();
+            if(id!= null)
+            {
+                _CustomerServices.delete(deleteCustomer());
+            }
         }
-       }else return;
     }//GEN-LAST:event_jDeleteMouseClicked
 
     private void jToggleSortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleSortMouseClicked
@@ -231,12 +228,11 @@ public void renderData() {
     }//GEN-LAST:event_jviewCustomerMouseClicked
 
     private boolean toggle ;
-    private  jViewCustomer _jViewCustomer;
+    public  jViewCustomer _jViewCustomer;
     private final filterCustomers _filterCustomers; 
     private final CustomerServices _CustomerServices; 
     private final jMainPage _jMainPage; 
     private final jHomePage _jHomePage;
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBack;
     private javax.swing.JTable jCustomersTable;

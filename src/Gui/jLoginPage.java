@@ -11,7 +11,7 @@ public class jLoginPage extends javax.swing.JPanel {
         _jMainPage = new jMainPage(jhp); 
         _AccountServices=new AccountServices();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -124,8 +124,22 @@ public class jLoginPage extends javax.swing.JPanel {
         {     
             error.setText("Password or Username dont match!");
         }
-         _jMainPage.checkRole();
-          
+        _jMainPage.canCreateUser();
+        _jMainPage.canCreateCustomer();
+        _jMainPage.canViewCustomers();
+        _jMainPage.canDeleteCustomer();
+        _jMainPage.canUpdateCustomer();
+        _jMainPage.canCreateItem();
+        _jMainPage.canViewItems();
+        _jMainPage.canDeleteItem();
+        _jMainPage.canViewUsers();
+        _jMainPage.canViewLogs();
+        _jMainPage.canUpdateItem();
+        _jMainPage.canDeleteLog();
+        _jMainPage.canCreateRole();
+        _jMainPage.canDeleteRole();
+        _jMainPage.canUpdateRole();
+        _jMainPage.canDeleteUser();
     }
     private void jloginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jloginMouseClicked
         login();

@@ -7,6 +7,12 @@ import java.util.UUID;
 public class RoleServices implements IRoleServices{
 
     ArrayList<Role> roles = new ArrayList<Role>();
+    public RoleServices() {
+        Role role = new Role();
+        role.name = "Manager";
+        role.canCreateUser = true;
+        roles.add(role);
+    }
     @Override
     public void create(Role role) {
         roles.add(role);
@@ -30,6 +36,28 @@ public class RoleServices implements IRoleServices{
     @Override
     public ArrayList<Role> getAll() {
         return roles;
+    }
+
+    @Override
+    public Role getByName(String name) {
+        Role role = new Role();
+        role.canViewUsers = true;
+        role.canCreateCustomer = true;
+        role.canCreateItem = true;
+        role.canCreateRole = true;
+        role.canCreateUser = true;
+        role.canDeleteCustomer = true;
+        role.canDeleteItem = true;
+        role.canDeleteLog = true;
+        role.canDeleteUser = true;
+        role.canUpdateCustomer = true;
+        role.canUpdateItem = true;
+        role.canUpdateRole = true;
+        role.canViewCustomers = true;
+        role.canViewItems = true;
+        role.canViewLogs = true;
+        role.canViewUsers = true;
+        return role;
     }
     
 }

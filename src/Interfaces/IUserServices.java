@@ -1,6 +1,7 @@
 package Interfaces;
 
 import Entities.User;
+import java.util.ArrayList;
 import java.util.UUID;
 
 public interface IUserServices {
@@ -9,4 +10,5 @@ public interface IUserServices {
     User getById(UUID userId);
     // UUID to be figured
     void update(UUID userId, User user);
+    ArrayList<User> getAll();
 }
