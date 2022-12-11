@@ -17,7 +17,6 @@ public final class jViewCustomers extends javax.swing.JPanel {
         _CustomerServices = new CustomerServices(); 
         _filterCustomers = new filterCustomers();
         _jViewCustomer= new jViewCustomer(this, jhp);
-        //_chosencustomer=new Customer();]
         toggle = false;
     }
 public void renderData() { 

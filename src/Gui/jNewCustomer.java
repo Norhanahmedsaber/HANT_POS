@@ -15,7 +15,7 @@ public class jNewCustomer extends javax.swing.JPanel {
 
     public jNewCustomer(jHomePage jhp, jMainPage jmp) {
         initComponents();
-        _jChooseItem = new jChooseItem(this,jhp);
+        _jChooseItem = new jChooseItem(jhp,this);
         _jHomePage = jhp;
         _jMainPage = jmp;
         _CustomerServices = new CustomerServices();

@@ -43,15 +43,17 @@ public class jViewCustomer extends javax.swing.JPanel {
         _chosencustomer = null;
         _jHomePage = jhp;
         _CustomerServices = new CustomerServices();
+        
         jUpdate.setEnabled(false);
         jCancel.setEnabled(false);
         jUpdatedSuccesfully.setText("");
+        _jChooseItem =new jChooseItem(jhp, this);
     }
     public void editbuttonisclicked()
     {   jBack.setEnabled(false);
         jUpdate.setEnabled(true);
         jCancel.setEnabled(true);
-        jUpdatedSuccesfully.setEnabled(true);
+        jUpdatedSuccesfully.setVisible(true);
         settextfielsenabled();
         jEdit.setEnabled(false);
     }
@@ -295,7 +297,7 @@ public class jViewCustomer extends javax.swing.JPanel {
         jIncomeField = new javax.swing.JTextField();
         jCityField = new javax.swing.JTextField();
         jAgeField = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        jShowpurchases = new javax.swing.JButton();
         jEmailField = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jPurchaseDateField = new javax.swing.JTextField();
@@ -344,7 +346,12 @@ public class jViewCustomer extends javax.swing.JPanel {
 
         jAgeField.setEditable(false);
 
-        jButton2.setText("Show purchases");
+        jShowpurchases.setText("Show purchases");
+        jShowpurchases.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jShowpurchasesMouseClicked(evt);
+            }
+        });
 
         jEmailField.setEditable(false);
 
@@ -451,7 +458,7 @@ public class jViewCustomer extends javax.swing.JPanel {
                                     .addComponent(jAgeField, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jEmailField, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jPurchaseDateField, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jShowpurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                     .addComponent(jLabel3)
@@ -513,20 +520,22 @@ public class jViewCustomer extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addComponent(jErrorNationalId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jPhoneNoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jErrorPhoneNo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jErrorPhoneNo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jPhoneNoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(jErrorCity, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jIncomeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jErrorIncome, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jErrorIncome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jIncomeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jgenderCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -547,7 +556,7 @@ public class jViewCustomer extends javax.swing.JPanel {
                     .addComponent(jLabel7))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
+                    .addComponent(jShowpurchases)
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addComponent(jUpdatedSuccesfully, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -595,6 +604,7 @@ public class jViewCustomer extends javax.swing.JPanel {
         _CustomerServices.update(_chosencustomer.id , updatedCustomer);
         _chosencustomer = _CustomerServices.getById(_chosencustomer.id);
         renderData();
+        updateflag=!updateflag;
      //}
      
     }//GEN-LAST:event_jUpdateMouseClicked
@@ -602,14 +612,20 @@ public class jViewCustomer extends javax.swing.JPanel {
     private void jCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCancelMouseClicked
       cancelbuttonisclicked();
     }//GEN-LAST:event_jCancelMouseClicked
+
+    private void jShowpurchasesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jShowpurchasesMouseClicked
+       _jChooseItem.renderData();
+        _jHomePage.switchPanels(_jChooseItem);
+    }//GEN-LAST:event_jShowpurchasesMouseClicked
     private final jViewCustomers _jViewCustomers;
     public CustomerServices _CustomerServices;
     public Customer _chosencustomer;
+    private final jChooseItem _jChooseItem;
+    public boolean  updateflag=false ;
     private final jHomePage _jHomePage;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField jAgeField;
     private javax.swing.JButton jBack;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jCancel;
     private javax.swing.JTextField jCityField;
     private javax.swing.JButton jEdit;
@@ -640,6 +656,7 @@ public class jViewCustomer extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jPhoneNoField;
     private javax.swing.JTextField jPurchaseDateField;
+    private javax.swing.JButton jShowpurchases;
     private javax.swing.JButton jUpdate;
     private javax.swing.JLabel jUpdatedSuccesfully;
     private javax.swing.JComboBox<String> jgenderCombobox;
