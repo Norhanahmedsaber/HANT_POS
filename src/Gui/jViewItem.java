@@ -25,7 +25,6 @@ public class jViewItem extends javax.swing.JPanel {
         jDescriptionField.setText(choosedItem.description);
         jPriceField.setText(Integer.toString(choosedItem.price));
     }
-    
     public boolean checkAllValidations(){
         
         if(!isValidName()){
@@ -338,8 +337,7 @@ public class jViewItem extends javax.swing.JPanel {
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
         resetViewItemPage();
         _jViewItems.showItems();
-        _jHomePage.switchPanels(_jViewItems);
-        
+        _jHomePage.switchPanels(_jViewItems);    
     }//GEN-LAST:event_jBackMouseClicked
 
     private void jEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jEditMouseClicked
