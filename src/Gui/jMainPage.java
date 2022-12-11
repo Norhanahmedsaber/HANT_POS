@@ -23,7 +23,7 @@ public class jMainPage extends javax.swing.JPanel {
         _jSignUpPage = new jSignUpPage(jhp,this);
         _jViewUsers = new jViewUsers(jhp , this);
         _jcreaterole = new jcreaterole(jhp, this);
-        _jViewRoles = new jViewRoles();
+        _jViewRoles = new jViewRoles(jhp, this);
     }
     
     
@@ -247,6 +247,7 @@ public class jMainPage extends javax.swing.JPanel {
 
     private void jViewRolesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jViewRolesMouseClicked
         if(canViewRoles()) {
+            _jViewRoles.renderData();
             _jHomePage.switchPanels(_jViewRoles);
         }
     }//GEN-LAST:event_jViewRolesMouseClicked
