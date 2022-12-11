@@ -1,6 +1,15 @@
 
 package Gui;
 
+import Gui.Items.jNewItem;
+import Gui.Customers.jNewCustomer;
+import Gui.Logs.jShowLogs;
+import Gui.Customers.jViewCustomers;
+import Gui.Users.jViewUsers;
+import Gui.Items.jViewItems;
+import Gui.Roles.jViewRoles;
+import Gui.Roles.jcreaterole;
+
 public class jMainPage extends javax.swing.JPanel {
 
     public jMainPage(jHomePage jhp) {
@@ -10,10 +19,11 @@ public class jMainPage extends javax.swing.JPanel {
         _jNewItem = new jNewItem(jhp, this);
         _jViewItems = new jViewItems(jhp, this);
         _jViewCustomers = new jViewCustomers(jhp, this);
-        _jLog = new jLog(jhp, this);
+        _jShowLogs = new jShowLogs(jhp, this);
         _jSignUpPage = new jSignUpPage(jhp,this);
         _jViewUsers = new jViewUsers(jhp , this);
         _jcreaterole = new jcreaterole(jhp, this);
+        _jViewRoles = new jViewRoles();
     }
     
     
@@ -197,10 +207,9 @@ public class jMainPage extends javax.swing.JPanel {
     private void jLogMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLogMouseClicked
         if(canViewLogs())
         {
-           _jHomePage.switchPanels(_jLog); 
-        }else return;
-        _jViewUsers.renderData();
-        _jHomePage.switchPanels(_jViewUsers);
+            _jShowLogs.showLog();
+           _jHomePage.switchPanels(_jShowLogs); 
+        }
         
 
     }//GEN-LAST:event_jLogMouseClicked
@@ -238,7 +247,7 @@ public class jMainPage extends javax.swing.JPanel {
 
     private void jViewRolesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jViewRolesMouseClicked
         if(canViewRoles()) {
-            
+            _jHomePage.switchPanels(_jViewRoles);
         }
     }//GEN-LAST:event_jViewRolesMouseClicked
 
@@ -388,6 +397,7 @@ public class jMainPage extends javax.swing.JPanel {
     }
     
     public boolean flag;
+    private final jViewRoles _jViewRoles;
     private final jcreaterole _jcreaterole;
     private final jViewUsers _jViewUsers;
     private final jSignUpPage _jSignUpPage;
@@ -395,7 +405,7 @@ public class jMainPage extends javax.swing.JPanel {
     private final jViewCustomers _jViewCustomers;
     private final jViewItems _jViewItems;
     private final jNewItem _jNewItem;
-    private final jLog _jLog;
+    private final jShowLogs _jShowLogs;
     private final jHomePage _jHomePage;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jAddusers;
