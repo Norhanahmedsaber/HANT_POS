@@ -14,7 +14,7 @@ public class AccountServices implements IAccountServices{
     public User login(String username, String password) {
         //return us.equals(username) && pass.equals(password);
         User user = new User();
-        user.role = "manager";
+        user.role = "Manager";
         return user;
     }
 

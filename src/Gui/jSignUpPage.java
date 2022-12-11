@@ -4,6 +4,7 @@ import Entities.User;
 import Services.AccountServices;
 import java.awt.event.KeyEvent;
 import java.util.UUID;
+ 
 
 public class jSignUpPage extends javax.swing.JPanel {
     public jSignUpPage(jHomePage jhp , jMainPage jmp) {
@@ -11,6 +12,7 @@ public class jSignUpPage extends javax.swing.JPanel {
         _jHomePage = jhp;
         _jMainPage = jmp;
         _AccountServices = new AccountServices();
+        
         
     }
 
@@ -218,28 +220,18 @@ public class jSignUpPage extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRolesCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jAddAccount)
-                    .addComponent(jBack))
-                .addContainerGap(85, Short.MAX_VALUE))
+                    .addComponent(jBack)
+                    .addComponent(jAddAccount))
+                .addGap(21, 21, 21))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jAddAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAddAccountMouseClicked
-        addAccountButton();
-    }//GEN-LAST:event_jAddAccountMouseClicked
 
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
         _jHomePage.switchPanels(_jMainPage);
         clearSignUpPage();
     }//GEN-LAST:event_jBackMouseClicked
-
-    private void jAddAccountKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jAddAccountKeyPressed
-        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
-            addAccountButton();
-        }
-    }//GEN-LAST:event_jAddAccountKeyPressed
 
     private void jRolesComboKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jRolesComboKeyPressed
         if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
@@ -264,11 +256,20 @@ public class jSignUpPage extends javax.swing.JPanel {
             addAccountButton();
         }
     }//GEN-LAST:event_jNameFieldKeyPressed
+
+    private void jAddAccountKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jAddAccountKeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            addAccountButton();
+        }
+    }//GEN-LAST:event_jAddAccountKeyPressed
+
+    private void jAddAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAddAccountMouseClicked
+        addAccountButton();
+    }//GEN-LAST:event_jAddAccountMouseClicked
     
     private final jMainPage _jMainPage;
     private final jHomePage _jHomePage;
     private final AccountServices _AccountServices;
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jAddAccount;
     private javax.swing.JButton jBack;

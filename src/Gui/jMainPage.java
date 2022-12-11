@@ -13,6 +13,7 @@ public class jMainPage extends javax.swing.JPanel {
         _jLog = new jLog(jhp, this);
         _jSignUpPage = new jSignUpPage(jhp,this );
         _jViewUsers = new jViewUsers(jhp , this);
+        _jcreaterole=new jcreaterole(_jHomePage,this);
       
     }
     
@@ -51,6 +52,8 @@ public class jMainPage extends javax.swing.JPanel {
         jLogout = new javax.swing.JButton();
         jAddusers = new javax.swing.JButton();
         jViewusers = new javax.swing.JButton();
+        jNewRole = new javax.swing.JButton();
+        jViewRoles = new javax.swing.JButton();
 
         jNewitem.setText("New Item");
         jNewitem.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -108,6 +111,15 @@ public class jMainPage extends javax.swing.JPanel {
             }
         });
 
+        jNewRole.setText("New Role");
+        jNewRole.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jNewRoleMouseClicked(evt);
+            }
+        });
+
+        jViewRoles.setText("View Roles");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -115,16 +127,21 @@ public class jMainPage extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jNewRole, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jAddusers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jViewcustomers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jNewcustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLog, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jNewitem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jViewitems, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-                    .addComponent(jLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jViewusers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jNewitem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jViewitems, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                            .addComponent(jLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jViewusers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jViewRoles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(51, 51, 51))
         );
         layout.setVerticalGroup(
@@ -142,10 +159,15 @@ public class jMainPage extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLog)
                     .addComponent(jLogout))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jAddusers)
-                    .addComponent(jViewusers)))
+                    .addComponent(jViewusers))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jNewRole)
+                    .addComponent(jViewRoles))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -196,6 +218,11 @@ public class jMainPage extends javax.swing.JPanel {
             _jHomePage.switchPanels(_jViewUsers); 
         }
     }//GEN-LAST:event_jViewusersMouseClicked
+
+    private void jNewRoleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jNewRoleMouseClicked
+         _jHomePage.switchPanels(_jcreaterole);
+    }//GEN-LAST:event_jNewRoleMouseClicked
+    private final jcreaterole _jcreaterole;
     public boolean flag;
     private final jViewUsers _jViewUsers;
     private final jSignUpPage _jSignUpPage;
@@ -209,8 +236,10 @@ public class jMainPage extends javax.swing.JPanel {
     private javax.swing.JButton jAddusers;
     private javax.swing.JButton jLog;
     private javax.swing.JButton jLogout;
+    private javax.swing.JButton jNewRole;
     private javax.swing.JButton jNewcustomer;
     private javax.swing.JButton jNewitem;
+    private javax.swing.JButton jViewRoles;
     private javax.swing.JButton jViewcustomers;
     private javax.swing.JButton jViewitems;
     private javax.swing.JButton jViewusers;

@@ -16,10 +16,14 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="jBack" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="JDeleteCustomer" min="-2" max="-2" attributes="0"/>
                           <Component id="jViewCustomer" min="-2" max="-2" attributes="0"/>
@@ -27,33 +31,29 @@
                           <Component id="jUpdateCustomer" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jCreateItem" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jViewItem" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField1" min="-2" pref="185" max="-2" attributes="0"/>
+                          <Component id="jRoleNameField" min="-2" pref="185" max="-2" attributes="0"/>
+                          <Component id="jChosedPermissions" min="-2" pref="157" max="-2" attributes="0"/>
                       </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
-                      <Component id="jDone" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace pref="37" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="jDeleteItem" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
+                      <EmptySpace pref="37" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jUpdateItem" min="-2" max="-2" attributes="0"/>
-                          <Component id="jCreateUser" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jViewUser" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="JviewLogs" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                              <Component id="jBack" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jDeleteItem" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jCreateLogs" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jUpdateItem" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jCreateUser" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jViewUser" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="JviewLogs" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                      <Component id="jDone" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jCreateLogs" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -63,7 +63,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-              <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
+              <Component id="jRoleNameField" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="JCreateCustomer" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -94,12 +94,14 @@
                   <Component id="jViewItem" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="JviewLogs" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="18" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jChosedPermissions" min="-2" pref="44" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jDone" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jBack" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jDone" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace pref="27" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -115,7 +117,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jDone">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Done"/>
+        <Property name="text" type="java.lang.String" value="Create"/>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jDoneMouseClicked"/>
@@ -125,102 +127,69 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Create Customer"/>
       </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="JCreateCustomerMouseClicked"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JCreateCustomerActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="jViewCustomer">
       <Properties>
         <Property name="text" type="java.lang.String" value="View Customer"/>
       </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jViewCustomerMouseClicked"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="JDeleteCustomer">
       <Properties>
         <Property name="text" type="java.lang.String" value="Delete Customer "/>
       </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="JDeleteCustomerMouseClicked"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="jUpdateCustomer">
       <Properties>
         <Property name="text" type="java.lang.String" value="Update customer"/>
       </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jUpdateCustomerMouseClicked"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="jViewItem">
       <Properties>
         <Property name="text" type="java.lang.String" value="View Item"/>
       </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jViewItemMouseClicked"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="jCreateItem">
       <Properties>
         <Property name="text" type="java.lang.String" value="Create Item"/>
       </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jCreateItemMouseClicked"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="jUpdateItem">
       <Properties>
         <Property name="text" type="java.lang.String" value="Update Item"/>
       </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jUpdateItemMouseClicked"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="jDeleteItem">
       <Properties>
         <Property name="text" type="java.lang.String" value="Delete Item"/>
       </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jDeleteItemMouseClicked"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="jViewUser">
       <Properties>
         <Property name="text" type="java.lang.String" value="View User"/>
       </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jViewUserMouseClicked"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="JviewLogs">
       <Properties>
         <Property name="text" type="java.lang.String" value="View Logs"/>
       </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="JviewLogsMouseClicked"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="jCreateUser">
       <Properties>
         <Property name="text" type="java.lang.String" value="Create User"/>
       </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jCreateUserMouseClicked"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="jCreateLogs">
       <Properties>
         <Property name="text" type="java.lang.String" value="Create Logs"/>
       </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jCreateLogsMouseClicked"/>
-      </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="jRoleNameField">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jChosedPermissions">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="ff" red="66" type="rgb"/>
+        </Property>
       </Properties>
     </Component>
   </SubComponents>
