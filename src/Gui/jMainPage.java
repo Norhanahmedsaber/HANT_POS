@@ -12,18 +12,30 @@ public class jMainPage extends javax.swing.JPanel {
         _jViewCustomers = new jViewCustomers(jhp, this);
         _jLog = new jLog(jhp, this);
         _jSignUpPage = new jSignUpPage(jhp,this );
+        _jViewUsers = new jViewUsers(jhp , this);
+        
       
     }
-    public void checkRole(){
+    
+    public boolean checkRole(){
         if(_jHomePage.loginUser.role != "manager")
         {
-            jAddusers.disable();
-            jViewusers.disable();
+            jAddusers.setEnabled(false);
+            jViewusers.setEnabled(false);
+            jLog.setEnabled(false);
+            _jViewItems.jdelete.setEnabled(false);
+            _jViewCustomers.jDelete.setEnabled(false);
+            return false;            
+       
         }
         else
         {
-            jAddusers.enable();
-            jViewusers.enable();
+            jAddusers.setEnabled(true);
+            jViewusers.setEnabled(true);
+            jLog.setEnabled(true);
+           _jViewItems.jdelete.setEnabled(true);
+           _jViewCustomers.jDelete.setEnabled(true);
+           return true;
         }
         
     }
@@ -154,14 +166,16 @@ public class jMainPage extends javax.swing.JPanel {
     }//GEN-LAST:event_jNewitemMouseClicked
 
     private void jViewitemsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jViewitemsMouseClicked
-
         _jHomePage.switchPanels(_jViewItems);
         _jViewItems.showItems();
 
     }//GEN-LAST:event_jViewitemsMouseClicked
 
     private void jLogMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLogMouseClicked
-        _jHomePage.switchPanels(_jLog);
+        if(checkRole())
+        {
+           _jHomePage.switchPanels(_jLog); 
+        }else return;  
     }//GEN-LAST:event_jLogMouseClicked
 
     private void jLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLogoutMouseClicked
@@ -170,12 +184,21 @@ public class jMainPage extends javax.swing.JPanel {
     }//GEN-LAST:event_jLogoutMouseClicked
 
     private void jAddusersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAddusersMouseClicked
-        _jHomePage.switchPanels(_jSignUpPage);
+          if(checkRole())
+        {
+           _jHomePage.switchPanels(_jSignUpPage); 
+        }else return; 
+              
     }//GEN-LAST:event_jAddusersMouseClicked
 
     private void jViewusersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jViewusersMouseClicked
-       
+         if(checkRole())
+        {
+            _jHomePage.switchPanels(_jViewUsers); 
+        }else return;    
     }//GEN-LAST:event_jViewusersMouseClicked
+    public boolean flag;
+    private final jViewUsers _jViewUsers;
     private final jSignUpPage _jSignUpPage;
     private final jNewCustomer _jNewCustomer;
     private final jViewCustomers _jViewCustomers;
