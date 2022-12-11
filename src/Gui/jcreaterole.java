@@ -252,7 +252,7 @@ public class jcreaterole extends javax.swing.JPanel {
     }//GEN-LAST:event_jViewUserMouseClicked
 
     private void jCreateLogsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCreateLogsMouseClicked
-        _jRole.canCreateLog=true;
+        
     }//GEN-LAST:event_jCreateLogsMouseClicked
 
     private void JviewLogsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JviewLogsMouseClicked
@@ -276,7 +276,7 @@ public class jcreaterole extends javax.swing.JPanel {
              System.out.println("selected ");
              
     }//GEN-LAST:event_JCreateCustomerActionPerformed
-
+    
     private Role _jRole;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox JCreateCustomer;

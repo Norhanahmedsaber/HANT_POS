@@ -11,33 +11,11 @@ public class jMainPage extends javax.swing.JPanel {
         _jViewItems = new jViewItems(jhp, this);
         _jViewCustomers = new jViewCustomers(jhp, this);
         _jLog = new jLog(jhp, this);
-        _jSignUpPage = new jSignUpPage(jhp,this );
+        _jSignUpPage = new jSignUpPage(jhp,this);
         _jViewUsers = new jViewUsers(jhp , this);
-      
     }
     
-    public boolean checkRole(){
-        if(_jHomePage.loginUser.role != "Manager")
-        {
-            jAddusers.setEnabled(false);
-            jViewusers.setEnabled(false);
-            jLog.setEnabled(false);
-            _jViewItems.jdelete.setEnabled(false);
-            _jViewCustomers.jDelete.setEnabled(false);
-            return false;            
-       
-        }
-        else
-        {
-            jAddusers.setEnabled(true);
-            jViewusers.setEnabled(true);
-            jLog.setEnabled(true);
-           _jViewItems.jdelete.setEnabled(true);
-           _jViewCustomers.jDelete.setEnabled(true);
-           return true;
-        }
-        
-    }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -161,33 +139,42 @@ public class jMainPage extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jNewcustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jNewcustomerMouseClicked
-        _jHomePage.switchPanels(_jNewCustomer);
-        _jNewCustomer.jNameField.grabFocus();
+        if(canCreateCustomer()) {
+            _jHomePage.switchPanels(_jNewCustomer);
+            _jNewCustomer.jNameField.grabFocus();
+        }
     }//GEN-LAST:event_jNewcustomerMouseClicked
 
     private void jViewcustomersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jViewcustomersMouseClicked
-        _jViewCustomers.renderData();
-        _jHomePage.switchPanels(_jViewCustomers);
+        if(canViewCustomers()) {
+            _jViewCustomers.renderData();
+            _jHomePage.switchPanels(_jViewCustomers);   
+        }
     }//GEN-LAST:event_jViewcustomersMouseClicked
 
     private void jNewitemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jNewitemMouseClicked
-        _jHomePage.switchPanels(_jNewItem);
-        _jNewItem.jNameField.grabFocus();
+        if(canCreateItem()) {
+            _jHomePage.switchPanels(_jNewItem);
+            _jNewItem.jNameField.grabFocus();
+        }
     }//GEN-LAST:event_jNewitemMouseClicked
 
     private void jViewitemsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jViewitemsMouseClicked
-        _jHomePage.switchPanels(_jViewItems);
-        _jViewItems.showItems();
+        if(canViewItems()) {
+            _jHomePage.switchPanels(_jViewItems);
+            _jViewItems.showItems(); 
+        }
 
     }//GEN-LAST:event_jViewitemsMouseClicked
 
     private void jLogMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLogMouseClicked
-        if(checkRole())
+        if(canViewLogs())
         {
            _jHomePage.switchPanels(_jLog); 
         }else return;
         _jViewUsers.renderData();
         _jHomePage.switchPanels(_jViewUsers);
+        
 
     }//GEN-LAST:event_jLogMouseClicked
 
@@ -197,8 +184,9 @@ public class jMainPage extends javax.swing.JPanel {
     }//GEN-LAST:event_jLogoutMouseClicked
 
     private void jAddusersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAddusersMouseClicked
-        if(checkRole())
+        if(canCreateUser())
         {
+            _jSignUpPage.clearSignUpPage();
            _jHomePage.switchPanels(_jSignUpPage); 
         } 
               
@@ -206,10 +194,10 @@ public class jMainPage extends javax.swing.JPanel {
 
     private void jViewusersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jViewusersMouseClicked
 
-        if(checkRole()){
+        if(canViewUsers()){
             _jViewUsers.renderData();
             _jHomePage.switchPanels(_jViewUsers);
-        }else return;
+        }
         
     }//GEN-LAST:event_jViewusersMouseClicked
 
@@ -220,6 +208,154 @@ public class jMainPage extends javax.swing.JPanel {
     private void jNewitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNewitemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jNewitemActionPerformed
+    public boolean canCreateUser() {
+        if(_jHomePage.loginUser.role.canCreateUser) {
+            jAddusers.setEnabled(true);
+            _jViewUsers.jAddButton.setEnabled(true);
+            return true;
+        }else {
+            jAddusers.setEnabled(false);
+            _jViewUsers.jAddButton.setEnabled(false);
+            return false;
+        }
+    }
+    public boolean canCreateCustomer (){
+        if(_jHomePage.loginUser.role.canCreateCustomer) {
+            jNewcustomer.setEnabled(true);
+            return true;
+        }else {
+            jNewcustomer.setEnabled(false);
+            return false;
+        }
+    }
+    public boolean canViewCustomers() {
+        if(_jHomePage.loginUser.role.canViewCustomers) {
+            jViewcustomers.setEnabled(true);
+            return true;
+        }else {
+            jViewcustomers.setEnabled(false);
+            return false;
+        }
+    }
+    public boolean canDeleteCustomer() {
+        if(_jHomePage.loginUser.role.canDeleteCustomer) {
+            _jViewCustomers.jDelete.setEnabled(true);
+            return true;
+        }else {
+            _jViewCustomers.jDelete.setEnabled(false);
+            return false;
+        }
+    }
+    public boolean canUpdateCustomer() {
+        if(_jHomePage.loginUser.role.canUpdateCustomer) {
+            _jViewCustomers._jViewCustomer.jEdit.setEnabled(true);
+            return true;
+        }else {
+            _jViewCustomers.jDelete.setEnabled(false);
+            return false;
+        }
+    }
+    public boolean canDeleteUser() {
+        if(_jHomePage.loginUser.role.canDeleteUser) {
+            _jViewUsers.jDeleteButton.setEnabled(true);
+            return true;
+        }else {
+            _jViewUsers.jDeleteButton.setEnabled(false);
+            return false;
+        }
+    }
+    public boolean canCreateItem () {
+        if(_jHomePage.loginUser.role.canCreateItem) {
+            jNewitem.setEnabled(true);
+            _jViewItems.jadditem.setEnabled(true);
+            return true;
+        }else {
+            jNewitem.setEnabled(false);
+            _jViewItems.jadditem.setEnabled(false);
+            return false;
+        }
+    }
+    public boolean canViewItems() {
+        if(_jHomePage.loginUser.role.canViewItems) {
+            jViewitems.setEnabled(true);
+            return true;
+        }else {
+            jViewitems.setEnabled(false);
+            return false;
+        }
+    }
+    public boolean canDeleteItem() {
+        if(_jHomePage.loginUser.role.canDeleteItem) {
+            _jViewItems.jdelete.setEnabled(true);
+            return true;
+        }else {
+            _jViewItems.jdelete.setEnabled(false);
+            return false;
+        }
+    }
+    public boolean canUpdateItem() {
+        if(_jHomePage.loginUser.role.canUpdateItem) {
+            _jViewItems._jViewItem.jEdit.setEnabled(true);
+            return true;
+        }else {
+            _jViewItems._jViewItem.jEdit.setEnabled(false);
+            return false;
+        }
+    }
+    public boolean canViewUsers() {
+        if(_jHomePage.loginUser.role.canViewUsers) {
+            jViewusers.setEnabled(true);
+            return true;
+        }else {
+            jViewusers.setEnabled(false);
+            return false;
+        }
+    }
+    public boolean canViewLogs() {
+        if(_jHomePage.loginUser.role.canViewLogs) {
+            jLog.setEnabled(true);
+            return true;
+        }else {
+            jLog.setEnabled(false);
+            return false;
+        }
+    }
+    public boolean canDeleteLog() {
+        return true;
+    }
+    public boolean canCreateRole() {
+        return true;
+    }
+    public boolean canDeleteRole() {
+        return true;
+    }
+    public boolean canUpdateRole() {
+        return true;
+    }
+    public boolean checkRole(){
+        /*if(_jHomePage.loginUser.role.name != "Manager")
+        {
+            jAddusers.setEnabled(false);
+            jViewusers.setEnabled(false);
+            jLog.setEnabled(false);
+            _jViewItems.jdelete.setEnabled(false);
+            _jViewCustomers.jDelete.setEnabled(false);
+            return false;            
+       
+        }
+        else
+        {
+            jAddusers.setEnabled(true);
+            jViewusers.setEnabled(true);
+            jLog.setEnabled(true);
+           _jViewItems.jdelete.setEnabled(true);
+           _jViewCustomers.jDelete.setEnabled(true);
+           return true;
+        }*/
+        return true;
+        
+    }
+    
     public boolean flag;
     private final jViewUsers _jViewUsers;
     private final jSignUpPage _jSignUpPage;
@@ -239,4 +375,5 @@ public class jMainPage extends javax.swing.JPanel {
     private javax.swing.JButton jViewitems;
     private javax.swing.JButton jViewusers;
     // End of variables declaration//GEN-END:variables
+    
 }

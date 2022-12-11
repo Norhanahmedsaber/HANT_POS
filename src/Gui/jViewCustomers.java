@@ -15,8 +15,7 @@ public final class jViewCustomers extends javax.swing.JPanel {
         _jMainPage = jmp; 
         _CustomerServices = new CustomerServices(); 
         _filterCustomers = new filterCustomers();
-        _jViewCustomer= new jViewCustomer(this, jhp);
-        //_chosencustomer=new Customer();]
+        _jViewCustomer= new jViewCustomer(this, jhp, jmp);
         toggle = false;
     }
     public void renderData() { 
@@ -203,14 +202,14 @@ public final class jViewCustomers extends javax.swing.JPanel {
     }//GEN-LAST:event_jSearchNameKeyTyped
 
     private void jDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDeleteMouseClicked
-       if(_jMainPage.checkRole())
-       {
-            UUID id = deleteCustomer();
-        if(id!= null)
+        if(_jMainPage.canDeleteCustomer())
         {
-            _CustomerServices.delete(deleteCustomer());
+            UUID id = deleteCustomer();
+            if(id!= null)
+            {
+                _CustomerServices.delete(deleteCustomer());
+            }
         }
-       }else return;
     }//GEN-LAST:event_jDeleteMouseClicked
 
     private void jToggleSortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleSortMouseClicked
@@ -229,12 +228,11 @@ public final class jViewCustomers extends javax.swing.JPanel {
     }//GEN-LAST:event_jviewCustomerMouseClicked
 
     private boolean toggle ;
-    private  jViewCustomer _jViewCustomer;
+    public  jViewCustomer _jViewCustomer;
     private final filterCustomers _filterCustomers; 
     private final CustomerServices _CustomerServices; 
     private final jMainPage _jMainPage; 
     private final jHomePage _jHomePage;
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBack;
     private javax.swing.JTable jCustomersTable;

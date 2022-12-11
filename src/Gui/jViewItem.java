@@ -10,9 +10,10 @@ import java.util.UUID;
 
 public class jViewItem extends javax.swing.JPanel {
 
-    public jViewItem(jHomePage jhp,jViewItems  jvi) {
+    public jViewItem(jHomePage jhp,jViewItems  jvi, jMainPage jmp) {
         initComponents();
         _jHomePage = jhp;
+        _jMainPage = jmp;
         _jViewItems = jvi;
         choosedItem = null;
         _itemServices = new ItemServices();
@@ -341,8 +342,10 @@ public class jViewItem extends javax.swing.JPanel {
     }//GEN-LAST:event_jBackMouseClicked
 
     private void jEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jEditMouseClicked
-       enableItemFields();
-       enableUpdateANdCancelButtons();
+       if(_jMainPage.canUpdateItem()) {
+            enableItemFields();
+            enableUpdateANdCancelButtons();
+       }
     }//GEN-LAST:event_jEditMouseClicked
 
     private void jUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jUpdateMouseClicked
@@ -354,6 +357,7 @@ public class jViewItem extends javax.swing.JPanel {
     }//GEN-LAST:event_jCancelMouseClicked
 
     public Item choosedItem;
+    private final jMainPage _jMainPage;
     private final jHomePage _jHomePage;
     private final jViewItems _jViewItems;
     private final ItemServices _itemServices;
@@ -363,7 +367,7 @@ public class jViewItem extends javax.swing.JPanel {
     private javax.swing.JTextField jCatgoryField;
     private javax.swing.JTextField jCreatedAt;
     private javax.swing.JTextField jDescriptionField;
-    private javax.swing.JButton jEdit;
+    public javax.swing.JButton jEdit;
     private javax.swing.JLabel jErrorCatgory;
     private javax.swing.JLabel jErrorDescription;
     private javax.swing.JLabel jErrorName;

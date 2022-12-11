@@ -38,7 +38,7 @@ public class jViewUsers extends javax.swing.JPanel {
                     User user = filteredUsers.get(i); 
                     Object[] objs = {user.id, user.name, user.userName, user.role}; 
                     model.addRow(objs); 
-                } 
+                }  
             } 
         } 
     }
@@ -209,15 +209,9 @@ public class jViewUsers extends javax.swing.JPanel {
     }//GEN-LAST:event_jBackButtonMouseClicked
 
     private void jDeleteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDeleteButtonMouseClicked
-        _UserServices.delete(deleteUser());
-        if(_jMainPage.checkRole())
-        {
-            UUID id = deleteUser();
-            if(id!= null)
-            {
-                _UserServices.delete(deleteUser());
-            }
-       }else return;
+        if(_jMainPage.canDeleteUser()) {
+            
+        }
     }//GEN-LAST:event_jDeleteButtonMouseClicked
 
     private void jSortByComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSortByComboActionPerformed
@@ -247,8 +241,10 @@ public class jViewUsers extends javax.swing.JPanel {
     }//GEN-LAST:event_jShowButtonMouseClicked
 
     private void jAddButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAddButtonMouseClicked
-        _jHomePage.switchPanels(_jSignUpPage);
-        _jSignUpPage.jNameField.grabFocus();
+        if(_jMainPage.canCreateUser()) {
+            _jHomePage.switchPanels(_jSignUpPage);
+            _jSignUpPage.jNameField.grabFocus();
+        }
     }//GEN-LAST:event_jAddButtonMouseClicked
 
     private boolean toggle ;
@@ -259,7 +255,7 @@ public class jViewUsers extends javax.swing.JPanel {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jAddButton;
+    public javax.swing.JButton jAddButton;
     private javax.swing.JLabel jAllItemsLabel;
     private javax.swing.JButton jBackButton;
     public javax.swing.JButton jDeleteButton;

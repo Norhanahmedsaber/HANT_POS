@@ -12,7 +12,7 @@ public class jViewUser extends javax.swing.JPanel {
         _jHomePage = jhp;
         _jViewUsers = jvu;
         choosedUser = null;
-        _UserServices = new UserServices();
+        _UserServices = new UserServices(); 
     } 
     public void renderData( ){  
         
@@ -84,7 +84,7 @@ public class jViewUser extends javax.swing.JPanel {
         user.name=jNameField.getText();
         user.userName=jUsernameField.getText();
         user.password=jPasswordField.getText();
-        user.role = (String)(jRolesCombo.getSelectedItem());
+        user.role.name = (String)(jRolesCombo.getSelectedItem());
         
         _UserServices.update(choosedUser.id,user);
         choosedUser = _UserServices.getById(choosedUser.id);

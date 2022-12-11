@@ -1,4 +1,5 @@
 package Services;
+import Entities.Role;
 import Entities.User;
 import Interfaces.IAccountServices;
 import static Services.UserServices.users;
@@ -13,9 +14,26 @@ public class AccountServices implements IAccountServices{
     
     @Override
     public User login(String username, String password) {
-        
         User user = new User();
-        user.role = "Manager";
+        Role role = new Role();
+        role.canViewUsers = true;
+        role.canCreateCustomer = true;
+        role.canCreateItem = true;
+        role.canCreateRole = true;
+        role.canCreateUser = true;
+        role.canDeleteCustomer = true;
+        role.canDeleteItem = true;
+        role.canDeleteLog = true;
+        role.canDeleteUser = true;
+        role.canUpdateCustomer = true;
+        role.canUpdateItem = true;
+        role.canUpdateRole = true;
+        role.canViewCustomers = true;
+        role.canViewItems = true;
+        role.canViewLogs = true;
+        role.canViewUsers = true;
+                
+        user.role = role;
         return user;
     } 
 

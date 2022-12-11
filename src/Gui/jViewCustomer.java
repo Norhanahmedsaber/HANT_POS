@@ -38,13 +38,13 @@ public class jViewCustomer extends javax.swing.JPanel {
         return true;
     }
 
-    public jViewCustomer(jViewCustomers jvc,jHomePage jhp) {
+    public jViewCustomer(jViewCustomers jvc,jHomePage jhp, jMainPage jmp) {
         initComponents();
         _jViewCustomers = jvc;
         _chosencustomer = null;
         _jHomePage = jhp;
         _CustomerServices = new CustomerServices();
-        
+        _jMainPage = jmp;
         jUpdate.setEnabled(false);
         jCancel.setEnabled(false);
         jUpdatedSuccesfully.setText("");
@@ -593,7 +593,9 @@ public class jViewCustomer extends javax.swing.JPanel {
     }//GEN-LAST:event_jBackMouseClicked
 
     private void jEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jEditMouseClicked
-      editbuttonisclicked();
+        if(_jMainPage.canUpdateCustomer()) {
+            editbuttonisclicked();
+        }
     }//GEN-LAST:event_jEditMouseClicked
 
     private void jUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jUpdateMouseClicked
@@ -618,6 +620,7 @@ public class jViewCustomer extends javax.swing.JPanel {
        _jChooseItem.renderData();
         _jHomePage.switchPanels(_jChooseItem);
     }//GEN-LAST:event_jShowpurchasesMouseClicked
+    private final jMainPage _jMainPage;
     private final jViewCustomers _jViewCustomers;
     public CustomerServices _CustomerServices;
     public Customer _chosencustomer;
@@ -629,7 +632,7 @@ public class jViewCustomer extends javax.swing.JPanel {
     private javax.swing.JButton jBack;
     private javax.swing.JButton jCancel;
     private javax.swing.JTextField jCityField;
-    private javax.swing.JButton jEdit;
+    public javax.swing.JButton jEdit;
     private javax.swing.JTextField jEmailField;
     private javax.swing.JLabel jErrorAge;
     private javax.swing.JLabel jErrorCity;

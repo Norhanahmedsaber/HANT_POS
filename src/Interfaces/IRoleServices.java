@@ -9,5 +9,6 @@ public interface IRoleServices {
     void create(Role role);
     void delete(UUID id);
     void update(UUID id, Role role);
-    ArrayList<Role> getAll();
+    ArrayList<Role> getAll(); 
+    Role getByName(String name);
 }
