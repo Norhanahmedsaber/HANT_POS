@@ -41,7 +41,7 @@
                       </Group>
                       <EmptySpace min="0" pref="54" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="jAddAccount" min="-2" max="-2" attributes="0"/>
                           <Component id="jRolesCombo" min="-2" pref="192" max="-2" attributes="0"/>
@@ -82,12 +82,12 @@
                   <Component id="jRolesCombo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace pref="82" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jAddAccount" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jBack" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jAddAccount" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="85" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

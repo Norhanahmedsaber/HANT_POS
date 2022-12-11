@@ -1,5 +1,6 @@
 package Services; 
 import Entities.Customer; 
+import Entities.Item;
 import Interfaces.ICustomerServices; 
 import java.util.ArrayList; 
 import java.util.UUID; 
@@ -47,5 +48,10 @@ public class CustomerServices implements ICustomerServices  {
     public ArrayList<Customer> getAll() { 
         return customers; 
     } 
+
+    @Override
+    public ArrayList<Item> getAssignedItems(UUID customerId) {
+        return new ArrayList<Item>();
+    }
      
 }

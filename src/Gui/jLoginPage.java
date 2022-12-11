@@ -11,7 +11,7 @@ public class jLoginPage extends javax.swing.JPanel {
         _jMainPage = new jMainPage(jhp); 
         _AccountServices=new AccountServices();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -103,16 +103,15 @@ public class jLoginPage extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
     
     public void login() {
-//        if(jusername.getText().isEmpty()) {
-//            error.setText("Username Is Empty!");
-//            return;
-//        }else error.setText(""); 
-//        if(jpassword.getText().isEmpty()) {
-//            error.setText("password Is Empty!");
-//            return;
-//        }else error.setText("");
-          User user = _AccountServices.login(jusername.getText(),jpassword.getText());
-          
+        if(jusername.getText().isEmpty()) {
+            error.setText("Username Is Empty!");
+            return;
+        }else error.setText(""); 
+        if(jpassword.getText().isEmpty()) {
+            error.setText("password Is Empty!");
+            return;
+        }else error.setText("");
+            User user = _AccountServices.login(jusername.getText(),jpassword.getText());
         if( user!=null )
         {
             jusername.setText("");
@@ -123,9 +122,25 @@ public class jLoginPage extends javax.swing.JPanel {
         else
         {     
             error.setText("Password or Username dont match!");
+            return;
         }
-         _jMainPage.checkRole();
-          
+        _jMainPage.canCreateUser();
+        _jMainPage.canCreateCustomer();
+        _jMainPage.canViewCustomers();
+        _jMainPage.canDeleteCustomer();
+        _jMainPage.canUpdateCustomer();
+        _jMainPage.canCreateItem();
+        _jMainPage.canViewItems();
+        _jMainPage.canDeleteItem();
+        _jMainPage.canViewUsers();
+        _jMainPage.canViewLogs();
+        _jMainPage.canUpdateItem();
+        _jMainPage.canDeleteLog();
+        _jMainPage.canCreateRole();
+        _jMainPage.canDeleteRole();
+        _jMainPage.canUpdateRole();
+        _jMainPage.canDeleteUser();
+        _jMainPage.canViewRoles();
     }
     private void jloginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jloginMouseClicked
         login();

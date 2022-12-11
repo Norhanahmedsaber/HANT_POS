@@ -1,27 +1,25 @@
 package Services;
+import Entities.Role;
 import Entities.User;
 import Interfaces.IAccountServices;
+import static Services.UserServices.users;
 
 public class AccountServices implements IAccountServices{
-    
-    public static String us ="s7s" ;
-    
-    public static String pass ="anas" ;
- 
-    
-    
     @Override
     public User login(String username, String password) {
-        //return us.equals(username) && pass.equals(password);
-        User user = new User();
-        user.role="Manager";
-        return user;
-    }
+        for(int i=0;i<UserServices.users.size();i++) {
+            if(users.get(i).userName.equals(username) && users.get(i).password.equals(password)) {
+                return users.get(i);
+            }
+        }
+        return null;
+    } 
 
+
+    
     @Override
     public void signUp(User user) {
-        System.out.println("User Signed Up");
-        System.out.println(user.id + " " + user.name+ " " + user.userName+ " " + user.role);
+        users.add(user);
     }
     
 }
