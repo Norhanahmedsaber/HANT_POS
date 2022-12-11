@@ -10,8 +10,7 @@ public class jSignUpPage extends javax.swing.JPanel {
         initComponents();
         _jHomePage = jhp;
         _jMainPage = jmp;
-        _AccountServices = new AccountServices();
-        
+        _AccountServices = new AccountServices(); 
     }
 
     public boolean isValidName() {

@@ -1,6 +1,7 @@
 package Services;
 import Entities.User;
 import Interfaces.IAccountServices;
+import static Services.UserServices.users;
 
 public class AccountServices implements IAccountServices{
     
@@ -12,15 +13,16 @@ public class AccountServices implements IAccountServices{
     
     @Override
     public User login(String username, String password) {
-        //return us.equals(username) && pass.equals(password);
+        
         User user = new User();
-        user.role = "manager";
+        user.role = "Manager";
         return user;
-    }
+    } 
 
     
     @Override
     public void signUp(User user) {
+        users.add(user);
         System.out.println("User Signed Up");
         System.out.println(user.id + " " + user.name+ " " + user.userName+ " " + user.role);
     }
