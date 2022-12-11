@@ -237,7 +237,9 @@ public class jMainPage extends javax.swing.JPanel {
     }//GEN-LAST:event_jNewitemActionPerformed
 
     private void jViewRolesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jViewRolesMouseClicked
-        
+        if(canViewRoles()) {
+            
+        }
     }//GEN-LAST:event_jViewRolesMouseClicked
 
     private void jNewRoleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jNewRoleMouseClicked
@@ -357,40 +359,32 @@ public class jMainPage extends javax.swing.JPanel {
             return false;
         }
     }
+    public boolean canViewRoles() {
+        if(_jHomePage.loginUser.role.canViewRoles) {
+            jViewRoles.setEnabled(true);
+            return true;
+        }else {
+            jViewRoles.setEnabled(false);
+            return false;
+        }
+    }
     public boolean canDeleteLog() {
         return true;
     }
     public boolean canCreateRole() {
-        return true;
+        if(_jHomePage.loginUser.role.canCreateRole) {
+            jNewRole.setEnabled(true);
+            return true;
+        }else {
+            jNewRole.setEnabled(false);
+            return false;
+        }
     }
     public boolean canDeleteRole() {
         return true;
     }
     public boolean canUpdateRole() {
         return true;
-    }
-    public boolean checkRole(){
-        /*if(_jHomePage.loginUser.role.name != "Manager")
-        {
-            jAddusers.setEnabled(false);
-            jViewusers.setEnabled(false);
-            jLog.setEnabled(false);
-            _jViewItems.jdelete.setEnabled(false);
-            _jViewCustomers.jDelete.setEnabled(false);
-            return false;            
-       
-        }
-        else
-        {
-            jAddusers.setEnabled(true);
-            jViewusers.setEnabled(true);
-            jLog.setEnabled(true);
-           _jViewItems.jdelete.setEnabled(true);
-           _jViewCustomers.jDelete.setEnabled(true);
-           return true;
-        }*/
-        return true;
-        
     }
     
     public boolean flag;

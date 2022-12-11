@@ -8,6 +8,17 @@ import java.util.UUID;
 public class UserServices implements IUserServices{
     public static ArrayList<User> users = new ArrayList<User>();
 
+    public UserServices() {
+        _RoleServices = new RoleServices();
+        User user = new User();
+        user.id = UUID.randomUUID();
+        user.name = "anas hesham";
+        user.userName = "anas";
+        user.password = "123";
+        user.role = _RoleServices.getByName("Admin");
+        users.add(user);
+    }
+    
     @Override
     public void create(User user) {
         users.add(user);
@@ -45,5 +56,6 @@ public class UserServices implements IUserServices{
     public ArrayList<User> getAll() { 
         return users; 
     } 
+    private RoleServices _RoleServices;
     
 }

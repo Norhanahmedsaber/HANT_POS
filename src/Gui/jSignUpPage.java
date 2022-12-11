@@ -80,7 +80,6 @@ public class jSignUpPage extends javax.swing.JPanel {
         jNameField.setText("");
         jPasswordField.setText("");
         jUsernameField.setText("");
-        jRolesCombo.selectWithKeyChar('U');
         ArrayList<Role> roles = _RoleServices.getAll();
         String[] names = new String[roles.size()];
         for(int i=0;i<roles.size();i++){

@@ -5,43 +5,20 @@ import Interfaces.IAccountServices;
 import static Services.UserServices.users;
 
 public class AccountServices implements IAccountServices{
-    
-    public static String us ="s7s" ;
-    
-    public static String pass ="anas" ;
- 
-    
-    
     @Override
     public User login(String username, String password) {
-        User user = new User();
-        Role role = new Role();
-        role.canViewUsers = true;
-        role.canCreateCustomer = true;
-        role.canCreateItem = true;
-        role.canCreateRole = true;
-        role.canCreateUser = true;
-        role.canDeleteCustomer = true;
-        role.canDeleteItem = true;
-        role.canDeleteLog = true;
-        role.canDeleteUser = true;
-        role.canUpdateCustomer = true;
-        role.canUpdateItem = true;
-        role.canUpdateRole = true;
-        role.canViewCustomers = true;
-        role.canViewItems = true;
-        role.canViewLogs = true;
-        role.canViewUsers = true;
-        user.role = role;
-        return user;
+        for(int i=0;i<UserServices.users.size();i++) {
+            if(users.get(i).userName.equals(username) && users.get(i).password.equals(password)) {
+                return users.get(i);
+            }
+        }
+        return null;
     } 
 
     
     @Override
     public void signUp(User user) {
         users.add(user);
-        System.out.println("User Signed Up");
-        System.out.println(user.id + " " + user.name+ " " + user.userName+ " " + user.role);
     }
     
 }

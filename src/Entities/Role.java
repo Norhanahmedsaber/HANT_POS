@@ -22,5 +22,6 @@ public class Role {
     public boolean canCreateRole;
     public boolean canDeleteRole;
     public boolean canUpdateRole;
+    public boolean canViewRoles;
     public boolean canDeleteUser;
 }
