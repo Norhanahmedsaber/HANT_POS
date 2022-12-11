@@ -13,12 +13,11 @@ public class jMainPage extends javax.swing.JPanel {
         _jLog = new jLog(jhp, this);
         _jSignUpPage = new jSignUpPage(jhp,this );
         _jViewUsers = new jViewUsers(jhp , this);
-        
       
     }
     
     public boolean checkRole(){
-        if(_jHomePage.loginUser.role != "manager")
+        if(_jHomePage.loginUser.role != "Manager")
         {
             jAddusers.setEnabled(false);
             jViewusers.setEnabled(false);
@@ -175,7 +174,7 @@ public class jMainPage extends javax.swing.JPanel {
         if(checkRole())
         {
            _jHomePage.switchPanels(_jLog); 
-        }else return;  
+        }  
     }//GEN-LAST:event_jLogMouseClicked
 
     private void jLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLogoutMouseClicked
@@ -184,18 +183,18 @@ public class jMainPage extends javax.swing.JPanel {
     }//GEN-LAST:event_jLogoutMouseClicked
 
     private void jAddusersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAddusersMouseClicked
-          if(checkRole())
+        if(checkRole())
         {
            _jHomePage.switchPanels(_jSignUpPage); 
-        }else return; 
+        } 
               
     }//GEN-LAST:event_jAddusersMouseClicked
 
     private void jViewusersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jViewusersMouseClicked
-         if(checkRole())
+        if(checkRole())
         {
             _jHomePage.switchPanels(_jViewUsers); 
-        }else return;    
+        }
     }//GEN-LAST:event_jViewusersMouseClicked
     public boolean flag;
     private final jViewUsers _jViewUsers;
