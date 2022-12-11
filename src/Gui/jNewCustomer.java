@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.regex.Pattern;  
 
 public class jNewCustomer extends javax.swing.JPanel {
 

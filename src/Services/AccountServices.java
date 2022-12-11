@@ -32,7 +32,6 @@ public class AccountServices implements IAccountServices{
         role.canViewItems = true;
         role.canViewLogs = true;
         role.canViewUsers = true;
-                
         user.role = role;
         return user;
     } 
