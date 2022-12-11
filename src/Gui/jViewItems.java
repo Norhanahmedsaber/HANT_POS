@@ -2,7 +2,6 @@ package Gui;
 
 import Entities.Item;
 import Services.ItemServices;
-import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.UUID;
 import javax.swing.table.DefaultTableModel;
@@ -174,8 +173,8 @@ public class jViewItems extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
     public void showItems (){
             String [] titles= {"Id", "Name","Category","Price","CreatedAt"};
-            DefaultTableModel model = new DefaultTableModel(titles,0);
-            jItem.setModel(model);
+            DefaultTableModel m = new DefaultTableModel(titles,0);
+            jItem.setModel(m);
             ArrayList<Item> _items = _ItemServices.getAllItems();  
             String search=jsearchitems.getText();
             String Sortitemsby=(String)jsortitemsby.getSelectedItem();
@@ -185,7 +184,7 @@ public class jViewItems extends javax.swing.JPanel {
                 { 
                     Item item = _filtereditems .get(i);
                     Object [] items = { item.id, item.name,item.category,item.price,item.createdAt } ;
-                    model.addRow(items);
+                    m.addRow(items);
                 }
             }
         }

@@ -10,15 +10,15 @@ public class jMainPage extends javax.swing.JPanel {
         _jNewItem = new jNewItem(jhp, this);
         _jViewItems = new jViewItems(jhp, this);
         _jViewCustomers = new jViewCustomers(jhp, this);
-        _jLog = new jLog(jhp, this);
+        _jLog = new jShowLogs(jhp, this);
         _jSignUpPage = new jSignUpPage(jhp,this );
         _jViewUsers = new jViewUsers(jhp , this);
-        
+        _jShowLogs = new jShowLogs(jhp, this);
       
     }
     
     public boolean checkRole(){
-        if(_jHomePage.loginUser.role != "manager")
+        if(_jHomePage.loginUser.role != "Manager")
         {
             jAddusers.setEnabled(false);
             jViewusers.setEnabled(false);
@@ -173,8 +173,8 @@ public class jMainPage extends javax.swing.JPanel {
 
     private void jLogMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLogMouseClicked
         if(checkRole())
-        {
-           _jHomePage.switchPanels(_jLog); 
+        {  _jHomePage.switchPanels(_jLog);
+            _jLog.showLog();
         }else return;  
     }//GEN-LAST:event_jLogMouseClicked
 
@@ -197,6 +197,7 @@ public class jMainPage extends javax.swing.JPanel {
             _jHomePage.switchPanels(_jViewUsers); 
         }else return;    
     }//GEN-LAST:event_jViewusersMouseClicked
+    public final jShowLogs _jShowLogs;
     public boolean flag;
     private final jViewUsers _jViewUsers;
     private final jSignUpPage _jSignUpPage;
@@ -204,7 +205,7 @@ public class jMainPage extends javax.swing.JPanel {
     private final jViewCustomers _jViewCustomers;
     private final jViewItems _jViewItems;
     private final jNewItem _jNewItem;
-    private final jLog _jLog;
+    private final jShowLogs _jLog;
     private final jHomePage _jHomePage;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jAddusers;
