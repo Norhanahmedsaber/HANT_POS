@@ -7,14 +7,18 @@ public class AccountServices implements IAccountServices{
     public static String us ="s7s" ;
     
     public static String pass ="anas" ;
+ 
     
     
     @Override
-    public boolean login(String username, String password) {
+    public User login(String username, String password) {
         //return us.equals(username) && pass.equals(password);
-        return true;
+        User user = new User();
+        user.role = "manager";
+        return user;
     }
 
+    
     @Override
     public void signUp(User user) {
         System.out.println("User Signed Up");

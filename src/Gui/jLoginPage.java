@@ -1,5 +1,6 @@
 package Gui;
 
+import Entities.User;
 import Services.AccountServices;
 import java.awt.event.KeyEvent;
 public class jLoginPage extends javax.swing.JPanel {
@@ -90,7 +91,7 @@ public class jLoginPage extends javax.swing.JPanel {
                     .addComponent(jusername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(13, 13, 13)
@@ -110,20 +111,25 @@ public class jLoginPage extends javax.swing.JPanel {
 //            error.setText("password Is Empty!");
 //            return;
 //        }else error.setText("");
-        if( _AccountServices.login( jusername.getText(), jpassword.getText()) )
+          User user = _AccountServices.login(jusername.getText(),jpassword.getText());
+          
+        if( user!=null )
         {
             jusername.setText("");
             jpassword.setText("");
             _jHomePage.switchPanels(_jMainPage);
+            _jHomePage.loginUser=user;
         }
         else
         {     
             error.setText("Password or Username dont match!");
-        } 
+        }
+         _jMainPage.checkRole();
           
     }
     private void jloginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jloginMouseClicked
         login();
+        
     }//GEN-LAST:event_jloginMouseClicked
 
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked

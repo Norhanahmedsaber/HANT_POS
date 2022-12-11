@@ -15,6 +15,7 @@ public class jViewCustomer extends javax.swing.JPanel {
         if (!isValidEmail()){
             return false;
         }
+        
         if (!isValidNationalId()){
             return false;
         }

@@ -2,6 +2,7 @@ package Gui;
 
 import Entities.Item;
 import Services.ItemServices;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.UUID;
 import javax.swing.table.DefaultTableModel;
@@ -208,6 +209,7 @@ public class jViewItems extends javax.swing.JPanel {
         }
         return null;
     }
+   
     
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
         _jHomePage.switchPanels(_jMainPage);
@@ -224,12 +226,15 @@ public class jViewItems extends javax.swing.JPanel {
     }//GEN-LAST:event_jsearchitemsKeyTyped
 
     private void jdeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jdeleteMouseClicked
-
-        UUID id = deleteItem();
-        if(id!= null)
+       
+         if(_jMainPage.checkRole())
         {
-            _ItemServices.delete(deleteItem());
-        }
+             UUID id = deleteItem();
+             if(id!= null)
+          {
+              _ItemServices.delete(deleteItem());
+          } 
+        }else return;   
     }//GEN-LAST:event_jdeleteMouseClicked
 
     private void jToggleSortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleSortMouseClicked
@@ -248,6 +253,7 @@ public class jViewItems extends javax.swing.JPanel {
             jErrorShowItem.setText("Please choose item from table");
         }
     }//GEN-LAST:event_jShowItemMouseClicked
+
     private boolean toggle;
     private final jViewItem _jViewItem;
     private final ItemServices _ItemServices;
@@ -266,7 +272,7 @@ public class jViewItems extends javax.swing.JPanel {
     private javax.swing.JButton jShowItem;
     private javax.swing.JButton jToggleSort;
     private javax.swing.JButton jadditem;
-    private javax.swing.JButton jdelete;
+    public javax.swing.JButton jdelete;
     private javax.swing.JTextField jsearchitems;
     private javax.swing.JComboBox<String> jsortitemsby;
     // End of variables declaration//GEN-END:variables
