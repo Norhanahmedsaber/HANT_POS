@@ -1,4 +1,5 @@
 package Services;
+import Entities.Item;
 import Entities.User;
 import Interfaces.IUserServices;
 import java.util.ArrayList;
@@ -6,6 +7,7 @@ import java.util.UUID;
 
 public class UserServices implements IUserServices{
     public static ArrayList<User> users = new ArrayList<User>();
+
     @Override
     public void create(User user) {
         users.add(user);

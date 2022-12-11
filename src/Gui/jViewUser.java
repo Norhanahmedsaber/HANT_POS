@@ -13,7 +13,7 @@ public class jViewUser extends javax.swing.JPanel {
         _jViewUsers = jvu;
         choosedUser = null;
         _UserServices = new UserServices();
-    }
+    } 
     public void renderData( ){  
         
         jNameField.setText(choosedUser.name);

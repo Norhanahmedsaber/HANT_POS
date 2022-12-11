@@ -25,7 +25,7 @@ public class jViewUsers extends javax.swing.JPanel {
         toggle = false;
     }
     public void renderData() { 
-        String[] cols = {"ID","Name", "User Name", "Password", "Role"}; 
+        String[] cols = {"ID","Name", "User Name", "Role"}; 
         DefaultTableModel model = new DefaultTableModel(cols, 0); 
         jUsersTable.setModel(model); 
         ArrayList<User> users = _UserServices.getAll(); 
@@ -36,7 +36,7 @@ public class jViewUsers extends javax.swing.JPanel {
             if(!filteredUsers.isEmpty()){ 
                 for(int i=0;i<filteredUsers.size();i++) { 
                     User user = filteredUsers.get(i); 
-                    Object[] objs = {user.id, user.name, user.userName, user.password, user.role}; 
+                    Object[] objs = {user.id, user.name, user.userName, user.role}; 
                     model.addRow(objs); 
                 } 
             } 

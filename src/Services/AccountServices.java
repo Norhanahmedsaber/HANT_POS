@@ -13,12 +13,13 @@ public class AccountServices implements IAccountServices{
     
     @Override
     public User login(String username, String password) {
-        User user = new User();
-        user.role = "manager";
-        return user;
         
-    }
+        User user = new User();
+        user.role = "Manager";
+        return user;
+    } 
 
+    
     @Override
     public void signUp(User user) {
         users.add(user);
