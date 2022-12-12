@@ -6,6 +6,7 @@ import Gui.jMainPage;
 import Services.RoleServices;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import utils.filterRoles;
 
 public class jViewRoles extends javax.swing.JPanel {
 
@@ -15,6 +16,7 @@ public class jViewRoles extends javax.swing.JPanel {
         _jMainPage = jmp;
         _jNewRole = new jNewRole(jhp, jmp);
         _RoleServices = new RoleServices();
+        _filterRoles = new filterRoles();
     }
     public void clearViewRoles() {
         jSearch.setText("");
@@ -23,8 +25,14 @@ public class jViewRoles extends javax.swing.JPanel {
     public void renderData() {
         DefaultListModel model = new DefaultListModel();
         ArrayList<Role> roles = _RoleServices.getAll();
-        for( Role role : roles ) {
-            model.addElement(role.name);
+        if(!roles.isEmpty()) {
+            String searchName = jSearch.getText().trim();
+            ArrayList<Role> filteredRoles = _filterRoles.filter(roles, searchName);
+            if(!filteredRoles.isEmpty()) {
+                for( Role role : roles ) {
+                    model.addElement(role.name);
+                }
+            }
         }
         jRoles.setModel(model);
     }
@@ -119,6 +127,7 @@ public class jViewRoles extends javax.swing.JPanel {
         renderData();
     }//GEN-LAST:event_jSearchKeyTyped
     private jNewRole _jNewRole;
+    private filterRoles _filterRoles;
     private RoleServices _RoleServices;
     private jHomePage _jHomePage;
     private jMainPage _jMainPage;
