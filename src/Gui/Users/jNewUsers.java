@@ -77,6 +77,7 @@ public class jNewUsers extends javax.swing.JPanel {
         user.password = jPasswordField.getText();
         user.role = _RoleServices.getByName((String) jRolesCombo.getSelectedItem());
         _AccountServices.signUp(user);
+        _jHomePage.createLog("Added","User",user.name );
     }
     public void clearSignUpPage(){
         jNameField.setText("");

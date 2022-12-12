@@ -97,8 +97,8 @@ public class jViewUser extends javax.swing.JPanel {
         user.userName=jUsernameField.getText();
         user.password=jPasswordField.getText();
         user.role.name = (String)(jRolesCombo.getSelectedItem());
-        
         _UserServices.update(choosedUser.id,user);
+        _jHomePage.createLog("Updated", "User",user.name );
         choosedUser = _UserServices.getById(choosedUser.id);
     }
     public void disableUserFields(){
