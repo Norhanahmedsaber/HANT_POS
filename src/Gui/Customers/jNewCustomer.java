@@ -238,6 +238,7 @@ public class jNewCustomer extends javax.swing.JPanel {
           itemsid.add( _chosenitems.get(i).id);
         }
          _CustomerServices.create(_Customer);
+         _jHomePage.createLog("Created", "Customer",_Customer.name );
         _jItemServices.addItemsToCustomer(_Customer.id, itemsid);
         
     }
