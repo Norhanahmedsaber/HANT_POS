@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <Events>
+    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formKeyPressed"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -26,7 +29,7 @@
                   <Component id="jCreateItem" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jViewItem" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jRoleNameField" min="-2" pref="185" max="-2" attributes="0"/>
-                  <Component id="jChosedPermissions" min="-2" pref="157" max="-2" attributes="0"/>
+                  <Component id="jAddedRoleSuccessfully" min="-2" pref="157" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="59" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -91,7 +94,7 @@
                   <Component id="JviewLogs" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jChosedPermissions" min="-2" pref="44" max="-2" attributes="0"/>
+              <Component id="jAddedRoleSuccessfully" min="-2" pref="44" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jBack" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -120,65 +123,101 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Create Customer"/>
       </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JCreateCustomerKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="jViewCustomer">
       <Properties>
         <Property name="text" type="java.lang.String" value="View Customer"/>
       </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jViewCustomerKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="JDeleteCustomer">
       <Properties>
         <Property name="text" type="java.lang.String" value="Delete Customer "/>
       </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JDeleteCustomerKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="jUpdateCustomer">
       <Properties>
         <Property name="text" type="java.lang.String" value="Update customer"/>
       </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jUpdateCustomerKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="jViewItem">
       <Properties>
         <Property name="text" type="java.lang.String" value="View Item"/>
       </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jViewItemKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="jCreateItem">
       <Properties>
         <Property name="text" type="java.lang.String" value="Create Item"/>
       </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jCreateItemKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="jUpdateItem">
       <Properties>
         <Property name="text" type="java.lang.String" value="Update Item"/>
       </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jUpdateItemKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="jDeleteItem">
       <Properties>
         <Property name="text" type="java.lang.String" value="Delete Item"/>
       </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jDeleteItemKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="jViewUser">
       <Properties>
         <Property name="text" type="java.lang.String" value="View User"/>
       </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jViewUserKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="JviewLogs">
       <Properties>
         <Property name="text" type="java.lang.String" value="View Logs"/>
       </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JviewLogsKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="jCreateUser">
       <Properties>
         <Property name="text" type="java.lang.String" value="Create User"/>
       </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jCreateUserKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="jCreateLogs">
       <Properties>
         <Property name="text" type="java.lang.String" value="Create Logs"/>
       </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jCreateLogsKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jRoleNameField">
     </Component>
-    <Component class="javax.swing.JLabel" name="jChosedPermissions">
+    <Component class="javax.swing.JLabel" name="jAddedRoleSuccessfully">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="ff" red="66" type="rgb"/>

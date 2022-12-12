@@ -17,11 +17,16 @@ public class jNewItem extends javax.swing.JPanel {
         _parent = parent;
         _itemServices = new ItemServices();
     }
-    public void resetNewitemPage(){
+    public void clearNewitemPage(){
         jNameField.setText("");
         jDescriptionField.setText("");
         jCatgoryField.setText("");
-        jPriceField.setText("");  
+        jPriceField.setText("");
+        jErrorCatgory.setText("");
+        jErrorDescription.setText("");
+        jErrorName.setText("");
+        jErrorPrice.setText("");
+        jAddedSuccessfuly.setText("");
     }
     public boolean checkAllValidations(){
         
@@ -111,7 +116,7 @@ public class jNewItem extends javax.swing.JPanel {
         
         
         jAddedSuccessfuly.setText("Added Succesfully");
-        resetNewitemPage();
+        clearNewitemPage();
     }
     
 

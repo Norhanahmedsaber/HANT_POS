@@ -19,7 +19,6 @@ public class jNewUsers extends javax.swing.JPanel {
         _AccountServices = new AccountServices();
         _RoleServices = new RoleServices();
     }
-
     public boolean isValidName() {
         // is empty (nameField)
         if(jNameField.getText().trim().isEmpty()) {
@@ -83,6 +82,10 @@ public class jNewUsers extends javax.swing.JPanel {
         jNameField.setText("");
         jPasswordField.setText("");
         jUsernameField.setText("");
+        jErrorName.setText("");
+        jErrorPassword.setText("");
+        jErrorUsername.setText("");
+        jAddedSuccessfully.setText("");
         ArrayList<Role> roles = _RoleServices.getAll();
         String[] names = new String[roles.size()];
         for(int i=0;i<roles.size();i++){
@@ -91,7 +94,6 @@ public class jNewUsers extends javax.swing.JPanel {
         DefaultComboBoxModel model = new DefaultComboBoxModel(names);
         jRolesCombo.setModel(model);
     }
-    
     public void addAccountButton(){
         if(!checkAllValidations()){
             return;
@@ -116,6 +118,13 @@ public class jNewUsers extends javax.swing.JPanel {
         jErrorUsername = new javax.swing.JLabel();
         jErrorPassword = new javax.swing.JLabel();
         jBack = new javax.swing.JButton();
+        jAddedSuccessfully = new javax.swing.JLabel();
+
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         jLabel1.setText("Name ");
 
@@ -176,6 +185,8 @@ public class jNewUsers extends javax.swing.JPanel {
             }
         });
 
+        jAddedSuccessfully.setForeground(new java.awt.Color(0, 255, 51));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -204,7 +215,8 @@ public class jNewUsers extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jAddAccount)
-                            .addComponent(jRolesCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jRolesCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jAddedSuccessfully, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -231,7 +243,9 @@ public class jNewUsers extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRolesCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addComponent(jAddedSuccessfully)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBack)
                     .addComponent(jAddAccount))
@@ -277,6 +291,12 @@ public class jNewUsers extends javax.swing.JPanel {
     private void jAddAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAddAccountMouseClicked
         addAccountButton();
     }//GEN-LAST:event_jAddAccountMouseClicked
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            addAccountButton();
+        }
+    }//GEN-LAST:event_formKeyPressed
     
     private final jMainPage _jMainPage;
     private final jHomePage _jHomePage;
@@ -284,6 +304,7 @@ public class jNewUsers extends javax.swing.JPanel {
     private final RoleServices _RoleServices;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jAddAccount;
+    private javax.swing.JLabel jAddedSuccessfully;
     private javax.swing.JButton jBack;
     private javax.swing.JLabel jErrorName;
     private javax.swing.JLabel jErrorPassword;
