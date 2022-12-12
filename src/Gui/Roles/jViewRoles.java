@@ -6,15 +6,17 @@ import Gui.jMainPage;
 import Services.RoleServices;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JPanel;
 
 public class jViewRoles extends javax.swing.JPanel {
 
-    public jViewRoles(jHomePage jhp, jMainPage jmp) {
+    public jViewRoles(jHomePage jhp, JPanel parent) {
         initComponents();
         _jHomePage = jhp;
-        _jMainPage = jmp;
-        _jNewRole = new jNewRole(jhp, jmp);
+        _parent= parent;  
         _RoleServices = new RoleServices();
+          _jNewRole = new jNewRole(jhp, this);
+        
     }
     public void clearViewRoles() {
         jSearch.setText("");
@@ -28,6 +30,7 @@ public class jViewRoles extends javax.swing.JPanel {
         }
         jRoles.setModel(model);
     }
+      
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -105,13 +108,17 @@ public class jViewRoles extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
+       jMainPage MainPage=(jMainPage)_parent;
         clearViewRoles();
-        _jHomePage.switchPanels(_jMainPage);
+        _jHomePage.switchPanels(_parent);
     }//GEN-LAST:event_jBackMouseClicked
 
     private void jEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jEditMouseClicked
-        if(_jMainPage.canUpdateRole()) {
+       jMainPage MainPage=(jMainPage)_parent;
+            if(MainPage.canUpdateRole()) {
+            _jNewRole.DoneButton();
             _jHomePage.switchPanels(_jNewRole);
+           
         }
     }//GEN-LAST:event_jEditMouseClicked
 
@@ -121,6 +128,7 @@ public class jViewRoles extends javax.swing.JPanel {
     private jNewRole _jNewRole;
     private RoleServices _RoleServices;
     private jHomePage _jHomePage;
+    private final JPanel _parent;
     private jMainPage _jMainPage;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBack;
