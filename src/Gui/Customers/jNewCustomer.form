@@ -91,8 +91,6 @@
                           <Component id="jAddCustomer" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jBack" min="-2" pref="125" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jHome" min="-2" pref="125" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -181,7 +179,6 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jBack" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jAddCustomer" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jHome" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
@@ -329,14 +326,6 @@
         <Component class="javax.swing.JTextField" name="jEmailField">
           <Events>
             <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jEmailFieldKeyPressed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="jHome">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Home"/>
-          </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jHomeMouseClicked"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jAddedCustomer">
