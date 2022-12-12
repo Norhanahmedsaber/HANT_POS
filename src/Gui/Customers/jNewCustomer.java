@@ -13,24 +13,23 @@ import java.util.Date;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;  
+import javax.swing.JPanel;
 
 public class jNewCustomer extends javax.swing.JPanel {
 
-    public jNewCustomer(jHomePage jhp, jMainPage jmp) {
+    public jNewCustomer(jHomePage jhp, JPanel parent) {
         initComponents();
         _jChooseItem = new jChooseItem(jhp,this);
         _jHomePage = jhp;
-        _jMainPage = jmp;
         _CustomerServices = new CustomerServices();
-         _chosenitems=new ArrayList<Item>();
-         _jItemServices=new ItemServices();
+        _chosenitems=new ArrayList<Item>();
+        _jItemServices=new ItemServices();
+        _parent = parent;
     }
-    public ArrayList<Item> getselecteditems()
-    { 
+    public ArrayList<Item> getselecteditems(){ 
         return _chosenitems ;
     }
-    public void setselecteditems(ArrayList<Item> selecteditems)
-    {
+    public void setselecteditems(ArrayList<Item> selecteditems){
         _chosenitems=selecteditems;
     }
 
@@ -184,7 +183,6 @@ public class jNewCustomer extends javax.swing.JPanel {
        
         return !_chosenitems.isEmpty();
     }
-    
     public boolean checkAllValidations(){
         if(!isValidName()){
             return false;
@@ -265,6 +263,14 @@ public class jNewCustomer extends javax.swing.JPanel {
         // clear all fields
         clearNewCustomerPage();
     }
+    public void BackButton(){
+        if(_parent instanceof jViewCustomers)
+        {
+          jViewCustomers viewCustomers= (jViewCustomers) _parent;
+          viewCustomers.renderData();
+        }
+        _jHomePage.switchPanels(_parent);
+    }
     
 
     @SuppressWarnings("unchecked")
@@ -295,7 +301,6 @@ public class jNewCustomer extends javax.swing.JPanel {
         jGenderComboBox = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         jEmailField = new javax.swing.JTextField();
-        jHome = new javax.swing.JButton();
         jAddedCustomer = new javax.swing.JLabel();
         jErrorCity = new javax.swing.JLabel();
         jErrorEmail = new javax.swing.JLabel();
@@ -407,13 +412,6 @@ public class jNewCustomer extends javax.swing.JPanel {
             }
         });
 
-        jHome.setText("Home");
-        jHome.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jHomeMouseClicked(evt);
-            }
-        });
-
         jAddedCustomer.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jAddedCustomer.setForeground(new java.awt.Color(0, 255, 0));
 
@@ -501,9 +499,7 @@ public class jNewCustomer extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jAddCustomer)
                         .addGap(18, 18, 18)
-                        .addComponent(jBack, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jHome, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jBack, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -570,8 +566,7 @@ public class jNewCustomer extends javax.swing.JPanel {
                 .addGap(44, 44, 44)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBack)
-                    .addComponent(jAddCustomer)
-                    .addComponent(jHome))
+                    .addComponent(jAddCustomer))
                 .addGap(20, 20, 20))
         );
 
@@ -588,7 +583,7 @@ public class jNewCustomer extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
-        _jHomePage.switchPanels(_jMainPage);
+        BackButton();
     }//GEN-LAST:event_jBackMouseClicked
 
     private void jAddCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAddCustomerMouseClicked
@@ -602,10 +597,6 @@ public class jNewCustomer extends javax.swing.JPanel {
         _jHomePage.switchPanels(_jChooseItem);
         _jChooseItem.jSearch.grabFocus();
     }//GEN-LAST:event_jChooseItemMouseClicked
-
-    private void jHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jHomeMouseClicked
-        _jHomePage.switchPanels(_jMainPage);
-    }//GEN-LAST:event_jHomeMouseClicked
 
     private void jPanel1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel1KeyPressed
         if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
@@ -661,9 +652,9 @@ public class jNewCustomer extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jAgeFieldKeyPressed
     
+    private final JPanel _parent;
     private final CustomerServices _CustomerServices;
     private final jChooseItem _jChooseItem;
-    private final jMainPage _jMainPage;
     private final jHomePage _jHomePage;
     public ArrayList<Item> _chosenitems;
     private ItemServices _jItemServices;
@@ -685,7 +676,6 @@ public class jNewCustomer extends javax.swing.JPanel {
     private javax.swing.JLabel jErrorNationalId;
     private javax.swing.JLabel jErrorPhoneNo;
     private javax.swing.JComboBox<String> jGenderComboBox;
-    private javax.swing.JButton jHome;
     private javax.swing.JTextField jIncomeField;
     private javax.swing.JTextField jJobField;
     private javax.swing.JLabel jLabel1;

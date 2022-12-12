@@ -114,6 +114,7 @@ public class jViewItem extends javax.swing.JPanel {
         item.price=Integer.parseInt(jPriceField.getText());
         _itemServices.update(choosedItem.id,item);
         choosedItem = _itemServices.getById(choosedItem.id);
+        _jHomePage.createLog("Updated", "Item", item.name);
     }
     public void disableItemFields(){
         jCatgoryField.setEditable(false);

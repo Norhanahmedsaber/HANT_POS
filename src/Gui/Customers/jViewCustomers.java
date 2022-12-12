@@ -18,7 +18,7 @@ public final class jViewCustomers extends javax.swing.JPanel  {
         _CustomerServices = new CustomerServices(); 
         _filterCustomers = new filterCustomers();
         _jViewCustomer= new jViewCustomer(this, jhp, jmp);
-        _jNewCustomer = new jNewCustomer(jhp, jmp);
+        _jNewCustomer = new jNewCustomer(jhp, this);
         
         toggle = false;
     }
@@ -254,6 +254,7 @@ public final class jViewCustomers extends javax.swing.JPanel  {
     }//GEN-LAST:event_jShowButtonMouseClicked
 
     private void jAddButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAddButtonMouseClicked
+        
         if(_jMainPage.canCreateCustomer()) {
             _jHomePage.switchPanels(_jNewCustomer);
             _jNewCustomer.jNameField.grabFocus();
