@@ -47,6 +47,8 @@ public final class jViewCustomers extends javax.swing.JPanel  {
             DefaultTableModel m = (DefaultTableModel) jCustomersTable.getModel();
               if(jCustomersTable.getSelectedRow() != -1) {
                 UUID id = (UUID) m.getValueAt(jCustomersTable.getSelectedRow(), 0);
+                String name = (String) m.getValueAt(jCustomersTable.getSelectedRow(), 1);
+               _jHomePage.createLog("Deleted", "Customer", name);
                 m.removeRow(jCustomersTable.getSelectedRow());
                 return id;
             }else{
@@ -234,6 +236,8 @@ public final class jViewCustomers extends javax.swing.JPanel  {
             if(id!= null)
             {
                 _CustomerServices.delete(deleteCustomer());
+               
+               
             }
         }
     }//GEN-LAST:event_jDeleteButtonMouseClicked

@@ -609,6 +609,7 @@ public class jViewCustomer extends javax.swing.JPanel {
      //}else{
          Customer updatedCustomer = updateCustomerData();
         _CustomerServices.update(_chosencustomer.id , updatedCustomer);
+        _jHomePage.createLog("Updated", "Customer", _chosencustomer.name);
         _chosencustomer = _CustomerServices.getById(_chosencustomer.id);
         renderData();
         updateflag=!updateflag;
