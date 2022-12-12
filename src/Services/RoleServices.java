@@ -44,7 +44,10 @@ public class RoleServices implements IRoleServices{
 
     @Override
     public void update(UUID roleId, Role role) {
-        
+        for(Role rolee : roles) {
+            if(rolee.id == roleId) {
+            }
+        }
     }
 
     @Override
