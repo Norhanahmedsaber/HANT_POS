@@ -1,10 +1,14 @@
 
 package Gui.Users;
 
+import Entities.Role;
 import Gui.Users.jViewUsers;
 import Entities.User;
 import Gui.jHomePage;
+import Services.RoleServices;
 import Services.UserServices;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 
 public class jViewUser extends javax.swing.JPanel {
 
@@ -15,13 +19,19 @@ public class jViewUser extends javax.swing.JPanel {
         _jViewUsers = jvu;
         choosedUser = null;
         _UserServices = new UserServices(); 
+        _RoleServices = new RoleServices();
     } 
     public void renderData( ){  
         
         jNameField.setText(choosedUser.name);
-        jUsernameField.setText(choosedUser.userName);
-        jPasswordField.setText(choosedUser.password);
-        // show Role 
+        jUsernameField.setText(choosedUser.userName); 
+         ArrayList<Role> roles = _RoleServices.getAll();
+        String[] names = new String[roles.size()];
+        for(int i=0;i<roles.size();i++){
+            names[i] = roles.get(i).name;
+        }
+        DefaultComboBoxModel model = new DefaultComboBoxModel(names);
+        jRolesCombo.setModel(model);
     }
     public boolean isValidName() {
         // is empty (nameField)
@@ -291,6 +301,7 @@ public class jViewUser extends javax.swing.JPanel {
     }//GEN-LAST:event_jEditButtonMouseClicked
 
     public User choosedUser;
+    private final RoleServices _RoleServices;
     private final jHomePage _jHomePage;
     private final jViewUsers _jViewUsers;
     private final UserServices _UserServices;
