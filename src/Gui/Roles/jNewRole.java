@@ -51,6 +51,7 @@ public class jNewRole extends javax.swing.JPanel {
    }
    public void renderData()
    {
+       jRoleNameField.setText(_jRole.name);
        if(_jRole.canCreateCustomer)
        { 
            JCreateCustomer.setSelected(true);
@@ -102,16 +103,17 @@ public class jNewRole extends javax.swing.JPanel {
 
    }
    public void DoneButton() 
-   { if (_parent instanceof jViewRoles )
+   { 
+        if (_parent instanceof jViewRoles )
         {  
-                jViewRoles ViewRoles= (jViewRoles) _parent;            
-                jDone.setText("Update");
+            jViewRoles ViewRoles= (jViewRoles) _parent;   
+            jRoleNameField.setEditable(false);
+            jDone.setText("Update");
         }
         else 
-      {
-          
-           jDone.setText("Create");
-      }
+        {
+            jDone.setText("Create");
+        }
    }
   
     @SuppressWarnings("unchecked")

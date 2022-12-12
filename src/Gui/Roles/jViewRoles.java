@@ -24,7 +24,9 @@ public class jViewRoles extends javax.swing.JPanel {
         renderData();
     }
     Role getSelectedRole() {
-        return null;
+        String roleName = jRoles.getSelectedValue();
+        Role role = _RoleServices.getByName(roleName);
+        return role;
     }
     public void renderData() {
         DefaultListModel model = new DefaultListModel();
@@ -128,6 +130,7 @@ public class jViewRoles extends javax.swing.JPanel {
             if(MainPage.canUpdateRole()) {
                 _jNewRole.DoneButton(); 
                 _jNewRole._jRole = getSelectedRole();
+                _jNewRole.renderData();
                 _jHomePage.switchPanels(_jNewRole);
             }
     }//GEN-LAST:event_jEditMouseClicked
