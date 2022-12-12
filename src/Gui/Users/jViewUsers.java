@@ -21,9 +21,8 @@ public class jViewUsers extends javax.swing.JPanel {
         _jMainPage = jmp;
         _UserServices = new UserServices(); 
         _filterUsers = new FilterUsers();
-        _jSignUpPage = new jNewUsers(jhp , jmp );
-        _jViewUser = new jViewUser(this , jhp );
-
+        _jSignUpPage = new jNewUsers(jhp , jmp);
+        _jViewUser = new jViewUser(this , jhp);
         toggle = false;
     }
     public void renderData() { 
@@ -258,7 +257,6 @@ public class jViewUsers extends javax.swing.JPanel {
             _jSignUpPage.jNameField.grabFocus();
         }
     }//GEN-LAST:event_jAddButtonMouseClicked
-
     private boolean toggle ;
     private final UserServices _UserServices;
     private final FilterUsers _filterUsers;

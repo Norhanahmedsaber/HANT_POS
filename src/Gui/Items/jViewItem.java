@@ -19,6 +19,7 @@ public class jViewItem extends javax.swing.JPanel {
         _jViewItems = jvi;
         choosedItem = null;
         _itemServices = new ItemServices();
+        isEditing = false;
     }
     public void clearNewitemPage(){
         jNameField.setText("");
@@ -156,6 +157,7 @@ public class jViewItem extends javax.swing.JPanel {
         }else
         updateItemData();
         renderData();
+        isEditing = false;
         jUpdatedSuccessfuly.setText("Updated Successfully!");
         disableItemFields();
         removeUpdateANdCancelButtons();
@@ -164,6 +166,7 @@ public class jViewItem extends javax.swing.JPanel {
         removeUpdateANdCancelButtons();
         disableItemFields();
         renderData();
+        isEditing = false;
     }
     
     
@@ -381,24 +384,33 @@ public class jViewItem extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
-        resetViewItemPage();
-        _jViewItems.showItems();
-        _jHomePage.switchPanels(_jViewItems);    
+        if(!isEditing) {
+            resetViewItemPage();
+            _jViewItems.showItems();
+            _jHomePage.switchPanels(_jViewItems);  
+        }  
     }//GEN-LAST:event_jBackMouseClicked
 
     private void jEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jEditMouseClicked
-       if(_jMainPage.canUpdateItem()) {
-            enableItemFields();
-            enableUpdateANdCancelButtons();
-       }
+        if(!isEditing) {
+            if(_jMainPage.canUpdateItem()) {
+             enableItemFields();
+             enableUpdateANdCancelButtons();
+             isEditing = true;
+            }
+        }
     }//GEN-LAST:event_jEditMouseClicked
 
     private void jUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jUpdateMouseClicked
-        updateButton();
+        if(isEditing) {
+            updateButton();
+        }
     }//GEN-LAST:event_jUpdateMouseClicked
 
     private void jCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCancelMouseClicked
-        cancelButton();
+        if(isEditing) {
+            cancelButton();
+        }
     }//GEN-LAST:event_jCancelMouseClicked
 
     private void jNameFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jNameFieldKeyPressed
@@ -436,7 +448,7 @@ public class jViewItem extends javax.swing.JPanel {
             updateButton();
         }
     }//GEN-LAST:event_jPanel1KeyPressed
-
+    public boolean isEditing;
     public Item choosedItem;
     private final jMainPage _jMainPage;
     private final jHomePage _jHomePage;

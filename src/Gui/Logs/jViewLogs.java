@@ -138,6 +138,11 @@ public class jViewLogs extends javax.swing.JPanel {
                 jLogsTableMouseClicked(evt);
             }
         });
+        jLogsTable.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jLogsTableKeyPressed(evt);
+            }
+        });
         jScrollPane2.setViewportView(jLogsTable);
 
         jToggleSort.setText("↓↑\n");
@@ -225,12 +230,16 @@ public class jViewLogs extends javax.swing.JPanel {
     }//GEN-LAST:event_jBackActionPerformed
 
     private void jLogsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLogsTableMouseClicked
-        showLogDetails(getSelectedLog());
+        
     }//GEN-LAST:event_jLogsTableMouseClicked
 
     private void jSearchFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSearchFieldKeyTyped
         renderData();
     }//GEN-LAST:event_jSearchFieldKeyTyped
+
+    private void jLogsTableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLogsTableKeyPressed
+        showLogDetails(getSelectedLog());
+    }//GEN-LAST:event_jLogsTableKeyPressed
     
    
     private boolean toggle ;

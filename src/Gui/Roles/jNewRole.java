@@ -254,6 +254,12 @@ public class jNewRole extends javax.swing.JPanel {
             }
         });
 
+        jRoleNameField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jRoleNameFieldKeyPressed(evt);
+            }
+        });
+
         jAddedRoleSuccessfully.setForeground(new java.awt.Color(102, 255, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -431,6 +437,12 @@ public class jNewRole extends javax.swing.JPanel {
             DoneButtonClicked();
         }
     }//GEN-LAST:event_jDeleteItemKeyPressed
+
+    private void jRoleNameFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jRoleNameFieldKeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            DoneButtonClicked();
+        }
+    }//GEN-LAST:event_jRoleNameFieldKeyPressed
 
     
     

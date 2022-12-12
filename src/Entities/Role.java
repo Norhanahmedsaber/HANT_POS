@@ -3,7 +3,7 @@ package Entities;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class Role {
+public class Role { 
     public UUID id;
     public String name;
     public boolean canCreateCustomer;

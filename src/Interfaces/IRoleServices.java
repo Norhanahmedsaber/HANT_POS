@@ -11,4 +11,4 @@ public interface IRoleServices {
     void update(UUID id, Role role);
     ArrayList<Role> getAll(); 
     Role getByName(String name);
-}
+} 

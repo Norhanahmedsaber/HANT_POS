@@ -26,9 +26,8 @@ public class FilterLogs {
         return logsAftersearch;   
     }
     public ArrayList<Log> SortBy (ArrayList<Log> logs,String sortedBy , boolean toggle){
-        
-       // sort by user name  Ascendingly :
-        if (sortedBy == "User Name"&& toggle == true)
+        // sort by user name  Ascendingly :
+        if (sortedBy == "User Name" && toggle == true)
         {     
             Collections.sort(logs,new Comparator<Log>() {
                 public int compare(Log l1, Log l2) {
@@ -37,7 +36,7 @@ public class FilterLogs {
             });
             return logs;
         } 
-             
+        
         // sort by user name  Descendingly:
         else if (sortedBy == "User Name"&& toggle== false )
         {     

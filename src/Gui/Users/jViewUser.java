@@ -20,6 +20,7 @@ public class jViewUser extends javax.swing.JPanel {
         choosedUser = null;
         _UserServices = new UserServices(); 
         _RoleServices = new RoleServices();
+        isEditing = false;
     } 
     public void renderData( ){  
         
@@ -92,7 +93,6 @@ public class jViewUser extends javax.swing.JPanel {
         jErrorPassword.setText("");
         jErrorUsername.setText("");
         jUpdateUserSuccessfully.setText("");
-        
         removeUpdateANdCancelButtons();
     }
     public void updateUserData(){
@@ -138,11 +138,13 @@ public class jViewUser extends javax.swing.JPanel {
         jUpdateUserSuccessfully.setText("Updated Successfully!");
         disableUserFields();
         removeUpdateANdCancelButtons();
+        isEditing = false;
     }
     public void cancelButton(){
         removeUpdateANdCancelButtons();
         disableUserFields();
         renderData();
+        isEditing = false;
     }
 
     @SuppressWarnings("unchecked")
@@ -315,22 +317,31 @@ public class jViewUser extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jCancelButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCancelButtonMouseClicked
-        cancelButton();
+        if(isEditing) {
+            cancelButton();
+        }
     }//GEN-LAST:event_jCancelButtonMouseClicked
 
     private void jUpdateButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jUpdateButtonMouseClicked
-        updateButton();
+        if(isEditing) {
+            updateButton();
+        }
     }//GEN-LAST:event_jUpdateButtonMouseClicked
 
     private void jBackButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackButtonMouseClicked
-        resetViewUserPage();
-        _jViewUsers.renderData();
-        _jHomePage.switchPanels(_jViewUsers);
+        if(!isEditing) {
+            resetViewUserPage();
+            _jViewUsers.renderData();
+            _jHomePage.switchPanels(_jViewUsers);
+        }
     }//GEN-LAST:event_jBackButtonMouseClicked
 
     private void jEditButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jEditButtonMouseClicked
-        enableUserFields();
-        enableUpdateANdCancelButtons();
+        if(!isEditing) {
+            enableUserFields();
+            enableUpdateANdCancelButtons();
+            isEditing = true;
+        }
     }//GEN-LAST:event_jEditButtonMouseClicked
 
     private void jNameFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jNameFieldKeyPressed
@@ -362,7 +373,7 @@ public class jViewUser extends javax.swing.JPanel {
             updateButton();
         }
     }//GEN-LAST:event_formKeyPressed
-
+    private boolean isEditing;
     public User choosedUser;
     private final RoleServices _RoleServices;
     private final jHomePage _jHomePage;

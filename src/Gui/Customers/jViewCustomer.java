@@ -12,6 +12,20 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class jViewCustomer extends javax.swing.JPanel {
+    
+    public jViewCustomer(jViewCustomers jvc,jHomePage jhp, jMainPage jmp) {
+        initComponents();
+        _jViewCustomers = jvc;
+        _chosencustomer = null;
+        _jHomePage = jhp;
+        _CustomerServices = new CustomerServices();
+        _jMainPage = jmp;
+        jUpdate.setEnabled(false);
+        jCancel.setEnabled(false);
+        jUpdatedSuccesfully.setText("");
+        _jChooseItem =new jChooseItem(jhp, this);
+        isEditing = false;
+    }
     public boolean checkAllValidations(){
         if(!isValidName()){
             return false;
@@ -42,24 +56,13 @@ public class jViewCustomer extends javax.swing.JPanel {
         return true;
     }
 
-    public jViewCustomer(jViewCustomers jvc,jHomePage jhp, jMainPage jmp) {
-        initComponents();
-        _jViewCustomers = jvc;
-        _chosencustomer = null;
-        _jHomePage = jhp;
-        _CustomerServices = new CustomerServices();
-        _jMainPage = jmp;
-        jUpdate.setEnabled(false);
-        jCancel.setEnabled(false);
-        jUpdatedSuccesfully.setText("");
-        _jChooseItem =new jChooseItem(jhp, this);
-    }
     public void editButton(){   jBack.setEnabled(false);
         jUpdate.setEnabled(true);
         jCancel.setEnabled(true);
         jUpdatedSuccesfully.setVisible(true);
         settextfielsenabled();
         jEdit.setEnabled(false);
+        isEditing = true;
     }
     public void cancelButton(){
         jUpdate.setEnabled(false);
@@ -68,6 +71,7 @@ public class jViewCustomer extends javax.swing.JPanel {
         jEdit.setEnabled(true);
         jBack.setEnabled(true);
         renderData();
+        isEditing = false;
     }
     public void renderData ( ){  
         Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -277,11 +281,11 @@ public class jViewCustomer extends javax.swing.JPanel {
         settextfielsdisabled();
         jEdit.setEnabled(true);
         jBack.setEnabled(true);
-        
+        isEditing = false;
      //if(!checkAllValidations()){
        //  return;
      //}else{
-         Customer updatedCustomer = updateCustomerData();
+        Customer updatedCustomer = updateCustomerData();
         _CustomerServices.update(_chosencustomer.id , updatedCustomer);
         _jHomePage.createLog("Updated", "Customer", _chosencustomer.name);
         _chosencustomer = _CustomerServices.getById(_chosencustomer.id);
@@ -655,22 +659,30 @@ public class jViewCustomer extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
     
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
-       _jViewCustomers.renderData();
-        _jHomePage.switchPanels(_jViewCustomers);
+       if(!isEditing) {
+           _jViewCustomers.renderData();
+           _jHomePage.switchPanels(_jViewCustomers);
+       }
     }//GEN-LAST:event_jBackMouseClicked
 
     private void jEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jEditMouseClicked
-        if(_jMainPage.canUpdateCustomer()) {
-            editButton();
+        if(!isEditing) {
+            if(_jMainPage.canUpdateCustomer()) {
+                editButton();
+            }
         }
     }//GEN-LAST:event_jEditMouseClicked
 
     private void jUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jUpdateMouseClicked
-        updateButton();
+        if(isEditing) {
+            updateButton();
+        }
     }//GEN-LAST:event_jUpdateMouseClicked
 
     private void jCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCancelMouseClicked
-        cancelButton();
+        if(isEditing) {
+            cancelButton();
+        }
     }//GEN-LAST:event_jCancelMouseClicked
 
     private void jShowpurchasesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jShowpurchasesMouseClicked
@@ -746,7 +758,7 @@ public class jViewCustomer extends javax.swing.JPanel {
    
     
     
-    
+    private boolean isEditing;
     private final jMainPage _jMainPage;
     private final jViewCustomers _jViewCustomers;
     public CustomerServices _CustomerServices;
