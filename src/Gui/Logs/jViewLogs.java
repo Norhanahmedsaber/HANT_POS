@@ -27,7 +27,7 @@ public class jViewLogs extends javax.swing.JPanel {
         model.setRowCount(0);
         ArrayList<Log> logs = _LogServices.getAll();
         if(!logs.isEmpty()) { 
-            String searchName = jSearchField.getText(); 
+            String searchName = jSearchField.getText();
             String sortBy = (String) jSortByCombo.getSelectedItem();
             ArrayList<Log> filteredLogs = _FilterLogs.filter(logs, searchName,sortBy , toggle ); 
             if(!filteredLogs.isEmpty()){ 
@@ -96,6 +96,12 @@ public class jViewLogs extends javax.swing.JPanel {
         jLabel2.setText("SortBy:");
 
         jSortByCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User Name", "Action", "Acted On", "Date" }));
+
+        jSearchField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jSearchFieldKeyTyped(evt);
+            }
+        });
 
         jDelete.setText("Delete");
         jDelete.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -221,6 +227,10 @@ public class jViewLogs extends javax.swing.JPanel {
     private void jLogsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLogsTableMouseClicked
         showLogDetails(getSelectedLog());
     }//GEN-LAST:event_jLogsTableMouseClicked
+
+    private void jSearchFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSearchFieldKeyTyped
+        renderData();
+    }//GEN-LAST:event_jSearchFieldKeyTyped
     
    
     private boolean toggle ;

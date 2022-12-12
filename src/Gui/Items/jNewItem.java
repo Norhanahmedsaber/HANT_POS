@@ -16,8 +16,6 @@ public class jNewItem extends javax.swing.JPanel {
         _jHomePage = jhp;
         _parent = parent;
         _itemServices = new ItemServices();
-        
-       
     }
     public void resetNewitemPage(){
         jNameField.setText("");
