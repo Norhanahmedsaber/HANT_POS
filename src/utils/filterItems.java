@@ -18,10 +18,8 @@ public class filterItems {
         {
             boolean name = items.get(i).name.contains(search.toLowerCase().trim());
             boolean catgory =items.get(i).category.contains(search.toLowerCase().trim());
-            boolean describtion = items.get(i).description.contains(search.toLowerCase().trim());
-            boolean creatAt = items.get(i).createdAt.equals(search.toLowerCase().trim());
-            boolean price = Integer.toString(items.get(i).price).contains(search.toLowerCase().trim());
-           if(name || catgory || describtion ||creatAt || price )
+            boolean description = items.get(i).description.contains(search.toLowerCase().trim());
+            if(name || catgory || description)
            {      
                itemsAftersearch.add(items.get(i));
                 

@@ -268,12 +268,11 @@ public class jNewItem extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
-      if(_parent instanceof jViewItems)
-      {
+        if(_parent instanceof jViewItems)
+        {
           jViewItems viewitems= (jViewItems) _parent;
-          
           viewitems.showItems();
-      }
+        }
         _jHomePage.switchPanels(_parent);
     }//GEN-LAST:event_jBackMouseClicked
 
