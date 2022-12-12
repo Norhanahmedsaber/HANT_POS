@@ -140,11 +140,12 @@ public class jChooseItem extends javax.swing.JPanel {
     }
     public void resetPanel() {
         String [] titles= {"Id", "Name","Category","Price","CreatedAt"};
-        DefaultTableModel model = new DefaultTableModel(titles,0);
-        jItems.setModel(model);
-        DefaultTableModel model2 = new DefaultTableModel(titles,0);
-        jItems.setModel(model2);
-        jAddedItems.setModel(model);
+        DefaultTableModel m1 = (DefaultTableModel) jItems.getModel();
+         m1.setColumnIdentifiers(titles);
+         m1.setRowCount(0);
+          DefaultTableModel m2 = (DefaultTableModel) jAddedItems.getModel();
+         m2.setColumnIdentifiers(titles);
+         m2.setRowCount(0);
         jSearch.setText("");
         jItemsCombo.selectWithKeyChar('n');
         jError.setText("");
@@ -178,6 +179,7 @@ public class jChooseItem extends javax.swing.JPanel {
             if(!filteredItems.isEmpty()) {
                 resetPanel();
                 DefaultTableModel model = (DefaultTableModel) jItems.getModel();
+                 
                 for(int i=0;i<filteredItems.size();i++) {
                     Item item = filteredItems.get(i);
                     System.err.println(item.id);
@@ -265,9 +267,17 @@ public class jChooseItem extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Category", "Name", "ID", "Price"
+                "Category", "Name", "ID", "Price", "Title 5"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jItems);
 
         jAddedItems.setModel(new javax.swing.table.DefaultTableModel(
@@ -275,9 +285,17 @@ public class jChooseItem extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Category", "Name", "ID", "Price"
+                "Category", "Name", "ID", "Price", "Title 5"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(jAddedItems);
 
         jRemove.setText("Remove");

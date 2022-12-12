@@ -28,8 +28,9 @@ public class jViewUsers extends javax.swing.JPanel {
     }
     public void renderData() { 
         String[] cols = {"ID","Name", "User Name", "Role"}; 
-        DefaultTableModel model = new DefaultTableModel(cols, 0); 
-        jUsersTable.setModel(model); 
+        DefaultTableModel m = (DefaultTableModel) jUsersTable.getModel();
+            m.setColumnIdentifiers(cols);
+            m.setRowCount(0);
         ArrayList<User> users = _UserServices.getAll(); 
         if(!users.isEmpty()) { 
             String searchName = jSearchField.getText(); 
@@ -39,7 +40,7 @@ public class jViewUsers extends javax.swing.JPanel {
                 for(int i=0;i<filteredUsers.size();i++) { 
                     User user = filteredUsers.get(i); 
                     Object[] objs = {user.id, user.name, user.userName, user.role.name}; 
-                    model.addRow(objs); 
+                    m.addRow(objs); 
                 }  
             } 
         } 
@@ -146,7 +147,15 @@ public class jViewUsers extends javax.swing.JPanel {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(jUsersTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

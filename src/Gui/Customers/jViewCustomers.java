@@ -9,7 +9,7 @@ import java.util.UUID;
 import javax.swing.table.DefaultTableModel;
 import utils.filterCustomers;
 
-public final class jViewCustomers extends javax.swing.JPanel {
+public final class jViewCustomers extends javax.swing.JPanel  {
 
     public jViewCustomers(jHomePage jhp, jMainPage jmp) { 
         initComponents(); 
@@ -20,10 +20,13 @@ public final class jViewCustomers extends javax.swing.JPanel {
         _jViewCustomer= new jViewCustomer(this, jhp, jmp);
         toggle = false;
     }
+    //Make Table unEditable:
+   
     public void renderData() { 
         String[] cols = {"ID","Name", "Email", "PurchaseDate", "PhoneNumber"}; 
-        DefaultTableModel model = new DefaultTableModel(cols, 0); 
-        jCustomersTable.setModel(model); 
+        DefaultTableModel model = (DefaultTableModel) jCustomersTable.getModel();
+        model.setColumnIdentifiers(cols);
+        model.setRowCount(0);
         ArrayList<Customer> customers = _CustomerServices.getAll(); 
         if(!customers.isEmpty()) { 
             String searchName = jSearchName.getText(); 
@@ -109,15 +112,23 @@ public final class jViewCustomers extends javax.swing.JPanel {
 
         jCustomersTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(jCustomersTable);
 
         jToggleSort.setText("↓↑\n");
