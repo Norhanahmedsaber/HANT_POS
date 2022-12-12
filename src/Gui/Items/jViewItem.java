@@ -1,15 +1,14 @@
 
 package Gui.Items;
 
-import Gui.Items.jViewItems;
 import Entities.Item;
 import Gui.jHomePage;
 import Gui.jMainPage;
 import Services.ItemServices;
+import java.awt.event.KeyEvent;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.UUID;
+
 
 public class jViewItem extends javax.swing.JPanel {
 
@@ -20,6 +19,17 @@ public class jViewItem extends javax.swing.JPanel {
         _jViewItems = jvi;
         choosedItem = null;
         _itemServices = new ItemServices();
+    }
+    public void clearNewitemPage(){
+        jNameField.setText("");
+        jDescriptionField.setText("");
+        jCatgoryField.setText("");
+        jPriceField.setText("");
+        jErrorCatgory.setText("");
+        jErrorDescription.setText("");
+        jErrorName.setText("");
+        jErrorPrice.setText("");
+        jUpdatedSuccessfuly.setText("");
     }
     public void renderData(){
         DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");     
@@ -140,17 +150,17 @@ public class jViewItem extends javax.swing.JPanel {
         jEdit.setEnabled(false);
         jBack.setEnabled(false);
     }
-    public void updateItemButton(){
+    public void updateButton(){
         if(!checkAllValidations()){
            return;
         }else
         updateItemData();
         renderData();
-        jUpdateItemSuccessfully.setText("Updated Successfully!");
+        jUpdatedSuccessfuly.setText("Updated Successfully!");
         disableItemFields();
         removeUpdateANdCancelButtons();
     }
-    public void cancelItemButton(){
+    public void cancelButton(){
         removeUpdateANdCancelButtons();
         disableItemFields();
         renderData();
@@ -181,7 +191,13 @@ public class jViewItem extends javax.swing.JPanel {
         jErrorDescription = new javax.swing.JLabel();
         jErrorPrice = new javax.swing.JLabel();
         jErrorCatgory = new javax.swing.JLabel();
-        jUpdateItemSuccessfully = new javax.swing.JLabel();
+        jUpdatedSuccessfuly = new javax.swing.JLabel();
+
+        jPanel1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPanel1KeyPressed(evt);
+            }
+        });
 
         jLabel2.setText("Description");
 
@@ -199,18 +215,43 @@ public class jViewItem extends javax.swing.JPanel {
         jLabel5.setText("Price");
 
         jNameField.setEditable(false);
+        jNameField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jNameFieldKeyPressed(evt);
+            }
+        });
 
         jPriceField.setEditable(false);
+        jPriceField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPriceFieldKeyPressed(evt);
+            }
+        });
 
         jDescriptionField.setEditable(false);
+        jDescriptionField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jDescriptionFieldKeyPressed(evt);
+            }
+        });
 
         jCreatedAt.setEditable(false);
+        jCreatedAt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jCreatedAtKeyPressed(evt);
+            }
+        });
 
         jLabel6.setText("Item Data ");
 
         jLabel1.setText("Name");
 
         jCatgoryField.setEditable(false);
+        jCatgoryField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jCatgoryFieldKeyPressed(evt);
+            }
+        });
 
         jBack.setText("Back");
         jBack.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -241,7 +282,7 @@ public class jViewItem extends javax.swing.JPanel {
 
         jErrorCatgory.setForeground(new java.awt.Color(255, 0, 51));
 
-        jUpdateItemSuccessfully.setForeground(new java.awt.Color(51, 255, 0));
+        jUpdatedSuccessfuly.setForeground(new java.awt.Color(51, 255, 0));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -275,7 +316,7 @@ public class jViewItem extends javax.swing.JPanel {
                             .addComponent(jPriceField)
                             .addComponent(jDescriptionField)
                             .addComponent(jNameField)
-                            .addComponent(jUpdateItemSuccessfully, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jUpdatedSuccessfuly, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -315,7 +356,7 @@ public class jViewItem extends javax.swing.JPanel {
                     .addComponent(jCatgoryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jErrorCatgory))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jUpdateItemSuccessfully)
+                .addComponent(jUpdatedSuccessfuly)
                 .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBack)
@@ -353,12 +394,48 @@ public class jViewItem extends javax.swing.JPanel {
     }//GEN-LAST:event_jEditMouseClicked
 
     private void jUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jUpdateMouseClicked
-        updateItemButton();
+        updateButton();
     }//GEN-LAST:event_jUpdateMouseClicked
 
     private void jCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCancelMouseClicked
-        cancelItemButton();
+        cancelButton();
     }//GEN-LAST:event_jCancelMouseClicked
+
+    private void jNameFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jNameFieldKeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            updateButton();
+        }
+    }//GEN-LAST:event_jNameFieldKeyPressed
+
+    private void jDescriptionFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jDescriptionFieldKeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            updateButton();
+        }
+    }//GEN-LAST:event_jDescriptionFieldKeyPressed
+
+    private void jPriceFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPriceFieldKeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            updateButton();
+        }
+    }//GEN-LAST:event_jPriceFieldKeyPressed
+
+    private void jCreatedAtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCreatedAtKeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            updateButton();
+        }
+    }//GEN-LAST:event_jCreatedAtKeyPressed
+
+    private void jCatgoryFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCatgoryFieldKeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            updateButton();
+        }
+    }//GEN-LAST:event_jCatgoryFieldKeyPressed
+
+    private void jPanel1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel1KeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            updateButton();
+        }
+    }//GEN-LAST:event_jPanel1KeyPressed
 
     public Item choosedItem;
     private final jMainPage _jMainPage;
@@ -386,6 +463,6 @@ public class jViewItem extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jPriceField;
     private javax.swing.JButton jUpdate;
-    private javax.swing.JLabel jUpdateItemSuccessfully;
+    private javax.swing.JLabel jUpdatedSuccessfuly;
     // End of variables declaration//GEN-END:variables
 }

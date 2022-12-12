@@ -2,21 +2,19 @@ package Gui.Roles;
 import Entities.Role;
 import Gui.jHomePage;
 import Gui.jMainPage;
-import Gui.Roles.jViewRoles;
 import Services.RoleServices;
+import java.awt.event.KeyEvent;
 import javax.swing.JPanel;
 public class jNewRole extends javax.swing.JPanel {
 
-    public jNewRole(jHomePage jhp,JPanel parent ) {
+   public jNewRole(jHomePage jhp,JPanel parent ) {
         initComponents();
         _jRole=new Role();
         _jHomePage=jhp;
         _RoleServices =new RoleServices();
          _parent= parent;  
     }
-  
-    public void clearCreateRolePage()
-    {
+   public void clearCreateRolePage(){
         jRoleNameField.setText("");
         JCreateCustomer.setSelected(false);
         jCreateItem.setSelected(false);
@@ -29,15 +27,15 @@ public class jNewRole extends javax.swing.JPanel {
         jViewCustomer.setSelected(false);
         jViewItem.setSelected(false);
         JviewLogs.setSelected(false);
-        jViewUser.setSelected(false);        
+        jViewUser.setSelected(false);
+        jAddedRoleSuccessfully.setText("");
     }
-   public void assignPermissions()
-   {   
+   public void assignPermissions(){   
        Role newRole = getData();
        _RoleServices.create(newRole); 
        _jHomePage.createLog("Created", "Role", newRole.name);
    }
-   public Role getData() {
+   public Role getData(){
        Role newRole=new Role();
        newRole.name=jRoleNameField.getText();
        newRole.canCreateCustomer=JCreateCustomer.isSelected();
@@ -54,8 +52,7 @@ public class jNewRole extends javax.swing.JPanel {
        newRole.canViewUsers=jViewUser.isSelected();  
        return newRole;
    }
-   public void renderData()
-   {
+   public void renderData(){
        jRoleNameField.setText(_jRole.name);
        if(_jRole.canCreateCustomer)
        { 
@@ -107,32 +104,27 @@ public class jNewRole extends javax.swing.JPanel {
        }
 
    }
-   public void DoneButton() 
-   { 
-        if (_parent instanceof jViewRoles )
-        {  
+   public void DoneButton(){ 
+        if (_parent instanceof jViewRoles ){  
             jViewRoles ViewRoles= (jViewRoles) _parent;   
             jRoleNameField.setEditable(false);
             jDone.setText("Update");
         }
-        else 
-        {
+        else{
             jDone.setText("Create");
         }
    }
-   private void DoneButtonClicked() {
-       if (_parent instanceof jMainPage )
-        {
+   private void DoneButtonClicked(){
+        if (_parent instanceof jMainPage ){
             jMainPage MainPage=(jMainPage)_parent;
             assignPermissions();
-            jChosedPermissions.setText("Permissions are assigned successfully");
+            jAddedRoleSuccessfully.setText("Permissions are assigned successfully");
             clearCreateRolePage();
         }
-        else 
-        {
+        else{
             jViewRoles ViewRoles= (jViewRoles) _parent;
             renderData();
-            jChosedPermissions.setText("Updated successfully");
+            jAddedRoleSuccessfully.setText("Updated successfully");
             Role role = getData();
             _jHomePage.createLog("Updated", "Role", role.name);
             _RoleServices.update(_jRole.id,role);   
@@ -157,7 +149,13 @@ public class jNewRole extends javax.swing.JPanel {
         jCreateUser = new javax.swing.JCheckBox();
         jCreateLogs = new javax.swing.JCheckBox();
         jRoleNameField = new javax.swing.JTextField();
-        jChosedPermissions = new javax.swing.JLabel();
+        jAddedRoleSuccessfully = new javax.swing.JLabel();
+
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         jBack.setText("back");
         jBack.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -173,30 +171,90 @@ public class jNewRole extends javax.swing.JPanel {
         });
 
         JCreateCustomer.setText("Create Customer");
+        JCreateCustomer.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JCreateCustomerKeyPressed(evt);
+            }
+        });
 
         jViewCustomer.setText("View Customer");
+        jViewCustomer.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jViewCustomerKeyPressed(evt);
+            }
+        });
 
         JDeleteCustomer.setText("Delete Customer ");
+        JDeleteCustomer.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JDeleteCustomerKeyPressed(evt);
+            }
+        });
 
         jUpdateCustomer.setText("Update customer");
+        jUpdateCustomer.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jUpdateCustomerKeyPressed(evt);
+            }
+        });
 
         jViewItem.setText("View Item");
+        jViewItem.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jViewItemKeyPressed(evt);
+            }
+        });
 
         jCreateItem.setText("Create Item");
+        jCreateItem.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jCreateItemKeyPressed(evt);
+            }
+        });
 
         jUpdateItem.setText("Update Item");
+        jUpdateItem.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jUpdateItemKeyPressed(evt);
+            }
+        });
 
         jDeleteItem.setText("Delete Item");
+        jDeleteItem.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jDeleteItemKeyPressed(evt);
+            }
+        });
 
         jViewUser.setText("View User");
+        jViewUser.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jViewUserKeyPressed(evt);
+            }
+        });
 
         JviewLogs.setText("View Logs");
+        JviewLogs.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JviewLogsKeyPressed(evt);
+            }
+        });
 
         jCreateUser.setText("Create User");
+        jCreateUser.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jCreateUserKeyPressed(evt);
+            }
+        });
 
         jCreateLogs.setText("Create Logs");
+        jCreateLogs.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jCreateLogsKeyPressed(evt);
+            }
+        });
 
-        jChosedPermissions.setForeground(new java.awt.Color(102, 255, 0));
+        jAddedRoleSuccessfully.setForeground(new java.awt.Color(102, 255, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -212,7 +270,7 @@ public class jNewRole extends javax.swing.JPanel {
                     .addComponent(jCreateItem)
                     .addComponent(jViewItem)
                     .addComponent(jRoleNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jChosedPermissions, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jAddedRoleSuccessfully, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -263,7 +321,7 @@ public class jNewRole extends javax.swing.JPanel {
                     .addComponent(jViewItem)
                     .addComponent(JviewLogs))
                 .addGap(18, 18, 18)
-                .addComponent(jChosedPermissions, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jAddedRoleSuccessfully, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBack)
@@ -273,55 +331,6 @@ public class jNewRole extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
 
-    private void JCreateCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JCreateCustomerMouseClicked
-
-        
-    }//GEN-LAST:event_JCreateCustomerMouseClicked
-
-    private void jViewCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jViewCustomerMouseClicked
-
-    }//GEN-LAST:event_jViewCustomerMouseClicked
-
-    private void JDeleteCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JDeleteCustomerMouseClicked
-      
-    }//GEN-LAST:event_JDeleteCustomerMouseClicked
-
-    private void jUpdateCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jUpdateCustomerMouseClicked
-     
-    }//GEN-LAST:event_jUpdateCustomerMouseClicked
-
-    private void jCreateItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCreateItemMouseClicked
-        
-    }//GEN-LAST:event_jCreateItemMouseClicked
-
-    private void jViewItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jViewItemMouseClicked
-       
-    }//GEN-LAST:event_jViewItemMouseClicked
-
-    private void jDeleteItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDeleteItemMouseClicked
-       
-    }//GEN-LAST:event_jDeleteItemMouseClicked
-
-    private void jUpdateItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jUpdateItemMouseClicked
-       
-    }//GEN-LAST:event_jUpdateItemMouseClicked
-
-    private void jCreateUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCreateUserMouseClicked
-        
-    }//GEN-LAST:event_jCreateUserMouseClicked
-
-    private void jViewUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jViewUserMouseClicked
-        
-    }//GEN-LAST:event_jViewUserMouseClicked
-
-    private void jCreateLogsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCreateLogsMouseClicked
-        
-    }//GEN-LAST:event_jCreateLogsMouseClicked
-
-    private void JviewLogsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JviewLogsMouseClicked
-      
-    }//GEN-LAST:event_JviewLogsMouseClicked
-
     private void jDoneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDoneMouseClicked
         DoneButtonClicked();
     }//GEN-LAST:event_jDoneMouseClicked
@@ -329,7 +338,7 @@ public class jNewRole extends javax.swing.JPanel {
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
         if (_parent instanceof jMainPage )
         {
-            jChosedPermissions.setText("");
+            jAddedRoleSuccessfully.setText("");
             clearCreateRolePage();
              _jHomePage.switchPanels(_parent);
         }
@@ -344,14 +353,90 @@ public class jNewRole extends javax.swing.JPanel {
       
     }//GEN-LAST:event_jBackMouseClicked
 
-    private final jHomePage _jHomePage;
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            DoneButtonClicked();
+        }
+    }//GEN-LAST:event_formKeyPressed
 
+    private void jViewItemKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jViewItemKeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            DoneButtonClicked();
+        }
+    }//GEN-LAST:event_jViewItemKeyPressed
 
-    private void JCreateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCreateCustomerActionPerformed
-     
-             
-    }//GEN-LAST:event_JCreateCustomerActionPerformed
+    private void jCreateItemKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCreateItemKeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            DoneButtonClicked();
+        }
+    }//GEN-LAST:event_jCreateItemKeyPressed
+
+    private void jUpdateCustomerKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jUpdateCustomerKeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            DoneButtonClicked();
+        }
+    }//GEN-LAST:event_jUpdateCustomerKeyPressed
+
+    private void JDeleteCustomerKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JDeleteCustomerKeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            DoneButtonClicked();
+        }
+    }//GEN-LAST:event_JDeleteCustomerKeyPressed
+
+    private void jViewCustomerKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jViewCustomerKeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            DoneButtonClicked();
+        }
+    }//GEN-LAST:event_jViewCustomerKeyPressed
+
+    private void JCreateCustomerKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JCreateCustomerKeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            DoneButtonClicked();
+        }
+    }//GEN-LAST:event_JCreateCustomerKeyPressed
+
+    private void JviewLogsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JviewLogsKeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            DoneButtonClicked();
+        }
+    }//GEN-LAST:event_JviewLogsKeyPressed
+
+    private void jCreateLogsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCreateLogsKeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            DoneButtonClicked();
+        }
+    }//GEN-LAST:event_jCreateLogsKeyPressed
+
+    private void jViewUserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jViewUserKeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            DoneButtonClicked();
+        }
+    }//GEN-LAST:event_jViewUserKeyPressed
+
+    private void jCreateUserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCreateUserKeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            DoneButtonClicked();
+        }
+    }//GEN-LAST:event_jCreateUserKeyPressed
+
+    private void jUpdateItemKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jUpdateItemKeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            DoneButtonClicked();
+        }
+    }//GEN-LAST:event_jUpdateItemKeyPressed
+
+    private void jDeleteItemKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jDeleteItemKeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            DoneButtonClicked();
+        }
+    }//GEN-LAST:event_jDeleteItemKeyPressed
+
     
+    
+    
+    
+    private final jHomePage _jHomePage;
     public Role _jRole;
     //private final jMainPage _jMainPage;
     //private final jViewRoles _jViewRoles;
@@ -361,8 +446,8 @@ public class jNewRole extends javax.swing.JPanel {
     private javax.swing.JCheckBox JCreateCustomer;
     private javax.swing.JCheckBox JDeleteCustomer;
     private javax.swing.JCheckBox JviewLogs;
+    private javax.swing.JLabel jAddedRoleSuccessfully;
     private javax.swing.JButton jBack;
-    private javax.swing.JLabel jChosedPermissions;
     private javax.swing.JCheckBox jCreateItem;
     private javax.swing.JCheckBox jCreateLogs;
     private javax.swing.JCheckBox jCreateUser;

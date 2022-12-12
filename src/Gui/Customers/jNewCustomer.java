@@ -213,7 +213,6 @@ public class jNewCustomer extends javax.swing.JPanel {
         }
         return true;
     }
-    
     public static boolean emailAdressen(String emailAdressen) {
         Pattern pattern = Pattern.compile("^[A-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:\\.[A-Z0-9_!#$%&'*+/=?`{|}~^-]+↵\n" +")*@[A-Z0-9-]+(?:\\.[A-Z0-9-]+)*$", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(emailAdressen);
@@ -251,6 +250,18 @@ public class jNewCustomer extends javax.swing.JPanel {
         jNationalIdField.setText("");
         jCityField.setText("");
         jJobField.setText("");
+        
+        jErrorAge.setText("");
+        jErrorChooseItem.setText("");
+        jErrorCity.setText("");
+        jErrorEmail.setText("");
+        jErrorIncome.setText("");
+        jErrorJob.setText("");
+        jErrorName.setText("");
+        jErrorNationalId.setText("");
+        jErrorPhoneNo.setText("");
+        
+        jAddedCustomer.setText("");
     } 
     public void addCustomerButton(){
        /* if(!checkAllValidations()){
@@ -588,8 +599,7 @@ public class jNewCustomer extends javax.swing.JPanel {
     }//GEN-LAST:event_jBackMouseClicked
 
     private void jAddCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAddCustomerMouseClicked
-        addCustomerButton();
-        
+        addCustomerButton(); 
     }//GEN-LAST:event_jAddCustomerMouseClicked
 
     private void jChooseItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jChooseItemMouseClicked
