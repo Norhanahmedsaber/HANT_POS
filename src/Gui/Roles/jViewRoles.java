@@ -123,7 +123,7 @@ public class jViewRoles extends javax.swing.JPanel {
     private void jEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jEditMouseClicked
        jMainPage MainPage=(jMainPage)_parent;
             if(MainPage.canUpdateRole()) {
-            _jNewRole.DoneButton();
+            _jNewRole.DoneButton(); 
             _jHomePage.switchPanels(_jNewRole);
            
         }

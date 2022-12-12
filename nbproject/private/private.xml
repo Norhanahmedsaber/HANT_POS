@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
-<<<<<<< HEAD
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/DELL/Desktop/hant/src/Gui/jShowLogs.java</file>
-            <file>file:/C:/Users/DELL/Desktop/hant/src/Services/LogServices.java</file>
-            <file>file:/C:/Users/DELL/Desktop/hant/src/Gui/jViewItems.java</file>
-            <file>file:/C:/Users/DELL/Desktop/hant/src/Entities/Log.java</file>
-            <file>file:/C:/Users/DELL/Desktop/hant/src/Interfaces/ILogServices.java</file>
-            <file>file:/C:/Users/DELL/Desktop/hant/src/Gui/jMainPage.java</file>
+            <file>file:/C:/Users/DELL/Desktop/hant/src/Gui/Customers/jViewCustomers.java</file>
+            <file>file:/C:/Users/DELL/Desktop/hant/src/Gui/jHomePage.java</file>
         </group>
     </open-files>
-=======
->>>>>>> master
 </project-private>
