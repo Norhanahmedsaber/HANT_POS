@@ -47,19 +47,21 @@ public class jChooseItem extends javax.swing.JPanel {
         jItems.setEnabled(true);
     }
     void update()
-    {
+    {        
+        _jViewCustomer.updateflag=!_jViewCustomer.updateflag;
         jedit.setEnabled(true);
+        jDone.setVisible(false);
         jupdate.setEnabled(false);
         jcancel.setEnabled(false);
         jRemove.setEnabled(false);
-        jBack.setEnabled(false);
+        jBack.setEnabled(true);
         jAdd.setEnabled(false);
-        _jViewCustomer.updateflag=!_jViewCustomer.updateflag;
         renderData();
     }
     void Cancel()
-    {
-         jedit.setEnabled(true);
+    {        _jViewCustomer.updateflag=!_jViewCustomer.updateflag;
+        jedit.setEnabled(true);
+        jBack.setEnabled(true);
         jupdate.setEnabled(false);
         jcancel.setEnabled(false);
         jRemove.setEnabled(false);
@@ -137,11 +139,12 @@ public class jChooseItem extends javax.swing.JPanel {
     }
     public void resetPanel() {
         String [] titles= {"Id", "Name","Category","Price","CreatedAt"};
-        DefaultTableModel model = new DefaultTableModel(titles,0);
-        jItems.setModel(model);
-        DefaultTableModel model2 = new DefaultTableModel(titles,0);
-        jItems.setModel(model2);
-        jAddedItems.setModel(model);
+        DefaultTableModel m1 = (DefaultTableModel) jItems.getModel();
+         m1.setColumnIdentifiers(titles);
+         m1.setRowCount(0);
+          DefaultTableModel m2 = (DefaultTableModel) jAddedItems.getModel();
+         m2.setColumnIdentifiers(titles);
+         m2.setRowCount(0);
         jSearch.setText("");
         jItemsCombo.selectWithKeyChar('n');
         jError.setText("");
@@ -175,6 +178,7 @@ public class jChooseItem extends javax.swing.JPanel {
             if(!filteredItems.isEmpty()) {
                 resetPanel();
                 DefaultTableModel model = (DefaultTableModel) jItems.getModel();
+                 
                 for(int i=0;i<filteredItems.size();i++) {
                     Item item = filteredItems.get(i);
                     System.err.println(item.id);
@@ -262,9 +266,17 @@ public class jChooseItem extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Category", "Name", "ID", "Price"
+                "Category", "Name", "ID", "Price", "Title 5"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jItems);
 
         jAddedItems.setModel(new javax.swing.table.DefaultTableModel(
@@ -272,9 +284,17 @@ public class jChooseItem extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Category", "Name", "ID", "Price"
+                "Category", "Name", "ID", "Price", "Title 5"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(jAddedItems);
 
         jRemove.setText("Remove");
@@ -395,13 +415,16 @@ public class jChooseItem extends javax.swing.JPanel {
     }//GEN-LAST:event_jDoneMouseClicked
 
     private void jupdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jupdateMouseClicked
+        setDefault();
         update();
     }//GEN-LAST:event_jupdateMouseClicked
      
     private void jeditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jeditMouseClicked
+       setDefault();
         edit();
     }//GEN-LAST:event_jeditMouseClicked
     private void jcancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcancelMouseClicked
+        setDefault();
         Cancel();
     }//GEN-LAST:event_jcancelMouseClicked
      private final JPanel _parent;

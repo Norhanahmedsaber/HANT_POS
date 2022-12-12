@@ -4,7 +4,6 @@ import Entities.Customer;
 import Entities.User;
 import Gui.jHomePage;
 import Gui.jMainPage;
-import Gui.jSignUpPage;
 import Services.UserServices;
 import java.util.ArrayList;
 import java.util.UUID;
@@ -22,15 +21,16 @@ public class jViewUsers extends javax.swing.JPanel {
         _jMainPage = jmp;
         _UserServices = new UserServices(); 
         _filterUsers = new FilterUsers();
-        _jSignUpPage = new jSignUpPage(jhp , jmp );
+        _jSignUpPage = new jNewUsers(jhp , jmp );
         _jViewUser = new jViewUser(this , jhp );
 
         toggle = false;
     }
     public void renderData() { 
         String[] cols = {"ID","Name", "User Name", "Role"}; 
-        DefaultTableModel model = new DefaultTableModel(cols, 0); 
-        jUsersTable.setModel(model); 
+        DefaultTableModel m = (DefaultTableModel) jUsersTable.getModel();
+            m.setColumnIdentifiers(cols);
+            m.setRowCount(0);
         ArrayList<User> users = _UserServices.getAll(); 
         if(!users.isEmpty()) { 
             String searchName = jSearchField.getText(); 
@@ -39,8 +39,8 @@ public class jViewUsers extends javax.swing.JPanel {
             if(!filteredUsers.isEmpty()){ 
                 for(int i=0;i<filteredUsers.size();i++) { 
                     User user = filteredUsers.get(i); 
-                    Object[] objs = {user.id, user.name, user.userName, user.role}; 
-                    model.addRow(objs); 
+                    Object[] objs = {user.id, user.name, user.userName, user.role.name}; 
+                    m.addRow(objs); 
                 }  
             } 
         } 
@@ -104,7 +104,7 @@ public class jViewUsers extends javax.swing.JPanel {
             }
         });
 
-        jSortByCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Name", "Date", "Category", "Price" }));
+        jSortByCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Name", "Role" }));
         jSortByCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jSortByComboActionPerformed(evt);
@@ -147,7 +147,15 @@ public class jViewUsers extends javax.swing.JPanel {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(jUsersTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -232,7 +240,6 @@ public class jViewUsers extends javax.swing.JPanel {
 
     private void jShowButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jShowButtonMouseClicked
         User user = selectedUser();
-        System.out.println(user);
          if (user!=null)
          { 
             _jViewUser.choosedUser = user;
@@ -253,7 +260,7 @@ public class jViewUsers extends javax.swing.JPanel {
     private boolean toggle ;
     private final UserServices _UserServices;
     private final FilterUsers _filterUsers;
-    private final jSignUpPage _jSignUpPage;
+    private final jNewUsers _jSignUpPage;
     private final jViewUser _jViewUser;
     
 

@@ -66,15 +66,23 @@ public class jViewItems extends javax.swing.JPanel {
 
         jItem.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(jItem);
 
         jadditem.setText("Add Item");
@@ -175,8 +183,9 @@ public class jViewItems extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
     public void showItems (){
             String [] titles= {"Id", "Name","Category","Price","CreatedAt"};
-            DefaultTableModel m = new DefaultTableModel(titles,0);
-            jItem.setModel(m);
+            DefaultTableModel m = (DefaultTableModel) jItem.getModel();
+            m.setColumnIdentifiers(titles);
+            m.setRowCount(0);
             ArrayList<Item> _items = _ItemServices.getAllItems();  
             String search=jsearchitems.getText();
             String Sortitemsby=(String)jsortitemsby.getSelectedItem();

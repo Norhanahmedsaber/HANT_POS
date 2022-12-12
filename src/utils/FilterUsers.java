@@ -44,7 +44,28 @@ public class FilterUsers {
             Collections.reverse(users);
             return users ;
 
-        } 
+        }
+       else if (sortedBy=="Role"&&toggle==true)
+       {
+           Collections.sort(users,new Comparator<User>(){
+               public int compare(User c1 , User c2)
+               {
+                   return c1.role.name.compareTo(c2.role.name);
+               }
+           });
+       }
+        else if (sortedBy=="Role"&&toggle==false)
+       {
+           Collections.sort(users,new Comparator<User>(){
+               public int compare(User c1 , User c2)
+               {
+                   return c1.role.name.compareTo(c2.role.name);
+               }
+           });
+           Collections.reverse(users);
+           return users;
+       }
+
 
       return users ;
    }

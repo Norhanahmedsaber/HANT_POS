@@ -2,16 +2,19 @@ package Gui.Roles;
 import Entities.Role;
 import Gui.jHomePage;
 import Gui.jMainPage;
+import Gui.Roles.jViewRoles;
 import Services.RoleServices;
-public class jcreaterole extends javax.swing.JPanel {
+import javax.swing.JPanel;
+public class jNewRole extends javax.swing.JPanel {
 
-    public jcreaterole(jHomePage jhp,jMainPage jmp) {
+    public jNewRole(jHomePage jhp,JPanel parent ) {
         initComponents();
         _jRole=new Role();
         _jHomePage=jhp;
-        _jMainPage=jmp;
         _RoleServices =new RoleServices();
+         _parent= parent;  
     }
+  
     public void clearCreateRolePage()
     {
         jRoleNameField.setText("");
@@ -30,8 +33,24 @@ public class jcreaterole extends javax.swing.JPanel {
     }
    public void assighnPermissions()
    {   
-       Role role=new Role();
-       role.name=jRoleNameField.getText();
+       Role newRole=new Role();
+       newRole.name=jRoleNameField.getText();
+       newRole.canCreateCustomer=JCreateCustomer.isSelected();
+       newRole.canCreateItem=jCreateItem.isSelected();
+       newRole.canCreateLog=jCreateLogs.isSelected();
+       newRole.canCreateUser=jCreateUser.isSelected();
+       newRole.canDeleteCustomer=JDeleteCustomer.isSelected();
+       newRole.canDeleteItem=jDeleteItem.isSelected();
+       newRole.canUpdateCustomer=jUpdateCustomer.isSelected();
+       newRole.canUpdateItem=jUpdateItem.isSelected();
+       newRole.canViewCustomers=jViewCustomer.isSelected();
+       newRole.canViewItems=jViewItem.isSelected();
+       newRole.canViewLogs=JviewLogs.isSelected();
+       newRole.canViewUsers=jViewUser.isSelected();  
+       _RoleServices.create(newRole);    
+   }
+   public void assignUpdatedData(Role role)
+   {
        role.canCreateCustomer=JCreateCustomer.isSelected();
        role.canCreateItem=jCreateItem.isSelected();
        role.canCreateLog=jCreateLogs.isSelected();
@@ -44,9 +63,23 @@ public class jcreaterole extends javax.swing.JPanel {
        role.canViewItems=jViewItem.isSelected();
        role.canViewLogs=JviewLogs.isSelected();
        role.canViewUsers=jViewUser.isSelected();  
-       _RoleServices.create(role);    
+       _RoleServices.update(role.id,role);
    }
-   
+   public void DoneButton() 
+   { if (_parent instanceof jViewRoles )
+        {  
+                jViewRoles ViewRoles= (jViewRoles) _parent;            
+                jDone.setText("Update");
+        }
+        else 
+      {
+          
+           jDone.setText("Create");
+      }
+   }
+   public void renderData() {
+       
+   }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -75,7 +108,6 @@ public class jcreaterole extends javax.swing.JPanel {
             }
         });
 
-        jDone.setText("Create");
         jDone.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jDoneMouseClicked(evt);
@@ -115,34 +147,33 @@ public class jcreaterole extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jBack)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(JDeleteCustomer)
+                    .addComponent(jViewCustomer)
+                    .addComponent(JCreateCustomer)
+                    .addComponent(jUpdateCustomer)
+                    .addComponent(jCreateItem)
+                    .addComponent(jViewItem)
+                    .addComponent(jRoleNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jChosedPermissions, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jDeleteItem)
+                        .addGap(66, 66, 66))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JDeleteCustomer)
-                            .addComponent(jViewCustomer)
-                            .addComponent(JCreateCustomer)
-                            .addComponent(jUpdateCustomer)
-                            .addComponent(jCreateItem)
-                            .addComponent(jViewItem)
-                            .addComponent(jRoleNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jChosedPermissions, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jDeleteItem)
-                                .addGap(66, 66, 66))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jUpdateItem)
-                                    .addComponent(jCreateUser)
-                                    .addComponent(jViewUser)
-                                    .addComponent(JviewLogs)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jDone)
-                                        .addComponent(jCreateLogs)))
-                                .addContainerGap())))))
+                            .addComponent(jUpdateItem)
+                            .addComponent(jCreateUser)
+                            .addComponent(jViewUser)
+                            .addComponent(JviewLogs)
+                            .addComponent(jCreateLogs))
+                        .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jBack)
+                .addGap(201, 201, 201)
+                .addComponent(jDone, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,56 +209,51 @@ public class jcreaterole extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBack)
-                    .addComponent(jDone))
+                    .addComponent(jDone, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     private void JCreateCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JCreateCustomerMouseClicked
-        //_jRole.canCreateCustomer=true;
-          if (JCreateCustomer.isSelected())
-         {
-             System.out.println("selecteddgfh ");
-         }
-         else
-             System.out.println("not selecteddf ");
+
+        
     }//GEN-LAST:event_JCreateCustomerMouseClicked
 
     private void jViewCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jViewCustomerMouseClicked
-        _jRole.canViewCustomers=true;
+
     }//GEN-LAST:event_jViewCustomerMouseClicked
 
     private void JDeleteCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JDeleteCustomerMouseClicked
-       _jRole.canDeleteCustomer=true;
+      
     }//GEN-LAST:event_JDeleteCustomerMouseClicked
 
     private void jUpdateCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jUpdateCustomerMouseClicked
-     _jRole.canUpdateCustomer=true;
+     
     }//GEN-LAST:event_jUpdateCustomerMouseClicked
 
     private void jCreateItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCreateItemMouseClicked
-        _jRole.canCreateItem=true;
+        
     }//GEN-LAST:event_jCreateItemMouseClicked
 
     private void jViewItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jViewItemMouseClicked
-        _jRole.canViewItems=true;
+       
     }//GEN-LAST:event_jViewItemMouseClicked
 
     private void jDeleteItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDeleteItemMouseClicked
-        _jRole.canDeleteItem=true;
+       
     }//GEN-LAST:event_jDeleteItemMouseClicked
 
     private void jUpdateItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jUpdateItemMouseClicked
-        _jRole.canUpdateItem=true;
+       
     }//GEN-LAST:event_jUpdateItemMouseClicked
 
     private void jCreateUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCreateUserMouseClicked
-        _jRole.canCreateUser=true;
+        
     }//GEN-LAST:event_jCreateUserMouseClicked
 
     private void jViewUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jViewUserMouseClicked
-        _jRole.canViewUsers=true;
+        
     }//GEN-LAST:event_jViewUserMouseClicked
 
     private void jCreateLogsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCreateLogsMouseClicked
@@ -235,37 +261,57 @@ public class jcreaterole extends javax.swing.JPanel {
     }//GEN-LAST:event_jCreateLogsMouseClicked
 
     private void JviewLogsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JviewLogsMouseClicked
-       _jRole.canViewLogs=true;
+      
     }//GEN-LAST:event_JviewLogsMouseClicked
 
     private void jDoneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDoneMouseClicked
-        assighnPermissions();
-        jChosedPermissions.setText("Permissions are assigned successfully");
-        clearCreateRolePage();
+       if (_parent instanceof jMainPage )
+        {
+            jMainPage MainPage=(jMainPage)_parent;
+            assighnPermissions();
+            jChosedPermissions.setText("Permissions are assigned successfully");
+            clearCreateRolePage();
+        }
+        else 
+        {
+            jViewRoles ViewRoles= (jViewRoles) _parent;
+            Role role=new Role();
+            assignUpdatedData(role);
+        }
+        
     }//GEN-LAST:event_jDoneMouseClicked
 
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
-       _jHomePage.switchPanels(_jMainPage);
-       jChosedPermissions.setText("");
-       clearCreateRolePage();
+        if (_parent instanceof jMainPage )
+        {
+            jChosedPermissions.setText("");
+            clearCreateRolePage();
+             _jHomePage.switchPanels(_parent);
+        }
+        else 
+      {
+        jViewRoles ViewRoles= (jViewRoles) _parent;
+        clearCreateRolePage();
+        ViewRoles.renderData();
+        _jHomePage.switchPanels(_parent);
+      }
+       
+      
     }//GEN-LAST:event_jBackMouseClicked
 
     private final jHomePage _jHomePage;
 
 
     private void JCreateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCreateCustomerActionPerformed
-         if (JCreateCustomer.isSelected())
-         {
-             System.out.println("selected ");
-         }
-         else
-             System.out.println("selected ");
+     
              
     }//GEN-LAST:event_JCreateCustomerActionPerformed
     
     private Role _jRole;
-    private final jMainPage _jMainPage;
+    //private final jMainPage _jMainPage;
+    //private final jViewRoles _jViewRoles;
     private final RoleServices _RoleServices;
+    private final JPanel _parent;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox JCreateCustomer;
     private javax.swing.JCheckBox JDeleteCustomer;

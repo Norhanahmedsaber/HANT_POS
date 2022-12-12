@@ -1,7 +1,5 @@
-
 package Gui;
-
-
+import Gui.Users.jNewUsers;
 import Gui.Items.jNewItem;
 import Gui.Customers.jNewCustomer;
 import Gui.Logs.jViewLogs;
@@ -9,9 +7,7 @@ import Gui.Customers.jViewCustomers;
 import Gui.Users.jViewUsers;
 import Gui.Items.jViewItems;
 import Gui.Roles.jViewRoles;
-import Gui.Roles.jcreaterole;
-import Services.LogServices;
-
+import Gui.Roles.jNewRole;
 
 public class jMainPage extends javax.swing.JPanel {
 
@@ -22,10 +18,11 @@ public class jMainPage extends javax.swing.JPanel {
         _jNewItem = new jNewItem(jhp, this);
         _jViewItems = new jViewItems(jhp, this);
         _jViewCustomers = new jViewCustomers(jhp, this);
+
         _jShowLogs = new jViewLogs(jhp, this);
-        _jSignUpPage = new jSignUpPage(jhp,this);
+        _jSignUpPage = new jNewUsers(jhp,this);
         _jViewUsers = new jViewUsers(jhp , this);
-        _jcreaterole = new jcreaterole(jhp, this);
+        _jcreaterole = new jNewRole(jhp, this);
         _jViewRoles = new jViewRoles(jhp, this);
         
 
@@ -255,11 +252,12 @@ public class jMainPage extends javax.swing.JPanel {
         if(canViewRoles()) {
             _jViewRoles.renderData();
             _jHomePage.switchPanels(_jViewRoles);
-        }
+        } 
     }//GEN-LAST:event_jViewRolesMouseClicked
 
     private void jNewRoleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jNewRoleMouseClicked
         if(canCreateRole()) {
+            _jcreaterole.DoneButton();
             _jHomePage.switchPanels(_jcreaterole);
         }
     }//GEN-LAST:event_jNewRoleMouseClicked
@@ -412,9 +410,9 @@ public class jMainPage extends javax.swing.JPanel {
     
     public boolean flag;
     private final jViewRoles _jViewRoles;
-    private final jcreaterole _jcreaterole;
+    private final jNewRole _jcreaterole;
     private final jViewUsers _jViewUsers;
-    private final jSignUpPage _jSignUpPage;
+    private final jNewUsers _jSignUpPage;
     private final jNewCustomer _jNewCustomer;
     private final jViewCustomers _jViewCustomers;
     private final jViewItems _jViewItems;

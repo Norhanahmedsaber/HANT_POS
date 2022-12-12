@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/LENOVO/Desktop/java2/hant/src/Entities/Log.java</file>
             <file>file:/C:/Users/LENOVO/Desktop/java2/hant/src/Gui/Customers/jUpdateCustomer.java</file>
             <file>file:/C:/Users/LENOVO/Desktop/java2/hant/src/Entities/Item.java</file>
@@ -17,6 +18,10 @@
             <file>file:/C:/Users/LENOVO/Desktop/java2/hant/src/Entities/User.java</file>
             <file>file:/C:/Users/LENOVO/Desktop/java2/hant/src/Gui/jLoginPage.java</file>
             <file>file:/C:/Users/LENOVO/Desktop/java2/hant/src/Gui/Customers/jNewCustomer.java</file>
+=======
+            <file>file:/C:/Users/DELL/Desktop/hant/src/Gui/Customers/jViewCustomers.java</file>
+            <file>file:/C:/Users/DELL/Desktop/hant/src/Gui/jHomePage.java</file>
+>>>>>>> master
         </group>
     </open-files>
 </project-private>
