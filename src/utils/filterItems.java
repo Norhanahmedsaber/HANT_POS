@@ -24,9 +24,9 @@ public class filterItems {
                itemsAftersearch.add(items.get(i));
                 
            }
+
         }
-        return itemsAftersearch;
-        
+        return itemsAftersearch;   
     }
     
     

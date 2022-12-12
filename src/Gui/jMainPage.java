@@ -1,10 +1,8 @@
-
 package Gui;
-
 import Gui.Users.jNewUsers;
 import Gui.Items.jNewItem;
 import Gui.Customers.jNewCustomer;
-import Gui.Logs.jShowLogs;
+import Gui.Logs.jViewLogs;
 import Gui.Customers.jViewCustomers;
 import Gui.Users.jViewUsers;
 import Gui.Items.jViewItems;
@@ -20,11 +18,14 @@ public class jMainPage extends javax.swing.JPanel {
         _jNewItem = new jNewItem(jhp, this);
         _jViewItems = new jViewItems(jhp, this);
         _jViewCustomers = new jViewCustomers(jhp, this);
-        _jShowLogs = new jShowLogs(jhp, this);
+
+        _jShowLogs = new jViewLogs(jhp, this);
         _jSignUpPage = new jNewUsers(jhp,this);
         _jViewUsers = new jViewUsers(jhp , this);
         _jcreaterole = new jNewRole(jhp, this);
         _jViewRoles = new jViewRoles(jhp, this);
+        
+
     }
     
     
@@ -208,7 +209,8 @@ public class jMainPage extends javax.swing.JPanel {
     private void jLogMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLogMouseClicked
         if(canViewLogs())
         {
-            _jShowLogs.showLog();
+            
+           _jShowLogs.renderData();
            _jHomePage.switchPanels(_jShowLogs); 
         }
         
@@ -259,6 +261,11 @@ public class jMainPage extends javax.swing.JPanel {
             _jHomePage.switchPanels(_jcreaterole);
         }
     }//GEN-LAST:event_jNewRoleMouseClicked
+    
+    
+    
+    
+    
     public boolean canCreateUser() {
         if(_jHomePage.loginUser.role.canCreateUser) {
             jAddusers.setEnabled(true);
@@ -290,10 +297,10 @@ public class jMainPage extends javax.swing.JPanel {
     }
     public boolean canDeleteCustomer() {
         if(_jHomePage.loginUser.role.canDeleteCustomer) {
-            _jViewCustomers.jDelete.setEnabled(true);
+            _jViewCustomers.jDeleteButton.setEnabled(true);
             return true;
         }else {
-            _jViewCustomers.jDelete.setEnabled(false);
+            _jViewCustomers.jDeleteButton.setEnabled(false);
             return false;
         }
     }
@@ -302,7 +309,7 @@ public class jMainPage extends javax.swing.JPanel {
             _jViewCustomers._jViewCustomer.jEdit.setEnabled(true);
             return true;
         }else {
-            _jViewCustomers.jDelete.setEnabled(false);
+            _jViewCustomers.jDeleteButton.setEnabled(false);
             return false;
         }
     }
@@ -399,6 +406,8 @@ public class jMainPage extends javax.swing.JPanel {
         return true;
     }
     
+    
+    
     public boolean flag;
     private final jViewRoles _jViewRoles;
     private final jNewRole _jcreaterole;
@@ -408,7 +417,7 @@ public class jMainPage extends javax.swing.JPanel {
     private final jViewCustomers _jViewCustomers;
     private final jViewItems _jViewItems;
     private final jNewItem _jNewItem;
-    private final jShowLogs _jShowLogs;
+    private final jViewLogs _jShowLogs;
     private final jHomePage _jHomePage;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jAddusers;

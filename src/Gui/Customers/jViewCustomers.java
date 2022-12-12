@@ -18,6 +18,8 @@ public final class jViewCustomers extends javax.swing.JPanel  {
         _CustomerServices = new CustomerServices(); 
         _filterCustomers = new filterCustomers();
         _jViewCustomer= new jViewCustomer(this, jhp, jmp);
+        _jNewCustomer = new jNewCustomer(jhp, jmp);
+        
         toggle = false;
     }
     //Make Table unEditable:
@@ -70,12 +72,13 @@ public final class jViewCustomers extends javax.swing.JPanel  {
         jLabel3 = new javax.swing.JLabel();
         jSortBy = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        jBack = new javax.swing.JButton();
-        jDelete = new javax.swing.JButton();
+        jBackButton = new javax.swing.JButton();
+        jDeleteButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jCustomersTable = new javax.swing.JTable();
         jToggleSort = new javax.swing.JButton();
-        jviewCustomer = new javax.swing.JButton();
+        jShowButton = new javax.swing.JButton();
+        jAddButton = new javax.swing.JButton();
 
         jLabel2.setText("search by name :");
 
@@ -85,7 +88,7 @@ public final class jViewCustomers extends javax.swing.JPanel  {
             }
         });
 
-        jLabel3.setText("sort by :");
+        jLabel3.setText("Sort by :");
 
         jSortBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Name", "Date" }));
         jSortBy.addActionListener(new java.awt.event.ActionListener() {
@@ -96,17 +99,17 @@ public final class jViewCustomers extends javax.swing.JPanel  {
 
         jLabel1.setText("All Customers :");
 
-        jBack.setText("Back");
-        jBack.addMouseListener(new java.awt.event.MouseAdapter() {
+        jBackButton.setText("Back");
+        jBackButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jBackMouseClicked(evt);
+                jBackButtonMouseClicked(evt);
             }
         });
 
-        jDelete.setText("Delete");
-        jDelete.addMouseListener(new java.awt.event.MouseAdapter() {
+        jDeleteButton.setText("Delete");
+        jDeleteButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jDeleteMouseClicked(evt);
+                jDeleteButtonMouseClicked(evt);
             }
         });
 
@@ -138,10 +141,17 @@ public final class jViewCustomers extends javax.swing.JPanel  {
             }
         });
 
-        jviewCustomer.setText("Show Customer");
-        jviewCustomer.addMouseListener(new java.awt.event.MouseAdapter() {
+        jShowButton.setText("Show Customer");
+        jShowButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jviewCustomerMouseClicked(evt);
+                jShowButtonMouseClicked(evt);
+            }
+        });
+
+        jAddButton.setText("Add Customer");
+        jAddButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jAddButtonMouseClicked(evt);
             }
         });
 
@@ -151,9 +161,9 @@ public final class jViewCustomers extends javax.swing.JPanel  {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -161,18 +171,20 @@ public final class jViewCustomers extends javax.swing.JPanel  {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSearchName)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jSortBy, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jSortBy, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jToggleSort, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jToggleSort, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(jviewCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBack, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jBackButton)
+                        .addGap(12, 12, 12)
+                        .addComponent(jDeleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jShowButton, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(jAddButton)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -189,21 +201,22 @@ public final class jViewCustomers extends javax.swing.JPanel  {
                         .addComponent(jSortBy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jToggleSort)))
                 .addGap(43, 43, 43)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBack)
-                    .addComponent(jDelete)
-                    .addComponent(jviewCustomer))
+                    .addComponent(jDeleteButton)
+                    .addComponent(jShowButton)
+                    .addComponent(jBackButton)
+                    .addComponent(jAddButton))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
+    private void jBackButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackButtonMouseClicked
         _jHomePage.switchPanels(_jMainPage);
-    }//GEN-LAST:event_jBackMouseClicked
+    }//GEN-LAST:event_jBackButtonMouseClicked
 
 
     private void jSortByActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSortByActionPerformed
@@ -214,7 +227,7 @@ public final class jViewCustomers extends javax.swing.JPanel  {
         renderData();
     }//GEN-LAST:event_jSearchNameKeyTyped
 
-    private void jDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDeleteMouseClicked
+    private void jDeleteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDeleteButtonMouseClicked
         if(_jMainPage.canDeleteCustomer())
         {
             UUID id = deleteCustomer();
@@ -223,7 +236,7 @@ public final class jViewCustomers extends javax.swing.JPanel  {
                 _CustomerServices.delete(deleteCustomer());
             }
         }
-    }//GEN-LAST:event_jDeleteMouseClicked
+    }//GEN-LAST:event_jDeleteButtonMouseClicked
 
     private void jToggleSortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleSortMouseClicked
         // TODO add your handling code here:
@@ -231,32 +244,41 @@ public final class jViewCustomers extends javax.swing.JPanel  {
         renderData();
     }//GEN-LAST:event_jToggleSortMouseClicked
 
-    private void jviewCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jviewCustomerMouseClicked
+    private void jShowButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jShowButtonMouseClicked
         Customer customer = selectcustomer();
          if (customer!=null)
          { _jViewCustomer._chosencustomer=customer;
              _jViewCustomer.renderData();
              _jHomePage.switchPanels(_jViewCustomer);
          }
-    }//GEN-LAST:event_jviewCustomerMouseClicked
+    }//GEN-LAST:event_jShowButtonMouseClicked
+
+    private void jAddButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAddButtonMouseClicked
+        if(_jMainPage.canCreateCustomer()) {
+            _jHomePage.switchPanels(_jNewCustomer);
+            _jNewCustomer.jNameField.grabFocus();
+        }
+    }//GEN-LAST:event_jAddButtonMouseClicked
 
     private boolean toggle ;
     public  jViewCustomer _jViewCustomer;
     private final filterCustomers _filterCustomers; 
     private final CustomerServices _CustomerServices; 
+    private final jNewCustomer _jNewCustomer;
     private final jMainPage _jMainPage; 
     private final jHomePage _jHomePage;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBack;
+    private javax.swing.JButton jAddButton;
+    private javax.swing.JButton jBackButton;
     private javax.swing.JTable jCustomersTable;
-    public javax.swing.JButton jDelete;
+    public javax.swing.JButton jDeleteButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jSearchName;
+    private javax.swing.JButton jShowButton;
     private javax.swing.JComboBox<String> jSortBy;
     private javax.swing.JButton jToggleSort;
-    private javax.swing.JButton jviewCustomer;
     // End of variables declaration//GEN-END:variables
 }
