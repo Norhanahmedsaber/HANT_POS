@@ -45,22 +45,21 @@ public class jChooseItem extends javax.swing.JPanel {
         jAdd.setEnabled(true);
         jBack.setEnabled(true);
         jItems.setEnabled(true);
-        _jViewCustomer.updateflag=!_jViewCustomer.updateflag;
     }
     void update()
-    {
-       
+    {        
+        _jViewCustomer.updateflag=!_jViewCustomer.updateflag;
         jedit.setEnabled(true);
+        jDone.setVisible(false);
         jupdate.setEnabled(false);
         jcancel.setEnabled(false);
         jRemove.setEnabled(false);
         jBack.setEnabled(true);
         jAdd.setEnabled(false);
-        _jViewCustomer.updateflag=!_jViewCustomer.updateflag;
         renderData();
     }
     void Cancel()
-    {
+    {        _jViewCustomer.updateflag=!_jViewCustomer.updateflag;
         jedit.setEnabled(true);
         jBack.setEnabled(true);
         jupdate.setEnabled(false);

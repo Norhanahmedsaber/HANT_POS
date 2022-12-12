@@ -255,6 +255,7 @@ public class jMainPage extends javax.swing.JPanel {
 
     private void jNewRoleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jNewRoleMouseClicked
         if(canCreateRole()) {
+            _jcreaterole.DoneButton();
             _jHomePage.switchPanels(_jcreaterole);
         }
     }//GEN-LAST:event_jNewRoleMouseClicked
