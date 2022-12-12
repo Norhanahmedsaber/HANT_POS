@@ -204,6 +204,8 @@ public class jViewItems extends javax.swing.JPanel {
           if(jItem.getSelectedRow() != -1) {
             UUID id = (UUID) m.getValueAt(jItem.getSelectedRow(), 0);
             m.removeRow(jItem.getSelectedRow());
+            Item item = _ItemServices.getById(id);
+            _jHomePage.createLog("Deleted", "Item", item.name);
             return id;
         }else{
             return null;
@@ -219,6 +221,16 @@ public class jViewItems extends javax.swing.JPanel {
         }
         return null;
     }
+    public void deleteButton(){
+        if(_jMainPage.canDeleteItem())
+        {
+            UUID id = deleteItem();
+            if(id!= null)
+            {
+                _ItemServices.delete(deleteItem());
+            } 
+        }
+    }
    
     
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
@@ -226,9 +238,9 @@ public class jViewItems extends javax.swing.JPanel {
     }//GEN-LAST:event_jBackMouseClicked
 
     private void jadditemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jadditemMouseClicked
-       if(_jMainPage.canCreateItem()) {
+        if(_jMainPage.canCreateItem()) {
            _jHomePage.switchPanels(_jNewItem);
-        _jNewItem.jNameField.grabFocus();
+           _jNewItem.jNameField.grabFocus();
        }
     }//GEN-LAST:event_jadditemMouseClicked
 
@@ -238,15 +250,7 @@ public class jViewItems extends javax.swing.JPanel {
     }//GEN-LAST:event_jsearchitemsKeyTyped
 
     private void jdeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jdeleteMouseClicked
-       
-        if(_jMainPage.canDeleteItem())
-        {
-            UUID id = deleteItem();
-            if(id!= null)
-            {
-                _ItemServices.delete(deleteItem());
-            } 
-        }
+        deleteButton();
     }//GEN-LAST:event_jdeleteMouseClicked
 
     private void jToggleSortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleSortMouseClicked
