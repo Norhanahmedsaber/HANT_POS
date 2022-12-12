@@ -1,6 +1,7 @@
 
 package Gui;
 
+import Gui.Users.jNewUsers;
 import Gui.Items.jNewItem;
 import Gui.Customers.jNewCustomer;
 import Gui.Logs.jShowLogs;
@@ -20,7 +21,7 @@ public class jMainPage extends javax.swing.JPanel {
         _jViewItems = new jViewItems(jhp, this);
         _jViewCustomers = new jViewCustomers(jhp, this);
         _jShowLogs = new jShowLogs(jhp, this);
-        _jSignUpPage = new jSignUpPage(jhp,this);
+        _jSignUpPage = new jNewUsers(jhp,this);
         _jViewUsers = new jViewUsers(jhp , this);
         _jcreaterole = new jcreaterole(jhp, this);
         _jViewRoles = new jViewRoles(jhp, this);
@@ -401,7 +402,7 @@ public class jMainPage extends javax.swing.JPanel {
     private final jViewRoles _jViewRoles;
     private final jcreaterole _jcreaterole;
     private final jViewUsers _jViewUsers;
-    private final jSignUpPage _jSignUpPage;
+    private final jNewUsers _jSignUpPage;
     private final jNewCustomer _jNewCustomer;
     private final jViewCustomers _jViewCustomers;
     private final jViewItems _jViewItems;
