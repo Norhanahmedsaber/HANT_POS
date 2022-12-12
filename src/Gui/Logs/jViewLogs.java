@@ -22,8 +22,9 @@ public class jViewLogs extends javax.swing.JPanel {
     }
     public void renderData() { 
         String[] cols = {"ID","User Name", "Action", "Acted On" ,"Date"}; 
-        DefaultTableModel model = new DefaultTableModel(cols, 0); 
-        jLogsTable.setModel(model); 
+        DefaultTableModel model = (DefaultTableModel) jLogsTable.getModel();
+        model.setColumnIdentifiers(cols);
+        model.setRowCount(0);
         ArrayList<Log> logs = _LogServices.getAll();
         if(!logs.isEmpty()) { 
             String searchName = jSearchField.getText(); 
@@ -103,6 +104,10 @@ public class jViewLogs extends javax.swing.JPanel {
             }
         });
 
+        jLogsTable.setBackground(new java.awt.Color(153, 153, 255));
+        jLogsTable.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 255, 102)));
+        jLogsTable.setFont(new java.awt.Font("Edwardian Script ITC", 0, 18)); // NOI18N
+        jLogsTable.setForeground(new java.awt.Color(255, 204, 102));
         jLogsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -113,7 +118,15 @@ public class jViewLogs extends javax.swing.JPanel {
             new String [] {
                 "Id", "User Name", "Action", "Acted On", "Date"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jLogsTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLogsTableMouseClicked(evt);
@@ -131,7 +144,7 @@ public class jViewLogs extends javax.swing.JPanel {
         jLabel3.setText("Details:");
 
         jLogDetails.setColumns(20);
-        jLogDetails.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLogDetails.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLogDetails.setRows(5);
         jScrollPane1.setViewportView(jLogDetails);
 
