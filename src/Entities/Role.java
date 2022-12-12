@@ -7,7 +7,7 @@ public class Role {
     public UUID id;
     public String name;
     public boolean canCreateCustomer;
-    public boolean canViewCustomers;
+    public boolean canViewCustomers; 
     public boolean canDeleteCustomer;
     public boolean canUpdateCustomer;
     public boolean canCreateItem;

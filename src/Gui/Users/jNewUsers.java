@@ -1,7 +1,9 @@
-package Gui;
+package Gui.Users;
 
 import Entities.Role;
 import Entities.User;
+import Gui.jHomePage;
+import Gui.jMainPage;
 import Services.AccountServices;
 import Services.RoleServices;
 import java.awt.event.KeyEvent;
@@ -9,8 +11,8 @@ import java.util.ArrayList;
 import java.util.UUID;
 import javax.swing.DefaultComboBoxModel;
 
-public class jSignUpPage extends javax.swing.JPanel {
-    public jSignUpPage(jHomePage jhp , jMainPage jmp) {
+public class jNewUsers extends javax.swing.JPanel {
+    public jNewUsers(jHomePage jhp , jMainPage jmp) {
         initComponents();
         _jHomePage = jhp;
         _jMainPage = jmp;

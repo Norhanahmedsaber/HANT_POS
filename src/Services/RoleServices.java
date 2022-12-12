@@ -8,26 +8,29 @@ public class RoleServices implements IRoleServices{
 
     public static ArrayList<Role> roles = new ArrayList<Role>();
     public RoleServices() {
-        Role role = new Role();
-        role.name = "Admin";
-        role.canViewUsers = true;
-        role.canCreateCustomer = true;
-        role.canCreateItem = true;
-        role.canCreateRole = true;
-        role.canCreateUser = true;
-        role.canDeleteCustomer = true;
-        role.canDeleteItem = true;
-        role.canDeleteLog = true;
-        role.canDeleteUser = true;
-        role.canUpdateCustomer = true;
-        role.canUpdateItem = true;
-        role.canUpdateRole = true;
-        role.canViewCustomers = true;
-        role.canViewItems = true;
-        role.canViewLogs = true;
-        role.canViewUsers = true;
-        role.canViewRoles = true;
-        roles.add(role);
+        if(roles.isEmpty()) {
+            Role role = new Role() {{
+            name = "Admin";
+            canViewUsers = true;
+            canCreateCustomer = true;
+            canCreateItem = true;
+            canCreateRole = true;
+            canCreateUser = true;
+            canDeleteCustomer = true;
+            canDeleteItem = true;
+            canDeleteLog = true;
+            canDeleteUser = true;
+            canUpdateCustomer = true;
+            canUpdateItem = true;
+            canUpdateRole = true;
+            canViewCustomers = true;
+            canViewItems = true;
+            canViewLogs = true;
+            canViewUsers = true;
+            canViewRoles = true;
+            }};
+            roles.add(role);
+        }
     }
     @Override
     public void create(Role role) {
@@ -41,7 +44,10 @@ public class RoleServices implements IRoleServices{
 
     @Override
     public void update(UUID roleId, Role role) {
-        
+        for(Role rolee : roles) {
+            if(rolee.id == roleId) {
+            }
+        }
     }
 
     @Override

@@ -14,7 +14,7 @@ public class FilterUsers {
         ArrayList <User> customerAfterSearch = new ArrayList<User>();
         for( int i=0 ; i<customers.size() ; i++)
         {
-            if(customers.get(i).name.contains(searchName.toLowerCase().trim()))
+            if(customers.get(i).name.trim().contains(searchName.toLowerCase().trim()))
             {
                 customerAfterSearch.add(customers.get(i));
             }
@@ -44,7 +44,28 @@ public class FilterUsers {
             Collections.reverse(users);
             return users ;
 
-        } 
+        }
+       else if (sortedBy=="Role"&&toggle==true)
+       {
+           Collections.sort(users,new Comparator<User>(){
+               public int compare(User c1 , User c2)
+               {
+                   return c1.role.name.compareTo(c2.role.name);
+               }
+           });
+       }
+        else if (sortedBy=="Role"&&toggle==false)
+       {
+           Collections.sort(users,new Comparator<User>(){
+               public int compare(User c1 , User c2)
+               {
+                   return c1.role.name.compareTo(c2.role.name);
+               }
+           });
+           Collections.reverse(users);
+           return users;
+       }
+
 
       return users ;
    }

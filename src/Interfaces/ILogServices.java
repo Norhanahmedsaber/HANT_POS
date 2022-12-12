@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public interface ILogServices {
-    void deleteLog(Log log);
-    UUID getById(UUID idlog);
-    ArrayList<Log> getALL();
+    void deleteLog(UUID logId);
+    Log getById(UUID idlog);
     void create(Log log);
+    ArrayList<Log> getAll();
     
 }

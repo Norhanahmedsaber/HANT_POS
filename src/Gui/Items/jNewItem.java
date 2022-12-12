@@ -16,6 +16,7 @@ public class jNewItem extends javax.swing.JPanel {
         _jHomePage = jhp;
         _parent = parent;
         _itemServices = new ItemServices();
+        
        
     }
     public void resetNewitemPage(){
@@ -102,12 +103,15 @@ public class jNewItem extends javax.swing.JPanel {
         item.createdAt=new Date(); 
         item.id=UUID.randomUUID();
         _itemServices.create(item);
+        _jHomePage.createLog("create", "Item", item.name);
     }
     public void addItemButton(){
         if(!checkAllValidations()){
            return;
         }else
         saveItemData();
+        
+        
         jAddedSuccessfuly.setText("Added Succesfully");
         resetNewitemPage();
     }
@@ -268,12 +272,11 @@ public class jNewItem extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
-      if(_parent instanceof jViewItems)
-      {
+        if(_parent instanceof jViewItems)
+        {
           jViewItems viewitems= (jViewItems) _parent;
-          
           viewitems.showItems();
-      }
+        }
         _jHomePage.switchPanels(_parent);
     }//GEN-LAST:event_jBackMouseClicked
 

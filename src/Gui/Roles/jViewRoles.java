@@ -7,6 +7,7 @@ import Services.RoleServices;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JPanel;
+import utils.filterRoles;
 
 public class jViewRoles extends javax.swing.JPanel {
 
@@ -15,18 +16,27 @@ public class jViewRoles extends javax.swing.JPanel {
         _jHomePage = jhp;
         _parent= parent;  
         _RoleServices = new RoleServices();
-          _jNewRole = new jNewRole(jhp, this);
-        
+        _jNewRole = new jNewRole(jhp, this);
+        _filterRoles = new filterRoles();
     }
     public void clearViewRoles() {
         jSearch.setText("");
         renderData();
     }
+    Role getSelectedRole() {
+        return null;
+    }
     public void renderData() {
         DefaultListModel model = new DefaultListModel();
         ArrayList<Role> roles = _RoleServices.getAll();
-        for( Role role : roles ) {
-            model.addElement(role.name);
+        if(!roles.isEmpty()) {
+            String searchName = jSearch.getText().trim();
+            ArrayList<Role> filteredRoles = _filterRoles.filter(roles, searchName);
+            if(!filteredRoles.isEmpty()) {
+                for( Role role : roles ) {
+                    model.addElement(role.name);
+                }
+            }
         }
         jRoles.setModel(model);
     }
@@ -116,16 +126,17 @@ public class jViewRoles extends javax.swing.JPanel {
     private void jEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jEditMouseClicked
        jMainPage MainPage=(jMainPage)_parent;
             if(MainPage.canUpdateRole()) {
-            _jNewRole.DoneButton();
-            _jHomePage.switchPanels(_jNewRole);
-           
-        }
+                _jNewRole.DoneButton(); 
+                _jNewRole._jRole = getSelectedRole();
+                _jHomePage.switchPanels(_jNewRole);
+            }
     }//GEN-LAST:event_jEditMouseClicked
 
     private void jSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSearchKeyTyped
         renderData();
     }//GEN-LAST:event_jSearchKeyTyped
     private jNewRole _jNewRole;
+    private filterRoles _filterRoles;
     private RoleServices _RoleServices;
     private jHomePage _jHomePage;
     private final JPanel _parent;
