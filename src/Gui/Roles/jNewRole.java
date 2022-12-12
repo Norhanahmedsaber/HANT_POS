@@ -3,9 +3,9 @@ import Entities.Role;
 import Gui.jHomePage;
 import Gui.jMainPage;
 import Services.RoleServices;
-public class jcreaterole extends javax.swing.JPanel {
+public class jNewRole extends javax.swing.JPanel {
 
-    public jcreaterole(jHomePage jhp,jMainPage jmp) {
+    public jNewRole(jHomePage jhp,jMainPage jmp) {
         initComponents();
         _jRole=new Role();
         _jHomePage=jhp;
