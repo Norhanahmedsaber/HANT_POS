@@ -45,21 +45,24 @@ public class jChooseItem extends javax.swing.JPanel {
         jAdd.setEnabled(true);
         jBack.setEnabled(true);
         jItems.setEnabled(true);
+        _jViewCustomer.updateflag=!_jViewCustomer.updateflag;
     }
     void update()
     {
+       
         jedit.setEnabled(true);
         jupdate.setEnabled(false);
         jcancel.setEnabled(false);
         jRemove.setEnabled(false);
-        jBack.setEnabled(false);
+        jBack.setEnabled(true);
         jAdd.setEnabled(false);
         _jViewCustomer.updateflag=!_jViewCustomer.updateflag;
         renderData();
     }
     void Cancel()
     {
-         jedit.setEnabled(true);
+        jedit.setEnabled(true);
+        jBack.setEnabled(true);
         jupdate.setEnabled(false);
         jcancel.setEnabled(false);
         jRemove.setEnabled(false);
@@ -395,13 +398,16 @@ public class jChooseItem extends javax.swing.JPanel {
     }//GEN-LAST:event_jDoneMouseClicked
 
     private void jupdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jupdateMouseClicked
+        setDefault();
         update();
     }//GEN-LAST:event_jupdateMouseClicked
      
     private void jeditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jeditMouseClicked
+       setDefault();
         edit();
     }//GEN-LAST:event_jeditMouseClicked
     private void jcancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcancelMouseClicked
+        setDefault();
         Cancel();
     }//GEN-LAST:event_jcancelMouseClicked
      private final JPanel _parent;
