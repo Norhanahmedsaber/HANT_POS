@@ -31,8 +31,13 @@ public class jNewRole extends javax.swing.JPanel {
         JviewLogs.setSelected(false);
         jViewUser.setSelected(false);        
     }
-   public void assighnPermissions()
+   public void assignPermissions()
    {   
+       Role newRole = getData();
+       _RoleServices.create(newRole); 
+       _jHomePage.createLog("Created", "Role", newRole.name);
+   }
+   public Role getData() {
        Role newRole=new Role();
        newRole.name=jRoleNameField.getText();
        newRole.canCreateCustomer=JCreateCustomer.isSelected();
@@ -47,10 +52,11 @@ public class jNewRole extends javax.swing.JPanel {
        newRole.canViewItems=jViewItem.isSelected();
        newRole.canViewLogs=JviewLogs.isSelected();
        newRole.canViewUsers=jViewUser.isSelected();  
-       _RoleServices.create(newRole);    
+       return newRole;
    }
    public void renderData()
    {
+       jRoleNameField.setText(_jRole.name);
        if(_jRole.canCreateCustomer)
        { 
            JCreateCustomer.setSelected(true);
@@ -102,18 +108,36 @@ public class jNewRole extends javax.swing.JPanel {
 
    }
    public void DoneButton() 
-   { if (_parent instanceof jViewRoles )
+   { 
+        if (_parent instanceof jViewRoles )
         {  
-                jViewRoles ViewRoles= (jViewRoles) _parent;            
-                jDone.setText("Update");
+            jViewRoles ViewRoles= (jViewRoles) _parent;   
+            jRoleNameField.setEditable(false);
+            jDone.setText("Update");
         }
         else 
-      {
-          
-           jDone.setText("Create");
-      }
+        {
+            jDone.setText("Create");
+        }
    }
-  
+   private void DoneButtonClicked() {
+       if (_parent instanceof jMainPage )
+        {
+            jMainPage MainPage=(jMainPage)_parent;
+            assignPermissions();
+            jChosedPermissions.setText("Permissions are assigned successfully");
+            clearCreateRolePage();
+        }
+        else 
+        {
+            jViewRoles ViewRoles= (jViewRoles) _parent;
+            renderData();
+            jChosedPermissions.setText("Updated successfully");
+            Role role = getData();
+            _jHomePage.createLog("Updated", "Role", role.name);
+            _RoleServices.update(_jRole.id,role);   
+        }
+   }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -299,22 +323,7 @@ public class jNewRole extends javax.swing.JPanel {
     }//GEN-LAST:event_JviewLogsMouseClicked
 
     private void jDoneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDoneMouseClicked
-       if (_parent instanceof jMainPage )
-        {
-            jMainPage MainPage=(jMainPage)_parent;
-            assighnPermissions();
-            jChosedPermissions.setText("Permissions are assigned successfully");
-            clearCreateRolePage();
-        }
-        else 
-      {
-          jViewRoles ViewRoles= (jViewRoles) _parent;
-          renderData();
-          jChosedPermissions.setText("Updated successfully");
-          //_RoleServices.update(_jRole.id,role);   
-      }
-
-        
+        DoneButtonClicked();
     }//GEN-LAST:event_jDoneMouseClicked
 
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
