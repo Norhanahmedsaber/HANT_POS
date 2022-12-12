@@ -18,8 +18,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jScrollPane2" pref="518" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jScrollPane2" alignment="1" pref="519" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel3" min="-2" pref="57" max="-2" attributes="0"/>
@@ -29,9 +29,9 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jSearchName" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="jSortBy" min="-2" pref="93" max="-2" attributes="0"/>
+                              <Component id="jSortBy" max="32767" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jToggleSort" min="-2" pref="47" max="-2" attributes="0"/>
+                              <Component id="jToggleSort" min="-2" pref="55" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -40,11 +40,13 @@
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jDelete" min="-2" pref="150" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                      <Component id="jviewCustomer" min="-2" pref="142" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jBack" min="-2" pref="150" max="-2" attributes="0"/>
+                      <Component id="jBackButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      <Component id="jDeleteButton" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jShowButton" min="-2" pref="142" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      <Component id="jAddButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -68,14 +70,15 @@
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-              <Component id="jLabel1" max="32767" attributes="0"/>
+              <Component id="jLabel1" pref="38" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane2" min="-2" pref="110" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jBack" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jDelete" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jviewCustomer" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jDeleteButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jShowButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBackButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jAddButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
@@ -95,7 +98,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="sort by :"/>
+        <Property name="text" type="java.lang.String" value="Sort by :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="jSortBy">
@@ -119,20 +122,20 @@
         <Property name="text" type="java.lang.String" value="All Customers :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jBack">
+    <Component class="javax.swing.JButton" name="jBackButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Back"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jBackMouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jBackButtonMouseClicked"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jDelete">
+    <Component class="javax.swing.JButton" name="jDeleteButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Delete"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jDeleteMouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jDeleteButtonMouseClicked"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -167,12 +170,20 @@
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jToggleSortMouseClicked"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jviewCustomer">
+    <Component class="javax.swing.JButton" name="jShowButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Show Customer"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jviewCustomerMouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jShowButtonMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jAddButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Add Customer"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jAddButtonMouseClicked"/>
       </Events>
     </Component>
   </SubComponents>

@@ -1,6 +1,10 @@
 package Gui;
 
+import Entities.Log;
 import Entities.User;
+import Services.LogServices;
+import java.util.Date;
+import java.util.UUID;
 import javax.swing.JPanel;
 public class jHomePage extends javax.swing.JFrame {
 
@@ -8,8 +12,19 @@ public class jHomePage extends javax.swing.JFrame {
         initComponents();
         _jLoginPage = new jLoginPage(this);
         loginUser = null;
+        _LogServices = new LogServices();
     }
-
+    public void createLog(String action, String actedOn, String actedOnName ){
+        Log log =new Log();
+        log.id= UUID.randomUUID();
+        log.userName =loginUser.name;
+        log.userRole =loginUser.role.name;
+        log.action = action;
+        log.actedOn = actedOn;
+        log.actedOnName = actedOnName;
+        log.date= new Date(); 
+        _LogServices.create(log);
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -105,6 +120,8 @@ public class jHomePage extends javax.swing.JFrame {
             }
         });
     }
+    
+    private final LogServices _LogServices;
     public User loginUser;
     private final jLoginPage _jLoginPage;
     // Variables declaration - do not modify//GEN-BEGIN:variables

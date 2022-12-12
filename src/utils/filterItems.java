@@ -21,14 +21,12 @@ public class filterItems {
             boolean describtion = items.get(i).description.contains(search.toLowerCase().trim());
             boolean creatAt = items.get(i).createdAt.equals(search.toLowerCase().trim());
             boolean price = Integer.toString(items.get(i).price).contains(search.toLowerCase().trim());
-           if(name || catgory || describtion ||creatAt || price )
-           {      
-               itemsAftersearch.add(items.get(i));
-                
-           }
+            if(name || catgory || describtion ||creatAt || price )
+            {      
+                itemsAftersearch.add(items.get(i));   
+            }
         }
-        return itemsAftersearch;
-        
+        return itemsAftersearch;   
     }
     
     
