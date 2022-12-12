@@ -49,6 +49,8 @@ public class jViewUsers extends javax.swing.JPanel {
             DefaultTableModel m = (DefaultTableModel) jUsersTable.getModel();
               if(jUsersTable.getSelectedRow() != -1) {
                 UUID id = (UUID) m.getValueAt(jUsersTable.getSelectedRow(), 0);
+                String username = (String) m.getValueAt(jUsersTable.getSelectedRow(), 1);
+                _jHomePage.createLog("Deleted", "User", username);
                 m.removeRow(jUsersTable.getSelectedRow());
                 return id;
             }else{
