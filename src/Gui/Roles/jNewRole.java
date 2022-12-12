@@ -63,8 +63,7 @@ public class jNewRole extends javax.swing.JPanel {
        role.canViewItems=jViewItem.isSelected();
        role.canViewLogs=JviewLogs.isSelected();
        role.canViewUsers=jViewUser.isSelected();  
-       _RoleServices.update(role.id,role);    
-       
+       _RoleServices.update(role.id,role);
    }
    public void DoneButton() 
    { if (_parent instanceof jViewRoles )
@@ -77,6 +76,9 @@ public class jNewRole extends javax.swing.JPanel {
           
            jDone.setText("Create");
       }
+   }
+   public void renderData() {
+       
    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -271,26 +273,27 @@ public class jNewRole extends javax.swing.JPanel {
             clearCreateRolePage();
         }
         else 
-      {
-          jViewRoles ViewRoles= (jViewRoles) _parent;
+        {
+            jViewRoles ViewRoles= (jViewRoles) _parent;
             Role role=new Role();
-          assignUpdatedData(role);
-      }
+            assignUpdatedData(role);
+        }
         
     }//GEN-LAST:event_jDoneMouseClicked
 
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
         if (_parent instanceof jMainPage )
         {
-            jMainPage MainPage=(jMainPage)_parent;
             jChosedPermissions.setText("");
             clearCreateRolePage();
              _jHomePage.switchPanels(_parent);
         }
         else 
       {
-          jViewRoles ViewRoles= (jViewRoles) _parent;
-         _jHomePage.switchPanels(_parent);
+        jViewRoles ViewRoles= (jViewRoles) _parent;
+        clearCreateRolePage();
+        ViewRoles.renderData();
+        _jHomePage.switchPanels(_parent);
       }
        
       
