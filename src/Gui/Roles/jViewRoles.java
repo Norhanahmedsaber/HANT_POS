@@ -23,6 +23,9 @@ public class jViewRoles extends javax.swing.JPanel {
         jSearch.setText("");
         renderData();
     }
+    Role getSelectedRole() {
+        return null;
+    }
     public void renderData() {
         DefaultListModel model = new DefaultListModel();
         ArrayList<Role> roles = _RoleServices.getAll();
@@ -123,10 +126,10 @@ public class jViewRoles extends javax.swing.JPanel {
     private void jEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jEditMouseClicked
        jMainPage MainPage=(jMainPage)_parent;
             if(MainPage.canUpdateRole()) {
-            _jNewRole.DoneButton(); 
-            _jHomePage.switchPanels(_jNewRole);
-           
-        }
+                _jNewRole.DoneButton(); 
+                _jNewRole._jRole = getSelectedRole();
+                _jHomePage.switchPanels(_jNewRole);
+            }
     }//GEN-LAST:event_jEditMouseClicked
 
     private void jSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSearchKeyTyped

@@ -49,21 +49,57 @@ public class jNewRole extends javax.swing.JPanel {
        newRole.canViewUsers=jViewUser.isSelected();  
        _RoleServices.create(newRole);    
    }
-   public void assignUpdatedData(Role role)
+   public void renderData()
    {
-       role.canCreateCustomer=JCreateCustomer.isSelected();
-       role.canCreateItem=jCreateItem.isSelected();
-       role.canCreateLog=jCreateLogs.isSelected();
-       role.canCreateUser=jCreateUser.isSelected();
-       role.canDeleteCustomer=JDeleteCustomer.isSelected();
-       role.canDeleteItem=jDeleteItem.isSelected();
-       role.canUpdateCustomer=jUpdateCustomer.isSelected();
-       role.canUpdateItem=jUpdateItem.isSelected();
-       role.canViewCustomers=jViewCustomer.isSelected();
-       role.canViewItems=jViewItem.isSelected();
-       role.canViewLogs=JviewLogs.isSelected();
-       role.canViewUsers=jViewUser.isSelected();  
-       _RoleServices.update(role.id,role);
+       if(_jRole.canCreateCustomer)
+       { 
+           JCreateCustomer.setSelected(true);
+       }
+       if(_jRole.canCreateItem)
+       {
+           jCreateItem.setSelected(true);
+       }
+       if(_jRole.canCreateLog)
+       {
+           jCreateLogs.setSelected(true);
+       }
+       if(_jRole.canCreateUser)
+       {
+           jCreateUser.setSelected(true);
+       }
+       if(_jRole.canDeleteCustomer)
+       {
+           JDeleteCustomer.setSelected(true);
+       }
+       if(_jRole.canDeleteItem)
+       {
+           jDeleteItem.setSelected(true);
+       }
+       if(_jRole.canUpdateCustomer)
+       {
+           jUpdateCustomer.setSelected(true);
+       }
+       if(_jRole.canUpdateItem)
+       {
+           jUpdateItem.setSelected(true);
+       }
+      if(_jRole.canViewCustomers)
+      {
+          jViewCustomer.setSelected(true);
+      }
+      if( _jRole.canViewItems)
+      {
+          jViewItem.setSelected(true);
+      }
+      if( _jRole.canViewLogs)
+      {
+          JviewLogs.setSelected(true);
+      }
+       if(_jRole.canViewUsers)
+       {
+           jViewUser.setSelected(true);
+       }
+
    }
    public void DoneButton() 
    { if (_parent instanceof jViewRoles )
@@ -77,9 +113,7 @@ public class jNewRole extends javax.swing.JPanel {
            jDone.setText("Create");
       }
    }
-   public void renderData() {
-       
-   }
+  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -273,11 +307,13 @@ public class jNewRole extends javax.swing.JPanel {
             clearCreateRolePage();
         }
         else 
-        {
-            jViewRoles ViewRoles= (jViewRoles) _parent;
-            Role role=new Role();
-            assignUpdatedData(role);
-        }
+      {
+          jViewRoles ViewRoles= (jViewRoles) _parent;
+          renderData();
+          jChosedPermissions.setText("Updated successfully");
+          //_RoleServices.update(_jRole.id,role);   
+      }
+
         
     }//GEN-LAST:event_jDoneMouseClicked
 
@@ -307,7 +343,7 @@ public class jNewRole extends javax.swing.JPanel {
              
     }//GEN-LAST:event_JCreateCustomerActionPerformed
     
-    private Role _jRole;
+    public Role _jRole;
     //private final jMainPage _jMainPage;
     //private final jViewRoles _jViewRoles;
     private final RoleServices _RoleServices;
