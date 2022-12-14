@@ -53,8 +53,7 @@ public class jNewRole extends javax.swing.JPanel {
    }
   
    public void DoneButton(){ 
-        if (_parent instanceof jViewRoles ){  
-            jViewRoles ViewRoles= (jViewRoles) _parent;   
+        if (_parent instanceof jViewRoles ){   
             jRoleNameField.setEditable(false);
             jDone.setText("Update");
         }
@@ -64,19 +63,69 @@ public class jNewRole extends javax.swing.JPanel {
    }
    private void DoneButtonClicked(){
         if (_parent instanceof jMainPage ){
-            jMainPage MainPage=(jMainPage)_parent;
             assignPermissions();
             jAddedRoleSuccessfully.setText("Permissions are assigned successfully");
             clearCreateRolePage();
         }
         else{
-            jViewRoles ViewRoles= (jViewRoles) _parent;
             jAddedRoleSuccessfully.setText("Updated successfully");
             Role role = getData();
             _jHomePage.createLog("Updated", "Role", role.name);
             _RoleServices.update(_jRole.id,role);   
           
         }
+   }
+   public void renderData(){
+       jRoleNameField.setText(_jRole.name);
+       if(_jRole.canCreateCustomer)
+       { 
+           JCreateCustomer.setSelected(true);
+       }
+       if(_jRole.canCreateItem)
+       {
+           jCreateItem.setSelected(true);
+       }
+       if(_jRole.canCreateLog)
+       {
+           jCreateLogs.setSelected(true);
+       }
+       if(_jRole.canCreateUser)
+       {
+           jCreateUser.setSelected(true);
+       }
+       if(_jRole.canDeleteCustomer)
+       {
+           JDeleteCustomer.setSelected(true);
+       }
+       if(_jRole.canDeleteItem)
+       {
+           jDeleteItem.setSelected(true);
+       }
+       if(_jRole.canUpdateCustomer)
+       {
+           jUpdateCustomer.setSelected(true);
+       }
+       if(_jRole.canUpdateItem)
+       {
+           jUpdateItem.setSelected(true);
+       }
+      if(_jRole.canViewCustomers)
+      {
+          jViewCustomer.setSelected(true);
+      }
+      if( _jRole.canViewItems)
+      {
+          jViewItem.setSelected(true);
+      }
+      if( _jRole.canViewLogs)
+      {
+          JviewLogs.setSelected(true);
+      }
+       if(_jRole.canViewUsers)
+       {
+           jViewUser.setSelected(true);
+       }
+
    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -316,7 +365,6 @@ public class jNewRole extends javax.swing.JPanel {
        
       
     }//GEN-LAST:event_jBackMouseClicked
-
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         
         if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
