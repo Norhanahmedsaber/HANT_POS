@@ -46,7 +46,8 @@ public class jViewLogs extends javax.swing.JPanel {
             m.removeRow(jLogsTable.getSelectedRow());
              _LogServices.deleteLog(id);
              jDeleteMessage.setText("Deleted Successfully");
-        }
+        }else{
+              jDeleteMessage.setText("Error! Please Select Log");}
     }
     public Log getSelectedLog(){
         int row = jLogsTable.getSelectedRow();//check ! -1
@@ -86,18 +87,23 @@ public class jViewLogs extends javax.swing.JPanel {
                 jBackMouseClicked(evt);
             }
         });
-        jBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBackActionPerformed(evt);
-            }
-        });
 
         jLabel1.setText("Search :");
 
         jLabel2.setText("SortBy:");
 
         jSortByCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User Name", "Action", "Acted On", "Date" }));
+        jSortByCombo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jSortByComboMouseClicked(evt);
+            }
+        });
 
+        jSearchField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jSearchFieldMouseClicked(evt);
+            }
+        });
         jSearchField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jSearchFieldKeyTyped(evt);
@@ -216,6 +222,7 @@ public class jViewLogs extends javax.swing.JPanel {
 
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
         _jHomePage.switchPanels(_jMainPage);
+        jDeleteMessage.setText("");
     }//GEN-LAST:event_jBackMouseClicked
 
     private void jDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDeleteMouseClicked
@@ -225,11 +232,8 @@ public class jViewLogs extends javax.swing.JPanel {
     private void jToggleSortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleSortMouseClicked
         toggle = !toggle;
         renderData();
+        jDeleteMessage.setText("");
     }//GEN-LAST:event_jToggleSortMouseClicked
-
-    private void jBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBackActionPerformed
 
     private void jLogsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLogsTableMouseClicked
         showLogDetails(getSelectedLog());
@@ -238,6 +242,14 @@ public class jViewLogs extends javax.swing.JPanel {
     private void jSearchFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSearchFieldKeyTyped
         renderData();
     }//GEN-LAST:event_jSearchFieldKeyTyped
+
+    private void jSearchFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchFieldMouseClicked
+        jDeleteMessage.setText("");
+    }//GEN-LAST:event_jSearchFieldMouseClicked
+
+    private void jSortByComboMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSortByComboMouseClicked
+        jDeleteMessage.setText("");
+    }//GEN-LAST:event_jSortByComboMouseClicked
     
    
     private boolean toggle ;

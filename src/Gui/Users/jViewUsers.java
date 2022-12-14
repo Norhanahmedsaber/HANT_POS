@@ -54,7 +54,8 @@ public class jViewUsers extends javax.swing.JPanel {
                 m.removeRow(jUsersTable.getSelectedRow());
                 _UserServices.delete(id);
                 jDeleteMessage.setText("Deleted Successfully");
-              }
+              }else{
+              jDeleteMessage.setText("Error! Please Select User");}
     }
     private User selectedUser(){ 
         DefaultTableModel m = (DefaultTableModel) jUsersTable.getModel();
@@ -107,6 +108,11 @@ public class jViewUsers extends javax.swing.JPanel {
         });
 
         jSortByCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Name", "Role" }));
+        jSortByCombo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jSortByComboMouseClicked(evt);
+            }
+        });
         jSortByCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jSortByComboActionPerformed(evt);
@@ -124,6 +130,11 @@ public class jViewUsers extends javax.swing.JPanel {
 
         jSearchLabel.setText("Search:");
 
+        jSearchField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jSearchFieldMouseClicked(evt);
+            }
+        });
         jSearchField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jSearchFieldKeyTyped(evt);
@@ -227,6 +238,7 @@ public class jViewUsers extends javax.swing.JPanel {
 
     private void jBackButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackButtonMouseClicked
         _jHomePage.switchPanels(_jMainPage);
+        jDeleteMessage.setText("");
     }//GEN-LAST:event_jBackButtonMouseClicked
 
     private void jDeleteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDeleteButtonMouseClicked
@@ -246,6 +258,7 @@ public class jViewUsers extends javax.swing.JPanel {
     private void jToggleSortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleSortMouseClicked
         toggle = !toggle;
         renderData();
+        jDeleteMessage.setText("");
     }//GEN-LAST:event_jToggleSortMouseClicked
 
     private void jShowButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jShowButtonMouseClicked
@@ -258,6 +271,7 @@ public class jViewUsers extends javax.swing.JPanel {
             _jViewUser.disableUserFields();
             _jHomePage.switchPanels(_jViewUser);
          }
+         jDeleteMessage.setText("");
     }//GEN-LAST:event_jShowButtonMouseClicked
 
     private void jAddButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAddButtonMouseClicked
@@ -265,7 +279,16 @@ public class jViewUsers extends javax.swing.JPanel {
             _jHomePage.switchPanels(_jSignUpPage);
             _jSignUpPage.jNameField.grabFocus();
         }
+        jDeleteMessage.setText("");
     }//GEN-LAST:event_jAddButtonMouseClicked
+
+    private void jSearchFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchFieldMouseClicked
+      jDeleteMessage.setText("");
+    }//GEN-LAST:event_jSearchFieldMouseClicked
+
+    private void jSortByComboMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSortByComboMouseClicked
+        jDeleteMessage.setText("");
+    }//GEN-LAST:event_jSortByComboMouseClicked
 
     private boolean toggle ;
     private final UserServices _UserServices;

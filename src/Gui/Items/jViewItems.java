@@ -45,11 +45,21 @@ public class jViewItems extends javax.swing.JPanel {
         jDeleteMessage = new javax.swing.JLabel();
 
         jsortitemsby.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Name", "Date", "Category", "Price" }));
+        jsortitemsby.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jsortitemsbyMouseClicked(evt);
+            }
+        });
 
         jLabel1.setText("All Items :");
 
         jLabel2.setText("Search:");
 
+        jsearchitems.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jsearchitemsMouseClicked(evt);
+            }
+        });
         jsearchitems.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jsearchitemsKeyTyped(evt);
@@ -215,7 +225,8 @@ public class jViewItems extends javax.swing.JPanel {
             _jHomePage.createLog("Deleted", "Item", item.name);
             _ItemServices.delete(id);
             jDeleteMessage.setText("Item Deleted Successfully");
-    }
+    }else{
+              jDeleteMessage.setText("Error! Please Select Item");}
     }
     public Item getSelectedItem(){
         int row = jItem.getSelectedRow();//check ! -1
@@ -231,6 +242,7 @@ public class jViewItems extends javax.swing.JPanel {
     
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
         _jHomePage.switchPanels(_jMainPage);
+        jDeleteMessage.setText("");
     }//GEN-LAST:event_jBackMouseClicked
 
     private void jadditemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jadditemMouseClicked
@@ -238,6 +250,7 @@ public class jViewItems extends javax.swing.JPanel {
            _jHomePage.switchPanels(_jNewItem);
            _jNewItem.jNameField.grabFocus();
        }
+        jDeleteMessage.setText("");
     }//GEN-LAST:event_jadditemMouseClicked
 
 
@@ -255,6 +268,7 @@ public class jViewItems extends javax.swing.JPanel {
     private void jToggleSortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleSortMouseClicked
        toggle = !toggle;
        showItems();
+       jDeleteMessage.setText("");
     }//GEN-LAST:event_jToggleSortMouseClicked
 
     private void jShowItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jShowItemMouseClicked
@@ -267,7 +281,16 @@ public class jViewItems extends javax.swing.JPanel {
         }else{
             jErrorShowItem.setText("Please choose item from table");
         }
+        jDeleteMessage.setText("");
     }//GEN-LAST:event_jShowItemMouseClicked
+
+    private void jsearchitemsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jsearchitemsMouseClicked
+       jDeleteMessage.setText("");
+    }//GEN-LAST:event_jsearchitemsMouseClicked
+
+    private void jsortitemsbyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jsortitemsbyMouseClicked
+       jDeleteMessage.setText("");
+    }//GEN-LAST:event_jsortitemsbyMouseClicked
 
     private boolean toggle;
     public final jViewItem _jViewItem;
