@@ -1,5 +1,5 @@
 package Gui.Customers;
-
+ 
 import Gui.Items.jChooseItem;
 import Entities.Customer;
 import Entities.Item;
@@ -279,7 +279,7 @@ public class jNewCustomer extends javax.swing.JPanel {
         }
         else 
         {
-           jMainPage MainPage=(jMainPage)_parent;
+            jMainPage MainPage=(jMainPage)_parent;
             _jHomePage.switchPanels(_parent);
             MainPage.jNewcustomer.grabFocus();
             jAddedCustomer.setText("");     

@@ -1,5 +1,5 @@
 package Gui;
-
+ 
 import Entities.User;
 import Services.AccountServices;
 import java.awt.event.KeyEvent;
@@ -117,7 +117,7 @@ public class jLoginPage extends javax.swing.JPanel {
             error.setText("password Is Empty!");
             return;
         }else error.setText("");
-            User user = _AccountServices.login(jusername.getText(),jpassword.getText());
+            User user = _AccountServices.login(jusername.getText().trim(),jpassword.getText().trim());
         if( user!=null )
         {
             clearLogINPage();

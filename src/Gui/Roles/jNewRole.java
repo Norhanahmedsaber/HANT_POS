@@ -6,7 +6,7 @@ import Services.RoleServices;
 import java.awt.event.KeyEvent;
 import javax.swing.JPanel;
 public class jNewRole extends javax.swing.JPanel {
-
+ 
    public jNewRole(jHomePage jhp,JPanel parent ) {
         initComponents();
         _jRole=new Role();

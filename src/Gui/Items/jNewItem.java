@@ -1,6 +1,4 @@
 package Gui.Items;
-
-import Gui.Items.jViewItems;
 import Entities.Item;
 import Gui.jHomePage;
 import Gui.jMainPage;
@@ -82,7 +80,7 @@ public class jNewItem extends javax.swing.JPanel {
         
         // is valid (Price)
         try {
-            Integer.parseInt(jPriceField.getText());
+            Integer.parseInt(jPriceField.getText().trim());
         }catch(NumberFormatException e) {
             jErrorPrice.setText("you must enter number.");
             return false;
@@ -100,10 +98,10 @@ public class jNewItem extends javax.swing.JPanel {
     }
     public void saveItemData(){
         Item item =  new Item();
-        item.price=Integer.parseInt(jPriceField.getText());
-        item.name=jNameField.getText();
-        item.category=jCatgoryField.getText();
-        item.description=jDescriptionField.getText();
+        item.price=Integer.parseInt(jPriceField.getText().trim());
+        item.name=jNameField.getText().trim();
+        item.category=jCatgoryField.getText().trim();
+        item.description=jDescriptionField.getText().trim();
         item.createdAt=new Date(); 
         item.id=UUID.randomUUID();
         _itemServices.create(item);
