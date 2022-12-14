@@ -233,11 +233,13 @@
         </Component>
         <Component class="javax.swing.JTextField" name="jNationalIdField">
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jNationalIdFieldMouseClicked"/>
             <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jNationalIdFieldKeyPressed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jNameField">
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jNameFieldMouseClicked"/>
             <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jNameFieldKeyPressed"/>
           </Events>
           <AuxValues>
@@ -246,26 +248,31 @@
         </Component>
         <Component class="javax.swing.JTextField" name="jPhoneNoField">
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPhoneNoFieldMouseClicked"/>
             <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jPhoneNoFieldKeyPressed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jIncomeField">
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jIncomeFieldMouseClicked"/>
             <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jIncomeFieldKeyPressed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jJobField">
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jJobFieldMouseClicked"/>
             <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jJobFieldKeyPressed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jCityField">
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jCityFieldMouseClicked"/>
             <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jCityFieldKeyPressed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jAgeField">
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jAgeFieldMouseClicked"/>
             <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jAgeFieldKeyPressed"/>
           </Events>
         </Component>
@@ -325,6 +332,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="jEmailField">
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jEmailFieldMouseClicked"/>
             <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jEmailFieldKeyPressed"/>
           </Events>
         </Component>

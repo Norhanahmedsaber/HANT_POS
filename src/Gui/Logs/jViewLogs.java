@@ -214,6 +214,7 @@ public class jViewLogs extends javax.swing.JPanel {
 
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
         _jHomePage.switchPanels(_jMainPage);
+        _jMainPage.jLog.grabFocus();
     }//GEN-LAST:event_jBackMouseClicked
 
     private void jDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDeleteMouseClicked
@@ -257,7 +258,7 @@ public class jViewLogs extends javax.swing.JPanel {
     private javax.swing.JTable jLogsTable;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jSearchField;
+    public javax.swing.JTextField jSearchField;
     private javax.swing.JComboBox<String> jSortByCombo;
     private javax.swing.JButton jToggleSort;
     // End of variables declaration//GEN-END:variables

@@ -218,6 +218,7 @@ public final class jViewCustomers extends javax.swing.JPanel  {
 
     private void jBackButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackButtonMouseClicked
         _jHomePage.switchPanels(_jMainPage);
+        _jMainPage.jViewcustomers.grabFocus();
     }//GEN-LAST:event_jBackButtonMouseClicked
 
 
@@ -254,6 +255,7 @@ public final class jViewCustomers extends javax.swing.JPanel  {
          { _jViewCustomer._chosencustomer=customer;
              _jViewCustomer.renderData();
              _jHomePage.switchPanels(_jViewCustomer);
+             _jViewCustomer.jNameField.grabFocus();
          }
     }//GEN-LAST:event_jShowButtonMouseClicked
 
@@ -281,7 +283,7 @@ public final class jViewCustomers extends javax.swing.JPanel  {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jSearchName;
+    public javax.swing.JTextField jSearchName;
     private javax.swing.JButton jShowButton;
     private javax.swing.JComboBox<String> jSortBy;
     private javax.swing.JButton jToggleSort;

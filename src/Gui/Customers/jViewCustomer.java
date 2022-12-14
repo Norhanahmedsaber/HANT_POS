@@ -662,6 +662,7 @@ public class jViewCustomer extends javax.swing.JPanel {
        if(!isEditing) {
            _jViewCustomers.renderData();
            _jHomePage.switchPanels(_jViewCustomers);
+           _jViewCustomers.jSearchName.grabFocus();
        }
     }//GEN-LAST:event_jBackMouseClicked
 
@@ -794,7 +795,7 @@ public class jViewCustomer extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jNameField;
+    public javax.swing.JTextField jNameField;
     private javax.swing.JTextField jNationalIdField;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jPhoneNoField;

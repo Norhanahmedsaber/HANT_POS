@@ -123,6 +123,8 @@ public class jViewRoles extends javax.swing.JPanel {
        jMainPage MainPage=(jMainPage)_parent;
         clearViewRoles();
         _jHomePage.switchPanels(_parent);
+        MainPage.jViewRoles.grabFocus();
+        
     }//GEN-LAST:event_jBackMouseClicked
 
     private void jEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jEditMouseClicked
@@ -150,6 +152,6 @@ public class jViewRoles extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList<String> jRoles;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jSearch;
+    public javax.swing.JTextField jSearch;
     // End of variables declaration//GEN-END:variables
 }
