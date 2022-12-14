@@ -92,7 +92,6 @@ public class jViewUser extends javax.swing.JPanel {
         jErrorName.setText("");
         jErrorPassword.setText("");
         jErrorUsername.setText("");
-        jUpdateUserSuccessfully.setText("");
         removeUpdateANdCancelButtons();
     }
     public void updateUserData(){
@@ -182,18 +181,33 @@ public class jViewUser extends javax.swing.JPanel {
 
         jPasswordLabel.setText("password");
 
+        jNameField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jNameFieldMouseClicked(evt);
+            }
+        });
         jNameField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jNameFieldKeyPressed(evt);
             }
         });
 
+        jUsernameField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jUsernameFieldMouseClicked(evt);
+            }
+        });
         jUsernameField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jUsernameFieldKeyPressed(evt);
             }
         });
 
+        jPasswordField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPasswordFieldMouseClicked(evt);
+            }
+        });
         jPasswordField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jPasswordFieldKeyPressed(evt);
@@ -201,6 +215,11 @@ public class jViewUser extends javax.swing.JPanel {
         });
 
         jRolesCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User", "Manager", " ", " " }));
+        jRolesCombo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jRolesComboMouseClicked(evt);
+            }
+        });
         jRolesCombo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jRolesComboKeyPressed(evt);
@@ -333,6 +352,7 @@ public class jViewUser extends javax.swing.JPanel {
             resetViewUserPage();
             _jViewUsers.renderData();
             _jHomePage.switchPanels(_jViewUsers);
+            
         }
     }//GEN-LAST:event_jBackButtonMouseClicked
 
@@ -373,6 +393,22 @@ public class jViewUser extends javax.swing.JPanel {
             updateButton();
         }
     }//GEN-LAST:event_formKeyPressed
+
+    private void jNameFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jNameFieldMouseClicked
+            jUpdateUserSuccessfully.setText("");
+    }//GEN-LAST:event_jNameFieldMouseClicked
+
+    private void jUsernameFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jUsernameFieldMouseClicked
+            jUpdateUserSuccessfully.setText("");
+    }//GEN-LAST:event_jUsernameFieldMouseClicked
+
+    private void jPasswordFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPasswordFieldMouseClicked
+            jUpdateUserSuccessfully.setText("");
+    }//GEN-LAST:event_jPasswordFieldMouseClicked
+
+    private void jRolesComboMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRolesComboMouseClicked
+            jUpdateUserSuccessfully.setText("");
+    }//GEN-LAST:event_jRolesComboMouseClicked
     private boolean isEditing;
     public User choosedUser;
     private final RoleServices _RoleServices;

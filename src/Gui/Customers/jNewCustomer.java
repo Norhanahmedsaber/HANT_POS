@@ -4,6 +4,7 @@ import Gui.Items.jChooseItem;
 import Entities.Customer;
 import Entities.Item;
 import Gui.jHomePage;
+import Gui.jMainPage;
 import Services.CustomerServices;
 import Services.ItemServices;
 import java.awt.event.KeyEvent;
@@ -248,8 +249,7 @@ public class jNewCustomer extends javax.swing.JPanel {
         jPhoneNoField.setText("");
         jNationalIdField.setText("");
         jCityField.setText("");
-        jJobField.setText("");
-        
+        jJobField.setText("");   
         jErrorAge.setText("");
         jErrorChooseItem.setText("");
         jErrorCity.setText("");
@@ -258,19 +258,15 @@ public class jNewCustomer extends javax.swing.JPanel {
         jErrorJob.setText("");
         jErrorName.setText("");
         jErrorNationalId.setText("");
-        jErrorPhoneNo.setText("");
-        
-        jAddedCustomer.setText("");
+        jErrorPhoneNo.setText(""); 
     } 
     public void addCustomerButton(){
        /* if(!checkAllValidations()){
            return;
         }else*/
-        saveCustomerData();
-        
+        saveCustomerData(); 
         // messege added successfully 
-        jAddedCustomer.setText("Added Successfully!");
-        
+        jAddedCustomer.setText("Added Successfully!");     
         // clear all fields
         clearNewCustomerPage();
     }
@@ -279,8 +275,16 @@ public class jNewCustomer extends javax.swing.JPanel {
         {
           jViewCustomers viewCustomers= (jViewCustomers) _parent;
           viewCustomers.renderData();
+               
         }
-        _jHomePage.switchPanels(_parent);
+        else 
+        {
+            jMainPage MainPage=(jMainPage)_parent;
+            _jHomePage.switchPanels(_parent);
+            MainPage.jNewcustomer.grabFocus();
+            jAddedCustomer.setText("");     
+
+        }
     }
     
 
@@ -346,42 +350,77 @@ public class jNewCustomer extends javax.swing.JPanel {
 
         jLabel9.setText("Name");
 
+        jNationalIdField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jNationalIdFieldMouseClicked(evt);
+            }
+        });
         jNationalIdField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jNationalIdFieldKeyPressed(evt);
             }
         });
 
+        jNameField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jNameFieldMouseClicked(evt);
+            }
+        });
         jNameField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jNameFieldKeyPressed(evt);
             }
         });
 
+        jPhoneNoField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPhoneNoFieldMouseClicked(evt);
+            }
+        });
         jPhoneNoField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jPhoneNoFieldKeyPressed(evt);
             }
         });
 
+        jIncomeField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jIncomeFieldMouseClicked(evt);
+            }
+        });
         jIncomeField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jIncomeFieldKeyPressed(evt);
             }
         });
 
+        jJobField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jJobFieldMouseClicked(evt);
+            }
+        });
         jJobField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jJobFieldKeyPressed(evt);
             }
         });
 
+        jCityField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jCityFieldMouseClicked(evt);
+            }
+        });
         jCityField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jCityFieldKeyPressed(evt);
             }
         });
 
+        jAgeField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jAgeFieldMouseClicked(evt);
+            }
+        });
         jAgeField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jAgeFieldKeyPressed(evt);
@@ -417,6 +456,11 @@ public class jNewCustomer extends javax.swing.JPanel {
 
         jLabel10.setText("Email");
 
+        jEmailField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jEmailFieldMouseClicked(evt);
+            }
+        });
         jEmailField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jEmailFieldKeyPressed(evt);
@@ -606,6 +650,8 @@ public class jNewCustomer extends javax.swing.JPanel {
         _jChooseItem.renderData();
         _jHomePage.switchPanels(_jChooseItem);
         _jChooseItem.jSearch.grabFocus();
+        jAddedCustomer.setText("");     
+
     }//GEN-LAST:event_jChooseItemMouseClicked
 
     private void jPanel1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel1KeyPressed
@@ -661,7 +707,39 @@ public class jNewCustomer extends javax.swing.JPanel {
             addCustomerButton();
         }
     }//GEN-LAST:event_jAgeFieldKeyPressed
-    
+
+    private void jNameFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jNameFieldMouseClicked
+        jAddedCustomer.setText("");     
+    }//GEN-LAST:event_jNameFieldMouseClicked
+
+    private void jEmailFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jEmailFieldMouseClicked
+        jAddedCustomer.setText("");     
+    }//GEN-LAST:event_jEmailFieldMouseClicked
+
+    private void jNationalIdFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jNationalIdFieldMouseClicked
+        jAddedCustomer.setText("");     
+    }//GEN-LAST:event_jNationalIdFieldMouseClicked
+
+    private void jPhoneNoFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPhoneNoFieldMouseClicked
+        jAddedCustomer.setText("");     
+    }//GEN-LAST:event_jPhoneNoFieldMouseClicked
+
+    private void jCityFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCityFieldMouseClicked
+        jAddedCustomer.setText("");     
+    }//GEN-LAST:event_jCityFieldMouseClicked
+
+    private void jIncomeFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jIncomeFieldMouseClicked
+        jAddedCustomer.setText("");     
+    }//GEN-LAST:event_jIncomeFieldMouseClicked
+
+    private void jJobFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jJobFieldMouseClicked
+        jAddedCustomer.setText("");     
+    }//GEN-LAST:event_jJobFieldMouseClicked
+
+    private void jAgeFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAgeFieldMouseClicked
+        jAddedCustomer.setText("");     
+    }//GEN-LAST:event_jAgeFieldMouseClicked
+
     private final JPanel _parent;
     private final CustomerServices _CustomerServices;
     private final jChooseItem _jChooseItem;

@@ -242,6 +242,7 @@ public class jViewItems extends javax.swing.JPanel {
     
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
         _jHomePage.switchPanels(_jMainPage);
+        _jMainPage.jViewitems.grabFocus();
         jDeleteMessage.setText("");
     }//GEN-LAST:event_jBackMouseClicked
 
@@ -277,6 +278,7 @@ public class jViewItems extends javax.swing.JPanel {
         if(item != null){
             _jViewItem.choosedItem = item;
             _jHomePage.switchPanels(_jViewItem);
+            _jViewItem.jNameField.grabFocus();
             _jViewItem.renderData();
         }else{
             jErrorShowItem.setText("Please choose item from table");
@@ -303,7 +305,7 @@ public class jViewItems extends javax.swing.JPanel {
     private javax.swing.JButton jBack;
     private javax.swing.JLabel jDeleteMessage;
     private javax.swing.JLabel jErrorShowItem;
-    private javax.swing.JTable jItem;
+    public javax.swing.JTable jItem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -312,7 +314,7 @@ public class jViewItems extends javax.swing.JPanel {
     private javax.swing.JButton jToggleSort;
     public javax.swing.JButton jadditem;
     public javax.swing.JButton jdelete;
-    private javax.swing.JTextField jsearchitems;
+    public javax.swing.JTextField jsearchitems;
     private javax.swing.JComboBox<String> jsortitemsby;
     // End of variables declaration//GEN-END:variables
 }

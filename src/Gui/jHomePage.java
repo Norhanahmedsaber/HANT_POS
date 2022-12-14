@@ -13,6 +13,7 @@ public class jHomePage extends javax.swing.JFrame {
         _jLoginPage = new jLoginPage(this);
         loginUser = null;
         _LogServices = new LogServices();
+       
     }
     public void createLog(String action, String actedOn, String actedOnName ){
         Log log =new Log();
@@ -24,6 +25,7 @@ public class jHomePage extends javax.swing.JFrame {
         log.actedOnName = actedOnName;
         log.date= new Date(); 
         _LogServices.create(log);
+        
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -123,10 +125,11 @@ public class jHomePage extends javax.swing.JFrame {
     
     private final LogServices _LogServices;
     public User loginUser;
+    public jMainPage _jmaMainPage;
     private final jLoginPage _jLoginPage;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JButton jsignin;
+    public javax.swing.JButton jsignin;
     // End of variables declaration//GEN-END:variables
 }

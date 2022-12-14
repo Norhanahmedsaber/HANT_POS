@@ -136,6 +136,7 @@ public class jChooseItem extends javax.swing.JPanel {
         }
         _jNewCustomer.setselecteditems(items);
         _jHomePage.switchPanels(_parent);
+        
     }
     public void resetPanel() {
         String [] titles= {"Id", "Name","Category","Price","CreatedAt"};

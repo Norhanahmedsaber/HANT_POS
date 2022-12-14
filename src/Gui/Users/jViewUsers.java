@@ -235,6 +235,7 @@ public class jViewUsers extends javax.swing.JPanel {
 
     private void jBackButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackButtonMouseClicked
         _jHomePage.switchPanels(_jMainPage);
+        _jMainPage.jViewusers.grabFocus();
         jDeleteMessage.setText("");
     }//GEN-LAST:event_jBackButtonMouseClicked
 
@@ -267,6 +268,7 @@ public class jViewUsers extends javax.swing.JPanel {
             _jViewUser.removeUpdateANdCancelButtons();
             _jViewUser.disableUserFields();
             _jHomePage.switchPanels(_jViewUser);
+            _jViewUser.jNameField.grabFocus();
          }
          jDeleteMessage.setText("");
     }//GEN-LAST:event_jShowButtonMouseClicked
@@ -300,7 +302,7 @@ public class jViewUsers extends javax.swing.JPanel {
     public javax.swing.JButton jDeleteButton;
     private javax.swing.JLabel jDeleteMessage;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jSearchField;
+    public javax.swing.JTextField jSearchField;
     private javax.swing.JLabel jSearchLabel;
     private javax.swing.JButton jShowButton;
     private javax.swing.JComboBox<String> jSortByCombo;

@@ -8,7 +8,7 @@ import Gui.Users.jViewUsers;
 import Gui.Items.jViewItems;
 import Gui.Roles.jViewRoles;
 import Gui.Roles.jNewRole;
- 
+import Gui.Users.jViewUser;
 public class jMainPage extends javax.swing.JPanel {
 
     public jMainPage(jHomePage jhp) {
@@ -18,12 +18,13 @@ public class jMainPage extends javax.swing.JPanel {
         _jNewItem = new jNewItem(jhp, this);
         _jViewItems = new jViewItems(jhp, this);
         _jViewCustomers = new jViewCustomers(jhp, this);
-
         _jShowLogs = new jViewLogs(jhp, this);
         _jSignUpPage = new jNewUsers(jhp,this);
         _jViewUsers = new jViewUsers(jhp , this);
         _jcreaterole = new jNewRole(jhp, this);
         _jViewRoles = new jViewRoles(jhp, this);
+               
+
         
 
     }
@@ -51,11 +52,6 @@ public class jMainPage extends javax.swing.JPanel {
                 jNewitemMouseClicked(evt);
             }
         });
-        jNewitem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jNewitemActionPerformed(evt);
-            }
-        });
 
         jViewitems.setText("View Items");
         jViewitems.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -68,11 +64,6 @@ public class jMainPage extends javax.swing.JPanel {
         jViewcustomers.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jViewcustomersMouseClicked(evt);
-            }
-        });
-        jViewcustomers.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jViewcustomersActionPerformed(evt);
             }
         });
 
@@ -94,6 +85,11 @@ public class jMainPage extends javax.swing.JPanel {
         jLogout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLogoutMouseClicked(evt);
+            }
+        });
+        jLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jLogoutActionPerformed(evt);
             }
         });
 
@@ -188,6 +184,7 @@ public class jMainPage extends javax.swing.JPanel {
         if(canViewCustomers()) {
             _jViewCustomers.renderData();
             _jHomePage.switchPanels(_jViewCustomers);   
+            _jViewCustomers.jSearchName.grabFocus();
         }
     }//GEN-LAST:event_jViewcustomersMouseClicked
 
@@ -201,7 +198,8 @@ public class jMainPage extends javax.swing.JPanel {
     private void jViewitemsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jViewitemsMouseClicked
         if(canViewItems()) {
             _jHomePage.switchPanels(_jViewItems);
-            _jViewItems.showItems(); 
+            _jViewItems.showItems();
+            _jViewItems.jsearchitems.grabFocus();
         }
 
     }//GEN-LAST:event_jViewitemsMouseClicked
@@ -212,6 +210,7 @@ public class jMainPage extends javax.swing.JPanel {
             
            _jShowLogs.renderData();
            _jHomePage.switchPanels(_jShowLogs); 
+           _jShowLogs.jSearchField.grabFocus();
         }
         
 
@@ -220,6 +219,8 @@ public class jMainPage extends javax.swing.JPanel {
     private void jLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLogoutMouseClicked
         _jHomePage.Home();
         _jHomePage.loginUser=null;
+        _jHomePage.jsignin.grabFocus();
+        
     }//GEN-LAST:event_jLogoutMouseClicked
 
     private void jAddusersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAddusersMouseClicked
@@ -227,6 +228,7 @@ public class jMainPage extends javax.swing.JPanel {
         {
             _jSignUpPage.clearSignUpPage();
            _jHomePage.switchPanels(_jSignUpPage); 
+           _jSignUpPage.jNameField.grabFocus();
         } 
               
     }//GEN-LAST:event_jAddusersMouseClicked
@@ -236,22 +238,16 @@ public class jMainPage extends javax.swing.JPanel {
         if(canViewUsers()){
             _jViewUsers.renderData();
             _jHomePage.switchPanels(_jViewUsers);
+            _jViewUsers.jSearchField.grabFocus();
         }
         
     }//GEN-LAST:event_jViewusersMouseClicked
-
-    private void jViewcustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jViewcustomersActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jViewcustomersActionPerformed
-
-    private void jNewitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNewitemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jNewitemActionPerformed
 
     private void jViewRolesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jViewRolesMouseClicked
         if(canViewRoles()) {
             _jViewRoles.renderData();
             _jHomePage.switchPanels(_jViewRoles);
+            _jViewRoles.jSearch.grabFocus();
         } 
     }//GEN-LAST:event_jViewRolesMouseClicked
 
@@ -259,8 +255,14 @@ public class jMainPage extends javax.swing.JPanel {
         if(canCreateRole()) {
             _jcreaterole.DoneButton();
             _jHomePage.switchPanels(_jcreaterole);
+            _jcreaterole.jRoleNameField.grabFocus();
+            
         }
     }//GEN-LAST:event_jNewRoleMouseClicked
+
+    private void jLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLogoutActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLogoutActionPerformed
     
     
     
@@ -411,7 +413,7 @@ public class jMainPage extends javax.swing.JPanel {
     public boolean flag;
     private final jViewRoles _jViewRoles;
     private final jNewRole _jcreaterole;
-    private final jViewUsers _jViewUsers;
+    public final jViewUsers _jViewUsers;
     private final jNewUsers _jSignUpPage;
     private final jNewCustomer _jNewCustomer;
     private final jViewCustomers _jViewCustomers;
@@ -419,17 +421,18 @@ public class jMainPage extends javax.swing.JPanel {
     private final jNewItem _jNewItem;
     private final jViewLogs _jShowLogs;
     private final jHomePage _jHomePage;
+    private  jViewUser _jViewUser;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jAddusers;
-    private javax.swing.JButton jLog;
-    private javax.swing.JButton jLogout;
-    private javax.swing.JButton jNewRole;
-    private javax.swing.JButton jNewcustomer;
-    private javax.swing.JButton jNewitem;
-    private javax.swing.JButton jViewRoles;
-    private javax.swing.JButton jViewcustomers;
-    private javax.swing.JButton jViewitems;
-    private javax.swing.JButton jViewusers;
+    public javax.swing.JButton jAddusers;
+    public javax.swing.JButton jLog;
+    public javax.swing.JButton jLogout;
+    public javax.swing.JButton jNewRole;
+    public javax.swing.JButton jNewcustomer;
+    public javax.swing.JButton jNewitem;
+    public javax.swing.JButton jViewRoles;
+    public javax.swing.JButton jViewcustomers;
+    public javax.swing.JButton jViewitems;
+    public javax.swing.JButton jViewusers;
     // End of variables declaration//GEN-END:variables
     
 }
