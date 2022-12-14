@@ -42,13 +42,24 @@ public class jViewItems extends javax.swing.JPanel {
         jToggleSort = new javax.swing.JButton();
         jErrorShowItem = new javax.swing.JLabel();
         jShowItem = new javax.swing.JButton();
+        jDeleteMessage = new javax.swing.JLabel();
 
         jsortitemsby.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Name", "Date", "Category", "Price" }));
+        jsortitemsby.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jsortitemsbyMouseClicked(evt);
+            }
+        });
 
         jLabel1.setText("All Items :");
 
         jLabel2.setText("Search:");
 
+        jsearchitems.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jsearchitemsMouseClicked(evt);
+            }
+        });
         jsearchitems.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jsearchitemsKeyTyped(evt);
@@ -153,6 +164,10 @@ public class jViewItems extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jadditem)))
                         .addContainerGap(22, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jDeleteMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,6 +193,8 @@ public class jViewItems extends javax.swing.JPanel {
                     .addComponent(jdelete)
                     .addComponent(jBack)
                     .addComponent(jShowItem))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jDeleteMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(58, 58, 58))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -186,7 +203,7 @@ public class jViewItems extends javax.swing.JPanel {
             DefaultTableModel m = (DefaultTableModel) jItem.getModel();
             m.setColumnIdentifiers(titles);
             m.setRowCount(0);
-            ArrayList<Item> _items = _ItemServices.getAllItems();  
+            ArrayList<Item> _items =_ItemServices.getAllItems();  
             String search=jsearchitems.getText();
             String Sortitemsby=(String)jsortitemsby.getSelectedItem();
             ArrayList<Item> _filtereditems = _jfilterItems.filter(_items,search,Sortitemsby,toggle);  
@@ -199,17 +216,17 @@ public class jViewItems extends javax.swing.JPanel {
                 }
             }
         }
-    private UUID deleteItem(){
+    private void deleteItem(){
          DefaultTableModel m = (DefaultTableModel) jItem.getModel();
           if(jItem.getSelectedRow() != -1) {
             UUID id = (UUID) m.getValueAt(jItem.getSelectedRow(), 0);
             m.removeRow(jItem.getSelectedRow());
             Item item = _ItemServices.getById(id);
             _jHomePage.createLog("Deleted", "Item", item.name);
-            return id;
-        }else{
-            return null;
-        }
+            _ItemServices.delete(id);
+            jDeleteMessage.setText("Item Deleted Successfully");
+    }else{
+              jDeleteMessage.setText("Error! Please Select Item");}
     }
     public Item getSelectedItem(){
         int row = jItem.getSelectedRow();//check ! -1
@@ -221,20 +238,11 @@ public class jViewItems extends javax.swing.JPanel {
         }
         return null;
     }
-    public void deleteButton(){
-        if(_jMainPage.canDeleteItem())
-        {
-            UUID id = deleteItem();
-            if(id!= null)
-            {
-                _ItemServices.delete(deleteItem());
-            } 
-        }
-    }
    
     
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
         _jHomePage.switchPanels(_jMainPage);
+        jDeleteMessage.setText("");
     }//GEN-LAST:event_jBackMouseClicked
 
     private void jadditemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jadditemMouseClicked
@@ -242,6 +250,7 @@ public class jViewItems extends javax.swing.JPanel {
            _jHomePage.switchPanels(_jNewItem);
            _jNewItem.jNameField.grabFocus();
        }
+        jDeleteMessage.setText("");
     }//GEN-LAST:event_jadditemMouseClicked
 
 
@@ -250,12 +259,16 @@ public class jViewItems extends javax.swing.JPanel {
     }//GEN-LAST:event_jsearchitemsKeyTyped
 
     private void jdeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jdeleteMouseClicked
-        deleteButton();
+       if(_jMainPage.canDeleteItem())
+       {
+           deleteItem();
+       }
     }//GEN-LAST:event_jdeleteMouseClicked
 
     private void jToggleSortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleSortMouseClicked
        toggle = !toggle;
        showItems();
+       jDeleteMessage.setText("");
     }//GEN-LAST:event_jToggleSortMouseClicked
 
     private void jShowItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jShowItemMouseClicked
@@ -268,7 +281,16 @@ public class jViewItems extends javax.swing.JPanel {
         }else{
             jErrorShowItem.setText("Please choose item from table");
         }
+        jDeleteMessage.setText("");
     }//GEN-LAST:event_jShowItemMouseClicked
+
+    private void jsearchitemsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jsearchitemsMouseClicked
+       jDeleteMessage.setText("");
+    }//GEN-LAST:event_jsearchitemsMouseClicked
+
+    private void jsortitemsbyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jsortitemsbyMouseClicked
+       jDeleteMessage.setText("");
+    }//GEN-LAST:event_jsortitemsbyMouseClicked
 
     private boolean toggle;
     public final jViewItem _jViewItem;
@@ -279,6 +301,7 @@ public class jViewItems extends javax.swing.JPanel {
     private final filterItems _jfilterItems;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBack;
+    private javax.swing.JLabel jDeleteMessage;
     private javax.swing.JLabel jErrorShowItem;
     private javax.swing.JTable jItem;
     private javax.swing.JLabel jLabel1;

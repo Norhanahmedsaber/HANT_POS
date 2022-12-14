@@ -55,7 +55,7 @@ public class jViewCustomer extends javax.swing.JPanel {
         
         return true;
     }
-
+ 
     public void editButton(){   jBack.setEnabled(false);
         jUpdate.setEnabled(true);
         jCancel.setEnabled(true);
@@ -263,15 +263,15 @@ public class jViewCustomer extends javax.swing.JPanel {
     }
     public Customer updateCustomerData(){
         Customer customer = _chosencustomer;
-        customer.name = jNameField.getText();
-        customer.age = Integer.parseInt(jAgeField.getText());
-        customer.job = jJobField.getText();
-        customer.nationalId = jNationalIdField.getText();
-        customer.income = Integer.parseInt(jIncomeField.getText());
-        customer.email = jEmailField.getText();
-        customer.city = jCityField.getText();
-        customer.gender = jgenderCombobox.getName();
-        customer.phoneNumber = jPhoneNoField.getText();
+        customer.name = jNameField.getText().trim();
+        customer.age = Integer.parseInt(jAgeField.getText().trim());
+        customer.job = jJobField.getText().trim();
+        customer.nationalId = jNationalIdField.getText().trim();
+        customer.income = Integer.parseInt(jIncomeField.getText().trim());
+        customer.email = jEmailField.getText().trim();
+        customer.city = jCityField.getText().trim();
+        customer.gender = jgenderCombobox.getName().trim();
+        customer.phoneNumber = jPhoneNoField.getText().trim();
         return customer;
     }
     public void updateButton(){

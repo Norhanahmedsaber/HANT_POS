@@ -62,6 +62,11 @@
                   </Group>
               </Group>
           </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+              <Component id="jDeleteMessage" min="-2" pref="158" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -92,6 +97,8 @@
                   <Component id="jBack" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jShowItem" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jDeleteMessage" min="-2" pref="16" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -109,6 +116,9 @@
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jsortitemsbyMouseClicked"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -125,6 +135,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jsearchitems">
       <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jsearchitemsMouseClicked"/>
         <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jsearchitemsKeyTyped"/>
       </Events>
     </Component>
@@ -207,6 +218,8 @@
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jShowItemMouseClicked"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jDeleteMessage">
     </Component>
   </SubComponents>
 </Form>

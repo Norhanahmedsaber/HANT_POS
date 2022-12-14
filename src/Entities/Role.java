@@ -1,6 +1,4 @@
 package Entities;
-
-import java.util.ArrayList;
 import java.util.UUID;
 
 public class Role { 

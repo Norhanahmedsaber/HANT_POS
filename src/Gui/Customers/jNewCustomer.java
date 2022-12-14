@@ -1,10 +1,9 @@
 package Gui.Customers;
-
+ 
 import Gui.Items.jChooseItem;
 import Entities.Customer;
 import Entities.Item;
 import Gui.jHomePage;
-import Gui.jMainPage;
 import Services.CustomerServices;
 import Services.ItemServices;
 import java.awt.event.KeyEvent;

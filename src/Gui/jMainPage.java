@@ -8,7 +8,7 @@ import Gui.Users.jViewUsers;
 import Gui.Items.jViewItems;
 import Gui.Roles.jViewRoles;
 import Gui.Roles.jNewRole;
-
+ 
 public class jMainPage extends javax.swing.JPanel {
 
     public jMainPage(jHomePage jhp) {
