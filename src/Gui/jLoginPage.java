@@ -1,5 +1,5 @@
 package Gui;
-
+ 
 import Entities.User;
 import Services.AccountServices;
 import java.awt.event.KeyEvent;
@@ -24,15 +24,16 @@ public class jLoginPage extends javax.swing.JPanel {
         jpassword = new javax.swing.JPasswordField();
         jBack = new javax.swing.JButton();
 
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
+
         jLabel1.setText("UserName");
 
         jLabel2.setText("Password");
 
-        jusername.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jusernameMouseClicked(evt);
-            }
-        });
         jusername.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jusernameKeyPressed(evt);
@@ -101,7 +102,11 @@ public class jLoginPage extends javax.swing.JPanel {
                 .addGap(23, 23, 23))
         );
     }// </editor-fold>//GEN-END:initComponents
-    
+    public void clearLogINPage(){
+        jusername.setText("");
+        jpassword.setText("");
+        error.setText("");
+    }
     public void login() {
         if(jusername.getText().isEmpty()) {
             error.setText("Username Is Empty!");
@@ -114,8 +119,7 @@ public class jLoginPage extends javax.swing.JPanel {
             User user = _AccountServices.login(jusername.getText().trim(),jpassword.getText().trim());
         if( user!=null )
         {
-            jusername.setText("");
-            jpassword.setText("");
+            clearLogINPage();
             _jHomePage.switchPanels(_jMainPage);
             _jHomePage.loginUser=user;
         }
@@ -144,13 +148,11 @@ public class jLoginPage extends javax.swing.JPanel {
     }
     private void jloginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jloginMouseClicked
         login();
-        
     }//GEN-LAST:event_jloginMouseClicked
 
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
         _jHomePage.Home();
-        jusername.setText("");
-        jpassword.setText(""); 
+        clearLogINPage();
     }//GEN-LAST:event_jBackMouseClicked
 
     private void jpasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jpasswordKeyPressed
@@ -159,15 +161,17 @@ public class jLoginPage extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jpasswordKeyPressed
 
-    private void jusernameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jusernameMouseClicked
-        
-    }//GEN-LAST:event_jusernameMouseClicked
-
     private void jusernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jusernameKeyPressed
-            if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            login();
+        }
+    }//GEN-LAST:event_jusernameKeyPressed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
                 login();
             }
-    }//GEN-LAST:event_jusernameKeyPressed
+    }//GEN-LAST:event_formKeyPressed
 
     
    

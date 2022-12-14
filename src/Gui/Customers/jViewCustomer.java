@@ -1,17 +1,31 @@
 package Gui.Customers;
 
-import Gui.Customers.jViewCustomers;
 import Entities.Customer;
 import Gui.Items.jChooseItem;
 import Gui.jHomePage;
 import Gui.jMainPage;
 import Services.CustomerServices;
+import java.awt.event.KeyEvent;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class jViewCustomer extends javax.swing.JPanel {
+    
+    public jViewCustomer(jViewCustomers jvc,jHomePage jhp, jMainPage jmp) {
+        initComponents();
+        _jViewCustomers = jvc;
+        _chosencustomer = null;
+        _jHomePage = jhp;
+        _CustomerServices = new CustomerServices();
+        _jMainPage = jmp;
+        jUpdate.setEnabled(false);
+        jCancel.setEnabled(false);
+        jUpdatedSuccesfully.setText("");
+        _jChooseItem =new jChooseItem(jhp, this);
+        isEditing = false;
+    }
     public boolean checkAllValidations(){
         if(!isValidName()){
             return false;
@@ -41,47 +55,25 @@ public class jViewCustomer extends javax.swing.JPanel {
         
         return true;
     }
-
-    public jViewCustomer(jViewCustomers jvc,jHomePage jhp, jMainPage jmp) {
-        initComponents();
-        _jViewCustomers = jvc;
-        _chosencustomer = null;
-        _jHomePage = jhp;
-        _CustomerServices = new CustomerServices();
-        _jMainPage = jmp;
-        jUpdate.setEnabled(false);
-        jCancel.setEnabled(false);
-        jUpdatedSuccesfully.setText("");
-        _jChooseItem =new jChooseItem(jhp, this);
-    }
-    public void editbuttonisclicked()
-    {   jBack.setEnabled(false);
+ 
+    public void editButton(){   jBack.setEnabled(false);
         jUpdate.setEnabled(true);
         jCancel.setEnabled(true);
         jUpdatedSuccesfully.setVisible(true);
         settextfielsenabled();
         jEdit.setEnabled(false);
+        isEditing = true;
     }
-    public void cancelbuttonisclicked()
-    {
+    public void cancelButton(){
         jUpdate.setEnabled(false);
         jCancel.setEnabled(false);
         settextfielsdisabled();
         jEdit.setEnabled(true);
         jBack.setEnabled(true);
         renderData();
+        isEditing = false;
     }
-    public void updatebuttonisclicked()
-    {
-        jUpdate.setEnabled(false);
-        jCancel.setEnabled(false);
-        jUpdatedSuccesfully.setText("Updated succesfully");
-        settextfielsdisabled();
-        jEdit.setEnabled(true);
-        jBack.setEnabled(true);
-    }
-    public void renderData ( )
-    {  
+    public void renderData ( ){  
         Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String purchaseDate = formatter.format(_chosencustomer.purchaseDate);
         jNameField.setText(_chosencustomer.name);
@@ -94,8 +86,7 @@ public class jViewCustomer extends javax.swing.JPanel {
         jJobField.setText(_chosencustomer.job);
         jAgeField.setText(Integer.toString(_chosencustomer.age));
     }
-    private void settextfielsenabled()
-    {
+    private void settextfielsenabled(){
         jNameField.setEditable(true);
         jNationalIdField.setEditable(true);
         jPhoneNoField.setEditable(true);
@@ -108,8 +99,7 @@ public class jViewCustomer extends javax.swing.JPanel {
         jgenderCombobox.setEnabled(false);
                 
     }
-     private void settextfielsdisabled()
-    {
+    private void settextfielsdisabled(){
         jNameField.setEditable(false);
         jNationalIdField.setEditable(false);
         jPhoneNoField.setEditable(false);
@@ -122,7 +112,7 @@ public class jViewCustomer extends javax.swing.JPanel {
         jgenderCombobox.setEnabled(false);
                 
     }
-     public boolean isValidName() {
+    public boolean isValidName() {
         // is empty (nameField)
         if(jNameField.getText().trim().isEmpty()) {
            jErrorName.setText("Cant be empty!");
@@ -284,6 +274,27 @@ public class jViewCustomer extends javax.swing.JPanel {
         customer.phoneNumber = jPhoneNoField.getText().trim();
         return customer;
     }
+    public void updateButton(){
+        jUpdate.setEnabled(false);
+        jCancel.setEnabled(false);
+        jUpdatedSuccesfully.setText("Updated succesfully");
+        settextfielsdisabled();
+        jEdit.setEnabled(true);
+        jBack.setEnabled(true);
+        isEditing = false;
+     //if(!checkAllValidations()){
+       //  return;
+     //}else{
+        Customer updatedCustomer = updateCustomerData();
+        _CustomerServices.update(_chosencustomer.id , updatedCustomer);
+        _jHomePage.createLog("Updated", "Customer", _chosencustomer.name);
+        _chosencustomer = _CustomerServices.getById(_chosencustomer.id);
+        renderData();
+        updateflag=!updateflag;
+     //}
+    }
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -325,6 +336,12 @@ public class jViewCustomer extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jUpdatedSuccesfully = new javax.swing.JLabel();
 
+        jPanel1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPanel1KeyPressed(evt);
+            }
+        });
+
         jLabel1.setText("National ID");
 
         jLabel2.setText("Phone No");
@@ -340,16 +357,46 @@ public class jViewCustomer extends javax.swing.JPanel {
         jLabel9.setText("Name");
 
         jNationalIdField.setEditable(false);
+        jNationalIdField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jNationalIdFieldKeyPressed(evt);
+            }
+        });
 
         jNameField.setEditable(false);
+        jNameField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jNameFieldKeyPressed(evt);
+            }
+        });
 
         jPhoneNoField.setEditable(false);
+        jPhoneNoField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPhoneNoFieldKeyPressed(evt);
+            }
+        });
 
         jIncomeField.setEditable(false);
+        jIncomeField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jIncomeFieldKeyPressed(evt);
+            }
+        });
 
         jCityField.setEditable(false);
+        jCityField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jCityFieldKeyPressed(evt);
+            }
+        });
 
         jAgeField.setEditable(false);
+        jAgeField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jAgeFieldKeyPressed(evt);
+            }
+        });
 
         jShowpurchases.setText("Show purchases");
         jShowpurchases.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -359,14 +406,29 @@ public class jViewCustomer extends javax.swing.JPanel {
         });
 
         jEmailField.setEditable(false);
+        jEmailField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jEmailFieldKeyPressed(evt);
+            }
+        });
 
         jLabel10.setText("Email");
 
         jPurchaseDateField.setEditable(false);
+        jPurchaseDateField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPurchaseDateFieldKeyPressed(evt);
+            }
+        });
 
         jLabel12.setText("job");
 
         jJobField.setEditable(false);
+        jJobField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jJobFieldKeyPressed(evt);
+            }
+        });
 
         jErrorCity.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jErrorCity.setForeground(new java.awt.Color(255, 0, 51));
@@ -401,6 +463,11 @@ public class jViewCustomer extends javax.swing.JPanel {
         jErrorName.setToolTipText("");
 
         jgenderCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Femal" }));
+        jgenderCombobox.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jgenderComboboxKeyPressed(evt);
+            }
+        });
 
         jLabel6.setText("Age");
 
@@ -592,39 +659,106 @@ public class jViewCustomer extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
     
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
-       _jViewCustomers.renderData();
-        _jHomePage.switchPanels(_jViewCustomers);
+       if(!isEditing) {
+           _jViewCustomers.renderData();
+           _jHomePage.switchPanels(_jViewCustomers);
+       }
     }//GEN-LAST:event_jBackMouseClicked
 
     private void jEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jEditMouseClicked
-        if(_jMainPage.canUpdateCustomer()) {
-            editbuttonisclicked();
+        if(!isEditing) {
+            if(_jMainPage.canUpdateCustomer()) {
+                editButton();
+            }
         }
     }//GEN-LAST:event_jEditMouseClicked
 
     private void jUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jUpdateMouseClicked
-     updatebuttonisclicked();
-     //if(!checkAllValidations()){
-       //  return;
-     //}else{
-         Customer updatedCustomer = updateCustomerData();
-        _CustomerServices.update(_chosencustomer.id , updatedCustomer);
-        _jHomePage.createLog("Updated", "Customer", _chosencustomer.name);
-        _chosencustomer = _CustomerServices.getById(_chosencustomer.id);
-        renderData();
-        updateflag=!updateflag;
-     //}
-     
+        if(isEditing) {
+            updateButton();
+        }
     }//GEN-LAST:event_jUpdateMouseClicked
 
     private void jCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCancelMouseClicked
-      cancelbuttonisclicked();
+        if(isEditing) {
+            cancelButton();
+        }
     }//GEN-LAST:event_jCancelMouseClicked
 
     private void jShowpurchasesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jShowpurchasesMouseClicked
-       _jChooseItem.renderData();
+        _jChooseItem.renderData();
         _jHomePage.switchPanels(_jChooseItem);
     }//GEN-LAST:event_jShowpurchasesMouseClicked
+
+    private void jNameFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jNameFieldKeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            updateButton();
+        }
+    }//GEN-LAST:event_jNameFieldKeyPressed
+
+    private void jJobFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jJobFieldKeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            updateButton();
+        }
+    }//GEN-LAST:event_jJobFieldKeyPressed
+
+    private void jNationalIdFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jNationalIdFieldKeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            updateButton();
+        }
+    }//GEN-LAST:event_jNationalIdFieldKeyPressed
+
+    private void jPhoneNoFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPhoneNoFieldKeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            updateButton();
+        }
+    }//GEN-LAST:event_jPhoneNoFieldKeyPressed
+
+    private void jCityFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCityFieldKeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            updateButton();
+        }
+    }//GEN-LAST:event_jCityFieldKeyPressed
+
+    private void jIncomeFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jIncomeFieldKeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            updateButton();
+        }
+    }//GEN-LAST:event_jIncomeFieldKeyPressed
+
+    private void jgenderComboboxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jgenderComboboxKeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            updateButton();
+        }
+    }//GEN-LAST:event_jgenderComboboxKeyPressed
+
+    private void jAgeFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jAgeFieldKeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            updateButton();
+        }
+    }//GEN-LAST:event_jAgeFieldKeyPressed
+
+    private void jEmailFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jEmailFieldKeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            updateButton();
+        }
+    }//GEN-LAST:event_jEmailFieldKeyPressed
+
+    private void jPurchaseDateFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPurchaseDateFieldKeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            updateButton();
+        }
+    }//GEN-LAST:event_jPurchaseDateFieldKeyPressed
+
+    private void jPanel1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel1KeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            updateButton();
+        }
+    }//GEN-LAST:event_jPanel1KeyPressed
+   
+    
+    
+    private boolean isEditing;
     private final jMainPage _jMainPage;
     private final jViewCustomers _jViewCustomers;
     public CustomerServices _CustomerServices;

@@ -8,7 +8,7 @@ public class RoleServices implements IRoleServices{
 
     public static ArrayList<Role> roles = new ArrayList<Role>();
     public RoleServices() {
-        if(roles.isEmpty()) {
+        if(roles.isEmpty()) { 
             Role role = new Role() {{
             name = "Admin";
             canViewUsers = true;

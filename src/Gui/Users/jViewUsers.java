@@ -1,6 +1,4 @@
 package Gui.Users;
-
-import Entities.Customer;
 import Entities.User;
 import Gui.jHomePage;
 import Gui.jMainPage;
@@ -21,9 +19,8 @@ public class jViewUsers extends javax.swing.JPanel {
         _jMainPage = jmp;
         _UserServices = new UserServices(); 
         _filterUsers = new FilterUsers();
-        _jSignUpPage = new jNewUsers(jhp , jmp );
-        _jViewUser = new jViewUser(this , jhp );
-
+        _jSignUpPage = new jNewUsers(jhp , jmp);
+        _jViewUser = new jViewUser(this , jhp);
         toggle = false;
     }
     public void renderData() { 
@@ -281,7 +278,6 @@ public class jViewUsers extends javax.swing.JPanel {
         }
         jDeleteMessage.setText("");
     }//GEN-LAST:event_jAddButtonMouseClicked
-
     private void jSearchFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchFieldMouseClicked
       jDeleteMessage.setText("");
     }//GEN-LAST:event_jSearchFieldMouseClicked

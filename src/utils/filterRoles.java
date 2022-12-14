@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class filterRoles {
     public ArrayList<Role> filter(ArrayList<Role> roles, String searchName) {
-        return search(roles, searchName);
+        return search(roles, searchName); 
     }
     public ArrayList<Role> search(ArrayList<Role> roles, String searchName) {
         ArrayList<Role> rolesAfterSearch = new ArrayList<Role>();
