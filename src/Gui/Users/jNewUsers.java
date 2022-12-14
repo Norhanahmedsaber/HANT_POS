@@ -72,9 +72,9 @@ public class jNewUsers extends javax.swing.JPanel {
     public void saveUserData(){
         User user = new User();
         user.id = UUID.randomUUID();    
-        user.name = jNameField.getText();
-        user.userName = jUsernameField.getText();
-        user.password = jPasswordField.getText();
+        user.name = jNameField.getText().trim();
+        user.userName = jUsernameField.getText().trim();
+        user.password = jPasswordField.getText().trim();
         user.role = _RoleServices.getByName((String) jRolesCombo.getSelectedItem());
         _AccountServices.signUp(user);
         _jHomePage.createLog("Added","User",user.name );

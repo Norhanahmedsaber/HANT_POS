@@ -93,9 +93,9 @@ public class jViewUser extends javax.swing.JPanel {
     }
     public void updateUserData(){
         User user =  choosedUser;
-        user.name=jNameField.getText();
-        user.userName=jUsernameField.getText();
-        user.password=jPasswordField.getText();
+        user.name=jNameField.getText().trim();
+        user.userName=jUsernameField.getText().trim();
+        user.password=jPasswordField.getText().trim();
         user.role.name = (String)(jRolesCombo.getSelectedItem());
         _UserServices.update(choosedUser.id,user);
         _jHomePage.createLog("Updated", "User",user.name );

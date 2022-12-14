@@ -42,6 +42,7 @@ public class jViewItems extends javax.swing.JPanel {
         jToggleSort = new javax.swing.JButton();
         jErrorShowItem = new javax.swing.JLabel();
         jShowItem = new javax.swing.JButton();
+        jDeleteMessage = new javax.swing.JLabel();
 
         jsortitemsby.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Name", "Date", "Category", "Price" }));
 
@@ -153,6 +154,10 @@ public class jViewItems extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jadditem)))
                         .addContainerGap(22, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jDeleteMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,6 +183,8 @@ public class jViewItems extends javax.swing.JPanel {
                     .addComponent(jdelete)
                     .addComponent(jBack)
                     .addComponent(jShowItem))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jDeleteMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(58, 58, 58))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -186,7 +193,7 @@ public class jViewItems extends javax.swing.JPanel {
             DefaultTableModel m = (DefaultTableModel) jItem.getModel();
             m.setColumnIdentifiers(titles);
             m.setRowCount(0);
-            ArrayList<Item> _items = _ItemServices.getAllItems();  
+            ArrayList<Item> _items =_ItemServices.getAllItems();  
             String search=jsearchitems.getText();
             String Sortitemsby=(String)jsortitemsby.getSelectedItem();
             ArrayList<Item> _filtereditems = _jfilterItems.filter(_items,search,Sortitemsby,toggle);  
@@ -199,17 +206,16 @@ public class jViewItems extends javax.swing.JPanel {
                 }
             }
         }
-    private UUID deleteItem(){
+    private void deleteItem(){
          DefaultTableModel m = (DefaultTableModel) jItem.getModel();
           if(jItem.getSelectedRow() != -1) {
             UUID id = (UUID) m.getValueAt(jItem.getSelectedRow(), 0);
             m.removeRow(jItem.getSelectedRow());
             Item item = _ItemServices.getById(id);
             _jHomePage.createLog("Deleted", "Item", item.name);
-            return id;
-        }else{
-            return null;
-        }
+            _ItemServices.delete(id);
+            jDeleteMessage.setText("Item Deleted Successfully");
+    }
     }
     public Item getSelectedItem(){
         int row = jItem.getSelectedRow();//check ! -1
@@ -220,16 +226,6 @@ public class jViewItems extends javax.swing.JPanel {
             return choosedItem;
         }
         return null;
-    }
-    public void deleteButton(){
-        if(_jMainPage.canDeleteItem())
-        {
-            UUID id = deleteItem();
-            if(id!= null)
-            {
-                _ItemServices.delete(deleteItem());
-            } 
-        }
     }
    
     
@@ -250,7 +246,10 @@ public class jViewItems extends javax.swing.JPanel {
     }//GEN-LAST:event_jsearchitemsKeyTyped
 
     private void jdeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jdeleteMouseClicked
-        deleteButton();
+       if(_jMainPage.canDeleteItem())
+       {
+           deleteItem();
+       }
     }//GEN-LAST:event_jdeleteMouseClicked
 
     private void jToggleSortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleSortMouseClicked
@@ -279,6 +278,7 @@ public class jViewItems extends javax.swing.JPanel {
     private final filterItems _jfilterItems;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBack;
+    private javax.swing.JLabel jDeleteMessage;
     private javax.swing.JLabel jErrorShowItem;
     private javax.swing.JTable jItem;
     private javax.swing.JLabel jLabel1;

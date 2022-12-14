@@ -45,17 +45,16 @@ public class jViewUsers extends javax.swing.JPanel {
             } 
         } 
     }
-    private UUID deleteUser(){
+    private void deleteUser(){
             DefaultTableModel m = (DefaultTableModel) jUsersTable.getModel();
               if(jUsersTable.getSelectedRow() != -1) {
                 UUID id = (UUID) m.getValueAt(jUsersTable.getSelectedRow(), 0);
                 String username = (String) m.getValueAt(jUsersTable.getSelectedRow(), 1);
                 _jHomePage.createLog("Deleted", "User", username);
                 m.removeRow(jUsersTable.getSelectedRow());
-                return id;
-            }else{
-                return null;
-            }
+                _UserServices.delete(id);
+                jDeleteMessage.setText("Deleted Successfully");
+              }
     }
     private User selectedUser(){ 
         DefaultTableModel m = (DefaultTableModel) jUsersTable.getModel();
@@ -84,6 +83,7 @@ public class jViewUsers extends javax.swing.JPanel {
         jBackButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jUsersTable = new javax.swing.JTable();
+        jDeleteMessage = new javax.swing.JLabel();
 
         jAddButton.setText("Add User");
         jAddButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -172,13 +172,19 @@ public class jViewUsers extends javax.swing.JPanel {
                             .addComponent(jAllItemsLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jSortLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jSearchLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jSortByCombo, 0, 218, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jToggleSort, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jSearchField)))
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jSortByCombo, 0, 218, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jToggleSort, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jSearchField)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jDeleteMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
@@ -204,7 +210,9 @@ public class jViewUsers extends javax.swing.JPanel {
                     .addComponent(jSortLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jToggleSort))
                 .addGap(57, 57, 57)
-                .addComponent(jAllItemsLabel)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jAllItemsLabel)
+                    .addComponent(jDeleteMessage))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -223,7 +231,7 @@ public class jViewUsers extends javax.swing.JPanel {
 
     private void jDeleteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDeleteButtonMouseClicked
         if(_jMainPage.canDeleteUser()) {
-            
+            deleteUser();
         }
     }//GEN-LAST:event_jDeleteButtonMouseClicked
 
@@ -271,6 +279,7 @@ public class jViewUsers extends javax.swing.JPanel {
     private javax.swing.JLabel jAllItemsLabel;
     private javax.swing.JButton jBackButton;
     public javax.swing.JButton jDeleteButton;
+    private javax.swing.JLabel jDeleteMessage;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jSearchField;
     private javax.swing.JLabel jSearchLabel;

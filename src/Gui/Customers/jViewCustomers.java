@@ -43,16 +43,17 @@ public final class jViewCustomers extends javax.swing.JPanel  {
             } 
         } 
     }
-    private UUID deleteCustomer(){
+    private void deleteCustomer(){
             DefaultTableModel m = (DefaultTableModel) jCustomersTable.getModel();
               if(jCustomersTable.getSelectedRow() != -1) {
                 UUID id = (UUID) m.getValueAt(jCustomersTable.getSelectedRow(), 0);
                 String name = (String) m.getValueAt(jCustomersTable.getSelectedRow(), 1);
                _jHomePage.createLog("Deleted", "Customer", name);
                 m.removeRow(jCustomersTable.getSelectedRow());
-                return id;
-            }else{
-                return null;
+                _CustomerServices.delete(id);
+                jDeleteMessage.setText("Deleted Successfully");
+                
+            
             }
     }
     private Customer selectcustomer(){ 
@@ -81,6 +82,7 @@ public final class jViewCustomers extends javax.swing.JPanel  {
         jToggleSort = new javax.swing.JButton();
         jShowButton = new javax.swing.JButton();
         jAddButton = new javax.swing.JButton();
+        jDeleteMessage = new javax.swing.JLabel();
 
         jLabel2.setText("search by name :");
 
@@ -161,7 +163,7 @@ public final class jViewCustomers extends javax.swing.JPanel  {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
@@ -177,16 +179,18 @@ public final class jViewCustomers extends javax.swing.JPanel  {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jToggleSort, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jBackButton)
                         .addGap(12, 12, 12)
                         .addComponent(jDeleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jShowButton, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
-                        .addComponent(jAddButton)))
+                        .addComponent(jAddButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jDeleteMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -206,7 +210,9 @@ public final class jViewCustomers extends javax.swing.JPanel  {
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jDeleteMessage)
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jDeleteButton)
                     .addComponent(jShowButton)
@@ -232,13 +238,7 @@ public final class jViewCustomers extends javax.swing.JPanel  {
     private void jDeleteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDeleteButtonMouseClicked
         if(_jMainPage.canDeleteCustomer())
         {
-            UUID id = deleteCustomer();
-            if(id!= null)
-            {
-                _CustomerServices.delete(deleteCustomer());
-               
-               
-            }
+            deleteCustomer();
         }
     }//GEN-LAST:event_jDeleteButtonMouseClicked
 
@@ -277,6 +277,7 @@ public final class jViewCustomers extends javax.swing.JPanel  {
     private javax.swing.JButton jBackButton;
     private javax.swing.JTable jCustomersTable;
     public javax.swing.JButton jDeleteButton;
+    private javax.swing.JLabel jDeleteMessage;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
