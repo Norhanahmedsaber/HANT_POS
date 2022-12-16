@@ -1,5 +1,5 @@
 package Gui;
- 
+
 import Entities.Log;
 import Entities.User;
 import Services.LogServices;

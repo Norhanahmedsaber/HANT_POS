@@ -45,7 +45,7 @@ public final class jViewCustomers extends javax.swing.JPanel  {
     }
     private void deleteCustomer(){
             DefaultTableModel m = (DefaultTableModel) jCustomersTable.getModel();
-              if(jCustomersTable.getSelectedRow() != -1) {
+            if(jCustomersTable.getSelectedRow() != -1) {
                 UUID id = (UUID) m.getValueAt(jCustomersTable.getSelectedRow(), 0);
                 String name = (String) m.getValueAt(jCustomersTable.getSelectedRow(), 1);
                _jHomePage.createLog("Deleted", "Customer", name);

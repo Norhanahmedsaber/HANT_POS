@@ -35,7 +35,7 @@ public class jViewRoles extends javax.swing.JPanel {
             String searchName = jSearch.getText().trim();
             ArrayList<String> filteredRoles = _filterRoles.filter(roleNames, searchName);
             if(!filteredRoles.isEmpty()) {
-                for( String roleName : roleNames ) {
+                for( String roleName : filteredRoles ) {
                     model.addElement(roleName);
                 }
             }

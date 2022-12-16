@@ -27,15 +27,15 @@ public class AccountServices implements IAccountServices{
                 rs = stmt.executeQuery();
 
                 if (rs.next()) {
-                        User bean = new User();
-                        bean.id = UUID.fromString(rs.getString("id"));
-                        bean.name = rs.getString("name");
-                        bean.userName = rs.getString("userName");
-                        bean.password = rs.getString("password");
-                        bean.role = _RoleServices.getByName(rs.getString("roleName"));
-                        return bean;
+                    User bean = new User();
+                    bean.id = UUID.fromString(rs.getString("id"));
+                    bean.name = rs.getString("name");
+                    bean.userName = rs.getString("userName");
+                    bean.password = rs.getString("password");
+                    bean.role = _RoleServices.getByName(rs.getString("roleName"));
+                    return bean;
                 } else {
-                        return null;
+                    return null;
                 }
 
         } catch (SQLException e) {

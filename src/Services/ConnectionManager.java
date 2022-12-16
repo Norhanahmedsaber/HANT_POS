@@ -8,74 +8,74 @@ import utils.DBType;
 public class ConnectionManager {
     private static ConnectionManager instance = null;
 
-	private final String USERNAME = "admin";
-	private final String PASSWORD = "bYE87ppv";
-	private final String H_CONN_STRING =
-			"jdbc:hsqldb:data/hant";
-	private final String M_CONN_STRING =
-			"jdbc:mysql://181.215.242.74:18939/dbs";
+    private final String USERNAME = "admin";
+    private final String PASSWORD = "bYE87ppv";
+    private final String H_CONN_STRING =
+                    "jdbc:hsqldb:data/hant";
+    private final String M_CONN_STRING =
+                    "jdbc:mysql://181.215.242.74:18939/dbs";
 
-	private DBType dbType = DBType.MYSQL;
+    private DBType dbType = DBType.MYSQL;
 
-	private Connection conn = null;
+    private Connection conn = null;
 
-	private ConnectionManager() {
-	}
+    private ConnectionManager() {
+    }
 
-	public static ConnectionManager getInstance() {
-		if (instance == null) {
-			instance = new ConnectionManager();
-		}
-		return instance;
-	}
+    public static ConnectionManager getInstance() {
+        if (instance == null) {
+            instance = new ConnectionManager();
+        }
+        return instance;
+    }
 
-	public void setDBType(DBType dbType) {
-		this.dbType = dbType;
-	}
+    public void setDBType(DBType dbType) {
+            this.dbType = dbType;
+    }
 
-	private boolean openConnection()
-	{
-		try {
-			switch (dbType) {
+    private boolean openConnection()
+    {
+            try {
+                    switch (dbType) {
 
-			case MYSQL:
-				conn = DriverManager.getConnection(M_CONN_STRING, USERNAME, PASSWORD);
-				return true;
+                    case MYSQL:
+                            conn = DriverManager.getConnection(M_CONN_STRING, USERNAME, PASSWORD);
+                            return true;
 
-			case HSQLDB:
-				conn = DriverManager.getConnection(H_CONN_STRING, USERNAME, PASSWORD);
-				return true;
+                    case HSQLDB:
+                        conn = DriverManager.getConnection(H_CONN_STRING, USERNAME, PASSWORD);
+                        return true;
 
-			default: 
-				return false;
-			}
-		}
-		catch (SQLException e) {
-			System.err.println(e);
-			return false;
-		}
+                    default: 
+                        return false;
+                    }
+            }
+            catch (SQLException e) {
+                    System.err.println(e);
+                    return false;
+            }
 
-	}
+    }
 
-	public Connection getConnection()
-	{
-		if (conn == null) {
-			if (openConnection()) {
-				System.out.println("Connection opened");
-				return conn;
-			} else {
-				return null;
-			}
-		}
-		return conn;
-	}
+    public Connection getConnection()
+    {
+            if (conn == null) {
+                if (openConnection()) {
+                        System.out.println("Connection opened");
+                        return conn;
+                } else {
+                        return null;
+                }
+            }
+            return conn;
+    }
 
-	public void close() {
-		System.out.println("Closing connection");
-		try {
-			conn.close();
-			conn = null;
-		} catch (Exception e) {
-		}
-	}
+    public void close() {
+        System.out.println("Closing connection");
+        try {
+            conn.close();
+            conn = null;
+        } catch (Exception e) {
+        }
+    }
 }
