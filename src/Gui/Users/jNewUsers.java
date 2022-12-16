@@ -76,6 +76,8 @@ public class jNewUsers extends javax.swing.JPanel {
         user.password = jPasswordField.getText().trim();
         user.role = _RoleServices.getByName((String) jRolesCombo.getSelectedItem());
         _AccountServices.signUp(user);
+        jAddedSuccessfully.setVisible(true);
+        jAddedSuccessfully.setText("User was added successfully");
         _jHomePage.createLog("Added","User",user.name );
     }
     public void clearSignUpPage(){
@@ -85,11 +87,10 @@ public class jNewUsers extends javax.swing.JPanel {
         jErrorName.setText("");
         jErrorPassword.setText("");
         jErrorUsername.setText("");
-        jAddedSuccessfully.setText("");
-        ArrayList<Role> roles = _RoleServices.getAll();
-        String[] names = new String[roles.size()];
-        for(int i=0;i<roles.size();i++){
-            names[i] = roles.get(i).name;
+        ArrayList<String> roleNames = _RoleServices.getAll();
+        String[] names = new String[roleNames.size()];
+        for(int i=0;i<roleNames.size();i++){
+            names[i] = roleNames.get(i);
         }
         DefaultComboBoxModel model = new DefaultComboBoxModel(names);
         jRolesCombo.setModel(model);
@@ -98,6 +99,7 @@ public class jNewUsers extends javax.swing.JPanel {
         if(!checkAllValidations()){
             return;
         }
+        
         saveUserData();
         clearSignUpPage();
     }
@@ -243,8 +245,8 @@ public class jNewUsers extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRolesCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
-                .addComponent(jAddedSuccessfully)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(jAddedSuccessfully, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBack)
@@ -255,6 +257,8 @@ public class jNewUsers extends javax.swing.JPanel {
 
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
         _jHomePage.switchPanels(_jMainPage);
+        _jMainPage.jAddusers.grabFocus();
+        jAddedSuccessfully.setText("");
         clearSignUpPage();
     }//GEN-LAST:event_jBackMouseClicked
 

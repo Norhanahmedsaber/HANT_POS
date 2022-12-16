@@ -108,6 +108,7 @@ public class jLoginPage extends javax.swing.JPanel {
         error.setText("");
     }
     public void login() {
+        
         if(jusername.getText().isEmpty()) {
             error.setText("Username Is Empty!");
             return;
@@ -121,6 +122,7 @@ public class jLoginPage extends javax.swing.JPanel {
         {
             clearLogINPage();
             _jHomePage.switchPanels(_jMainPage);
+            _jMainPage.jAddusers.grabFocus();
             _jHomePage.loginUser=user;
         }
         else

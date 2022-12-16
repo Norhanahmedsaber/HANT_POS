@@ -24,8 +24,8 @@ public class jChooseItem extends javax.swing.JPanel {
         if (parent instanceof jNewCustomer )
         {
             //fn tzabat el gui
-             _jNewCustomer =(jNewCustomer)parent;
-             _jViewCustomer=null;
+            _jNewCustomer =(jNewCustomer)parent;
+            _jViewCustomer=null;
           // jNewCustomer.
         }
         else 
@@ -91,8 +91,7 @@ public class jChooseItem extends javax.swing.JPanel {
     }
     void guisetforshowpurchases()
     {
-        System.out.print("vbbb");
-          jcancel.setEnabled(false);
+        jcancel.setEnabled(false);
         jupdate.setEnabled(false);
         jRemove.setEnabled(false);
         jDone.setVisible(false);
@@ -118,7 +117,7 @@ public class jChooseItem extends javax.swing.JPanel {
         DefaultTableModel m= (DefaultTableModel) jAddedItems.getModel();
         int row=m.getRowCount();
         int col=5;
-        ArrayList<Item> items =new ArrayList<Item>();
+        ArrayList<Item> items =new ArrayList<>();
         for (int r=0;r<row;r++)
         {   
             Object [] itemdata=new Object[col];
@@ -136,15 +135,27 @@ public class jChooseItem extends javax.swing.JPanel {
         }
         _jNewCustomer.setselecteditems(items);
         _jHomePage.switchPanels(_parent);
+        
+    }
+    public void updateCustomer() {
+        DefaultTableModel addedModel= (DefaultTableModel) jAddedItems.getModel();
+        int row = addedModel.getRowCount();
+        ArrayList<UUID> itemsIds =new ArrayList<>();
+        for (int r = 0;r < row; r++)
+        {
+            itemsIds.add((UUID) addedModel.getValueAt(r, 0));
+        }
+        _CustomerServices.updateAssignedItemsToCustomer(_jViewCustomer._chosencustomer.id, itemsIds);
+        
     }
     public void resetPanel() {
         String [] titles= {"Id", "Name","Category","Price","CreatedAt"};
         DefaultTableModel m1 = (DefaultTableModel) jItems.getModel();
-         m1.setColumnIdentifiers(titles);
-         m1.setRowCount(0);
-          DefaultTableModel m2 = (DefaultTableModel) jAddedItems.getModel();
-         m2.setColumnIdentifiers(titles);
-         m2.setRowCount(0);
+        m1.setColumnIdentifiers(titles);
+        m1.setRowCount(0);
+        DefaultTableModel m2 = (DefaultTableModel) jAddedItems.getModel();
+        m2.setColumnIdentifiers(titles);
+        m2.setRowCount(0);
         jSearch.setText("");
         jItemsCombo.selectWithKeyChar('n');
         jError.setText("");
@@ -181,7 +192,6 @@ public class jChooseItem extends javax.swing.JPanel {
                  
                 for(int i=0;i<filteredItems.size();i++) {
                     Item item = filteredItems.get(i);
-                    System.err.println(item.id);
                     Object[] data = { item.id, item.name, item.category, item.price, item.createdAt };
                     model.addRow(data);
                 }
@@ -415,13 +425,14 @@ public class jChooseItem extends javax.swing.JPanel {
     }//GEN-LAST:event_jDoneMouseClicked
 
     private void jupdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jupdateMouseClicked
+        updateCustomer();
         setDefault();
         update();
     }//GEN-LAST:event_jupdateMouseClicked
      
     private void jeditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jeditMouseClicked
        setDefault();
-        edit();
+       edit();
     }//GEN-LAST:event_jeditMouseClicked
     private void jcancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcancelMouseClicked
         setDefault();

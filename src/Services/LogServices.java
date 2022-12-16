@@ -1,39 +1,115 @@
 package Services;
 import Entities.Log;
-import Entities.User;
 import Interfaces.ILogServices;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.UUID;
 
 public class LogServices implements ILogServices{
-    static ArrayList<Log> logs = new ArrayList<Log>();
+    private final Connection conn;
+
+    public LogServices() {
+        conn = ConnectionManager.getInstance().getConnection();
+    }
+    
     
     
     @Override
-    public void deleteLog(UUID logId) {
-     logs.remove(getById(logId));
+    public boolean deleteLog(UUID logId) {
+        String sql = "DELETE FROM logs WHERE id = ? ";
+        try (
+                PreparedStatement stmt = conn.prepareStatement(sql);
+            ) {
+                stmt.setString(1, logId.toString());
+                int affected = stmt.executeUpdate();
+                return affected == 1;
+        } catch (SQLException ex) {
+            System.err.println(ex);
+            return false;
+        }
     }
 
     @Override
     public Log getById(UUID logId) {
-        
-        for(int i=0;i<logs.size();i++) {
-            if(logs.get(i).id == logId) {
-                return logs.get(i);
+        String sql = "SELECT * FROM logs WHERE id = ?";
+        try (
+                PreparedStatement stmt = conn.prepareStatement(sql);
+            ){
+            stmt.setString(1, logId.toString());
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()) {
+                Log log = new Log();
+                log.id = logId;
+                log.actedOn = rs.getString("actedOn");
+                log.actedOnName = rs.getString("actedOnName");
+                log.action = rs.getString("action");
+                log.userName = rs.getString("userName");
+                log.userRole = rs.getString("userRole");
+                log.date = rs.getDate("date");
+                return log;
             }
+        } catch (SQLException ex) {
+            System.err.println(ex);
         }
         return null;
     }
 
     @Override
     public void create(Log log) {
-     logs.add(log);
+        String sql = "INSERT into logs (id, actedOn, actedOnName, action, userName, userRole, date) " +
+                        "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        try (
+                PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ) {
+
+                stmt.setString(1, log.id.toString());
+                stmt.setString(2, log.actedOn);
+                stmt.setString(3, log.actedOnName);
+                stmt.setString(4, log.action);
+                stmt.setString(5, log.userName);
+                stmt.setString(6, log.userRole);
+                stmt.setDate(7, new java.sql.Date(log.date.getTime()));
+                int affected = stmt.executeUpdate();
+
+                if (affected == 1) {
+                        System.out.print("Done!");
+                } else {
+                        System.err.println("Error!");
+                }
+
+        } catch (SQLException e) {
+                System.err.println(e);
+        }
     }
     
     @Override
     public ArrayList<Log> getAll() { 
-        return logs; 
+        String sql = "SELECT * FROM logs";
+        ArrayList<Log> logs = new ArrayList<>();
+        try (
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            ){
+                while (rs.next()) {
+                    Log log = new Log();
+                    log.id = UUID.fromString(rs.getString("id"));
+                    log.actedOn = rs.getString("actedOn");
+                    log.actedOnName = rs.getString("actedOnName");
+                    log.action = rs.getString("action");
+                    log.userName = rs.getString("userName");
+                    log.userRole = rs.getString("userRole");
+                    log.date = rs.getDate("date");
+                    logs.add(log);
+                }
+                return logs;
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
+        return logs;
     } 
     
     

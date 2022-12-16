@@ -1,6 +1,7 @@
 package Gui.Items;
 import Entities.Item;
 import Gui.jHomePage;
+import Gui.jMainPage;
 import Services.ItemServices;
 import java.awt.event.KeyEvent;
 import java.util.Date;
@@ -24,7 +25,7 @@ public class jNewItem extends javax.swing.JPanel {
         jErrorDescription.setText("");
         jErrorName.setText("");
         jErrorPrice.setText("");
-        jAddedSuccessfuly.setText("");
+      
     }
     public boolean checkAllValidations(){
         
@@ -110,9 +111,7 @@ public class jNewItem extends javax.swing.JPanel {
         if(!checkAllValidations()){
            return;
         }else
-        saveItemData();
-        
-        
+        saveItemData();   
         jAddedSuccessfuly.setText("Added Succesfully");
         clearNewitemPage();
     }
@@ -161,24 +160,44 @@ public class jNewItem extends javax.swing.JPanel {
             }
         });
 
+        jNameField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jNameFieldMouseClicked(evt);
+            }
+        });
         jNameField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jNameFieldKeyPressed(evt);
             }
         });
 
+        jPriceField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPriceFieldMouseClicked(evt);
+            }
+        });
         jPriceField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jPriceFieldKeyPressed(evt);
             }
         });
 
+        jDescriptionField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jDescriptionFieldMouseClicked(evt);
+            }
+        });
         jDescriptionField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jDescriptionFieldKeyPressed(evt);
             }
         });
 
+        jCatgoryField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jCatgoryFieldMouseClicked(evt);
+            }
+        });
         jCatgoryField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jCatgoryFieldKeyPressed(evt);
@@ -278,6 +297,12 @@ public class jNewItem extends javax.swing.JPanel {
           jViewItems viewitems= (jViewItems) _parent;
           viewitems.showItems();
         }
+        else 
+        {
+            jMainPage mainPage=(jMainPage)_parent;
+            mainPage.jNewitem.grabFocus();
+              jAddedSuccessfuly.setText("");
+        }
         _jHomePage.switchPanels(_parent);
     }//GEN-LAST:event_jBackMouseClicked
 
@@ -315,6 +340,22 @@ public class jNewItem extends javax.swing.JPanel {
              addItemButton();
         }
     }//GEN-LAST:event_jPriceFieldKeyPressed
+
+    private void jNameFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jNameFieldMouseClicked
+          jAddedSuccessfuly.setText("");
+    }//GEN-LAST:event_jNameFieldMouseClicked
+
+    private void jDescriptionFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDescriptionFieldMouseClicked
+          jAddedSuccessfuly.setText("");
+    }//GEN-LAST:event_jDescriptionFieldMouseClicked
+
+    private void jPriceFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPriceFieldMouseClicked
+          jAddedSuccessfuly.setText("");
+    }//GEN-LAST:event_jPriceFieldMouseClicked
+
+    private void jCatgoryFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCatgoryFieldMouseClicked
+          jAddedSuccessfuly.setText("");
+    }//GEN-LAST:event_jCatgoryFieldMouseClicked
     
     private final JPanel _parent;
     private final ItemServices _itemServices;

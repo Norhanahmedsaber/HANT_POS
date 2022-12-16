@@ -30,7 +30,7 @@ public class jViewItem extends javax.swing.JPanel {
         jErrorDescription.setText("");
         jErrorName.setText("");
         jErrorPrice.setText("");
-        jUpdatedSuccessfuly.setText("");
+       
     }
     public void renderData(){
         DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");     
@@ -218,6 +218,11 @@ public class jViewItem extends javax.swing.JPanel {
         jLabel5.setText("Price");
 
         jNameField.setEditable(false);
+        jNameField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jNameFieldMouseClicked(evt);
+            }
+        });
         jNameField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jNameFieldKeyPressed(evt);
@@ -225,6 +230,11 @@ public class jViewItem extends javax.swing.JPanel {
         });
 
         jPriceField.setEditable(false);
+        jPriceField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPriceFieldMouseClicked(evt);
+            }
+        });
         jPriceField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jPriceFieldKeyPressed(evt);
@@ -232,6 +242,11 @@ public class jViewItem extends javax.swing.JPanel {
         });
 
         jDescriptionField.setEditable(false);
+        jDescriptionField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jDescriptionFieldMouseClicked(evt);
+            }
+        });
         jDescriptionField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jDescriptionFieldKeyPressed(evt);
@@ -239,6 +254,11 @@ public class jViewItem extends javax.swing.JPanel {
         });
 
         jCreatedAt.setEditable(false);
+        jCreatedAt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jCreatedAtMouseClicked(evt);
+            }
+        });
         jCreatedAt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jCreatedAtKeyPressed(evt);
@@ -250,6 +270,11 @@ public class jViewItem extends javax.swing.JPanel {
         jLabel1.setText("Name");
 
         jCatgoryField.setEditable(false);
+        jCatgoryField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jCatgoryFieldMouseClicked(evt);
+            }
+        });
         jCatgoryField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jCatgoryFieldKeyPressed(evt);
@@ -388,6 +413,9 @@ public class jViewItem extends javax.swing.JPanel {
             resetViewItemPage();
             _jViewItems.showItems();
             _jHomePage.switchPanels(_jViewItems);  
+            _jViewItems.jItem.grabFocus();///////////////////////////3ayza te5leeh 3al selected item bas
+            jUpdatedSuccessfuly.setText("");
+            
         }  
     }//GEN-LAST:event_jBackMouseClicked
 
@@ -404,6 +432,7 @@ public class jViewItem extends javax.swing.JPanel {
     private void jUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jUpdateMouseClicked
         if(isEditing) {
             updateButton();
+            
         }
     }//GEN-LAST:event_jUpdateMouseClicked
 
@@ -448,6 +477,26 @@ public class jViewItem extends javax.swing.JPanel {
             updateButton();
         }
     }//GEN-LAST:event_jPanel1KeyPressed
+
+    private void jNameFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jNameFieldMouseClicked
+            jUpdatedSuccessfuly.setText("");
+    }//GEN-LAST:event_jNameFieldMouseClicked
+
+    private void jDescriptionFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDescriptionFieldMouseClicked
+            jUpdatedSuccessfuly.setText("");
+    }//GEN-LAST:event_jDescriptionFieldMouseClicked
+
+    private void jPriceFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPriceFieldMouseClicked
+            jUpdatedSuccessfuly.setText("");
+    }//GEN-LAST:event_jPriceFieldMouseClicked
+
+    private void jCreatedAtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCreatedAtMouseClicked
+            jUpdatedSuccessfuly.setText("");
+    }//GEN-LAST:event_jCreatedAtMouseClicked
+
+    private void jCatgoryFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCatgoryFieldMouseClicked
+            jUpdatedSuccessfuly.setText("");
+    }//GEN-LAST:event_jCatgoryFieldMouseClicked
     public boolean isEditing;
     public Item choosedItem;
     private final jMainPage _jMainPage;
@@ -471,7 +520,7 @@ public class jViewItem extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField jNameField;
+    public javax.swing.JTextField jNameField;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jPriceField;
     private javax.swing.JButton jUpdate;

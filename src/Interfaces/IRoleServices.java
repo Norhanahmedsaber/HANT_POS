@@ -6,9 +6,8 @@ import java.util.UUID;
 
 public interface IRoleServices {
     void getById(UUID id);
-    void create(Role role); 
-    void delete(UUID id);
+    void create(Role role);
     void update(UUID id, Role role);
-    ArrayList<Role> getAll(); 
+    ArrayList<String> getAll(); 
     Role getByName(String name);
 } 

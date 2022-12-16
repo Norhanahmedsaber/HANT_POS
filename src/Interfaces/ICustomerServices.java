@@ -6,11 +6,13 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public interface ICustomerServices {
-    void create(Customer customer);
-    void delete(UUID customerId);
+    void create(Customer customer, ArrayList<UUID> itemsIds);
+    boolean deleteAssignedItems(UUID customerId);
+    boolean delete(UUID customerId);
     ArrayList<Customer> getAll();
     Customer getById(UUID customerId);
-    // UUID to be figured
-    void update(UUID customerId, Customer customer);
+    boolean update(UUID customerId, Customer customer);
     ArrayList<Item> getAssignedItems(UUID customerId);
+    void assignItemsToCustomer(UUID customerId, ArrayList<UUID> itemsIds);
+    void updateAssignedItemsToCustomer(UUID customerId, ArrayList<UUID> itemsIds);
 }

@@ -21,7 +21,7 @@ public class jViewLogs extends javax.swing.JPanel {
         jLogDetails.setEditable(false);
     }
     public void renderData() { 
-        String[] cols = {"ID","User Name", "Action", "Acted On" ,"Date"}; 
+        String[] cols = {"ID","UserName", "Action", "Acted On" ,"Date"}; 
         DefaultTableModel model = (DefaultTableModel) jLogsTable.getModel();
         model.setColumnIdentifiers(cols);
         model.setRowCount(0);
@@ -117,10 +117,8 @@ public class jViewLogs extends javax.swing.JPanel {
             }
         });
 
-        jLogsTable.setBackground(new java.awt.Color(153, 153, 255));
-        jLogsTable.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 255, 102)));
-        jLogsTable.setFont(new java.awt.Font("Edwardian Script ITC", 0, 18)); // NOI18N
-        jLogsTable.setForeground(new java.awt.Color(255, 204, 102));
+        jLogsTable.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLogsTable.setForeground(new java.awt.Color(0, 0, 0));
         jLogsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -227,6 +225,7 @@ public class jViewLogs extends javax.swing.JPanel {
 
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
         _jHomePage.switchPanels(_jMainPage);
+        _jMainPage.jLog.grabFocus();
         jDeleteMessage.setText("");
     }//GEN-LAST:event_jBackMouseClicked
 
@@ -241,7 +240,7 @@ public class jViewLogs extends javax.swing.JPanel {
     }//GEN-LAST:event_jToggleSortMouseClicked
 
     private void jLogsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLogsTableMouseClicked
-        
+        showLogDetails(getSelectedLog());
     }//GEN-LAST:event_jLogsTableMouseClicked
 
     private void jSearchFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSearchFieldKeyTyped
@@ -279,7 +278,7 @@ public class jViewLogs extends javax.swing.JPanel {
     private javax.swing.JTable jLogsTable;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jSearchField;
+    public javax.swing.JTextField jSearchField;
     private javax.swing.JComboBox<String> jSortByCombo;
     private javax.swing.JButton jToggleSort;
     // End of variables declaration//GEN-END:variables
