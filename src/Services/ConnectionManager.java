@@ -8,12 +8,12 @@ import utils.DBType;
 public class ConnectionManager {
     private static ConnectionManager instance = null;
 
-	private final String USERNAME = "dbuser";
-	private final String PASSWORD = "dbpassword";
+	private final String USERNAME = "admin";
+	private final String PASSWORD = "bYE87ppv";
 	private final String H_CONN_STRING =
 			"jdbc:hsqldb:data/hant";
 	private final String M_CONN_STRING =
-			"jdbc:mysql://localhost/hant";
+			"jdbc:mysql://181.215.242.74:18939/dbs";
 
 	private DBType dbType = DBType.MYSQL;
 
