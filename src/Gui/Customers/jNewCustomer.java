@@ -22,7 +22,7 @@ public class jNewCustomer extends javax.swing.JPanel {
         _jChooseItem = new jChooseItem(jhp,this);
         _jHomePage = jhp;
         _CustomerServices = new CustomerServices();
-        _chosenitems=new ArrayList<Item>();
+        _chosenitems=new ArrayList<>();
         _jItemServices=new ItemServices();
         _parent = parent;
     }

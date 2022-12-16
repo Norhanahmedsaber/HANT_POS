@@ -38,10 +38,7 @@ public class jNewItem extends javax.swing.JPanel {
         if (!isValidPrice()){
             return false;
         }
-        if (!isValidCatgory()){
-            return false;
-        }
-        return true;
+        return isValidCatgory();
     }
     public boolean isValidName(){
         
@@ -80,7 +77,7 @@ public class jNewItem extends javax.swing.JPanel {
         
         // is valid (Price)
         try {
-            Integer.parseInt(jPriceField.getText().trim());
+            Integer.valueOf(jPriceField.getText().trim());
         }catch(NumberFormatException e) {
             jErrorPrice.setText("you must enter number.");
             return false;
@@ -107,6 +104,7 @@ public class jNewItem extends javax.swing.JPanel {
         _itemServices.create(item);
         _jHomePage.createLog("create", "Item", item.name);
     }
+    @SuppressWarnings("SuspiciousIndentAfterControlStatement")
     public void addItemButton(){
         if(!checkAllValidations()){
            return;
@@ -304,6 +302,7 @@ public class jNewItem extends javax.swing.JPanel {
               jAddedSuccessfuly.setText("");
         }
         _jHomePage.switchPanels(_parent);
+
     }//GEN-LAST:event_jBackMouseClicked
 
     private void jAddItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAddItemMouseClicked

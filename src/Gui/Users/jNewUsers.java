@@ -63,10 +63,7 @@ public class jNewUsers extends javax.swing.JPanel {
         if (!isValidUserName()){
             return false;
         }
-        if (!isValidPassword()){
-            return false;
-        }
-        return true;
+        return isValidPassword();
     }
     public void saveUserData(){
         User user = new User();

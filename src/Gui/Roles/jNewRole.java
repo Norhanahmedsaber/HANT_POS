@@ -70,7 +70,7 @@ public class jNewRole extends javax.swing.JPanel {
         else{
             jAddedRoleSuccessfully.setText("Updated successfully");
             Role role = getData();
-            _jHomePage.createLog("Updated", "Role", role.name);
+            _jHomePage.createLog("Updated", "Role", role.name); 
             _RoleServices.update(_RoleServices.getByName(_jRole.name).id, role);
           
         }
