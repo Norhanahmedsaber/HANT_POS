@@ -102,7 +102,7 @@ public class jNewItem extends javax.swing.JPanel {
         item.createdAt=new Date(); 
         item.id=UUID.randomUUID();
         _itemServices.create(item);
-        _jHomePage.createLog("create", "Item", item.name);
+        _jHomePage.createLog("Created", "Item", item.name);
     }
     @SuppressWarnings("SuspiciousIndentAfterControlStatement")
     public void addItemButton(){
