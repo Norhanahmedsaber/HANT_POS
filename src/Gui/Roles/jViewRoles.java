@@ -30,13 +30,13 @@ public class jViewRoles extends javax.swing.JPanel {
     }
     public void renderData() {
         DefaultListModel model = new DefaultListModel();
-        ArrayList<Role> roles = _RoleServices.getAll();
-        if(!roles.isEmpty()) {
+        ArrayList<String> roleNames = _RoleServices.getAll();
+        if(!roleNames.isEmpty()) {
             String searchName = jSearch.getText().trim();
-            ArrayList<Role> filteredRoles = _filterRoles.filter(roles, searchName);
+            ArrayList<String> filteredRoles = _filterRoles.filter(roleNames, searchName);
             if(!filteredRoles.isEmpty()) {
-                for( Role role : roles ) {
-                    model.addElement(role.name);
+                for( String roleName : roleNames ) {
+                    model.addElement(roleName);
                 }
             }
         }

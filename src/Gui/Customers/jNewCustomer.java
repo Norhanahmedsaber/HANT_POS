@@ -22,7 +22,7 @@ public class jNewCustomer extends javax.swing.JPanel {
         _jChooseItem = new jChooseItem(jhp,this);
         _jHomePage = jhp;
         _CustomerServices = new CustomerServices();
-        _chosenitems=new ArrayList<Item>();
+        _chosenitems=new ArrayList<>();
         _jItemServices=new ItemServices();
         _parent = parent;
     }
@@ -231,14 +231,13 @@ public class jNewCustomer extends javax.swing.JPanel {
         _Customer.gender = (String)jGenderComboBox.getSelectedItem();
         _Customer.phoneNumber = jPhoneNoField.getText().trim();
         _Customer.purchaseDate=new Date();
-        ArrayList<UUID> itemsid =new ArrayList<UUID>();
+        ArrayList<UUID> itemsid =new ArrayList<>();
         for(int i=0; i<getselecteditems().size();i++)
         {
-          itemsid.add( _chosenitems.get(i).id);
+            itemsid.add( _chosenitems.get(i).id);
         }
-         _CustomerServices.create(_Customer);
-         _jHomePage.createLog("Created", "Customer",_Customer.name );
-        _jItemServices.addItemsToCustomer(_Customer.id, itemsid);
+        _CustomerServices.create(_Customer, itemsid);
+        _jHomePage.createLog("Created", "Customer",_Customer.name );
         
     }
     public void clearNewCustomerPage() {
@@ -280,11 +279,10 @@ public class jNewCustomer extends javax.swing.JPanel {
         else 
         {
             jMainPage MainPage=(jMainPage)_parent;
-            _jHomePage.switchPanels(_parent);
             MainPage.jNewcustomer.grabFocus();
-            jAddedCustomer.setText("");     
-
+            jAddedCustomer.setText("");
         }
+        _jHomePage.switchPanels(_parent);
     }
     
 

@@ -18,7 +18,7 @@ public class jHomePage extends javax.swing.JFrame {
     public void createLog(String action, String actedOn, String actedOnName ){
         Log log =new Log();
         log.id= UUID.randomUUID();
-        log.userName =loginUser.name;
+        log.userName =loginUser.userName;
         log.userRole =loginUser.role.name;
         log.action = action;
         log.actedOn = actedOn;
