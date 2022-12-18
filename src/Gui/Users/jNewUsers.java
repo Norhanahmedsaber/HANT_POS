@@ -136,12 +136,22 @@ public class jNewUsers extends javax.swing.JPanel {
 
         jLabel4.setText("password");
 
+        jNameField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jNameFieldMouseClicked(evt);
+            }
+        });
         jNameField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jNameFieldKeyPressed(evt);
             }
         });
 
+        jUsernameField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jUsernameFieldMouseClicked(evt);
+            }
+        });
         jUsernameField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jUsernameFieldKeyPressed(evt);
@@ -155,6 +165,11 @@ public class jNewUsers extends javax.swing.JPanel {
         });
 
         jRolesCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User", "Manager", " ", " " }));
+        jRolesCombo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jRolesComboMouseClicked(evt);
+            }
+        });
         jRolesCombo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jRolesComboKeyPressed(evt);
@@ -301,6 +316,18 @@ public class jNewUsers extends javax.swing.JPanel {
             addAccountButton();
         }
     }//GEN-LAST:event_formKeyPressed
+
+    private void jNameFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jNameFieldMouseClicked
+        jAddedSuccessfully.setText("");
+    }//GEN-LAST:event_jNameFieldMouseClicked
+
+    private void jUsernameFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jUsernameFieldMouseClicked
+        jAddedSuccessfully.setText("");
+    }//GEN-LAST:event_jUsernameFieldMouseClicked
+
+    private void jRolesComboMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRolesComboMouseClicked
+       jAddedSuccessfully.setText("");
+    }//GEN-LAST:event_jRolesComboMouseClicked
     
     private final jMainPage _jMainPage;
     private final jHomePage _jHomePage;

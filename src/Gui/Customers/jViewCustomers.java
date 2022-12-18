@@ -4,9 +4,11 @@ import Entities.Customer;
 import Gui.jHomePage;
 import Gui.jMainPage;
 import Services.CustomerServices;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.UUID;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import utils.filterCustomers;
 
 public final class jViewCustomers extends javax.swing.JPanel  {
@@ -21,13 +23,14 @@ public final class jViewCustomers extends javax.swing.JPanel  {
         _jNewCustomer = new jNewCustomer(jhp, this);
         
         toggle = false;
+        
     }
     //Make Table unEditable:
    
     public void renderData() { 
         String[] cols = {"ID","Name", "Email", "PurchaseDate", "PhoneNumber"}; 
         DefaultTableModel model = (DefaultTableModel) jCustomersTable.getModel();
-        model.setColumnIdentifiers(cols);
+         model.setColumnIdentifiers(cols);
         model.setRowCount(0);
         ArrayList<Customer> customers = _CustomerServices.getAll(); 
         if(!customers.isEmpty()) { 
@@ -83,8 +86,16 @@ public final class jViewCustomers extends javax.swing.JPanel  {
         jAddButton = new javax.swing.JButton();
         jDeleteMessage = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(87, 118, 130));
+        setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("search by name :");
 
+        jSearchName.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jSearchName.setForeground(new java.awt.Color(0, 31, 78));
         jSearchName.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jSearchNameMouseClicked(evt);
@@ -96,22 +107,29 @@ public final class jViewCustomers extends javax.swing.JPanel  {
             }
         });
 
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Sort by :");
 
+        jSortBy.setBackground(new java.awt.Color(217, 156, 69));
+        jSortBy.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jSortBy.setForeground(new java.awt.Color(255, 255, 255));
         jSortBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Name", "Date" }));
         jSortBy.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jSortByMouseClicked(evt);
             }
         });
-        jSortBy.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jSortByActionPerformed(evt);
-            }
-        });
 
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("All Customers :");
 
+        jBackButton.setBackground(new java.awt.Color(217, 156, 69));
+        jBackButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jBackButton.setForeground(new java.awt.Color(255, 255, 255));
         jBackButton.setText("Back");
         jBackButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -119,6 +137,9 @@ public final class jViewCustomers extends javax.swing.JPanel  {
             }
         });
 
+        jDeleteButton.setBackground(new java.awt.Color(217, 156, 69));
+        jDeleteButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jDeleteButton.setForeground(new java.awt.Color(255, 255, 255));
         jDeleteButton.setText("Delete");
         jDeleteButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -126,8 +147,24 @@ public final class jViewCustomers extends javax.swing.JPanel  {
             }
         });
 
+        jCustomersTable.setBackground(new java.awt.Color(217, 156, 69));
+        jCustomersTable.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jCustomersTable.setForeground(new java.awt.Color(255, 255, 255));
         jCustomersTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -145,8 +182,15 @@ public final class jViewCustomers extends javax.swing.JPanel  {
                 return canEdit [columnIndex];
             }
         });
+        jCustomersTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jCustomersTable.setGridColor(new java.awt.Color(0, 31, 78));
+        jCustomersTable.setOpaque(false);
+        jCustomersTable.setSelectionBackground(new java.awt.Color(87, 118, 130));
         jScrollPane2.setViewportView(jCustomersTable);
 
+        jToggleSort.setBackground(new java.awt.Color(217, 156, 69));
+        jToggleSort.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jToggleSort.setForeground(new java.awt.Color(255, 255, 255));
         jToggleSort.setText("↓↑\n");
         jToggleSort.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -154,6 +198,9 @@ public final class jViewCustomers extends javax.swing.JPanel  {
             }
         });
 
+        jShowButton.setBackground(new java.awt.Color(217, 156, 69));
+        jShowButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jShowButton.setForeground(new java.awt.Color(255, 255, 255));
         jShowButton.setText("Show Customer");
         jShowButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -161,6 +208,9 @@ public final class jViewCustomers extends javax.swing.JPanel  {
             }
         });
 
+        jAddButton.setBackground(new java.awt.Color(217, 156, 69));
+        jAddButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jAddButton.setForeground(new java.awt.Color(255, 255, 255));
         jAddButton.setText("Add Customer");
         jAddButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -168,39 +218,41 @@ public final class jViewCustomers extends javax.swing.JPanel  {
             }
         });
 
+        jDeleteMessage.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
+        jDeleteMessage.setForeground(new java.awt.Color(0, 31, 78));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(191, 191, 191)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(57, 57, 57)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSearchName)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jSortBy, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jSortBy, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jToggleSort, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jToggleSort))
+                            .addComponent(jSearchName, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jBackButton)
-                        .addGap(12, 12, 12)
-                        .addComponent(jDeleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jShowButton, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(jAddButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jDeleteMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jDeleteMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jShowButton)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jAddButton))))))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,24 +262,24 @@ public final class jViewCustomers extends javax.swing.JPanel  {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSearchName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jSortBy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jToggleSort)))
-                .addGap(43, 43, 43)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jDeleteMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jDeleteButton)
+                    .addComponent(jSortBy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jToggleSort)
+                    .addComponent(jLabel3))
+                .addGap(29, 29, 29)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jAddButton)
                     .addComponent(jShowButton)
-                    .addComponent(jBackButton)
-                    .addComponent(jAddButton))
-                .addContainerGap())
+                    .addComponent(jDeleteButton))
+                .addGap(2, 2, 2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jDeleteMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -237,10 +289,6 @@ public final class jViewCustomers extends javax.swing.JPanel  {
         jDeleteMessage.setText("");
     }//GEN-LAST:event_jBackButtonMouseClicked
 
-
-    private void jSortByActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSortByActionPerformed
-        renderData();
-    }//GEN-LAST:event_jSortByActionPerformed
 
     private void jSearchNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSearchNameKeyTyped
         renderData();
