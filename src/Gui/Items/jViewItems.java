@@ -94,6 +94,7 @@ public class jViewItems extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        jItem.setGridColor(new java.awt.Color(0, 31, 78));
         jScrollPane2.setViewportView(jItem);
 
         jadditem.setText("Add Item");

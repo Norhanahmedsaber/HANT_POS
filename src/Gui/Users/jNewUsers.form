@@ -121,6 +121,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jNameField">
       <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jNameFieldMouseClicked"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jNameFieldKeyPressed"/>
       </Events>
       <AuxValues>
@@ -129,6 +130,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jUsernameField">
       <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jUsernameFieldMouseClicked"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jUsernameFieldKeyPressed"/>
       </Events>
     </Component>
@@ -149,6 +151,7 @@
         </Property>
       </Properties>
       <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jRolesComboMouseClicked"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jRolesComboKeyPressed"/>
       </Events>
       <AuxValues>

@@ -25,7 +25,6 @@ public class AccountServices implements IAccountServices{
                 stmt.setString(1, username);
                 stmt.setString(2, password);
                 rs = stmt.executeQuery();
-
                 if (rs.next()) {
                     User bean = new User();
                     bean.id = UUID.fromString(rs.getString("id"));

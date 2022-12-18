@@ -46,6 +46,11 @@ public class jMainPage extends javax.swing.JPanel {
         jViewRoles = new javax.swing.JButton();
         jNewRole = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(87, 118, 130));
+
+        jNewitem.setBackground(new java.awt.Color(217, 156, 69));
+        jNewitem.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jNewitem.setForeground(new java.awt.Color(255, 255, 255));
         jNewitem.setText("New Item");
         jNewitem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -53,6 +58,9 @@ public class jMainPage extends javax.swing.JPanel {
             }
         });
 
+        jViewitems.setBackground(new java.awt.Color(217, 156, 69));
+        jViewitems.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jViewitems.setForeground(new java.awt.Color(255, 255, 255));
         jViewitems.setText("View Items");
         jViewitems.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -60,6 +68,9 @@ public class jMainPage extends javax.swing.JPanel {
             }
         });
 
+        jViewcustomers.setBackground(new java.awt.Color(217, 156, 69));
+        jViewcustomers.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jViewcustomers.setForeground(new java.awt.Color(255, 255, 255));
         jViewcustomers.setText("View Customers");
         jViewcustomers.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -67,6 +78,9 @@ public class jMainPage extends javax.swing.JPanel {
             }
         });
 
+        jLog.setBackground(new java.awt.Color(217, 156, 69));
+        jLog.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jLog.setForeground(new java.awt.Color(255, 255, 255));
         jLog.setText("Log");
         jLog.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -74,6 +88,9 @@ public class jMainPage extends javax.swing.JPanel {
             }
         });
 
+        jNewcustomer.setBackground(new java.awt.Color(217, 156, 69));
+        jNewcustomer.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jNewcustomer.setForeground(new java.awt.Color(255, 255, 255));
         jNewcustomer.setText("New Customer");
         jNewcustomer.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -81,18 +98,19 @@ public class jMainPage extends javax.swing.JPanel {
             }
         });
 
+        jLogout.setBackground(new java.awt.Color(217, 156, 69));
+        jLogout.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jLogout.setForeground(new java.awt.Color(255, 255, 255));
         jLogout.setText("Logout");
         jLogout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLogoutMouseClicked(evt);
             }
         });
-        jLogout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jLogoutActionPerformed(evt);
-            }
-        });
 
+        jAddusers.setBackground(new java.awt.Color(217, 156, 69));
+        jAddusers.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jAddusers.setForeground(new java.awt.Color(255, 255, 255));
         jAddusers.setText("New Users");
         jAddusers.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -100,6 +118,9 @@ public class jMainPage extends javax.swing.JPanel {
             }
         });
 
+        jViewusers.setBackground(new java.awt.Color(217, 156, 69));
+        jViewusers.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jViewusers.setForeground(new java.awt.Color(255, 255, 255));
         jViewusers.setText("View Users");
         jViewusers.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -107,6 +128,9 @@ public class jMainPage extends javax.swing.JPanel {
             }
         });
 
+        jViewRoles.setBackground(new java.awt.Color(217, 156, 69));
+        jViewRoles.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jViewRoles.setForeground(new java.awt.Color(255, 255, 255));
         jViewRoles.setText("View Roles");
         jViewRoles.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -114,6 +138,9 @@ public class jMainPage extends javax.swing.JPanel {
             }
         });
 
+        jNewRole.setBackground(new java.awt.Color(217, 156, 69));
+        jNewRole.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jNewRole.setForeground(new java.awt.Color(255, 255, 255));
         jNewRole.setText("New Role");
         jNewRole.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -126,50 +153,51 @@ public class jMainPage extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jViewRoles, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(101, 101, 101)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jAddusers, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jNewitem, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jNewcustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLog, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jViewcustomers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jViewitems, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jViewusers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jNewRole, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLog, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(176, 176, 176))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jNewRole, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jNewitem, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jNewcustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jAddusers, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(42, 42, 42)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jViewcustomers, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jViewusers, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jViewitems, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jViewRoles, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(76, 76, 76)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jAddusers)
-                    .addComponent(jViewusers))
+                    .addComponent(jNewcustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jViewcustomers, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jNewcustomer)
-                    .addComponent(jViewcustomers))
+                    .addComponent(jNewitem, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jViewitems, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jViewusers, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jAddusers, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jNewitem)
-                    .addComponent(jViewitems))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLog)
-                    .addComponent(jLogout))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jViewRoles)
-                    .addComponent(jNewRole))
-                .addContainerGap(172, Short.MAX_VALUE))
+                    .addComponent(jNewRole, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jViewRoles, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addComponent(jLog, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(97, 97, 97)
+                .addComponent(jLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -259,10 +287,6 @@ public class jMainPage extends javax.swing.JPanel {
             
         }
     }//GEN-LAST:event_jNewRoleMouseClicked
-
-    private void jLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLogoutActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLogoutActionPerformed
     
     
     
