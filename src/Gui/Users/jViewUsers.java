@@ -267,6 +267,7 @@ public class jViewUsers extends javax.swing.JPanel {
             _jViewUser.renderData();
             _jViewUser.removeUpdateANdCancelButtons();
             _jViewUser.disableUserFields();
+            _jViewUser.jRolesCombo.selectWithKeyChar(user.role.name.charAt(0));
             _jHomePage.switchPanels(_jViewUser);
             _jViewUser.jNameField.grabFocus();
          }

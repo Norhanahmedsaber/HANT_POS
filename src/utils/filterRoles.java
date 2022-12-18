@@ -1,20 +1,18 @@
 package utils;
-
-import Entities.Role;
 import java.util.ArrayList;
 
 public class filterRoles {
-    public ArrayList<Role> filter(ArrayList<Role> roles, String searchName) {
-        return search(roles, searchName); 
+    public ArrayList<String> filter(ArrayList<String> roleNames, String searchName) {
+        return search(roleNames, searchName); 
     }
-    public ArrayList<Role> search(ArrayList<Role> roles, String searchName) {
-        ArrayList<Role> rolesAfterSearch = new ArrayList<Role>();
-        for(Role role : roles) {
-            boolean name = role.name.trim().toLowerCase().contains(searchName.trim().toLowerCase());
+    public ArrayList<String> search(ArrayList<String> roleNames, String searchName) {
+        ArrayList<String> roleNamesAfterSearch = new ArrayList<String>();
+        for(String roleName : roleNames) {
+            boolean name = roleName.trim().toLowerCase().contains(searchName.trim().toLowerCase());
             if(name) {
-                rolesAfterSearch.add(role);
+                roleNamesAfterSearch.add(roleName);
             }
         }
-        return rolesAfterSearch;
+        return roleNamesAfterSearch;
     }
 }

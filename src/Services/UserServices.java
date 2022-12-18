@@ -1,61 +1,136 @@
 package Services;
-import Entities.Item;
 import Entities.User;
 import Interfaces.IUserServices;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.UUID;
 
 public class UserServices implements IUserServices{
-    public static ArrayList<User> users = new ArrayList<User>();
-
+    public Connection conn;
+    private final RoleServices _RoleServices;
     public UserServices() {
-        _RoleServices = new RoleServices();  
-        User user = new User();
-        user.id = UUID.randomUUID();
-        user.name = "anas hesham";
-        user.userName = "anas";
-        user.password = "123";
-        user.role = _RoleServices.getByName("Admin");
-        users.add(user);
+        conn = ConnectionManager.getInstance().getConnection();
+        _RoleServices = new RoleServices();
     }
     
     @Override
     public void create(User user) {
-        users.add(user);
+        String sql = "INSERT into users (id, name, userName, password, roleName) " +
+                        "VALUES (?, ?, ?, ?, ?)";
+        try (
+                PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ) {
+
+                stmt.setString(1, user.id.toString());
+                stmt.setString(2, user.name);
+                stmt.setString(3, user.userName);
+                stmt.setString(4, user.password);
+                stmt.setString(5, user.role.name);
+                int affected = stmt.executeUpdate();
+
+                if (affected == 1) {
+                        System.out.print("Done!");
+                } else {
+                        System.err.println("Error!");
+                }
+
+        } catch (SQLException e) {
+                System.err.println(e);
+        } 
     }
 
     @Override
-    public void delete(UUID userId) {
-        users.remove(getById(userId));
-    }
+    public boolean delete(UUID userId) {
+        String sql = "DELETE FROM users WHERE id = ?";
+        try (
+            PreparedStatement stmt = conn.prepareStatement(sql);
+        ){
+            stmt.setString(1, userId.toString());
+            int affected = stmt.executeUpdate();
+            return affected == 1;
+        }
+        catch(SQLException e) {
+                System.err.println(e);
+                return false;
+        }
+}
 
     @Override
     public User getById(UUID userId) {
+        String sql = "SELECT * FROM users WHERE id = ?";
+        ResultSet rs;
         
-        for(int i=0;i<users.size();i++) {
-            if(users.get(i).id == userId) {
-                return users.get(i);
-            }
+        try (
+                PreparedStatement stmt = conn.prepareStatement(sql);
+            ){
+                stmt.setString(1, userId.toString());
+                rs = stmt.executeQuery();
+
+                if (rs.next()) {
+                    User bean = new User();
+                    bean.id = userId;
+                    bean.name = rs.getString("name");
+                    bean.userName = rs.getString("userName");
+                    bean.role = _RoleServices.getByName(rs.getString("roleName"));
+                    return bean;
+                } else {
+                    return null;
+                }
+
+        } catch (SQLException e) {
+                System.err.println(e);
+                return null;
         }
-        return null; 
     }
 
     @Override
-    public void update(UUID userId, User user) {
-        for(int i=0;i<users.size();i++) {
-            if(users.get(i).id == userId) {
-                users.get(i).name = user.name;
-                users.get(i).userName = user.userName;
-                users.get(i).password = user.password;
-                users.get(i).role = user.role;
-            }
+    public boolean update(UUID userId, User user) {
+        String sql = "UPDATE users SET " +
+                     "name = ?, userName = ?, password = ?, roleName = ? " +
+                     "WHERE id = ?";
+        try (
+                PreparedStatement stmt = conn.prepareStatement(sql);
+            ){
+                stmt.setString(1, user.name);
+                stmt.setString(2, user.userName);
+                stmt.setString(3, user.password);
+                stmt.setString(4, user.role.name);
+                stmt.setString(5, userId.toString());
+                int affected = stmt.executeUpdate();
+                return affected == 1;
+
+        }
+        catch(SQLException e) {
+                System.err.println(e);
+                return false;
         }
     }
     
     @Override
-    public ArrayList<User> getAll() { 
-        return users; 
+    public ArrayList<User> getAll() {
+        String sql = "SELECT id, name, userName, roleName FROM users";
+        ArrayList<User> users = new ArrayList<>();
+        try (
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            ){
+                while (rs.next()) {
+                       User user = new User();
+                       user.id = UUID.fromString(rs.getString("id"));
+                       user.name = rs.getString("name");
+                       user.userName = rs.getString("userName");
+                       user.role = _RoleServices.getByName(rs.getString("roleName"));
+                       users.add(user);
+                }
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
+        
+        return users;
     } 
-    private RoleServices _RoleServices;
     
 }

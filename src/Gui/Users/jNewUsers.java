@@ -63,10 +63,7 @@ public class jNewUsers extends javax.swing.JPanel {
         if (!isValidUserName()){
             return false;
         }
-        if (!isValidPassword()){
-            return false;
-        }
-        return true;
+        return isValidPassword();
     }
     public void saveUserData(){
         User user = new User();
@@ -87,10 +84,10 @@ public class jNewUsers extends javax.swing.JPanel {
         jErrorName.setText("");
         jErrorPassword.setText("");
         jErrorUsername.setText("");
-        ArrayList<Role> roles = _RoleServices.getAll();
-        String[] names = new String[roles.size()];
-        for(int i=0;i<roles.size();i++){
-            names[i] = roles.get(i).name;
+        ArrayList<String> roleNames = _RoleServices.getAll();
+        String[] names = new String[roleNames.size()];
+        for(int i=0;i<roleNames.size();i++){
+            names[i] = roleNames.get(i);
         }
         DefaultComboBoxModel model = new DefaultComboBoxModel(names);
         jRolesCombo.setModel(model);

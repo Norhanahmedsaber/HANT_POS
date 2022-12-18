@@ -26,10 +26,10 @@ public class jViewUser extends javax.swing.JPanel {
         
         jNameField.setText(choosedUser.name);
         jUsernameField.setText(choosedUser.userName); 
-         ArrayList<Role> roles = _RoleServices.getAll();
-        String[] names = new String[roles.size()];
-        for(int i=0;i<roles.size();i++){
-            names[i] = roles.get(i).name;
+        ArrayList<String> roleNames = _RoleServices.getAll();
+        String[] names = new String[roleNames.size()];
+        for(int i=0;i<roleNames.size();i++){
+            names[i] = roleNames.get(i);
         }
         DefaultComboBoxModel model = new DefaultComboBoxModel(names);
         jRolesCombo.setModel(model);
@@ -427,7 +427,7 @@ public class jViewUser extends javax.swing.JPanel {
     private javax.swing.JPasswordField jPasswordField;
     private javax.swing.JLabel jPasswordLabel;
     private javax.swing.JLabel jRoleLabel;
-    private javax.swing.JComboBox<String> jRolesCombo;
+    public javax.swing.JComboBox<String> jRolesCombo;
     private javax.swing.JButton jUpdateButton;
     private javax.swing.JLabel jUpdateUserSuccessfully;
     private javax.swing.JLabel jUserNameLabel;

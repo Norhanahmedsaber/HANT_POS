@@ -275,7 +275,7 @@ public class jViewItems extends javax.swing.JPanel {
 
     private void jShowItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jShowItemMouseClicked
         _jViewItem.resetViewItemPage();
-        Item item =getSelectedItem();
+        Item item  = getSelectedItem();
         if(item != null){
             _jViewItem.choosedItem = item;
             _jHomePage.switchPanels(_jViewItem);
