@@ -885,6 +885,6 @@ public class jViewCustomer extends javax.swing.JPanel {
     private javax.swing.JButton jShowpurchases;
     private javax.swing.JButton jUpdate;
     private javax.swing.JLabel jUpdatedSuccesfully;
-    private javax.swing.JComboBox<String> jgenderCombobox;
+    public javax.swing.JComboBox<String> jgenderCombobox;
     // End of variables declaration//GEN-END:variables
 }

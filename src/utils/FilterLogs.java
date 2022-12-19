@@ -4,7 +4,7 @@ import Entities.Log;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-
+ 
 public class FilterLogs {
     public ArrayList<Log> filter(ArrayList<Log> logs, String searchName, String sortBy , boolean toggle ) {
          

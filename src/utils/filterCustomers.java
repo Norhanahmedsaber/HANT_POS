@@ -4,7 +4,7 @@ import Entities.Customer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-
+ 
 public class filterCustomers {
     public ArrayList<Customer> filter(ArrayList<Customer> customers, String searchName, String sortBy , boolean toggle ) {
        

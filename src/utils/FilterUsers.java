@@ -3,7 +3,7 @@ import Entities.User;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-
+ 
 public class FilterUsers { 
     
     public ArrayList<User> filter(ArrayList<User> users, String searchName, String sortBy , boolean toggle ) { 

@@ -324,6 +324,7 @@ public final class jViewCustomers extends javax.swing.JPanel  {
 
     private void jShowButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jShowButtonMouseClicked
         Customer customer = selectcustomer();
+
         if (customer!=null)
         { 
             _jViewCustomer._chosencustomer=customer;
@@ -331,10 +332,11 @@ public final class jViewCustomers extends javax.swing.JPanel  {
             _jHomePage.switchPanels(_jViewCustomer);
             _jViewCustomer.jNameField.grabFocus();
             jDeleteMessage.setText("");
+            _jViewCustomer.jgenderCombobox.setEnabled(false);
         }else {
             jDeleteMessage.setText("Please Select Customer!");
         }
-        
+
     }//GEN-LAST:event_jShowButtonMouseClicked
 
     private void jAddButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAddButtonMouseClicked
