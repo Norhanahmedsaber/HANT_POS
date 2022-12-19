@@ -315,6 +315,7 @@ public final class jViewCustomers extends javax.swing.JPanel  {
              _jViewCustomer.renderData();
              _jHomePage.switchPanels(_jViewCustomer);
              _jViewCustomer.jNameField.grabFocus();
+             jViewCustomer.jgenderCombobox.setEnabled(false);
          }
          jDeleteMessage.setText("");
     }//GEN-LAST:event_jShowButtonMouseClicked

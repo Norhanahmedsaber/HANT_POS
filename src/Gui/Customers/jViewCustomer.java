@@ -696,7 +696,7 @@ public class jViewCustomer extends javax.swing.JPanel {
                             .addComponent(jAgeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jErrorAge, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jgenderCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -872,6 +872,6 @@ public class jViewCustomer extends javax.swing.JPanel {
     private javax.swing.JButton jShowpurchases;
     private javax.swing.JButton jUpdate;
     private javax.swing.JLabel jUpdatedSuccesfully;
-    private javax.swing.JComboBox<String> jgenderCombobox;
+    public static javax.swing.JComboBox<String> jgenderCombobox;
     // End of variables declaration//GEN-END:variables
 }
