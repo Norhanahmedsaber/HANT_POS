@@ -73,14 +73,8 @@ public class LogServices implements ILogServices{
                 stmt.setString(5, log.userName);
                 stmt.setString(6, log.userRole);
                 stmt.setDate(7, new java.sql.Date(log.date.getTime()));
-                int affected = stmt.executeUpdate();
-
-                if (affected == 1) {
-                        System.out.print("Done!");
-                } else {
-                        System.err.println("Error!");
-                }
-
+                stmt.executeUpdate();
+            
         } catch (SQLException e) {
                 System.err.println(e);
         }

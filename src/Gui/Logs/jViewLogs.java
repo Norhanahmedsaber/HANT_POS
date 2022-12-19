@@ -73,14 +73,20 @@ public class jViewLogs extends javax.swing.JPanel {
         jSortByCombo = new javax.swing.JComboBox<>();
         jSearchField = new javax.swing.JTextField();
         jDelete = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jLogsTable = new javax.swing.JTable();
         jToggleSort = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jLogDetails = new javax.swing.JTextArea();
         jDeleteMessage = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jLogsTable = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(87, 118, 130));
+        setForeground(new java.awt.Color(87, 118, 130));
+
+        jBack.setBackground(new java.awt.Color(217, 156, 69));
+        jBack.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jBack.setForeground(new java.awt.Color(255, 255, 255));
         jBack.setText("Back");
         jBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -88,10 +94,16 @@ public class jViewLogs extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Search :");
 
+        jLabel2.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("SortBy:");
 
+        jSortByCombo.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jSortByCombo.setForeground(new java.awt.Color(0, 31, 78));
         jSortByCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User Name", "Action", "Acted On", "Date" }));
         jSortByCombo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -99,6 +111,8 @@ public class jViewLogs extends javax.swing.JPanel {
             }
         });
 
+        jSearchField.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jSearchField.setForeground(new java.awt.Color(0, 31, 78));
         jSearchField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jSearchFieldMouseClicked(evt);
@@ -110,6 +124,9 @@ public class jViewLogs extends javax.swing.JPanel {
             }
         });
 
+        jDelete.setBackground(new java.awt.Color(217, 156, 69));
+        jDelete.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jDelete.setForeground(new java.awt.Color(255, 255, 255));
         jDelete.setText("Delete");
         jDelete.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -117,17 +134,54 @@ public class jViewLogs extends javax.swing.JPanel {
             }
         });
 
-        jLogsTable.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLogsTable.setForeground(new java.awt.Color(0, 0, 0));
+        jToggleSort.setBackground(new java.awt.Color(217, 156, 69));
+        jToggleSort.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jToggleSort.setForeground(new java.awt.Color(255, 255, 255));
+        jToggleSort.setText("↓↑\n");
+        jToggleSort.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jToggleSortMouseClicked(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Details:");
+
+        jLogDetails.setColumns(20);
+        jLogDetails.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
+        jLogDetails.setForeground(new java.awt.Color(0, 31, 78));
+        jLogDetails.setRows(5);
+        jScrollPane1.setViewportView(jLogDetails);
+
+        jDeleteMessage.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jDeleteMessage.setForeground(new java.awt.Color(0, 31, 78));
+
+        jLogsTable.setBackground(new java.awt.Color(217, 156, 69));
+        jLogsTable.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jLogsTable.setForeground(new java.awt.Color(255, 255, 255));
         jLogsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null}
             },
             new String [] {
-                "Id", "User Name", "Action", "Acted On", "Date"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -138,88 +192,77 @@ public class jViewLogs extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        jLogsTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLogsTable.setGridColor(new java.awt.Color(0, 31, 78));
+        jLogsTable.setOpaque(false);
+        jLogsTable.setSelectionBackground(new java.awt.Color(87, 118, 130));
         jLogsTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLogsTableMouseClicked(evt);
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLogsTableMousePressed(evt);
             }
         });
-        jLogsTable.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jLogsTableKeyPressed(evt);
-            }
-        });
-        jScrollPane2.setViewportView(jLogsTable);
-
-        jToggleSort.setText("↓↑\n");
-        jToggleSort.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jToggleSortMouseClicked(evt);
-            }
-        });
-
-        jLabel3.setText("Details:");
-
-        jLogDetails.setColumns(20);
-        jLogDetails.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLogDetails.setRows(5);
-        jScrollPane1.setViewportView(jLogDetails);
+        jScrollPane3.setViewportView(jLogsTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3)
-                            .addComponent(jScrollPane2)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(45, 45, 45)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jSearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jSortByCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jToggleSort, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jBack, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1)))
+                        .addComponent(jBack, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jDeleteMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(33, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3)
+                            .addComponent(jScrollPane1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jSearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jSortByCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jToggleSort)))
+                                .addGap(0, 20, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(jDeleteMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(30, 30, 30))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jSearchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jSearchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jSortByCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSortByCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToggleSort))
                 .addGap(26, 26, 26)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBack)
-                    .addComponent(jDelete))
-                .addGap(10, 10, 10)
-                .addComponent(jDeleteMessage))
+                    .addComponent(jLabel3)
+                    .addComponent(jDeleteMessage))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBack, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -239,10 +282,6 @@ public class jViewLogs extends javax.swing.JPanel {
         jDeleteMessage.setText("");
     }//GEN-LAST:event_jToggleSortMouseClicked
 
-    private void jLogsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLogsTableMouseClicked
-        showLogDetails(getSelectedLog());
-    }//GEN-LAST:event_jLogsTableMouseClicked
-
     private void jSearchFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSearchFieldKeyTyped
         renderData();
     }//GEN-LAST:event_jSearchFieldKeyTyped
@@ -256,9 +295,9 @@ public class jViewLogs extends javax.swing.JPanel {
         jDeleteMessage.setText("");
     }//GEN-LAST:event_jSortByComboMouseClicked
 
-    private void jLogsTableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLogsTableKeyPressed
-        showLogDetails(getSelectedLog());
-    }//GEN-LAST:event_jLogsTableKeyPressed
+    private void jLogsTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLogsTableMousePressed
+         showLogDetails(getSelectedLog());
+    }//GEN-LAST:event_jLogsTableMousePressed
 
     
    
@@ -277,7 +316,7 @@ public class jViewLogs extends javax.swing.JPanel {
     private javax.swing.JTextArea jLogDetails;
     private javax.swing.JTable jLogsTable;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     public javax.swing.JTextField jSearchField;
     private javax.swing.JComboBox<String> jSortByCombo;
     private javax.swing.JButton jToggleSort;

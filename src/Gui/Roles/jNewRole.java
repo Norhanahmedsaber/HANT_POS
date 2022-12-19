@@ -18,7 +18,6 @@ public class jNewRole extends javax.swing.JPanel {
         jRoleNameField.setText("");
         JCreateCustomer.setSelected(false);
         jCreateItem.setSelected(false);
-        jCreateLogs.setSelected(false);
         jCreateUser.setSelected(false);
         JDeleteCustomer.setSelected(false);
         jDeleteItem.setSelected(false);
@@ -28,6 +27,11 @@ public class jNewRole extends javax.swing.JPanel {
         jViewItem.setSelected(false);
         JviewLogs.setSelected(false);
         jViewUser.setSelected(false);
+        JDeleteUser.setSelected(false);
+        JDeleteLog.setSelected(false);
+        jCreateRole.setSelected(false);
+        JUpdateRole.setSelected(false);
+        jViewRole.setSelected(false);
     }
    public void assignPermissions(){   
        Role newRole = getData();
@@ -39,7 +43,6 @@ public class jNewRole extends javax.swing.JPanel {
        _jRole.name=jRoleNameField.getText();
        _jRole.canCreateCustomer=JCreateCustomer.isSelected();
        _jRole.canCreateItem=jCreateItem.isSelected();
-       _jRole.canCreateLog=jCreateLogs.isSelected();
        _jRole.canCreateUser=jCreateUser.isSelected();
        _jRole.canDeleteCustomer=JDeleteCustomer.isSelected();
        _jRole.canDeleteItem=jDeleteItem.isSelected();
@@ -49,6 +52,11 @@ public class jNewRole extends javax.swing.JPanel {
        _jRole.canViewItems=jViewItem.isSelected();
        _jRole.canViewLogs=JviewLogs.isSelected();
        _jRole.canViewUsers=jViewUser.isSelected();  
+       _jRole.canDeleteUser = JDeleteUser.isSelected();
+       _jRole.canCreateRole = jCreateRole.isSelected();
+       _jRole.canUpdateRole = JUpdateRole.isSelected();
+       _jRole.canViewRoles = jViewRole.isSelected();
+       _jRole.canDeleteLog = JDeleteLog.isSelected();
        return _jRole;
    }
   
@@ -76,55 +84,57 @@ public class jNewRole extends javax.swing.JPanel {
         }
    }
    public void renderData(){
-       jRoleNameField.setText(_jRole.name);
-       if(_jRole.canCreateCustomer)
-       { 
-           JCreateCustomer.setSelected(true);
-       }
-       if(_jRole.canCreateItem)
-       {
-           jCreateItem.setSelected(true);
-       }
-       if(_jRole.canCreateLog)
-       {
-           jCreateLogs.setSelected(true);
-       }
-       if(_jRole.canCreateUser)
-       {
-           jCreateUser.setSelected(true);
-       }
-       if(_jRole.canDeleteCustomer)
-       {
-           JDeleteCustomer.setSelected(true);
-       }
-       if(_jRole.canDeleteItem)
-       {
-           jDeleteItem.setSelected(true);
-       }
-       if(_jRole.canUpdateCustomer)
-       {
-           jUpdateCustomer.setSelected(true);
-       }
-       if(_jRole.canUpdateItem)
-       {
-           jUpdateItem.setSelected(true);
-       }
-      if(_jRole.canViewCustomers)
-      {
-          jViewCustomer.setSelected(true);
-      }
-      if( _jRole.canViewItems)
-      {
-          jViewItem.setSelected(true);
-      }
-      if( _jRole.canViewLogs)
-      {
-          JviewLogs.setSelected(true);
-      }
-       if(_jRole.canViewUsers)
-       {
-           jViewUser.setSelected(true);
-       }
+        jRoleNameField.setText(_jRole.name);
+        if(_jRole.canCreateCustomer)
+        { 
+            JCreateCustomer.setSelected(true);
+        }
+        if(_jRole.canCreateItem)
+        {
+            jCreateItem.setSelected(true);
+        }
+        if(_jRole.canCreateUser)
+        {
+            jCreateUser.setSelected(true);
+        }
+        if(_jRole.canDeleteCustomer)
+        {
+            JDeleteCustomer.setSelected(true);
+        }
+        if(_jRole.canDeleteItem)
+        {
+            jDeleteItem.setSelected(true);
+        }
+        if(_jRole.canUpdateCustomer)
+        {
+            jUpdateCustomer.setSelected(true);
+        }
+        if(_jRole.canUpdateItem)
+        {
+            jUpdateItem.setSelected(true);
+        }
+        if(_jRole.canViewCustomers)
+        {
+            jViewCustomer.setSelected(true);
+        }
+        if( _jRole.canViewItems)
+        {
+            jViewItem.setSelected(true);
+        }
+        if( _jRole.canViewLogs)
+        {
+            JviewLogs.setSelected(true);
+        }
+        if(_jRole.canViewUsers)
+        {
+            jViewUser.setSelected(true);
+        }
+        System.err.println(_jRole.canDeleteUser);
+        JDeleteUser.setSelected(_jRole.canDeleteUser);
+        JDeleteLog.setSelected(_jRole.canDeleteLog);
+        jCreateRole.setSelected(_jRole.canCreateRole);
+        JUpdateRole.setSelected(_jRole.canUpdateRole);
+        jViewRole.setSelected(_jRole.canViewRoles);
 
    }
     @SuppressWarnings("unchecked")
@@ -144,16 +154,26 @@ public class jNewRole extends javax.swing.JPanel {
         jViewUser = new javax.swing.JCheckBox();
         JviewLogs = new javax.swing.JCheckBox();
         jCreateUser = new javax.swing.JCheckBox();
-        jCreateLogs = new javax.swing.JCheckBox();
         jRoleNameField = new javax.swing.JTextField();
         jAddedRoleSuccessfully = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        JDeleteUser = new javax.swing.JCheckBox();
+        jCreateRole = new javax.swing.JCheckBox();
+        jViewRole = new javax.swing.JCheckBox();
+        JDeleteLog = new javax.swing.JCheckBox();
+        JUpdateRole = new javax.swing.JCheckBox();
 
+        setBackground(new java.awt.Color(87, 118, 130));
+        setForeground(new java.awt.Color(217, 156, 69));
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);
             }
         });
 
+        jBack.setBackground(new java.awt.Color(217, 156, 69));
+        jBack.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jBack.setForeground(new java.awt.Color(255, 255, 255));
         jBack.setText("back");
         jBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -161,26 +181,45 @@ public class jNewRole extends javax.swing.JPanel {
             }
         });
 
+        jDone.setBackground(new java.awt.Color(217, 156, 69));
+        jDone.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jDone.setForeground(new java.awt.Color(255, 255, 255));
+        jDone.setText("Done");
         jDone.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jDoneMouseClicked(evt);
             }
         });
 
+        JCreateCustomer.setBackground(new java.awt.Color(217, 156, 69));
+        JCreateCustomer.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        JCreateCustomer.setForeground(new java.awt.Color(255, 255, 255));
         JCreateCustomer.setText("Create Customer");
+        JCreateCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JCreateCustomerActionPerformed(evt);
+            }
+        });
         JCreateCustomer.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 JCreateCustomerKeyPressed(evt);
             }
         });
 
-        jViewCustomer.setText("View Customer");
+        jViewCustomer.setBackground(new java.awt.Color(217, 156, 69));
+        jViewCustomer.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jViewCustomer.setForeground(new java.awt.Color(255, 255, 255));
+        jViewCustomer.setText("View Customers");
+        jViewCustomer.setToolTipText("");
         jViewCustomer.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jViewCustomerKeyPressed(evt);
             }
         });
 
+        JDeleteCustomer.setBackground(new java.awt.Color(217, 156, 69));
+        JDeleteCustomer.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        JDeleteCustomer.setForeground(new java.awt.Color(255, 255, 255));
         JDeleteCustomer.setText("Delete Customer ");
         JDeleteCustomer.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -188,6 +227,9 @@ public class jNewRole extends javax.swing.JPanel {
             }
         });
 
+        jUpdateCustomer.setBackground(new java.awt.Color(217, 156, 69));
+        jUpdateCustomer.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jUpdateCustomer.setForeground(new java.awt.Color(255, 255, 255));
         jUpdateCustomer.setText("Update customer");
         jUpdateCustomer.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -195,13 +237,19 @@ public class jNewRole extends javax.swing.JPanel {
             }
         });
 
-        jViewItem.setText("View Item");
+        jViewItem.setBackground(new java.awt.Color(217, 156, 69));
+        jViewItem.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jViewItem.setForeground(new java.awt.Color(255, 255, 255));
+        jViewItem.setText("View Items");
         jViewItem.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jViewItemKeyPressed(evt);
             }
         });
 
+        jCreateItem.setBackground(new java.awt.Color(217, 156, 69));
+        jCreateItem.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jCreateItem.setForeground(new java.awt.Color(255, 255, 255));
         jCreateItem.setText("Create Item");
         jCreateItem.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -209,6 +257,9 @@ public class jNewRole extends javax.swing.JPanel {
             }
         });
 
+        jUpdateItem.setBackground(new java.awt.Color(217, 156, 69));
+        jUpdateItem.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jUpdateItem.setForeground(new java.awt.Color(255, 255, 255));
         jUpdateItem.setText("Update Item");
         jUpdateItem.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -216,6 +267,9 @@ public class jNewRole extends javax.swing.JPanel {
             }
         });
 
+        jDeleteItem.setBackground(new java.awt.Color(217, 156, 69));
+        jDeleteItem.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jDeleteItem.setForeground(new java.awt.Color(255, 255, 255));
         jDeleteItem.setText("Delete Item");
         jDeleteItem.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -223,6 +277,9 @@ public class jNewRole extends javax.swing.JPanel {
             }
         });
 
+        jViewUser.setBackground(new java.awt.Color(217, 156, 69));
+        jViewUser.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jViewUser.setForeground(new java.awt.Color(255, 255, 255));
         jViewUser.setText("View User");
         jViewUser.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -230,6 +287,9 @@ public class jNewRole extends javax.swing.JPanel {
             }
         });
 
+        JviewLogs.setBackground(new java.awt.Color(217, 156, 69));
+        JviewLogs.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        JviewLogs.setForeground(new java.awt.Color(255, 255, 255));
         JviewLogs.setText("View Logs");
         JviewLogs.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -237,6 +297,9 @@ public class jNewRole extends javax.swing.JPanel {
             }
         });
 
+        jCreateUser.setBackground(new java.awt.Color(217, 156, 69));
+        jCreateUser.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jCreateUser.setForeground(new java.awt.Color(255, 255, 255));
         jCreateUser.setText("Create User");
         jCreateUser.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -244,13 +307,8 @@ public class jNewRole extends javax.swing.JPanel {
             }
         });
 
-        jCreateLogs.setText("Create Logs");
-        jCreateLogs.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jCreateLogsKeyPressed(evt);
-            }
-        });
-
+        jRoleNameField.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jRoleNameField.setForeground(new java.awt.Color(0, 31, 78));
         jRoleNameField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jRoleNameFieldMouseClicked(evt);
@@ -264,77 +322,171 @@ public class jNewRole extends javax.swing.JPanel {
 
         jAddedRoleSuccessfully.setForeground(new java.awt.Color(102, 255, 0));
 
+        jLabel1.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Role Name :");
+
+        JDeleteUser.setBackground(new java.awt.Color(217, 156, 69));
+        JDeleteUser.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        JDeleteUser.setForeground(new java.awt.Color(255, 255, 255));
+        JDeleteUser.setText("Delete User");
+        JDeleteUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JDeleteUserActionPerformed(evt);
+            }
+        });
+        JDeleteUser.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JDeleteUserKeyPressed(evt);
+            }
+        });
+
+        jCreateRole.setBackground(new java.awt.Color(217, 156, 69));
+        jCreateRole.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jCreateRole.setForeground(new java.awt.Color(255, 255, 255));
+        jCreateRole.setText("Create Role");
+        jCreateRole.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jCreateRoleKeyPressed(evt);
+            }
+        });
+
+        jViewRole.setBackground(new java.awt.Color(217, 156, 69));
+        jViewRole.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jViewRole.setForeground(new java.awt.Color(255, 255, 255));
+        jViewRole.setText("View Roles");
+        jViewRole.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jViewRoleKeyPressed(evt);
+            }
+        });
+
+        JDeleteLog.setBackground(new java.awt.Color(217, 156, 69));
+        JDeleteLog.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        JDeleteLog.setForeground(new java.awt.Color(255, 255, 255));
+        JDeleteLog.setText("Delete Log");
+        JDeleteLog.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JDeleteLogKeyPressed(evt);
+            }
+        });
+
+        JUpdateRole.setBackground(new java.awt.Color(217, 156, 69));
+        JUpdateRole.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        JUpdateRole.setForeground(new java.awt.Color(255, 255, 255));
+        JUpdateRole.setText("Update Role");
+        JUpdateRole.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JUpdateRoleKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JDeleteCustomer)
-                    .addComponent(jViewCustomer)
-                    .addComponent(JCreateCustomer)
-                    .addComponent(jUpdateCustomer)
-                    .addComponent(jCreateItem)
-                    .addComponent(jViewItem)
-                    .addComponent(jRoleNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jAddedRoleSuccessfully, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jDeleteItem)
-                        .addGap(66, 66, 66))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jUpdateItem)
-                            .addComponent(jCreateUser)
-                            .addComponent(jViewUser)
-                            .addComponent(JviewLogs)
-                            .addComponent(jCreateLogs))
-                        .addContainerGap())))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jBack)
-                .addGap(201, 201, 201)
-                .addComponent(jDone, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jViewRole, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(141, 141, 141)
+                        .addComponent(JUpdateRole, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jViewUser, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(JDeleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jCreateRole, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(141, 141, 141)
+                                    .addComponent(JviewLogs, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jCreateUser, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(JDeleteLog, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(JDeleteCustomer)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jDeleteItem, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jUpdateCustomer)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jUpdateItem, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jViewCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jViewItem, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(JCreateCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jCreateItem, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addGap(18, 18, 18)
+                            .addComponent(jRoleNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jBack, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(154, 154, 154)
+                            .addComponent(jDone, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(216, 216, 216)
+                .addComponent(jAddedRoleSuccessfully, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jRoleNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRoleNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JCreateCustomer)
-                    .addComponent(jDeleteItem))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jViewCustomer)
-                    .addComponent(jUpdateItem))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JDeleteCustomer)
-                    .addComponent(jCreateUser))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jUpdateCustomer)
-                    .addComponent(jViewUser))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCreateItem)
-                    .addComponent(jCreateLogs))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jCreateItem))
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jViewItem)
+                    .addComponent(jViewCustomer))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jUpdateCustomer)
+                    .addComponent(jUpdateItem))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(jDeleteItem))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JDeleteCustomer)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jCreateUser)
+                        .addGap(18, 18, 18)
+                        .addComponent(jViewUser))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(JDeleteLog)
+                        .addGap(18, 18, 18)
+                        .addComponent(jCreateRole)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JDeleteUser)
                     .addComponent(JviewLogs))
                 .addGap(18, 18, 18)
-                .addComponent(jAddedRoleSuccessfully, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jAddedRoleSuccessfully, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jViewRole)
+                        .addComponent(JUpdateRole)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBack)
-                    .addComponent(jDone, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                    .addComponent(jBack, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jDone, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -360,7 +512,7 @@ public class jNewRole extends javax.swing.JPanel {
         ViewRoles.renderData();
         _jHomePage.switchPanels(_parent);
         ViewRoles.jSearch.grabFocus();
-         jAddedRoleSuccessfully.setText("");
+        jAddedRoleSuccessfully.setText("");
       }
        
       
@@ -414,12 +566,6 @@ public class jNewRole extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_JviewLogsKeyPressed
 
-    private void jCreateLogsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCreateLogsKeyPressed
-        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
-            DoneButtonClicked();
-        }
-    }//GEN-LAST:event_jCreateLogsKeyPressed
-
     private void jViewUserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jViewUserKeyPressed
         if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
             DoneButtonClicked();
@@ -454,6 +600,34 @@ public class jNewRole extends javax.swing.JPanel {
             jAddedRoleSuccessfully.setText("");
     }//GEN-LAST:event_jRoleNameFieldMouseClicked
 
+    private void JCreateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCreateCustomerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JCreateCustomerActionPerformed
+
+    private void JDeleteUserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JDeleteUserKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JDeleteUserKeyPressed
+
+    private void JDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JDeleteUserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JDeleteUserActionPerformed
+
+    private void jCreateRoleKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCreateRoleKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCreateRoleKeyPressed
+
+    private void jViewRoleKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jViewRoleKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jViewRoleKeyPressed
+
+    private void JDeleteLogKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JDeleteLogKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JDeleteLogKeyPressed
+
+    private void JUpdateRoleKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JUpdateRoleKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JUpdateRoleKeyPressed
+
     
     
     
@@ -467,19 +641,24 @@ public class jNewRole extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox JCreateCustomer;
     private javax.swing.JCheckBox JDeleteCustomer;
+    private javax.swing.JCheckBox JDeleteLog;
+    private javax.swing.JCheckBox JDeleteUser;
+    private javax.swing.JCheckBox JUpdateRole;
     private javax.swing.JCheckBox JviewLogs;
     private javax.swing.JLabel jAddedRoleSuccessfully;
     private javax.swing.JButton jBack;
     private javax.swing.JCheckBox jCreateItem;
-    private javax.swing.JCheckBox jCreateLogs;
+    private javax.swing.JCheckBox jCreateRole;
     private javax.swing.JCheckBox jCreateUser;
     private javax.swing.JCheckBox jDeleteItem;
     private javax.swing.JButton jDone;
+    private javax.swing.JLabel jLabel1;
     public javax.swing.JTextField jRoleNameField;
     private javax.swing.JCheckBox jUpdateCustomer;
     private javax.swing.JCheckBox jUpdateItem;
     private javax.swing.JCheckBox jViewCustomer;
     private javax.swing.JCheckBox jViewItem;
+    private javax.swing.JCheckBox jViewRole;
     private javax.swing.JCheckBox jViewUser;
     // End of variables declaration//GEN-END:variables
 }

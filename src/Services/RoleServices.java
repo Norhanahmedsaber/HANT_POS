@@ -44,7 +44,7 @@ public class RoleServices implements IRoleServices{
                 stmt.setBoolean(17, role.canDeleteRole);
                 stmt.setBoolean(18, role.canUpdateRole);
                 stmt.setBoolean(19, role.canViewRoles);
-                stmt.setBoolean(20, role.canDeleteRole);
+                stmt.setBoolean(20, role.canDeleteUser);
                 
                 int affected = stmt.executeUpdate();
 
@@ -87,7 +87,7 @@ public class RoleServices implements IRoleServices{
                 stmt.setBoolean(16, role.canDeleteRole);
                 stmt.setBoolean(17, role.canUpdateRole);
                 stmt.setBoolean(18, role.canViewRoles);
-                stmt.setBoolean(19, role.canDeleteRole);
+                stmt.setBoolean(19, role.canDeleteUser);
                 stmt.setString(20, roleId.toString());
                 
                 int affected = stmt.executeUpdate();
