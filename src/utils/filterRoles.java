@@ -1,6 +1,6 @@
 package utils;
 import java.util.ArrayList;
-
+ 
 public class filterRoles {
     public ArrayList<String> filter(ArrayList<String> roleNames, String searchName) {
         return search(roleNames, searchName); 

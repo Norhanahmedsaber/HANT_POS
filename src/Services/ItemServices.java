@@ -15,7 +15,7 @@ public class ItemServices implements IItemServices {
     public ItemServices() {
         conn = ConnectionManager.getInstance().getConnection();
     }
-    
+     
     @Override
     public void create(Item item) {
         String sql = "INSERT into items (id, name, description, price, category, createdAt) " +

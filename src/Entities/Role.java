@@ -14,12 +14,14 @@ public class Role {
     public boolean canUpdateItem;
     public boolean canViewUsers;
     public boolean canCreateUser;
+    public boolean canDeleteUser;
     public boolean canViewLogs;
     public boolean canCreateLog;
     public boolean canDeleteLog;
-    public boolean canCreateRole;
-    public boolean canDeleteRole;
     public boolean canUpdateRole;
     public boolean canViewRoles;
-    public boolean canDeleteUser;
+    
+    
+    public boolean canDeleteRole;
+    public boolean canCreateRole;
 }

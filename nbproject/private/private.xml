@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/LENOVO/Desktop/java2/hant/src/Services/RoleServices.java</file>
             <file>file:/C:/Users/LENOVO/Desktop/java2/hant/src/Interfaces/ICustomerServices.java</file>
             <file>file:/C:/Users/LENOVO/Desktop/java2/hant/src/Gui/Items/jChooseItem.java</file>
@@ -39,6 +40,12 @@
             <file>file:/C:/Users/LENOVO/Desktop/java2/hant/src/Interfaces/IUserServices.java</file>
             <file>file:/C:/Users/LENOVO/Desktop/java2/hant/src/Gui/Roles/jNewRole.java</file>
             <file>file:/C:/Users/LENOVO/Desktop/java2/hant/src/Gui/Customers/jNewCustomer.java</file>
+=======
+            <file>file:/C:/Users/DELL/Desktop/hant/src/Gui/Items/jViewItems.java</file>
+            <file>file:/C:/Users/DELL/Desktop/hant/src/Gui/Logs/jViewLogs.java</file>
+            <file>file:/C:/Users/DELL/Desktop/hant/src/Gui/Items/jViewItem.java</file>
+            <file>file:/C:/Users/DELL/Desktop/hant/src/Gui/Items/jNewItem.java</file>
+>>>>>>> master
         </group>
     </open-files>
 </project-private>

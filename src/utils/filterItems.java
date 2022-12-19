@@ -4,7 +4,7 @@ import Entities.Item;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-
+ 
 public class filterItems {
     public ArrayList<Item> filter(ArrayList<Item> items,String search,String sortitemby , boolean toggle) {
        ArrayList <Item> filtered = search(items, search);

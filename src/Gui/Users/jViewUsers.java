@@ -83,6 +83,8 @@ public class jViewUsers extends javax.swing.JPanel {
         jUsersTable = new javax.swing.JTable();
         jDeleteMessage = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(87, 118, 130));
+
         jAddButton.setText("Add User");
         jAddButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -192,7 +194,7 @@ public class jViewUsers extends javax.swing.JPanel {
                                     .addComponent(jSearchField)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jDeleteMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGap(0, 382, Short.MAX_VALUE))))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()

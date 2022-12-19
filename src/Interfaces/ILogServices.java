@@ -11,3 +11,4 @@ public interface ILogServices {
     ArrayList<Log> getAll();
     
 }
+ 

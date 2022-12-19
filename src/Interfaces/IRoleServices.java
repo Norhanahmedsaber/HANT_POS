@@ -11,3 +11,4 @@ public interface IRoleServices {
     ArrayList<String> getAll(); 
     Role getByName(String name);
 } 
+ 

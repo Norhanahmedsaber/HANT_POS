@@ -4,6 +4,7 @@ import Entities.Log;
 import Entities.User;
 import Services.LogServices;
 import java.awt.Dimension;
+import java.awt.event.KeyEvent;
 import java.util.Date;
 import java.util.UUID;
 import javax.swing.JPanel;
@@ -14,7 +15,7 @@ public class jHomePage extends javax.swing.JFrame {
         _jLoginPage = new jLoginPage(this);
         loginUser = null;
         _LogServices = new LogServices();
-      
+        Home();
        
     }
     public void createLog(String action, String actedOn, String actedOnName ){
@@ -45,6 +46,11 @@ public class jHomePage extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(87, 118, 130));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(170, 117, 111), null, null));
         jPanel1.setPreferredSize(new java.awt.Dimension(750, 750));
+        jPanel1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPanel1KeyPressed(evt);
+            }
+        });
 
         jsignin.setBackground(new java.awt.Color(217, 156, 69));
         jsignin.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
@@ -53,6 +59,11 @@ public class jHomePage extends javax.swing.JFrame {
         jsignin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jsigninMouseClicked(evt);
+            }
+        });
+        jsignin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jsigninKeyPressed(evt);
             }
         });
 
@@ -85,6 +96,20 @@ public class jHomePage extends javax.swing.JFrame {
         switchPanels(_jLoginPage);
         _jLoginPage.jusername.grabFocus();
     }//GEN-LAST:event_jsigninMouseClicked
+
+    private void jsigninKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jsigninKeyPressed
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            switchPanels(_jLoginPage);
+            _jLoginPage.jusername.grabFocus();
+        }
+    }//GEN-LAST:event_jsigninKeyPressed
+
+    private void jPanel1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel1KeyPressed
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            switchPanels(_jLoginPage);
+            _jLoginPage.jusername.grabFocus();
+        }
+    }//GEN-LAST:event_jPanel1KeyPressed
     public void switchPanels(JPanel panel) {
         jPanel4.removeAll();
         jPanel4.add(panel);
@@ -93,6 +118,7 @@ public class jHomePage extends javax.swing.JFrame {
     }
     public void Home() {
         switchPanels(jPanel1);
+        jsignin.grabFocus();
     }
     public static void main(String args[]) {
 
