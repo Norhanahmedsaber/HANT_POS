@@ -306,8 +306,10 @@ public class jMainPage extends javax.swing.JPanel {
     public boolean canCreateCustomer (){
         if(_jHomePage.loginUser.role.canCreateCustomer) {
             jNewcustomer.setEnabled(true);
+            _jViewCustomers.jAddButton.setEnabled(true);
             return true;
         }else {
+            _jViewCustomers.jAddButton.setEnabled(false);
             jNewcustomer.setEnabled(false);
             return false;
         }
@@ -424,9 +426,6 @@ public class jMainPage extends javax.swing.JPanel {
             jNewRole.setEnabled(false);
             return false;
         }
-    }
-    public boolean canDeleteRole() {
-        return true;
     }
     public boolean canUpdateRole() {
         return true;

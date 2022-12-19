@@ -39,7 +39,6 @@ public class CustomerServices implements ICustomerServices  {
                 stmt.setInt(11, customer.age);
                 int affected = stmt.executeUpdate();
                 if (affected == 1) {
-                        System.out.print("Done!");
                         assignItemsToCustomer(customer.id, itemsIds);
                 } else {
                         System.err.println("Error!");
@@ -209,12 +208,7 @@ public class CustomerServices implements ICustomerServices  {
                 ) {
                     stmt.setString(1, customerId.toString());
                     stmt.setString(2, itemId.toString());
-                    int affected = stmt.executeUpdate();
-                    if (affected == 1) {
-                        System.out.print("Done!");
-                    } else {
-                        System.err.println("Error!");
-                    }
+                    stmt.executeUpdate();
 
             } catch (SQLException e) {
                     System.err.println(e);

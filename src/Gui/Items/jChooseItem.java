@@ -240,17 +240,23 @@ public class jChooseItem extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jSearch = new javax.swing.JTextField();
         jItemsCombo = new javax.swing.JComboBox<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jItems = new javax.swing.JTable();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jAddedItems = new javax.swing.JTable();
         jRemove = new javax.swing.JButton();
         jDone = new javax.swing.JButton();
         jError = new javax.swing.JLabel();
         jedit = new javax.swing.JButton();
         jupdate = new javax.swing.JButton();
         jcancel = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jItems = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jAddedItems = new javax.swing.JTable();
+        jToggleSort = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(87, 118, 130));
+
+        jBack.setBackground(new java.awt.Color(217, 156, 69));
+        jBack.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jBack.setForeground(new java.awt.Color(255, 255, 255));
         jBack.setText("Back");
         jBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -258,6 +264,9 @@ public class jChooseItem extends javax.swing.JPanel {
             }
         });
 
+        jAdd.setBackground(new java.awt.Color(217, 156, 69));
+        jAdd.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jAdd.setForeground(new java.awt.Color(255, 255, 255));
         jAdd.setText("ADD");
         jAdd.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -265,48 +274,23 @@ public class jChooseItem extends javax.swing.JPanel {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Search :");
 
+        jLabel3.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Sort By :");
 
+        jSearch.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jSearch.setForeground(new java.awt.Color(0, 31, 78));
+
+        jItemsCombo.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jItemsCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Category", "Name", "ID", "Price" }));
 
-        jItems.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Category", "Name", "ID", "Price", "Title 5"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jItems);
-
-        jAddedItems.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Category", "Name", "ID", "Price", "Title 5"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(jAddedItems);
-
+        jRemove.setBackground(new java.awt.Color(217, 156, 69));
+        jRemove.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jRemove.setForeground(new java.awt.Color(255, 255, 255));
         jRemove.setText("Remove");
         jRemove.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -314,6 +298,9 @@ public class jChooseItem extends javax.swing.JPanel {
             }
         });
 
+        jDone.setBackground(new java.awt.Color(217, 156, 69));
+        jDone.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jDone.setForeground(new java.awt.Color(255, 255, 255));
         jDone.setText("Done");
         jDone.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -321,8 +308,12 @@ public class jChooseItem extends javax.swing.JPanel {
             }
         });
 
-        jError.setForeground(new java.awt.Color(255, 0, 0));
+        jError.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
+        jError.setForeground(new java.awt.Color(0, 31, 78));
 
+        jedit.setBackground(new java.awt.Color(217, 156, 69));
+        jedit.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jedit.setForeground(new java.awt.Color(255, 255, 255));
         jedit.setText("Edit");
         jedit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -330,6 +321,9 @@ public class jChooseItem extends javax.swing.JPanel {
             }
         });
 
+        jupdate.setBackground(new java.awt.Color(217, 156, 69));
+        jupdate.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jupdate.setForeground(new java.awt.Color(255, 255, 255));
         jupdate.setText("Update");
         jupdate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -337,10 +331,105 @@ public class jChooseItem extends javax.swing.JPanel {
             }
         });
 
+        jcancel.setBackground(new java.awt.Color(217, 156, 69));
+        jcancel.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jcancel.setForeground(new java.awt.Color(255, 255, 255));
         jcancel.setText("Cancel");
         jcancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jcancelMouseClicked(evt);
+            }
+        });
+
+        jItems.setBackground(new java.awt.Color(217, 156, 69));
+        jItems.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jItems.setForeground(new java.awt.Color(255, 255, 255));
+        jItems.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jItems.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jItems.setGridColor(new java.awt.Color(0, 31, 78));
+        jItems.setOpaque(false);
+        jItems.setSelectionBackground(new java.awt.Color(87, 118, 130));
+        jScrollPane3.setViewportView(jItems);
+
+        jAddedItems.setBackground(new java.awt.Color(217, 156, 69));
+        jAddedItems.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jAddedItems.setForeground(new java.awt.Color(255, 255, 255));
+        jAddedItems.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jAddedItems.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jAddedItems.setGridColor(new java.awt.Color(0, 31, 78));
+        jAddedItems.setOpaque(false);
+        jAddedItems.setSelectionBackground(new java.awt.Color(87, 118, 130));
+        jScrollPane4.setViewportView(jAddedItems);
+
+        jToggleSort.setBackground(new java.awt.Color(217, 156, 69));
+        jToggleSort.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jToggleSort.setForeground(new java.awt.Color(255, 255, 255));
+        jToggleSort.setText("↓↑\n");
+        jToggleSort.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jToggleSortMouseClicked(evt);
             }
         });
 
@@ -349,62 +438,75 @@ public class jChooseItem extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 677, Short.MAX_VALUE)
+                            .addComponent(jScrollPane4)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jBack, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jRemove, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                    .addComponent(jcancel, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jedit, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                    .addComponent(jDone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jupdate, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                    .addComponent(jAdd, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2))
-                        .addGap(90, 90, 90)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jSearch)
-                            .addComponent(jItemsCombo, 0, 409, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jDone)
-                        .addGap(12, 12, 12)
-                        .addComponent(jedit, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jError)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jupdate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jcancel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                        .addComponent(jRemove)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jBack)))
-                .addGap(0, 14, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jError, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jItemsCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jToggleSort))
+                                .addComponent(jSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 89, Short.MAX_VALUE)))
+                .addGap(32, 32, 32))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jSearch)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jItemsCombo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(jToggleSort)))
+                .addGap(18, 18, 18)
+                .addComponent(jError, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jItemsCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jupdate, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jedit, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcancel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBack)
-                    .addComponent(jAdd)
-                    .addComponent(jRemove)
-                    .addComponent(jDone)
-                    .addComponent(jError)
-                    .addComponent(jedit)
-                    .addComponent(jupdate)
-                    .addComponent(jcancel))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jDone, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBack, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -438,6 +540,11 @@ public class jChooseItem extends javax.swing.JPanel {
         setDefault();
         Cancel();
     }//GEN-LAST:event_jcancelMouseClicked
+
+    private void jToggleSortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleSortMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jToggleSortMouseClicked
      private final JPanel _parent;
     private final ItemServices _ItemServices;
     private final CustomerServices _CustomerServices; 
@@ -456,9 +563,10 @@ public class jChooseItem extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JButton jRemove;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     public javax.swing.JTextField jSearch;
+    private javax.swing.JButton jToggleSort;
     private javax.swing.JButton jcancel;
     private javax.swing.JButton jedit;
     private javax.swing.JButton jupdate;
