@@ -49,15 +49,6 @@ public class jNewItem extends javax.swing.JPanel {
             return false;
         }else jErrorName.setText("");
         
-        
-        // check name is valid
-        for(int i=0 ; i < jNameField.getText().trim().length();i++){
-            char x = jNameField.getText().trim().charAt(i);
-            if(!(x >= 'a' && x <= 'z' || x >= 'A' && x <= 'Z' || x==' ')){
-            jErrorName.setText("you must enter chars only.");
-            return false;
-            }else jErrorName.setText("");
-        }
         return true;
     }
     public boolean isValidDescription(){

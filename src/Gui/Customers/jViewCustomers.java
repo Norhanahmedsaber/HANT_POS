@@ -80,6 +80,7 @@ public final class jViewCustomers extends javax.swing.JPanel  {
             }else{
               jDeleteMessage.setText("Error! Please Select Customer");
             }
+            renderData();
     }
     private Customer selectcustomer(){ 
         DefaultTableModel m = (DefaultTableModel) jCustomersTable.getModel();

@@ -69,6 +69,7 @@ public class jViewLogs extends javax.swing.JPanel {
         }else{
             jDeleteMessage.setText("Error! Please Select Log");
         }
+        renderData();
     }
     public Log getSelectedLog(){
         int row = jLogsTable.getSelectedRow();//check ! -1

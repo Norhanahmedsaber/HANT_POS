@@ -331,6 +331,7 @@ public class jViewItems extends javax.swing.JPanel {
        if(_jMainPage.canDeleteItem())
        {
            deleteItem();
+           showItems();
        }
     }//GEN-LAST:event_jdeleteMouseClicked
 

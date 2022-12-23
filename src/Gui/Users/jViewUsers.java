@@ -265,6 +265,7 @@ public class jViewUsers extends javax.swing.JPanel {
     private void jDeleteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDeleteButtonMouseClicked
         if(_jMainPage.canDeleteUser()) {
             deleteUser();
+            renderData();
         }
     }//GEN-LAST:event_jDeleteButtonMouseClicked
 
