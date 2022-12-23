@@ -1,11 +1,13 @@
 package Gui.Customers;
 
 import Entities.Customer;
+import Entities.Item;
 import Gui.jHomePage;
 import Gui.jMainPage;
 import Services.CustomerServices;
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.UUID;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -30,9 +32,29 @@ public final class jViewCustomers extends javax.swing.JPanel  {
     public void renderData() { 
         String[] cols = {"ID","Name", "Email", "PurchaseDate", "PhoneNumber"}; 
         DefaultTableModel model = (DefaultTableModel) jCustomersTable.getModel();
-         model.setColumnIdentifiers(cols);
+        model.setColumnIdentifiers(cols);
         model.setRowCount(0);
-        ArrayList<Customer> customers = _CustomerServices.getAll(); 
+        ArrayList<Customer> customers = _CustomerServices.getAll();
+        allCustomers = customers;
+        if(!customers.isEmpty()) { 
+            String searchName = jSearchName.getText(); 
+            String sortBy = (String) jSortBy.getSelectedItem();
+            ArrayList<Customer> filteredCustomers = _filterCustomers.filter(customers, searchName,sortBy , toggle ); 
+            if(!filteredCustomers.isEmpty()){ 
+                for(int i=0;i<filteredCustomers.size();i++) { 
+                    Customer customer = filteredCustomers.get(i); 
+                    Object[] objs = {customer.id, customer.name, customer.email, customer.purchaseDate, customer.phoneNumber}; 
+                    model.addRow(objs); 
+                } 
+            } 
+        } 
+    }
+    public void updateData() {
+        String[] cols = {"ID","Name", "Email", "PurchaseDate", "PhoneNumber"}; 
+        DefaultTableModel model = (DefaultTableModel) jCustomersTable.getModel();
+        ArrayList<Customer> customers = allCustomers;
+        model.setColumnIdentifiers(cols);
+        model.setRowCount(0);
         if(!customers.isEmpty()) { 
             String searchName = jSearchName.getText(); 
             String sortBy = (String) jSortBy.getSelectedItem();
@@ -56,7 +78,8 @@ public final class jViewCustomers extends javax.swing.JPanel  {
                 _CustomerServices.delete(id);
                jDeleteMessage.setText("Deleted Successfully");
             }else{
-              jDeleteMessage.setText("Error! Please Select Customer");}
+              jDeleteMessage.setText("Error! Please Select Customer");
+            }
     }
     private Customer selectcustomer(){ 
         DefaultTableModel m = (DefaultTableModel) jCustomersTable.getModel();
@@ -305,7 +328,7 @@ public final class jViewCustomers extends javax.swing.JPanel  {
 
 
     private void jSearchNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSearchNameKeyTyped
-        renderData();
+        updateData();
     }//GEN-LAST:event_jSearchNameKeyTyped
 
     private void jDeleteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDeleteButtonMouseClicked
@@ -318,7 +341,7 @@ public final class jViewCustomers extends javax.swing.JPanel  {
     private void jToggleSortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleSortMouseClicked
         // TODO add your handling code here:
         toggle = !toggle;
-        renderData();
+        updateData();
         jDeleteMessage.setText("");
     }//GEN-LAST:event_jToggleSortMouseClicked
 
@@ -355,8 +378,9 @@ public final class jViewCustomers extends javax.swing.JPanel  {
     private void jSortByMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSortByMouseClicked
       jDeleteMessage.setText("");
     }//GEN-LAST:event_jSortByMouseClicked
-
+    
     private boolean toggle ;
+    private ArrayList<Customer> allCustomers;
     public  jViewCustomer _jViewCustomer;
     private final filterCustomers _filterCustomers; 
     private final CustomerServices _CustomerServices; 

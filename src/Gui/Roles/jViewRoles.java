@@ -31,6 +31,7 @@ public class jViewRoles extends javax.swing.JPanel {
     public void renderData() {
         DefaultListModel model = new DefaultListModel();
         ArrayList<String> roleNames = _RoleServices.getAll();
+        allRoles = roleNames;
         if(!roleNames.isEmpty()) {
             String searchName = jSearch.getText().trim();
             ArrayList<String> filteredRoles = _filterRoles.filter(roleNames, searchName);
@@ -42,7 +43,20 @@ public class jViewRoles extends javax.swing.JPanel {
         }
         jRoles.setModel(model);
     }
-      
+     public void updateData() {
+        DefaultListModel model = new DefaultListModel();
+        ArrayList<String> roleNames = allRoles;
+        if(!roleNames.isEmpty()) {
+            String searchName = jSearch.getText().trim();
+            ArrayList<String> filteredRoles = _filterRoles.filter(roleNames, searchName);
+            if(!filteredRoles.isEmpty()) {
+                for( String roleName : filteredRoles ) {
+                    model.addElement(roleName);
+                }
+            }
+        }
+        jRoles.setModel(model);
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -159,8 +173,9 @@ public class jViewRoles extends javax.swing.JPanel {
     }//GEN-LAST:event_jEditMouseClicked
 
     private void jSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSearchKeyTyped
-        renderData();
+        updateData();
     }//GEN-LAST:event_jSearchKeyTyped
+    private ArrayList<String> allRoles;
     private jNewRole _jNewRole;
     private filterRoles _filterRoles;
     private RoleServices _RoleServices;

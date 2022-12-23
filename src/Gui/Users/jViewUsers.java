@@ -26,9 +26,29 @@ public class jViewUsers extends javax.swing.JPanel {
     public void renderData() { 
         String[] cols = {"ID","Name", "User Name", "Role"}; 
         DefaultTableModel m = (DefaultTableModel) jUsersTable.getModel();
-            m.setColumnIdentifiers(cols);
-            m.setRowCount(0);
+        m.setColumnIdentifiers(cols);
+        m.setRowCount(0);
         ArrayList<User> users = _UserServices.getAll(); 
+        allUsers = users;
+        if(!users.isEmpty()) { 
+            String searchName = jSearchField.getText(); 
+            String sortBy = (String) jSortByCombo.getSelectedItem();
+            ArrayList<User> filteredUsers = _filterUsers.filter(users, searchName,sortBy , toggle ); 
+            if(!filteredUsers.isEmpty()){ 
+                for(int i=0;i<filteredUsers.size();i++) { 
+                    User user = filteredUsers.get(i); 
+                    Object[] objs = {user.id, user.name, user.userName, user.role.name}; 
+                    m.addRow(objs); 
+                }  
+            } 
+        } 
+    }
+    public void updateData() {
+        String[] cols = {"ID","Name", "User Name", "Role"}; 
+        DefaultTableModel m = (DefaultTableModel) jUsersTable.getModel();
+        m.setColumnIdentifiers(cols);
+        m.setRowCount(0);
+        ArrayList<User> users = allUsers; 
         if(!users.isEmpty()) { 
             String searchName = jSearchField.getText(); 
             String sortBy = (String) jSortByCombo.getSelectedItem();
@@ -43,16 +63,17 @@ public class jViewUsers extends javax.swing.JPanel {
         } 
     }
     private void deleteUser(){
-            DefaultTableModel m = (DefaultTableModel) jUsersTable.getModel();
-              if(jUsersTable.getSelectedRow() != -1) {
-                UUID id = (UUID) m.getValueAt(jUsersTable.getSelectedRow(), 0);
-                String username = (String) m.getValueAt(jUsersTable.getSelectedRow(), 1);
-                _jHomePage.createLog("Deleted", "User", username);
-                m.removeRow(jUsersTable.getSelectedRow());
-                _UserServices.delete(id);
-                jDeleteMessage.setText("Deleted Successfully");
-              }else{
-              jDeleteMessage.setText("Error! Please Select User");}
+        DefaultTableModel m = (DefaultTableModel) jUsersTable.getModel();
+        if(jUsersTable.getSelectedRow() != -1) {
+            UUID id = (UUID) m.getValueAt(jUsersTable.getSelectedRow(), 0);
+            String username = (String) m.getValueAt(jUsersTable.getSelectedRow(), 1);
+            _jHomePage.createLog("Deleted", "User", username);
+            m.removeRow(jUsersTable.getSelectedRow());
+            _UserServices.delete(id);
+            jDeleteMessage.setText("Deleted Successfully");
+        }else{
+            jDeleteMessage.setText("Error! Please Select User");
+        }
     }
     private User selectedUser(){ 
         DefaultTableModel m = (DefaultTableModel) jUsersTable.getModel();
@@ -248,16 +269,16 @@ public class jViewUsers extends javax.swing.JPanel {
     }//GEN-LAST:event_jDeleteButtonMouseClicked
 
     private void jSortByComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSortByComboActionPerformed
-        renderData();
+        updateData();
     }//GEN-LAST:event_jSortByComboActionPerformed
 
     private void jSearchFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSearchFieldKeyTyped
-        renderData();
+        updateData();
     }//GEN-LAST:event_jSearchFieldKeyTyped
 
     private void jToggleSortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleSortMouseClicked
         toggle = !toggle;
-        renderData();
+        updateData();
         jDeleteMessage.setText("");
     }//GEN-LAST:event_jToggleSortMouseClicked
 
@@ -290,7 +311,7 @@ public class jViewUsers extends javax.swing.JPanel {
     private void jSortByComboMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSortByComboMouseClicked
         jDeleteMessage.setText("");
     }//GEN-LAST:event_jSortByComboMouseClicked
-
+    private ArrayList<User> allUsers;
     private boolean toggle ;
     private final UserServices _UserServices;
     private final FilterUsers _filterUsers;

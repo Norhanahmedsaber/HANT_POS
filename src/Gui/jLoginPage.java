@@ -141,7 +141,6 @@ public class jLoginPage extends javax.swing.JPanel {
         {
             clearLogINPage();
             _jHomePage.switchPanels(_jMainPage);
-            _jMainPage.jAddusers.grabFocus();
             _jHomePage.loginUser=user;
         }
         else

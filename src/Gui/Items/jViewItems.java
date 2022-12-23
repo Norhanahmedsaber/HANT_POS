@@ -251,7 +251,8 @@ public class jViewItems extends javax.swing.JPanel {
             DefaultTableModel m = (DefaultTableModel) jItem.getModel();
             m.setColumnIdentifiers(titles);
             m.setRowCount(0);
-            ArrayList<Item> _items =_ItemServices.getAllItems();  
+            ArrayList<Item> _items =_ItemServices.getAllItems();
+            allItems = _items;
             String search=jsearchitems.getText();
             String Sortitemsby=(String)jsortitemsby.getSelectedItem();
             ArrayList<Item> _filtereditems = _jfilterItems.filter(_items,search,Sortitemsby,toggle);  
@@ -264,17 +265,36 @@ public class jViewItems extends javax.swing.JPanel {
                 }
             }
         }
+    public void updateItems (){
+        String [] titles= {"Id", "Name","Category","Price","CreatedAt"};
+        DefaultTableModel m = (DefaultTableModel) jItem.getModel();
+        m.setColumnIdentifiers(titles);
+        m.setRowCount(0);
+        ArrayList<Item> _items =allItems;  
+        String search=jsearchitems.getText();
+        String Sortitemsby=(String)jsortitemsby.getSelectedItem();
+        ArrayList<Item> _filtereditems = _jfilterItems.filter(_items,search,Sortitemsby,toggle);  
+        if(!_filtereditems.isEmpty()) {
+            for (int i=0;i<_filtereditems .size();i++)
+            { 
+                Item item = _filtereditems .get(i);
+                Object [] items = { item.id, item.name,item.category,item.price,item.createdAt } ;
+                m.addRow(items);
+            }
+        }
+    }
     private void deleteItem(){
-         DefaultTableModel m = (DefaultTableModel) jItem.getModel();
-          if(jItem.getSelectedRow() != -1) {
-            UUID id = (UUID) m.getValueAt(jItem.getSelectedRow(), 0);
-            m.removeRow(jItem.getSelectedRow());
-            Item item = _ItemServices.getById(id);
-            _jHomePage.createLog("Deleted", "Item", item.name);
-            _ItemServices.delete(id);
-            jDeleteMessage.setText("Item Deleted Successfully");
-    }else{
-              jDeleteMessage.setText("Error! Please Select Item");}
+        DefaultTableModel m = (DefaultTableModel) jItem.getModel();
+        if(jItem.getSelectedRow() != -1) {
+        UUID id = (UUID) m.getValueAt(jItem.getSelectedRow(), 0);
+        m.removeRow(jItem.getSelectedRow());
+        Item item = _ItemServices.getById(id);
+        _jHomePage.createLog("Deleted", "Item", item.name);
+        _ItemServices.delete(id);
+        jDeleteMessage.setText("Item Deleted Successfully");
+        }else {
+            jDeleteMessage.setText("Error! Please Select Item");
+        }
     }
     public Item getSelectedItem(){
         int row = jItem.getSelectedRow();//check ! -1
@@ -304,7 +324,7 @@ public class jViewItems extends javax.swing.JPanel {
 
 
     private void jsearchitemsKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jsearchitemsKeyTyped
-        showItems();
+        updateItems();
     }//GEN-LAST:event_jsearchitemsKeyTyped
 
     private void jdeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jdeleteMouseClicked
@@ -316,7 +336,7 @@ public class jViewItems extends javax.swing.JPanel {
 
     private void jToggleSortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleSortMouseClicked
        toggle = !toggle;
-       showItems();
+       updateItems();
        jDeleteMessage.setText("");
     }//GEN-LAST:event_jToggleSortMouseClicked
 
@@ -341,7 +361,7 @@ public class jViewItems extends javax.swing.JPanel {
     private void jsortitemsbyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jsortitemsbyMouseClicked
        jDeleteMessage.setText("");
     }//GEN-LAST:event_jsortitemsbyMouseClicked
-
+    private ArrayList<Item> allItems;
     private boolean toggle;
     public final jViewItem _jViewItem;
     private final ItemServices _ItemServices;

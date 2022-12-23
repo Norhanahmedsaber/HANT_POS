@@ -26,6 +26,7 @@ public class jViewLogs extends javax.swing.JPanel {
         model.setColumnIdentifiers(cols);
         model.setRowCount(0);
         ArrayList<Log> logs = _LogServices.getAll();
+        allLogs = logs;
         if(!logs.isEmpty()) { 
             String searchName = jSearchField.getText();
             String sortBy = (String) jSortByCombo.getSelectedItem();
@@ -39,15 +40,35 @@ public class jViewLogs extends javax.swing.JPanel {
             } 
         } 
     }  
+    public void updateData() {
+        String[] cols = {"ID","UserName", "Action", "Acted On" ,"Date"}; 
+        DefaultTableModel model = (DefaultTableModel) jLogsTable.getModel();
+        model.setColumnIdentifiers(cols);
+        model.setRowCount(0);
+        ArrayList<Log> logs = allLogs;
+        if(!logs.isEmpty()) { 
+            String searchName = jSearchField.getText();
+            String sortBy = (String) jSortByCombo.getSelectedItem();
+            ArrayList<Log> filteredLogs = _FilterLogs.filter(logs, searchName,sortBy , toggle ); 
+            if(!filteredLogs.isEmpty()){ 
+                for(int i=0;i<filteredLogs.size();i++) { 
+                    Log log = filteredLogs.get(i); 
+                    Object[] objs = { log.id, log.userName, log.action, log.actedOn, log.date }; 
+                    model.addRow(objs); 
+                }  
+            } 
+        } 
+    }
     public void delete(){
         DefaultTableModel m = (DefaultTableModel) jLogsTable.getModel();
-          if(jLogsTable.getSelectedRow() != -1) {
-            UUID id = (UUID) m.getValueAt(jLogsTable.getSelectedRow(), 0);
-            m.removeRow(jLogsTable.getSelectedRow());
-             _LogServices.deleteLog(id);
-             jDeleteMessage.setText("Deleted Successfully");
+        if(jLogsTable.getSelectedRow() != -1) {
+        UUID id = (UUID) m.getValueAt(jLogsTable.getSelectedRow(), 0);
+        m.removeRow(jLogsTable.getSelectedRow());
+        _LogServices.deleteLog(id);
+        jDeleteMessage.setText("Deleted Successfully");
         }else{
-              jDeleteMessage.setText("Error! Please Select Log");}
+            jDeleteMessage.setText("Error! Please Select Log");
+        }
     }
     public Log getSelectedLog(){
         int row = jLogsTable.getSelectedRow();//check ! -1
@@ -246,10 +267,11 @@ public class jViewLogs extends javax.swing.JPanel {
                     .addComponent(jSearchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSortByCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jToggleSort))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSortByCombo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jToggleSort)))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -278,12 +300,12 @@ public class jViewLogs extends javax.swing.JPanel {
 
     private void jToggleSortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleSortMouseClicked
         toggle = !toggle;
-        renderData();
+        updateData();
         jDeleteMessage.setText("");
     }//GEN-LAST:event_jToggleSortMouseClicked
 
     private void jSearchFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSearchFieldKeyTyped
-        renderData();
+        updateData();
     }//GEN-LAST:event_jSearchFieldKeyTyped
 
 
@@ -300,7 +322,7 @@ public class jViewLogs extends javax.swing.JPanel {
     }//GEN-LAST:event_jLogsTableMousePressed
 
     
-   
+    private ArrayList<Log> allLogs;
     private boolean toggle ;
     private final FilterLogs _FilterLogs;
     private final LogServices _LogServices;
