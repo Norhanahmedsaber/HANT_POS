@@ -6,6 +6,7 @@ import Gui.jMainPage;
 import Services.RoleServices;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import utils.filterRoles;
 
@@ -25,8 +26,11 @@ public class jViewRoles extends javax.swing.JPanel {
     }
     Role getSelectedRole() {
         String roleName = jRoles.getSelectedValue();
-        Role role = _RoleServices.getByName(roleName);
-        return role;
+        if(roleName != null){
+            Role role = _RoleServices.getByName(roleName);
+            return role;
+        }
+        return null;
     }
     public void renderData() {
         DefaultListModel model = new DefaultListModel();
@@ -165,8 +169,12 @@ public class jViewRoles extends javax.swing.JPanel {
     private void jEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jEditMouseClicked
        jMainPage MainPage=(jMainPage)_parent;
             if(MainPage.canUpdateRole()) {
-                _jNewRole.DoneButton(); 
+                _jNewRole.DoneButton();
                 _jNewRole._jRole = getSelectedRole();
+                if(_jNewRole._jRole == null) {
+                    JOptionPane.showMessageDialog(null, "Please Select a Role to Edit!");
+                    return;
+                }
                 _jNewRole.renderData();
                 _jHomePage.switchPanels(_jNewRole);
             }

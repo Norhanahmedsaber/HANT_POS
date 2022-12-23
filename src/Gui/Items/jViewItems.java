@@ -4,8 +4,17 @@ import Entities.Item;
 import Gui.jHomePage;
 import Gui.jMainPage;
 import Services.ItemServices;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import utils.filterItems;
 
@@ -38,11 +47,9 @@ public class jViewItems extends javax.swing.JPanel {
         jadditem = new javax.swing.JButton();
         jdelete = new javax.swing.JButton();
         jToggleSort = new javax.swing.JButton();
-        jErrorShowItem = new javax.swing.JLabel();
         jShowItem = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jItem = new javax.swing.JTable();
-        jDeleteMessage = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(87, 118, 130));
 
@@ -118,9 +125,6 @@ public class jViewItems extends javax.swing.JPanel {
             }
         });
 
-        jErrorShowItem.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jErrorShowItem.setForeground(new java.awt.Color(0, 31, 78));
-
         jShowItem.setBackground(new java.awt.Color(217, 156, 69));
         jShowItem.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jShowItem.setForeground(new java.awt.Color(255, 255, 255));
@@ -172,9 +176,6 @@ public class jViewItems extends javax.swing.JPanel {
         jItem.setSelectionBackground(new java.awt.Color(87, 118, 130));
         jScrollPane2.setViewportView(jItem);
 
-        jDeleteMessage.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jDeleteMessage.setForeground(new java.awt.Color(0, 31, 78));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -187,18 +188,14 @@ public class jViewItems extends javax.swing.JPanel {
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jDeleteMessage, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(7, 7, 7)
-                                    .addComponent(jsearchitems, javax.swing.GroupLayout.PREFERRED_SIZE, 503, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(jsortitemsby, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jToggleSort)))
-                            .addComponent(jErrorShowItem, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addComponent(jsearchitems, javax.swing.GroupLayout.PREFERRED_SIZE, 503, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jsortitemsby, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jToggleSort)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -225,17 +222,9 @@ public class jViewItems extends javax.swing.JPanel {
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jsortitemsby, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToggleSort, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 43, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jErrorShowItem))
-                        .addGap(18, 18, 18))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jDeleteMessage)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(20, 43, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -286,20 +275,25 @@ public class jViewItems extends javax.swing.JPanel {
     private void deleteItem(){
         DefaultTableModel m = (DefaultTableModel) jItem.getModel();
         if(jItem.getSelectedRow() != -1) {
-        UUID id = (UUID) m.getValueAt(jItem.getSelectedRow(), 0);
-        m.removeRow(jItem.getSelectedRow());
-        Item item = _ItemServices.getById(id);
-        _jHomePage.createLog("Deleted", "Item", item.name);
-        _ItemServices.delete(id);
-        jDeleteMessage.setText("Item Deleted Successfully");
+            UUID id = (UUID) m.getValueAt(jItem.getSelectedRow(), 0);
+            Item item = _ItemServices.getById(id);
+            int answer = JOptionPane.showConfirmDialog(null, "Are you Sure you want to delete this item (" + item.name + ") ?");
+            if(answer == JOptionPane.YES_OPTION) {
+                m.removeRow(jItem.getSelectedRow());
+                _jHomePage.createLog("Deleted", "Item", item.name);
+                _ItemServices.delete(id);
+                File f = new File("Images/" + item.id + ".jpg");
+                f.delete();
+                JOptionPane.showMessageDialog(null, "Deleted Successfully!");
+            }
+            
         }else {
-            jDeleteMessage.setText("Error! Please Select Item");
+            JOptionPane.showMessageDialog(null, "Please Select an Item to Delete!");
         }
     }
     public Item getSelectedItem(){
         int row = jItem.getSelectedRow();//check ! -1
         if(row!=-1){
-            jErrorShowItem.setText("");
             UUID choosedItemId = (UUID)(jItem.getModel().getValueAt(row, 0));
             Item choosedItem = _ItemServices.getById(choosedItemId);
             return choosedItem;
@@ -311,15 +305,22 @@ public class jViewItems extends javax.swing.JPanel {
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
         _jHomePage.switchPanels(_jMainPage);
         _jMainPage.jViewitems.grabFocus();
-        jDeleteMessage.setText("");
     }//GEN-LAST:event_jBackMouseClicked
 
     private void jadditemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jadditemMouseClicked
         if(_jMainPage.canCreateItem()) {
-           _jHomePage.switchPanels(_jNewItem);
-           _jNewItem.jNameField.grabFocus();
+            _jHomePage.switchPanels(_jNewItem);
+            _jNewItem.jNameField.grabFocus();
+            BufferedImage img = null;
+            try {
+                img = ImageIO.read(new File("Images/noImage.jpg"));
+            } catch (IOException e) {
+                Logger.getLogger(jViewItem.class.getName()).log(Level.SEVERE, null, e);
+            }
+            Image dimg = img.getScaledInstance(220, 220,Image.SCALE_SMOOTH);
+            ImageIcon imageIcon = new ImageIcon(dimg);
+            _jNewItem.jPic.setIcon(imageIcon);
        }
-        jDeleteMessage.setText("");
     }//GEN-LAST:event_jadditemMouseClicked
 
 
@@ -338,7 +339,6 @@ public class jViewItems extends javax.swing.JPanel {
     private void jToggleSortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleSortMouseClicked
        toggle = !toggle;
        updateItems();
-       jDeleteMessage.setText("");
     }//GEN-LAST:event_jToggleSortMouseClicked
 
     private void jShowItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jShowItemMouseClicked
@@ -350,17 +350,16 @@ public class jViewItems extends javax.swing.JPanel {
             _jViewItem.jNameField.grabFocus();
             _jViewItem.renderData();
         }else{
-            jErrorShowItem.setText("Please choose item from table");
+            JOptionPane.showMessageDialog(null, "Please Select an Item to View!");
         }
-        jDeleteMessage.setText("");
     }//GEN-LAST:event_jShowItemMouseClicked
 
     private void jsearchitemsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jsearchitemsMouseClicked
-       jDeleteMessage.setText("");
+       
     }//GEN-LAST:event_jsearchitemsMouseClicked
 
     private void jsortitemsbyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jsortitemsbyMouseClicked
-       jDeleteMessage.setText("");
+       
     }//GEN-LAST:event_jsortitemsbyMouseClicked
     private ArrayList<Item> allItems;
     private boolean toggle;
@@ -372,8 +371,6 @@ public class jViewItems extends javax.swing.JPanel {
     private final filterItems _jfilterItems;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBack;
-    private javax.swing.JLabel jDeleteMessage;
-    private javax.swing.JLabel jErrorShowItem;
     public javax.swing.JTable jItem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

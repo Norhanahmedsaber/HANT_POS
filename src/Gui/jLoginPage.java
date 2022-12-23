@@ -3,6 +3,7 @@ package Gui;
 import Entities.User;
 import Services.AccountServices;
 import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 public class jLoginPage extends javax.swing.JPanel {
 
     public jLoginPage(jHomePage jhp) {
@@ -20,7 +21,6 @@ public class jLoginPage extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jusername = new javax.swing.JTextField();
         jlogin = new javax.swing.JButton();
-        error = new javax.swing.JLabel();
         jpassword = new javax.swing.JPasswordField();
         jBack = new javax.swing.JButton();
 
@@ -58,9 +58,6 @@ public class jLoginPage extends javax.swing.JPanel {
             }
         });
 
-        error.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        error.setForeground(new java.awt.Color(0, 31, 78));
-
         jpassword.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jpassword.setForeground(new java.awt.Color(0, 31, 78));
         jpassword.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -90,12 +87,11 @@ public class jLoginPage extends javax.swing.JPanel {
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(error, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jusername, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jlogin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 112, Short.MAX_VALUE))
+                .addGap(0, 218, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(jBack, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -104,9 +100,7 @@ public class jLoginPage extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(107, 107, 107)
-                .addComponent(error)
-                .addGap(35, 35, 35)
+                .addGap(142, 142, 142)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jusername, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -124,18 +118,17 @@ public class jLoginPage extends javax.swing.JPanel {
     public void clearLogINPage(){
         jusername.setText("");
         jpassword.setText("");
-        error.setText("");
     }
     public void login() {
         
         if(jusername.getText().isEmpty()) {
-            error.setText("Username Is Empty!");
+            JOptionPane.showMessageDialog(null, "Username is Empty!");
             return;
-        }else error.setText(""); 
+        }
         if(jpassword.getText().isEmpty()) {
-            error.setText("password Is Empty!");
+            JOptionPane.showMessageDialog(null, "Password is Empty!");
             return;
-        }else error.setText("");
+        }
             User user = _AccountServices.login(jusername.getText().trim(),jpassword.getText().trim());
         if( user!=null )
         {
@@ -144,8 +137,8 @@ public class jLoginPage extends javax.swing.JPanel {
             _jHomePage.loginUser=user;
         }
         else
-        {     
-            error.setText("Password or Username dont match!");
+        {
+            JOptionPane.showMessageDialog(null, "Username and Password Don't Match!");
             return;
         }
         _jMainPage.canCreateUser();
@@ -198,7 +191,6 @@ public class jLoginPage extends javax.swing.JPanel {
     private final jMainPage _jMainPage ;
     private final jHomePage _jHomePage;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel error;
     private javax.swing.JButton jBack;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

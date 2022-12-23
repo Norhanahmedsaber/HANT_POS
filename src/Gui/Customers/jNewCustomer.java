@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;  
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class jNewCustomer extends javax.swing.JPanel {
@@ -38,28 +39,28 @@ public class jNewCustomer extends javax.swing.JPanel {
     public boolean isValidName() {
         // is empty (nameField)
         if(jNameField.getText().trim().isEmpty()) {
-           jErrorName.setText("Cant be empty!");
+           JOptionPane.showMessageDialog(null, "Name Can't be Empty");
            return false;
-        }else jErrorName.setText("");
+        }
         //is valid (Name)
         for (int i=0 ; i < jNameField.getText().trim().length();i++){
             char x = jNameField.getText().trim().charAt(i);
             if(!(x >= 'a' && x <= 'z' || x >= 'A' && x <= 'Z' || x==' ')){
-            jErrorName.setText("you must enter chars only.");
-            return false;
-            }else jErrorName.setText("");
+                JOptionPane.showMessageDialog(null, "Name Can Only Have Letters!");
+                return false;
+            }
         }
         return true;
     }
     public boolean isValidEmail() {
         // is empty (Email)
         if(jEmailField.getText().trim().isEmpty()) {
-           jErrorEmail.setText("Cant be empty!");
+           JOptionPane.showMessageDialog(null, "Email Can't be Empty");
            return false;
-        }else jErrorEmail.setText("");
+        }
         // is valid (email)
         if (!emailAdressen(jEmailField.getText().trim())){
-            jErrorEmail.setText("your email format is false");
+            JOptionPane.showMessageDialog(null, "Please Type an Email with the right format!");
             return false;
         }
         return true;
@@ -67,73 +68,65 @@ public class jNewCustomer extends javax.swing.JPanel {
     public boolean isValidNationalId(){ 
         // is empty (National ID)
         if(jNationalIdField.getText().trim().isEmpty()) {
-           jErrorNationalId.setText("Cant be empty!");
-           return false;
-        }else jErrorNationalId.setText("");       
+            JOptionPane.showMessageDialog(null, "National ID Can't be Empty");
+            return false;
+        }      
         // is valid (National ID)
         for (int i=0 ; i < jNationalIdField.getText().trim().length();i++){
             char x = jNationalIdField.getText().trim().charAt(i);
             if((x >= 'a' && x <= 'z' || x >= 'A' && x <= 'Z' || x==' ')){
-            jErrorNationalId.setText("you must enter numbers only.");
-            return false;
-            }else jErrorNationalId.setText("");
+                JOptionPane.showMessageDialog(null, "National ID Can't Have Chars in it!");
+                return false;
+            }
         }
         if(jNationalIdField.getText().trim().length() != 14) {
-           jErrorNationalId.setText("it must be 14 number.");
-           return false;
-        }else jErrorNationalId.setText("");
+            JOptionPane.showMessageDialog(null, "National ID should be 14 Digits!");
+            return false;
+        }
         return true;
     }
     public boolean isValidPhoneNo(){
         // is empty (Phone NO)
         if(jPhoneNoField.getText().trim().isEmpty()) {
-           jErrorPhoneNo.setText("Cant be empty!");
+            JOptionPane.showMessageDialog(null, "Phone Number Can't be Empty!");
            return false;
-        }else jErrorPhoneNo.setText("");    
+        }
         // is valid (Phone NO)
         try {
-            Integer.parseInt(jPhoneNoField.getText());
+            Integer.valueOf(jPhoneNoField.getText());
         }catch(NumberFormatException e) {
-            jErrorPhoneNo.setText("you must enter number, chars not allowed.");
+            JOptionPane.showMessageDialog(null, "Phone Number Can't Have Chars in it!");
             return false;
         }
         if(!(jPhoneNoField.getText().trim().startsWith("01"))) {
-           jErrorPhoneNo.setText("the number must start with 01 .");
-           return false;
-        }else jErrorPhoneNo.setText("");
+            JOptionPane.showMessageDialog(null, "Phone Number Must start with 01");
+            return false;
+        }
         if(jPhoneNoField.getText().trim().length()!= 11) {
-           jErrorPhoneNo.setText("it must be 11 number.");
+            JOptionPane.showMessageDialog(null, "Phone Number Must be 11 Digits!");
            return false;
-        }else jErrorPhoneNo.setText("");
+        }
         return true;
     }
     public boolean isValidCity(){
         // is empty (City)
         if(jCityField.getText().trim().isEmpty()) {
-           jErrorCity.setText("Cant be empty!");
-           return false;
-        }else jErrorCity.setText("");
-        // is valid (City)
-        for (int i=0 ; i < jCityField.getText().trim().length();i++){
-            char x = jCityField.getText().trim().charAt(i);
-            if(!(x >= 'a' && x <= 'z' || x >= 'A' && x <= 'Z' || x==' ')){
-            jErrorCity.setText("you must enter chars only.");
+            JOptionPane.showMessageDialog(null, "City Can't be Empty!");
             return false;
-            }else jErrorCity.setText("");
         }
         return true;
     }  
     public boolean isValidIncome(){
         // is empty (Income)
         if(jIncomeField.getText().trim().isEmpty()) {
-           jErrorIncome.setText("Cant be empty!");
-           return false;
-        }else jErrorIncome.setText("");
+            JOptionPane.showMessageDialog(null, "Income Can't be Empty!");
+            return false;
+        }
         // is valid (Income)
         try {
-            Integer.parseInt(jIncomeField.getText());
+            Integer.valueOf(jIncomeField.getText());
         }catch(NumberFormatException e) {
-            jErrorIncome.setText("you must enter number.");
+            JOptionPane.showMessageDialog(null, "Please Enter A number in the income field!");
             return false;
         }
         return true;
@@ -141,50 +134,38 @@ public class jNewCustomer extends javax.swing.JPanel {
     public boolean isValidJop(){
         // is empty (job)
         if(jJobField.getText().trim().isEmpty()) {
-           jErrorJob.setText("Cant be empty!");
-           return false;
-        }else jErrorJob.setText("");
-        // is valid (job)
-        for (int i=0 ; i < jJobField.getText().trim().length();i++){
-            char x = jJobField.getText().trim().charAt(i);
-            if(!(x >= 'a' && x <= 'z' || x >= 'A' && x <= 'Z' || x==' ')){
-            jErrorJob.setText("you must enter chars only.");
-            return false;
-            }else jErrorJob.setText("");
+            JOptionPane.showMessageDialog(null, "Job can't be Empty!");
+             return false;
         }
         return true;
     }
     public boolean isValidAge(){
         // is empty (age)
         if(jAgeField.getText().trim().isEmpty()) {
-           jErrorAge.setText("Cant be empty!");
-           return false;
-        }else jErrorAge.setText("");
+            JOptionPane.showMessageDialog(null, "Age Can't be Empty!");
+            return false;
+        }
         // is valid (age)
         for (int i=0 ; i < jAgeField.getText().trim().length();i++){
             char x = jAgeField.getText().trim().charAt(i);
             if((x >= 'a' && x <= 'z' || x >= 'A' && x <= 'Z' || x==' ')){
-            jErrorAge.setText("you must enter numbers only.");
+            JOptionPane.showMessageDialog(null, "Age Can't Have Chars in it!");
             return false;
-            }else jErrorAge.setText("");
+            }
         }
         try {
-            if(Integer.parseInt(jAgeField.getText())<18){
-                jErrorAge.setText("Cant be less than 18 years.");
-                return false;
-            }else jErrorAge.setText("");
+            Integer.parseInt(jAgeField.getText());
         }catch(NumberFormatException e) {
-            jErrorAge.setText("you must enter number.");
+            JOptionPane.showMessageDialog(null, "Age Can't Have Chars in it!");
             return false;
         }
         return true;
     }
     public boolean isValidChooseItem(){
         if(_chosenitems.isEmpty()){
-            jErrorChooseItem.setText("you must choose at least 1 item");
+            JOptionPane.showMessageDialog(null, "You Must Choose atleast one item!");
             return false;
         }
-        jErrorChooseItem.setText("");
         return true;
     }
     public boolean checkAllValidations(){
@@ -212,10 +193,7 @@ public class jNewCustomer extends javax.swing.JPanel {
         if (!isValidAge()){
             return false;
         }
-        if (!isValidChooseItem()){
-            return false;
-        }
-        return true;
+        return isValidChooseItem();
     }
     public static boolean emailAdressen(String emailAdressen) {
         Pattern pattern = Pattern.compile("^[A-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:\\.[A-Z0-9_!#$%&'*+/=?`{|}~^-]+↵\n" +")*@[A-Z0-9-]+(?:\\.[A-Z0-9-]+)*$", Pattern.CASE_INSENSITIVE);
@@ -242,6 +220,7 @@ public class jNewCustomer extends javax.swing.JPanel {
         }
         _CustomerServices.create(_Customer, itemsid);
         _jHomePage.createLog("Created", "Customer",_Customer.name );
+        JOptionPane.showMessageDialog(null, "Created Successfully");
         
     }
     public void clearNewCustomerPage() {
@@ -253,24 +232,14 @@ public class jNewCustomer extends javax.swing.JPanel {
         jNationalIdField.setText("");
         jCityField.setText("");
         jJobField.setText("");   
-        jErrorAge.setText("");
-        jErrorChooseItem.setText("");
-        jErrorCity.setText("");
-        jErrorEmail.setText("");
-        jErrorIncome.setText("");
-        jErrorJob.setText("");
-        jErrorName.setText("");
-        jErrorNationalId.setText("");
-        jErrorPhoneNo.setText(""); 
+        
     } 
     public void addCustomerButton(){
         if(!checkAllValidations()){
-           jAddedCustomer.setText("");
            return;
         }else
         saveCustomerData(); 
-        // messege added successfully 
-        jAddedCustomer.setText("Added Successfully!");     
+        // messege added successfully  
         // clear all fields
         clearNewCustomerPage();
     }
@@ -285,7 +254,6 @@ public class jNewCustomer extends javax.swing.JPanel {
         {
             jMainPage MainPage=(jMainPage)_parent;
             MainPage.jNewcustomer.grabFocus();
-            jAddedCustomer.setText("");
         }
         _jHomePage.switchPanels(_parent);
     }
@@ -315,19 +283,9 @@ public class jNewCustomer extends javax.swing.JPanel {
         jAddCustomer = new javax.swing.JButton();
         jChooseItem = new javax.swing.JButton();
         jBack = new javax.swing.JButton();
-        jErrorName = new javax.swing.JLabel();
         jGenderComboBox = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         jEmailField = new javax.swing.JTextField();
-        jAddedCustomer = new javax.swing.JLabel();
-        jErrorCity = new javax.swing.JLabel();
-        jErrorEmail = new javax.swing.JLabel();
-        jErrorNationalId = new javax.swing.JLabel();
-        jErrorPhoneNo = new javax.swing.JLabel();
-        jErrorChooseItem = new javax.swing.JLabel();
-        jErrorIncome = new javax.swing.JLabel();
-        jErrorJob = new javax.swing.JLabel();
-        jErrorAge = new javax.swing.JLabel();
 
         setForeground(new java.awt.Color(255, 255, 255));
 
@@ -498,10 +456,6 @@ public class jNewCustomer extends javax.swing.JPanel {
             }
         });
 
-        jErrorName.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jErrorName.setForeground(new java.awt.Color(217, 156, 69));
-        jErrorName.setToolTipText("");
-
         jGenderComboBox.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jGenderComboBox.setForeground(new java.awt.Color(255, 255, 255));
         jGenderComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", " " }));
@@ -523,111 +477,62 @@ public class jNewCustomer extends javax.swing.JPanel {
             }
         });
 
-        jAddedCustomer.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jAddedCustomer.setForeground(new java.awt.Color(0, 255, 100));
-
-        jErrorCity.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jErrorCity.setForeground(new java.awt.Color(217, 156, 69));
-        jErrorCity.setToolTipText("");
-
-        jErrorEmail.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jErrorEmail.setForeground(new java.awt.Color(217, 156, 69));
-        jErrorEmail.setToolTipText("");
-
-        jErrorNationalId.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jErrorNationalId.setForeground(new java.awt.Color(217, 156, 69));
-        jErrorNationalId.setToolTipText("");
-
-        jErrorPhoneNo.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jErrorPhoneNo.setForeground(new java.awt.Color(217, 156, 69));
-        jErrorPhoneNo.setToolTipText("");
-
-        jErrorChooseItem.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jErrorChooseItem.setForeground(new java.awt.Color(217, 156, 69));
-        jErrorChooseItem.setToolTipText("");
-
-        jErrorIncome.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jErrorIncome.setForeground(new java.awt.Color(217, 156, 69));
-        jErrorIncome.setToolTipText("");
-
-        jErrorJob.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jErrorJob.setForeground(new java.awt.Color(217, 156, 69));
-        jErrorJob.setToolTipText("");
-
-        jErrorAge.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jErrorAge.setForeground(new java.awt.Color(217, 156, 69));
-        jErrorAge.setToolTipText("");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jAddedCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jCityField, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(38, 38, 38)
+                                .addComponent(jIncomeField, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jJobField, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jAgeField, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jGenderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(9, 9, 9))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jCityField, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(38, 38, 38)
-                                        .addComponent(jIncomeField, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(28, 28, 28)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jPhoneNoField, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jNationalIdField, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jJobField, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jAgeField, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jGenderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(9, 9, 9))
+                                        .addComponent(jEmailField, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(jNameField)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel2)
-                                            .addComponent(jLabel1)
-                                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(28, 28, 28)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jPhoneNoField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jNationalIdField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jEmailField, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 0, Short.MAX_VALUE))
-                                            .addComponent(jNameField)))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addGap(39, 39, 39)
-                                        .addComponent(jChooseItem, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jBack, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(50, 50, 50)
-                                        .addComponent(jAddCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 9, Short.MAX_VALUE)))
-                        .addGap(14, 14, 14)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jErrorPhoneNo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jErrorCity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jErrorIncome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jErrorJob, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jErrorAge, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jErrorChooseItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jErrorName, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jErrorEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jErrorNationalId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(70, 70, 70))
+                                .addComponent(jLabel5)
+                                .addGap(39, 39, 39)
+                                .addComponent(jChooseItem, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jBack, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(50, 50, 50)
+                                .addComponent(jAddCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 11, Short.MAX_VALUE)))
+                .addGap(356, 356, 356))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -635,72 +540,59 @@ public class jNewCustomer extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jErrorName, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 1, Short.MAX_VALUE)
+                        .addComponent(jLabel9)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jErrorEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jEmailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jEmailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jLabel10)))
-                .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jNationalIdField)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jErrorNationalId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(24, 24, 24)
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
+                    .addComponent(jNationalIdField)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jErrorPhoneNo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPhoneNoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jPhoneNoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jErrorCity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jCityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jLabel3)))
-                .addGap(23, 23, 23)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4)
-                        .addComponent(jIncomeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jErrorIncome, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jIncomeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel7)
-                        .addComponent(jJobField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jErrorJob, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jJobField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel6)
-                        .addComponent(jAgeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jErrorAge, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jAgeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jGenderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel5)
-                        .addComponent(jChooseItem))
-                    .addComponent(jErrorChooseItem, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jAddedCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jChooseItem))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jAddCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBack, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -729,8 +621,7 @@ public class jNewCustomer extends javax.swing.JPanel {
         _jChooseItem.resetPanel();
         _jChooseItem.renderData();
         _jHomePage.switchPanels(_jChooseItem);
-        _jChooseItem.jSearch.grabFocus();
-        jAddedCustomer.setText("");     
+        _jChooseItem.jSearch.grabFocus();  
 
     }//GEN-LAST:event_jChooseItemMouseClicked
 
@@ -789,35 +680,35 @@ public class jNewCustomer extends javax.swing.JPanel {
     }//GEN-LAST:event_jAgeFieldKeyPressed
 
     private void jNameFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jNameFieldMouseClicked
-        jAddedCustomer.setText("");     
+          
     }//GEN-LAST:event_jNameFieldMouseClicked
 
     private void jEmailFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jEmailFieldMouseClicked
-        jAddedCustomer.setText("");     
+      
     }//GEN-LAST:event_jEmailFieldMouseClicked
 
     private void jNationalIdFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jNationalIdFieldMouseClicked
-        jAddedCustomer.setText("");     
+   
     }//GEN-LAST:event_jNationalIdFieldMouseClicked
 
     private void jPhoneNoFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPhoneNoFieldMouseClicked
-        jAddedCustomer.setText("");     
+    
     }//GEN-LAST:event_jPhoneNoFieldMouseClicked
 
     private void jCityFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCityFieldMouseClicked
-        jAddedCustomer.setText("");     
+   
     }//GEN-LAST:event_jCityFieldMouseClicked
 
     private void jIncomeFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jIncomeFieldMouseClicked
-        jAddedCustomer.setText("");     
+      
     }//GEN-LAST:event_jIncomeFieldMouseClicked
 
     private void jJobFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jJobFieldMouseClicked
-        jAddedCustomer.setText("");     
+     
     }//GEN-LAST:event_jJobFieldMouseClicked
 
     private void jAgeFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAgeFieldMouseClicked
-        jAddedCustomer.setText("");     
+          
     }//GEN-LAST:event_jAgeFieldMouseClicked
 
     private final JPanel _parent;
@@ -828,21 +719,11 @@ public class jNewCustomer extends javax.swing.JPanel {
     private ItemServices _jItemServices;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jAddCustomer;
-    private javax.swing.JLabel jAddedCustomer;
     private javax.swing.JTextField jAgeField;
     private javax.swing.JButton jBack;
     private javax.swing.JButton jChooseItem;
     private javax.swing.JTextField jCityField;
     private javax.swing.JTextField jEmailField;
-    private javax.swing.JLabel jErrorAge;
-    private javax.swing.JLabel jErrorChooseItem;
-    private javax.swing.JLabel jErrorCity;
-    private javax.swing.JLabel jErrorEmail;
-    private javax.swing.JLabel jErrorIncome;
-    private javax.swing.JLabel jErrorJob;
-    private javax.swing.JLabel jErrorName;
-    private javax.swing.JLabel jErrorNationalId;
-    private javax.swing.JLabel jErrorPhoneNo;
     private javax.swing.JComboBox<String> jGenderComboBox;
     private javax.swing.JTextField jIncomeField;
     private javax.swing.JTextField jJobField;

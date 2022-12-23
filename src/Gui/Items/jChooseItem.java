@@ -9,6 +9,7 @@ import Services.ItemServices;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import utils.filterItems;
@@ -45,6 +46,7 @@ public class jChooseItem extends javax.swing.JPanel {
         jAdd.setEnabled(true);
         jBack.setEnabled(true);
         jItems.setEnabled(true);
+        jDone.setVisible(false);
     }
     void update()
     {        
@@ -61,6 +63,7 @@ public class jChooseItem extends javax.swing.JPanel {
     void Cancel()
     {        _jViewCustomer.updateflag=!_jViewCustomer.updateflag;
         jedit.setEnabled(true);
+        jDone.setVisible(false);
         jBack.setEnabled(true);
         jupdate.setEnabled(false);
         jcancel.setEnabled(false);
@@ -107,6 +110,7 @@ public class jChooseItem extends javax.swing.JPanel {
     }
     void guisetnewcustomer()
     {
+        jDone.setVisible(true);
         jcancel.setVisible(false);
         jedit.setVisible(false);
         jupdate.setVisible(false);
@@ -146,6 +150,7 @@ public class jChooseItem extends javax.swing.JPanel {
             itemsIds.add((UUID) addedModel.getValueAt(r, 0));
         }
         _CustomerServices.updateAssignedItemsToCustomer(_jViewCustomer._chosencustomer.id, itemsIds);
+        JOptionPane.showMessageDialog(null, "Updated Successfully!");
         
     }
     public void resetPanel() {
@@ -158,14 +163,15 @@ public class jChooseItem extends javax.swing.JPanel {
         m2.setRowCount(0);
         jSearch.setText("");
         jItemsCombo.selectWithKeyChar('n');
-        jError.setText("");
     }
     private void removeItemFromPreviewTable() {
         if(jAddedItems.getSelectedRow() != -1) {
             DefaultTableModel m = (DefaultTableModel) jAddedItems.getModel();
             m.removeRow(jAddedItems.getSelectedRow());
             
-         }
+        }else {
+            JOptionPane.showMessageDialog(null, "Plese Select an Item to Remove it!");
+        }
     }
     private void addItemToPreviewTable() {
         int row = jItems.getSelectedRow();//check ! -1
@@ -178,6 +184,8 @@ public class jChooseItem extends javax.swing.JPanel {
             }
             DefaultTableModel model = (DefaultTableModel) jAddedItems.getModel();
             model.addRow(result);
+        }else {
+            JOptionPane.showMessageDialog(null, "Plese Select an Item to be added!");
         }
     }
     public void renderData() {
@@ -215,7 +223,7 @@ public class jChooseItem extends javax.swing.JPanel {
         }
         if(_parent instanceof jViewCustomer && _jViewCustomer.updateflag)
         {
-            setDefault();
+            //setDefault();
             guisetforupdatepurchases();
             
         }

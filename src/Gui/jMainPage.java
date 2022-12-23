@@ -4,11 +4,20 @@ import Gui.Items.jNewItem;
 import Gui.Customers.jNewCustomer;
 import Gui.Logs.jViewLogs;
 import Gui.Customers.jViewCustomers;
+import Gui.Items.jViewItem;
 import Gui.Users.jViewUsers;
 import Gui.Items.jViewItems;
 import Gui.Roles.jViewRoles;
 import Gui.Roles.jNewRole;
 import Gui.Users.jViewUser;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 public class jMainPage extends javax.swing.JPanel {
 
     public jMainPage(jHomePage jhp) {
@@ -220,6 +229,15 @@ public class jMainPage extends javax.swing.JPanel {
         if(canCreateItem()) {
             _jHomePage.switchPanels(_jNewItem);
             _jNewItem.jNameField.grabFocus();
+            BufferedImage img = null;
+            try {
+                img = ImageIO.read(new File("Images/noImage.jpg"));
+            } catch (IOException e) {
+                Logger.getLogger(jViewItem.class.getName()).log(Level.SEVERE, null, e);
+            }
+            Image dimg = img.getScaledInstance(220, 220,Image.SCALE_SMOOTH);
+            ImageIcon imageIcon = new ImageIcon(dimg);
+            _jNewItem.jPic.setIcon(imageIcon);
         }
     }//GEN-LAST:event_jNewitemMouseClicked
 

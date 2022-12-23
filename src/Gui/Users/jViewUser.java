@@ -9,6 +9,7 @@ import Services.UserServices;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 public class jViewUser extends javax.swing.JPanel {
 
@@ -37,38 +38,38 @@ public class jViewUser extends javax.swing.JPanel {
     public boolean isValidName() {
         // is empty (nameField)
         if(jNameField.getText().trim().isEmpty()) {
-           jErrorName.setText("Cant be empty!");
+           JOptionPane.showMessageDialog(null, "Name Can't be Empty!");
            return false;
-        }else jErrorName.setText("");
+        }
         //is valid (Name)
         for (int i=0 ; i < jNameField.getText().trim().length();i++){
             char x = jNameField.getText().trim().charAt(i);
             if(!(x >= 'a' && x <= 'z' || x >= 'A' && x <= 'Z' || x==' ')){
-            jErrorName.setText("you must enter chars only.");
-            return false;
-            }else jErrorName.setText("");
+                JOptionPane.showMessageDialog(null, "Name Can Only Contain Letters!");
+                return false;
+            }
         }
         return true;
     }
     public boolean isValidUserName() {
         // is empty (UserNameField)
         if(jUsernameField.getText().trim().isEmpty()) {
-           jErrorUsername.setText("Cant be empty!");
+           JOptionPane.showMessageDialog(null, "Username is Empty!");
            return false;
-        }else jErrorUsername.setText("");
+        }
         return true;
     }
     public boolean isValidPassword() {
         // is empty (password)
         if(jPasswordField.getText().trim().isEmpty()) {
-           jErrorPassword.setText("Cant be empty!");
+           JOptionPane.showMessageDialog(null, "Password is Empty!");
            return false;
-        }else jErrorPassword.setText("");
+        }
         // is valid (password)
         if (jPasswordField.getText().trim().length() < 8){
-            jErrorPassword.setText("your password length must be greate than 8.");
+            JOptionPane.showMessageDialog(null, "Password Can't be less than 8 Chars!");
             return false;
-        }else jErrorPassword.setText("");
+        }
         return true;
     }
     public boolean checkAllValidations(){
@@ -88,10 +89,6 @@ public class jViewUser extends javax.swing.JPanel {
         jUsernameField.setText("");
         jPasswordField.setText("");
         jRolesCombo.setSelectedItem(choosedUser.role);
-        jUpdateUserSuccessfully.setText("");
-        jErrorName.setText("");
-        jErrorPassword.setText("");
-        jErrorUsername.setText("");
         removeUpdateANdCancelButtons();
     }
     public void updateUserData(){
@@ -134,7 +131,7 @@ public class jViewUser extends javax.swing.JPanel {
         }else
         updateUserData();
         renderData();
-        jUpdateUserSuccessfully.setText("Updated Successfully!");
+            JOptionPane.showMessageDialog(null, "Updated Successfully!");
         disableUserFields();
         removeUpdateANdCancelButtons();
         isEditing = false;
@@ -162,10 +159,6 @@ public class jViewUser extends javax.swing.JPanel {
         jCancelButton = new javax.swing.JButton();
         jUpdateButton = new javax.swing.JButton();
         jEditButton = new javax.swing.JButton();
-        jErrorName = new javax.swing.JLabel();
-        jErrorUsername = new javax.swing.JLabel();
-        jErrorPassword = new javax.swing.JLabel();
-        jUpdateUserSuccessfully = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(87, 118, 130));
@@ -268,19 +261,6 @@ public class jViewUser extends javax.swing.JPanel {
             }
         });
 
-        jErrorName.setForeground(new java.awt.Color(255, 0, 0));
-        jErrorName.setText("NA");
-
-        jErrorUsername.setForeground(new java.awt.Color(255, 0, 0));
-        jErrorUsername.setText("USE");
-
-        jErrorPassword.setForeground(new java.awt.Color(255, 0, 0));
-        jErrorPassword.setText("P");
-        jErrorPassword.setToolTipText("");
-
-        jUpdateUserSuccessfully.setForeground(new java.awt.Color(51, 255, 0));
-        jUpdateUserSuccessfully.setText("U");
-
         jLabel1.setText("User Item:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -298,30 +278,18 @@ public class jViewUser extends javax.swing.JPanel {
                 .addComponent(jEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jUpdateUserSuccessfully, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
                 .addGap(70, 70, 70)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPasswordLabel)
-                            .addComponent(jRoleLabel)
-                            .addComponent(jUserNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
-                            .addComponent(jNameLabel))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jUsernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jRolesCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(243, 243, 243)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jErrorName)
-                            .addComponent(jErrorUsername)
-                            .addComponent(jErrorPassword))))
+                    .addComponent(jPasswordLabel)
+                    .addComponent(jRoleLabel)
+                    .addComponent(jUserNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(jNameLabel))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jUsernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRolesCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -334,25 +302,20 @@ public class jViewUser extends javax.swing.JPanel {
                         .addGap(11, 11, 11)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jNameLabel)
-                            .addComponent(jErrorName))
+                            .addComponent(jNameLabel))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jUsernameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jUserNameLabel)
-                            .addComponent(jErrorUsername))
+                            .addComponent(jUserNameLabel))
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPasswordLabel)
-                            .addComponent(jErrorPassword))
+                            .addComponent(jPasswordLabel))
                         .addGap(50, 50, 50))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jRoleLabel)
                         .addComponent(jRolesCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(109, 109, 109)
-                .addComponent(jUpdateUserSuccessfully)
-                .addGap(18, 18, 18)
+                .addGap(143, 143, 143)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jUpdateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -422,19 +385,19 @@ public class jViewUser extends javax.swing.JPanel {
     }//GEN-LAST:event_formKeyPressed
 
     private void jNameFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jNameFieldMouseClicked
-            jUpdateUserSuccessfully.setText("");
+            
     }//GEN-LAST:event_jNameFieldMouseClicked
 
     private void jUsernameFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jUsernameFieldMouseClicked
-            jUpdateUserSuccessfully.setText("");
+            
     }//GEN-LAST:event_jUsernameFieldMouseClicked
 
     private void jPasswordFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPasswordFieldMouseClicked
-            jUpdateUserSuccessfully.setText("");
+            
     }//GEN-LAST:event_jPasswordFieldMouseClicked
 
     private void jRolesComboMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRolesComboMouseClicked
-            jUpdateUserSuccessfully.setText("");
+          
     }//GEN-LAST:event_jRolesComboMouseClicked
     private boolean isEditing;
     public User choosedUser;
@@ -446,9 +409,6 @@ public class jViewUser extends javax.swing.JPanel {
     private javax.swing.JButton jBackButton;
     private javax.swing.JButton jCancelButton;
     private javax.swing.JButton jEditButton;
-    private javax.swing.JLabel jErrorName;
-    private javax.swing.JLabel jErrorPassword;
-    private javax.swing.JLabel jErrorUsername;
     private javax.swing.JLabel jLabel1;
     public javax.swing.JTextField jNameField;
     private javax.swing.JLabel jNameLabel;
@@ -457,7 +417,6 @@ public class jViewUser extends javax.swing.JPanel {
     private javax.swing.JLabel jRoleLabel;
     public javax.swing.JComboBox<String> jRolesCombo;
     private javax.swing.JButton jUpdateButton;
-    private javax.swing.JLabel jUpdateUserSuccessfully;
     private javax.swing.JLabel jUserNameLabel;
     private javax.swing.JTextField jUsernameField;
     // End of variables declaration//GEN-END:variables

@@ -5,6 +5,7 @@ import Gui.jMainPage;
 import Services.UserServices;
 import java.util.ArrayList;
 import java.util.UUID;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import utils.FilterUsers;
 
@@ -67,12 +68,15 @@ public class jViewUsers extends javax.swing.JPanel {
         if(jUsersTable.getSelectedRow() != -1) {
             UUID id = (UUID) m.getValueAt(jUsersTable.getSelectedRow(), 0);
             String username = (String) m.getValueAt(jUsersTable.getSelectedRow(), 1);
-            _jHomePage.createLog("Deleted", "User", username);
-            m.removeRow(jUsersTable.getSelectedRow());
-            _UserServices.delete(id);
-            jDeleteMessage.setText("Deleted Successfully");
+            int answer = JOptionPane.showConfirmDialog(null, "Are you Sure you want to delete this User?");
+            if(answer == JOptionPane.YES_OPTION) {
+                _jHomePage.createLog("Deleted", "User", username);
+                m.removeRow(jUsersTable.getSelectedRow());
+                _UserServices.delete(id);
+                JOptionPane.showMessageDialog(null, "Deleted Successfully!");
+            }
         }else{
-            jDeleteMessage.setText("Error! Please Select User");
+            JOptionPane.showMessageDialog(null, "Please Select an User to be Deleted!");
         }
     }
     private User selectedUser(){ 
@@ -102,7 +106,6 @@ public class jViewUsers extends javax.swing.JPanel {
         jBackButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jUsersTable = new javax.swing.JTable();
-        jDeleteMessage = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(87, 118, 130));
 
@@ -203,19 +206,13 @@ public class jViewUsers extends javax.swing.JPanel {
                             .addComponent(jAllItemsLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jSortLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jSearchLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 290, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jSortByCombo, 0, 218, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jToggleSort, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jSearchField)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jDeleteMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 382, Short.MAX_VALUE))))
+                                .addComponent(jSortByCombo, 0, 218, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jToggleSort, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jSearchField)))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
@@ -241,9 +238,7 @@ public class jViewUsers extends javax.swing.JPanel {
                     .addComponent(jSortLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jToggleSort))
                 .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jAllItemsLabel)
-                    .addComponent(jDeleteMessage))
+                .addComponent(jAllItemsLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -259,7 +254,6 @@ public class jViewUsers extends javax.swing.JPanel {
     private void jBackButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackButtonMouseClicked
         _jHomePage.switchPanels(_jMainPage);
         _jMainPage.jViewusers.grabFocus();
-        jDeleteMessage.setText("");
     }//GEN-LAST:event_jBackButtonMouseClicked
 
     private void jDeleteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDeleteButtonMouseClicked
@@ -280,7 +274,6 @@ public class jViewUsers extends javax.swing.JPanel {
     private void jToggleSortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleSortMouseClicked
         toggle = !toggle;
         updateData();
-        jDeleteMessage.setText("");
     }//GEN-LAST:event_jToggleSortMouseClicked
 
     private void jShowButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jShowButtonMouseClicked
@@ -295,7 +288,6 @@ public class jViewUsers extends javax.swing.JPanel {
             _jHomePage.switchPanels(_jViewUser);
             _jViewUser.jNameField.grabFocus();
          }
-         jDeleteMessage.setText("");
     }//GEN-LAST:event_jShowButtonMouseClicked
 
     private void jAddButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAddButtonMouseClicked
@@ -303,14 +295,13 @@ public class jViewUsers extends javax.swing.JPanel {
             _jHomePage.switchPanels(_jSignUpPage);
             _jSignUpPage.jNameField.grabFocus();
         }
-        jDeleteMessage.setText("");
     }//GEN-LAST:event_jAddButtonMouseClicked
     private void jSearchFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchFieldMouseClicked
-      jDeleteMessage.setText("");
+      
     }//GEN-LAST:event_jSearchFieldMouseClicked
 
     private void jSortByComboMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSortByComboMouseClicked
-        jDeleteMessage.setText("");
+       
     }//GEN-LAST:event_jSortByComboMouseClicked
     private ArrayList<User> allUsers;
     private boolean toggle ;
@@ -325,7 +316,6 @@ public class jViewUsers extends javax.swing.JPanel {
     private javax.swing.JLabel jAllItemsLabel;
     private javax.swing.JButton jBackButton;
     public javax.swing.JButton jDeleteButton;
-    private javax.swing.JLabel jDeleteMessage;
     private javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JTextField jSearchField;
     private javax.swing.JLabel jSearchLabel;
