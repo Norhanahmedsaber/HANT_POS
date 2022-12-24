@@ -72,7 +72,8 @@ public class jMainPage extends javax.swing.JPanel {
         jViewitems.setBackground(new java.awt.Color(217, 156, 69));
         jViewitems.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jViewitems.setForeground(new java.awt.Color(255, 255, 255));
-        jViewitems.setText("View Items");
+        jViewitems.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/product.png"))); // NOI18N
+        jViewitems.setText("                 View Items                      ");
         jViewitems.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jViewitemsMouseClicked(evt);
