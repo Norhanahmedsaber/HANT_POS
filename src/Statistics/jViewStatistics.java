@@ -81,9 +81,9 @@ public class jViewStatistics extends javax.swing.JPanel {
     private void initComponents() {
 
         jBack = new javax.swing.JButton();
-        jShowGraph1 = new javax.swing.JButton();
-        jShowGraph2 = new javax.swing.JButton();
-        jShowGraph3 = new javax.swing.JButton();
+        jSales = new javax.swing.JButton();
+        jCategories = new javax.swing.JButton();
+        jUsers = new javax.swing.JButton();
 
         jBack.setBackground(new java.awt.Color(217, 156, 69));
         jBack.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
@@ -100,49 +100,49 @@ public class jViewStatistics extends javax.swing.JPanel {
             }
         });
 
-        jShowGraph1.setBackground(new java.awt.Color(217, 156, 69));
-        jShowGraph1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
-        jShowGraph1.setForeground(new java.awt.Color(255, 255, 255));
-        jShowGraph1.setText("Sales");
-        jShowGraph1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jSales.setBackground(new java.awt.Color(217, 156, 69));
+        jSales.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jSales.setForeground(new java.awt.Color(255, 255, 255));
+        jSales.setText("Sales");
+        jSales.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jShowGraph1MouseClicked(evt);
+                jSalesMouseClicked(evt);
             }
         });
-        jShowGraph1.addKeyListener(new java.awt.event.KeyAdapter() {
+        jSales.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jShowGraph1KeyPressed(evt);
+                jSalesKeyPressed(evt);
             }
         });
 
-        jShowGraph2.setBackground(new java.awt.Color(217, 156, 69));
-        jShowGraph2.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
-        jShowGraph2.setForeground(new java.awt.Color(255, 255, 255));
-        jShowGraph2.setText("Categories");
-        jShowGraph2.addMouseListener(new java.awt.event.MouseAdapter() {
+        jCategories.setBackground(new java.awt.Color(217, 156, 69));
+        jCategories.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jCategories.setForeground(new java.awt.Color(255, 255, 255));
+        jCategories.setText("Categories");
+        jCategories.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jShowGraph2MouseClicked(evt);
+                jCategoriesMouseClicked(evt);
             }
         });
-        jShowGraph2.addKeyListener(new java.awt.event.KeyAdapter() {
+        jCategories.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jShowGraph2KeyPressed(evt);
+                jCategoriesKeyPressed(evt);
             }
         });
 
-        jShowGraph3.setBackground(new java.awt.Color(217, 156, 69));
-        jShowGraph3.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
-        jShowGraph3.setForeground(new java.awt.Color(255, 255, 255));
-        jShowGraph3.setText("Users Activites");
-        jShowGraph3.setToolTipText("");
-        jShowGraph3.addMouseListener(new java.awt.event.MouseAdapter() {
+        jUsers.setBackground(new java.awt.Color(217, 156, 69));
+        jUsers.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jUsers.setForeground(new java.awt.Color(255, 255, 255));
+        jUsers.setText("Users Activites");
+        jUsers.setToolTipText("");
+        jUsers.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jShowGraph3MouseClicked(evt);
+                jUsersMouseClicked(evt);
             }
         });
-        jShowGraph3.addKeyListener(new java.awt.event.KeyAdapter() {
+        jUsers.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jShowGraph3KeyPressed(evt);
+                jUsersKeyPressed(evt);
             }
         });
 
@@ -158,20 +158,20 @@ public class jViewStatistics extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(70, 70, 70)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jShowGraph1, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jShowGraph2, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jShowGraph3, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jSales, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCategories, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(85, 85, 85))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(55, 55, 55)
-                .addComponent(jShowGraph1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSales, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jShowGraph2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jCategories, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jShowGraph3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 419, Short.MAX_VALUE)
                 .addComponent(jBack)
                 .addContainerGap())
@@ -188,15 +188,15 @@ public class jViewStatistics extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jBackKeyPressed
 
-    private void jShowGraph1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jShowGraph1MouseClicked
+    private void jSalesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSalesMouseClicked
         chart = new Chart(_jHomePage, this);
         _jHomePage.switchPanels(chart);
         showItemStats();
         chart.jProfit.setSelected(false);
         chart.jItems_Customers.setSelected(true);
-    }//GEN-LAST:event_jShowGraph1MouseClicked
+    }//GEN-LAST:event_jSalesMouseClicked
 
-    private void jShowGraph1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jShowGraph1KeyPressed
+    private void jSalesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSalesKeyPressed
         if (evt.getKeyCode()==KeyEvent.VK_ENTER){
             chart = new Chart(_jHomePage, this);
             _jHomePage.switchPanels(chart);
@@ -204,23 +204,23 @@ public class jViewStatistics extends javax.swing.JPanel {
             chart.jProfit.setSelected(false);
             chart.jItems_Customers.setSelected(true);
         }
-    }//GEN-LAST:event_jShowGraph1KeyPressed
+    }//GEN-LAST:event_jSalesKeyPressed
 
-    private void jShowGraph2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jShowGraph2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jShowGraph2MouseClicked
+    private void jCategoriesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCategoriesMouseClicked
+        
+    }//GEN-LAST:event_jCategoriesMouseClicked
 
-    private void jShowGraph2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jShowGraph2KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jShowGraph2KeyPressed
+    private void jCategoriesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCategoriesKeyPressed
+        
+    }//GEN-LAST:event_jCategoriesKeyPressed
 
-    private void jShowGraph3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jShowGraph3MouseClicked
+    private void jUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jUsersMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jShowGraph3MouseClicked
+    }//GEN-LAST:event_jUsersMouseClicked
 
-    private void jShowGraph3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jShowGraph3KeyPressed
+    private void jUsersKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jUsersKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jShowGraph3KeyPressed
+    }//GEN-LAST:event_jUsersKeyPressed
     public ArrayList<int[]> fetchData() {
         ArrayList<int[]> alldays = new ArrayList<>(); 
         LocalDateTime now = LocalDateTime.now();
@@ -256,8 +256,8 @@ public class jViewStatistics extends javax.swing.JPanel {
     private final jMainPage _jMainPage;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton jBack;
-    public javax.swing.JButton jShowGraph1;
-    public javax.swing.JButton jShowGraph2;
-    public javax.swing.JButton jShowGraph3;
+    public javax.swing.JButton jCategories;
+    public javax.swing.JButton jSales;
+    public javax.swing.JButton jUsers;
     // End of variables declaration//GEN-END:variables
 }

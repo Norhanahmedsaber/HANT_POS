@@ -25,9 +25,9 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="2" attributes="0">
-                          <Component id="jShowGraph1" alignment="2" min="-2" pref="594" max="-2" attributes="0"/>
-                          <Component id="jShowGraph2" alignment="2" min="-2" pref="594" max="-2" attributes="0"/>
-                          <Component id="jShowGraph3" alignment="2" min="-2" pref="594" max="-2" attributes="0"/>
+                          <Component id="jSales" alignment="2" min="-2" pref="594" max="-2" attributes="0"/>
+                          <Component id="jCategories" alignment="2" min="-2" pref="594" max="-2" attributes="0"/>
+                          <Component id="jUsers" alignment="2" min="-2" pref="594" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -39,11 +39,11 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-              <Component id="jShowGraph1" min="-2" pref="69" max="-2" attributes="0"/>
+              <Component id="jSales" min="-2" pref="69" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jShowGraph2" min="-2" pref="69" max="-2" attributes="0"/>
+              <Component id="jCategories" min="-2" pref="69" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jShowGraph3" min="-2" pref="69" max="-2" attributes="0"/>
+              <Component id="jUsers" min="-2" pref="69" max="-2" attributes="0"/>
               <EmptySpace pref="419" max="32767" attributes="0"/>
               <Component id="jBack" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -74,7 +74,7 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="jShowGraph1">
+    <Component class="javax.swing.JButton" name="jSales">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="45" green="9c" red="d9" type="rgb"/>
@@ -88,15 +88,15 @@
         <Property name="text" type="java.lang.String" value="Sales"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jShowGraph1MouseClicked"/>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jShowGraph1KeyPressed"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jSalesMouseClicked"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jSalesKeyPressed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="jHomePage_jsignin"/>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="jShowGraph2">
+    <Component class="javax.swing.JButton" name="jCategories">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="45" green="9c" red="d9" type="rgb"/>
@@ -110,15 +110,15 @@
         <Property name="text" type="java.lang.String" value="Categories"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jShowGraph2MouseClicked"/>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jShowGraph2KeyPressed"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jCategoriesMouseClicked"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jCategoriesKeyPressed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="jHomePage_jsignin"/>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="jShowGraph3">
+    <Component class="javax.swing.JButton" name="jUsers">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="45" green="9c" red="d9" type="rgb"/>
@@ -133,8 +133,8 @@
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jShowGraph3MouseClicked"/>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jShowGraph3KeyPressed"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jUsersMouseClicked"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jUsersKeyPressed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="jHomePage_jsignin"/>
