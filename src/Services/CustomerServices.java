@@ -250,16 +250,6 @@ public class CustomerServices implements ICustomerServices  {
                 while (rs.next()) {
                     Customer bean = new Customer();
                     bean.id = UUID.fromString(rs.getString("id"));
-                    bean.name = rs.getString("name");
-                    bean.nationalId = rs.getString("nationalId");
-                    bean.phoneNumber = rs.getString("phoneNumber");
-                    bean.city = rs.getString("city");
-                    bean.purchaseDate = rs.getDate("purchaseDate");
-                    bean.email = rs.getString("email");
-                    bean.income = rs.getInt("income");
-                    bean.job = rs.getString("job");
-                    bean.gender = rs.getString("gender");
-                    bean.age = rs.getInt("age");
                     customers.add(bean);
                 }
         } catch (SQLException ex) {

@@ -10,6 +10,9 @@ import Gui.Graphs.BlankChart.SeriesSize;
 import Gui.jHomePage;
 import Statistics.jViewStatistics;
 import java.awt.event.KeyEvent;
+import org.jdesktop.animation.timing.Animator;
+import org.jdesktop.animation.timing.TimingTarget;
+import org.jdesktop.animation.timing.TimingTargetAdapter;
 
 public class Chart extends javax.swing.JPanel {
 
@@ -17,11 +20,23 @@ public class Chart extends javax.swing.JPanel {
     public List<ModelChart> model = new ArrayList<>();
     public final int seriesSize = 12;
     public final int seriesSpace = 6;
-
+    private final Animator animator;
+    private float animate;
     public Chart(jHomePage jhp, jViewStatistics jvs) {
         initComponents();
         _jHomePage = jhp;
         _jViewStatistics = jvs;
+        TimingTarget target = new TimingTargetAdapter() {
+            @Override
+            public void timingEvent(float fraction) {
+                animate = fraction;
+                repaint();
+            }
+        };
+        animator = new Animator(800, target);
+        animator.setResolution(0);
+        animator.setAcceleration(0.5f);
+        animator.setDeceleration(0.5f);
         blankPlotChart.setBlankPlotChatRender(new BlankPlotChatRender() {
             @Override
             public String getLabelText(int index) {
@@ -35,7 +50,7 @@ public class Chart extends javax.swing.JPanel {
                 for (int i = 0; i < legends.size(); i++) {
                     ModelLegend legend = legends.get(i);
                     g2.setColor(legend.getColor());
-                    double seriesValues = chart.getSeriesValuesOf(model.get(index).getValues()[i], size.getHeight());
+                    double seriesValues = chart.getSeriesValuesOf(model.get(index).getValues()[i], size.getHeight()) * animate;
                     g2.fillRect((int) (size.getX() + x), (int) (size.getY() + size.getHeight() - seriesValues), seriesSize, (int) seriesValues);
                     x += seriesSpace + seriesSize;
                 }
@@ -59,7 +74,17 @@ public class Chart extends javax.swing.JPanel {
             blankPlotChart.setMaxValues(max);
         }
     }
-
+    public void clear() {
+        animate = 0;
+        blankPlotChart.setLabelCount(0);
+        model.clear();
+        repaint();
+    }
+    public void start() {
+        if (!animator.isRunning()) {
+            animator.start();
+        }
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

@@ -1,6 +1,7 @@
 
 package Statistics;
 
+import Entities.CategoryInfo;
 import Entities.Customer;
 import Entities.Item;
 import Gui.Graphs.BlankChart.BlankPlotChart;
@@ -12,6 +13,7 @@ import Gui.Graphs.Chart.ModelLegend;
 import Gui.jHomePage;
 import Gui.jMainPage;
 import Services.CustomerServices;
+import Services.ItemServices;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
@@ -29,6 +31,7 @@ public class jViewStatistics extends javax.swing.JPanel {
         _jMainPage = jmp;
         chart = new Chart(jhp,this);
         _CustomerServices = new CustomerServices();
+        _ItemServices = new ItemServices();
         _filterCustomers = new filterCustomers();
     }
     // {No Items Sold, No Customer, Total profit}
@@ -50,10 +53,7 @@ public class jViewStatistics extends javax.swing.JPanel {
         return new int[] {noItems, noCustomers, profit};
     }
     public void showItemStats() {
-        allCustomers = _CustomerServices.getAll();
-        chart.legends = new ArrayList<>();
-        chart.model = new ArrayList<>();
-        chart.blankPlotChart.setLabelCount(0);
+        chart.clear();
         chart.addLegend("Number Of Items Sold", new Color(135, 189, 245));
         chart.addLegend("Number Of Customers", new Color(245, 189, 135));
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");  
@@ -64,8 +64,10 @@ public class jViewStatistics extends javax.swing.JPanel {
         chart.addData(new ModelChart(dtf.format(now.minusDays(2)), new int[] { allDays.get(3)[0], allDays.get(3)[1] }));
         chart.addData(new ModelChart(dtf.format(now.minusDays(1)), new int[] { allDays.get(4)[0], allDays.get(4)[1] }));
         chart.addData(new ModelChart(dtf.format(now), new int[] { allDays.get(5)[0], allDays.get(5)[1] }));
+        chart.start();
     }
     public void showDailyProfit() {
+        chart2.clear();
         chart2.addLegend("Total Profit", new Color(189, 135, 245));
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");  
         LocalDateTime now = LocalDateTime.now();
@@ -75,6 +77,26 @@ public class jViewStatistics extends javax.swing.JPanel {
         chart2.addData(new ModelChart(dtf.format(now.minusDays(2)), new int[] { allDays.get(3)[2] }));
         chart2.addData(new ModelChart(dtf.format(now.minusDays(1)), new int[] { allDays.get(4)[2] }));
         chart2.addData(new ModelChart(dtf.format(now), new int[] { allDays.get(5)[2] }));
+        chart2.start();
+    }
+    public void showCategoriesStates() {
+        chart.clear();
+        chart.addLegend("Sold Today", new Color(189, 135, 245));
+        chart.addLegend("Sold This Week", new Color(135, 189, 135));
+        chart.addLegend("Sold This Month", new Color(245, 189, 135));
+        chart.addLegend("Sold This Year", new Color(189, 245, 135));
+        chart.addData(new ModelChart(cats.get(0).name, getCatInfo(0)));
+        chart.addData(new ModelChart(cats.get(1).name, getCatInfo(1)));
+        chart.addData(new ModelChart(cats.get(2).name, getCatInfo(2)));
+        chart.addData(new ModelChart(cats.get(3).name, getCatInfo(3)));
+        chart.addData(new ModelChart(cats.get(4).name, getCatInfo(4)));
+        chart.start();
+    }
+    public int[] getCatInfo(int x) {
+        return new int[] { cats.get(x).NumberOfItemsToday, cats.get(x).NumberOfItemsThisWeek, cats.get(x).NumberOfItemsThisMonth, cats.get(x).NumberOfItemsThisYear };
+    }
+    public ArrayList<CategoryInfo> getTopCategories() {
+        return _ItemServices.getCatsInfo();
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -207,11 +229,21 @@ public class jViewStatistics extends javax.swing.JPanel {
     }//GEN-LAST:event_jSalesKeyPressed
 
     private void jCategoriesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCategoriesMouseClicked
-        
+        chart = new Chart(_jHomePage, this);
+        _jHomePage.switchPanels(chart);
+        showCategoriesStates();
+        chart.jProfit.setVisible(false);
+        chart.jItems_Customers.setVisible(false);
     }//GEN-LAST:event_jCategoriesMouseClicked
 
     private void jCategoriesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCategoriesKeyPressed
-        
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            chart = new Chart(_jHomePage, this);
+            _jHomePage.switchPanels(chart);
+            showCategoriesStates();
+            chart.jProfit.setVisible(false);
+            chart.jItems_Customers.setVisible(false);
+        }
     }//GEN-LAST:event_jCategoriesKeyPressed
 
     private void jUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jUsersMouseClicked
@@ -224,6 +256,7 @@ public class jViewStatistics extends javax.swing.JPanel {
     public ArrayList<int[]> fetchData() {
         ArrayList<int[]> alldays = new ArrayList<>(); 
         LocalDateTime now = LocalDateTime.now();
+        cats = getTopCategories();
         alldays.add(getDayInfo(now.minusDays(5)));
         alldays.add(getDayInfo(now.minusDays(4)));
         alldays.add(getDayInfo(now.minusDays(3)));
@@ -246,6 +279,8 @@ public class jViewStatistics extends javax.swing.JPanel {
         chart.jProfit.setSelected(false);
         chart.jItems_Customers.setSelected(true);
     }
+    private ItemServices _ItemServices;
+    public ArrayList<CategoryInfo> cats;
     public Chart chart2;
     public ArrayList<int[]> allDays;
     private ArrayList<Customer> allCustomers;

@@ -1,4 +1,6 @@
 package Services;
+import Entities.CategoryInfo;
+import Entities.Customer;
 import Entities.Item;
 import Interfaces.IItemServices;
 import java.sql.Connection;
@@ -6,14 +8,26 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.YearMonth;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.UUID;
+import javafx.scene.input.DataFormat;
 
 public class ItemServices implements IItemServices {
     private static Connection conn;
-
+    private CustomerServices _CustomerServices;
     public ItemServices() {
         conn = ConnectionManager.getInstance().getConnection();
+        _CustomerServices = new CustomerServices();
     }
      
     @Override
@@ -149,6 +163,118 @@ public class ItemServices implements IItemServices {
         catch(SQLException e) {
             System.err.println(e);
         }
+    }
+
+    @Override
+    public ArrayList<CategoryInfo> getCatsInfo() {
+        ArrayList<String> names = new ArrayList<>();
+        String sql = "SELECT category FROM items";
+        try (
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(sql);
+            ){
+                while (rs.next() && names.size() < 6) {
+                    String name = rs.getString("category");
+                    if(!names.contains(name)) {
+                        names.add(name);
+                    }
+                }
+        } catch (SQLException ex) {
+            return null;
+        }
+        ArrayList<CategoryInfo> cats = new ArrayList<>();
+        for(String name : names) {
+            CategoryInfo bean = new CategoryInfo();
+            bean.name = name;
+            bean.NumberOfItemsThisMonth = 0;
+            bean.NumberOfItemsThisWeek = 0;
+            bean.NumberOfItemsThisYear = 0;
+            bean.NumberOfItemsToday = 0;
+            cats.add(bean);
+        }
+        sql = "SELECT id, purchaseDate FROM customers";
+        try (
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(sql);
+            ){
+                while (rs.next()) {
+                    Customer bean = new Customer();
+                    bean.id = UUID.fromString(rs.getString("id"));
+                    bean.purchaseDate = rs.getDate("purchaseDate");
+                    ArrayList<Item> assignedItems = _CustomerServices.getAssignedItems(bean.id);
+                    if(isDateToday(bean.purchaseDate)) {
+                        for(Item item : assignedItems) {
+                            for(CategoryInfo cat : cats) {
+                                if (item.category.equals(cat.name)) {
+                                    cat.NumberOfItemsToday++;
+                                    cat.NumberOfItemsThisMonth++;
+                                    cat.NumberOfItemsThisWeek++;
+                                    cat.NumberOfItemsThisYear++;
+                                }
+                            }
+                        }
+                    }else if(isDateInCurrentWeek(bean.purchaseDate)) {
+                        for(Item item : assignedItems) {
+                            for(CategoryInfo cat : cats) {
+                                if (item.category.equals(cat.name)) {
+                                    cat.NumberOfItemsThisMonth++;
+                                    cat.NumberOfItemsThisWeek++;
+                                    cat.NumberOfItemsThisYear++;
+                                }
+                            }
+                        }
+                    }else if(isDateInCurrentMonth(bean.purchaseDate)) {
+                        for(Item item : assignedItems) {
+                            for(CategoryInfo cat : cats) {
+                                if (item.category.equals(cat.name)) {
+                                    cat.NumberOfItemsThisMonth++;
+                                    cat.NumberOfItemsThisYear++;
+                                }
+                            }
+                        }
+                    }else if(isDateInCurrentYear(bean.purchaseDate)) {
+                        for(Item item : assignedItems) {
+                            for(CategoryInfo cat : cats) {
+                                if (item.category.equals(cat.name)) {
+                                    cat.NumberOfItemsThisYear++;
+                                }
+                            }
+                        }
+                    }
+                    
+                }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            return null;
+        }
+        
+        return cats;
+    }
+    private static boolean isDateToday(Date date) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");  
+        LocalDateTime now = LocalDateTime.now();  
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        return dtf.format(now).equals(dateFormat.format(date)); 
+    }
+    private static boolean isDateInCurrentWeek(Date date) {
+        Calendar currentCalendar = Calendar.getInstance();
+        int week = currentCalendar.get(Calendar.WEEK_OF_YEAR);
+        int year = currentCalendar.get(Calendar.YEAR);
+        Calendar targetCalendar = Calendar.getInstance();
+        targetCalendar.setTime(date);
+        int targetWeek = targetCalendar.get(Calendar.WEEK_OF_YEAR);
+        int targetYear = targetCalendar.get(Calendar.YEAR);
+        return week == targetWeek && year == targetYear;
+    }
+    private static boolean isDateInCurrentMonth(Date date) {
+        LocalDate currentDate = LocalDate.now();
+        LocalDate currentDateMinus1Months = currentDate.minusMonths(1);
+        return !currentDate.isBefore(currentDateMinus1Months);
+    }
+    private static boolean isDateInCurrentYear(Date date) {
+        LocalDate currentDate = LocalDate.now();
+        LocalDate currentDateMinus12Months = currentDate.minusMonths(12);
+        return !currentDate.isBefore(currentDateMinus12Months);
     }
     
 }
