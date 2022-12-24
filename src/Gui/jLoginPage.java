@@ -188,7 +188,7 @@ public class jLoginPage extends javax.swing.JPanel {
     
    
     private final AccountServices _AccountServices;
-    private final jMainPage _jMainPage ;
+    public final jMainPage _jMainPage ;
     private final jHomePage _jHomePage;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBack;

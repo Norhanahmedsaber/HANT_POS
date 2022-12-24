@@ -16,7 +16,7 @@ public class jHomePage extends javax.swing.JFrame {
         loginUser = null;
         _LogServices = new LogServices();
         Home();
-       
+        _jLoginPage._jMainPage._jViewStatistics.allDays = _jLoginPage._jMainPage._jViewStatistics.fetchData();
     }
     public void createLog(String action, String actedOn, String actedOnName ){
         Log log =new Log();

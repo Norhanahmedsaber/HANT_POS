@@ -24,26 +24,22 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="jLog" min="-2" pref="320" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="176" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                      <Component id="jLogout" min="-2" pref="150" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jNewRole" min="-2" pref="320" max="-2" attributes="0"/>
-                              <Component id="jNewitem" min="-2" pref="320" max="-2" attributes="0"/>
-                              <Component id="jNewcustomer" min="-2" pref="320" max="-2" attributes="0"/>
-                              <Component id="jAddusers" alignment="1" min="-2" pref="320" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="42" pref="42" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jViewcustomers" alignment="0" min="-2" pref="320" max="-2" attributes="0"/>
-                              <Component id="jViewusers" min="-2" pref="320" max="-2" attributes="0"/>
-                              <Component id="jViewitems" min="-2" pref="320" max="-2" attributes="0"/>
-                              <Component id="jViewRoles" min="-2" pref="320" max="-2" attributes="0"/>
-                          </Group>
+                  <Component id="jLogout" min="-2" pref="150" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="jNewRole" min="-2" pref="320" max="-2" attributes="0"/>
+                          <Component id="jNewitem" min="-2" pref="320" max="-2" attributes="0"/>
+                          <Component id="jNewcustomer" min="-2" pref="320" max="-2" attributes="0"/>
+                          <Component id="jAddusers" alignment="1" min="-2" pref="320" max="-2" attributes="0"/>
+                          <Component id="jLog" alignment="1" min="-2" pref="320" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="42" pref="42" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jViewcustomers" alignment="0" min="-2" pref="320" max="-2" attributes="0"/>
+                          <Component id="jViewusers" min="-2" pref="320" max="-2" attributes="0"/>
+                          <Component id="jViewitems" min="-2" pref="320" max="-2" attributes="0"/>
+                          <Component id="jViewRoles" min="-2" pref="320" max="-2" attributes="0"/>
+                          <Component id="jStats" min="-2" pref="320" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -74,9 +70,12 @@
                   <Component id="jNewRole" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                   <Component id="jViewRoles" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-              <Component id="jLog" min="-2" pref="50" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLog" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="jStats" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
               <Component id="jLogout" min="-2" pref="45" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
           </Group>
@@ -279,6 +278,26 @@
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jNewRoleMouseClicked"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="jStats">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="45" green="9c" red="d9" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Calibri" size="18" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Statistics"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jStatsMouseClicked"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

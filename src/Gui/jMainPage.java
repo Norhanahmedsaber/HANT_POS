@@ -10,6 +10,7 @@ import Gui.Items.jViewItems;
 import Gui.Roles.jViewRoles;
 import Gui.Roles.jNewRole;
 import Gui.Users.jViewUser;
+import Statistics.jViewStatistics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -32,7 +33,7 @@ public class jMainPage extends javax.swing.JPanel {
         _jViewUsers = new jViewUsers(jhp , this);
         _jcreaterole = new jNewRole(jhp, this);
         _jViewRoles = new jViewRoles(jhp, this);
-               
+        _jViewStatistics = new jViewStatistics(jhp, this);
 
         
 
@@ -54,6 +55,7 @@ public class jMainPage extends javax.swing.JPanel {
         jViewusers = new javax.swing.JButton();
         jViewRoles = new javax.swing.JButton();
         jNewRole = new javax.swing.JButton();
+        jStats = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(87, 118, 130));
 
@@ -157,6 +159,16 @@ public class jMainPage extends javax.swing.JPanel {
             }
         });
 
+        jStats.setBackground(new java.awt.Color(217, 156, 69));
+        jStats.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jStats.setForeground(new java.awt.Color(255, 255, 255));
+        jStats.setText("Statistics");
+        jStats.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jStatsMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -164,23 +176,21 @@ public class jMainPage extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLog, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(176, 176, 176))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jNewRole, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jNewitem, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jNewcustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jAddusers, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(42, 42, 42)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jViewcustomers, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jViewusers, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jViewitems, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jViewRoles, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addComponent(jLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jNewRole, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jNewitem, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jNewcustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jAddusers, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLog, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(42, 42, 42)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jViewcustomers, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jViewusers, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jViewitems, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jViewRoles, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jStats, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -202,9 +212,11 @@ public class jMainPage extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jNewRole, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jViewRoles, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addComponent(jLog, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(97, 97, 97)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLog, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jStats, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(114, 114, 114)
                 .addComponent(jLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
         );
@@ -305,6 +317,10 @@ public class jMainPage extends javax.swing.JPanel {
             
         }
     }//GEN-LAST:event_jNewRoleMouseClicked
+
+    private void jStatsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jStatsMouseClicked
+        _jHomePage.switchPanels(_jViewStatistics);
+    }//GEN-LAST:event_jStatsMouseClicked
     
     
     
@@ -462,7 +478,7 @@ public class jMainPage extends javax.swing.JPanel {
     private final jNewItem _jNewItem;
     private final jViewLogs _jShowLogs;
     private final jHomePage _jHomePage;
-    private  jViewUser _jViewUser;
+    public final jViewStatistics _jViewStatistics;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton jAddusers;
     public javax.swing.JButton jLog;
@@ -470,6 +486,7 @@ public class jMainPage extends javax.swing.JPanel {
     public javax.swing.JButton jNewRole;
     public javax.swing.JButton jNewcustomer;
     public javax.swing.JButton jNewitem;
+    public javax.swing.JButton jStats;
     public javax.swing.JButton jViewRoles;
     public javax.swing.JButton jViewcustomers;
     public javax.swing.JButton jViewitems;
