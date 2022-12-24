@@ -62,7 +62,8 @@ public class jMainPage extends javax.swing.JPanel {
         jNewitem.setBackground(new java.awt.Color(217, 156, 69));
         jNewitem.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jNewitem.setForeground(new java.awt.Color(255, 255, 255));
-        jNewitem.setText("New Item");
+        jNewitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/addItem.png"))); // NOI18N
+        jNewitem.setText("          New Item                         ");
         jNewitem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jNewitemMouseClicked(evt);
@@ -73,7 +74,7 @@ public class jMainPage extends javax.swing.JPanel {
         jViewitems.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jViewitems.setForeground(new java.awt.Color(255, 255, 255));
         jViewitems.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/product.png"))); // NOI18N
-        jViewitems.setText("                 View Items                      ");
+        jViewitems.setText("          View Items                       ");
         jViewitems.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jViewitemsMouseClicked(evt);
@@ -83,7 +84,8 @@ public class jMainPage extends javax.swing.JPanel {
         jViewcustomers.setBackground(new java.awt.Color(217, 156, 69));
         jViewcustomers.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jViewcustomers.setForeground(new java.awt.Color(255, 255, 255));
-        jViewcustomers.setText("View Customers");
+        jViewcustomers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/newCustomers.png"))); // NOI18N
+        jViewcustomers.setText("          View Customers             ");
         jViewcustomers.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jViewcustomersMouseClicked(evt);
@@ -93,7 +95,8 @@ public class jMainPage extends javax.swing.JPanel {
         jLog.setBackground(new java.awt.Color(217, 156, 69));
         jLog.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLog.setForeground(new java.awt.Color(255, 255, 255));
-        jLog.setText("Log");
+        jLog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/logs.png"))); // NOI18N
+        jLog.setText("           Log                                    ");
         jLog.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLogMouseClicked(evt);
@@ -103,7 +106,8 @@ public class jMainPage extends javax.swing.JPanel {
         jNewcustomer.setBackground(new java.awt.Color(217, 156, 69));
         jNewcustomer.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jNewcustomer.setForeground(new java.awt.Color(255, 255, 255));
-        jNewcustomer.setText("New Customer");
+        jNewcustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/newcustomer.png"))); // NOI18N
+        jNewcustomer.setText("         New Customer                ");
         jNewcustomer.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jNewcustomerMouseClicked(evt);
@@ -113,7 +117,7 @@ public class jMainPage extends javax.swing.JPanel {
         jLogout.setBackground(new java.awt.Color(217, 156, 69));
         jLogout.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLogout.setForeground(new java.awt.Color(255, 255, 255));
-        jLogout.setText("Logout");
+        jLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/logout.png"))); // NOI18N
         jLogout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLogoutMouseClicked(evt);
@@ -123,7 +127,8 @@ public class jMainPage extends javax.swing.JPanel {
         jAddusers.setBackground(new java.awt.Color(217, 156, 69));
         jAddusers.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jAddusers.setForeground(new java.awt.Color(255, 255, 255));
-        jAddusers.setText("New Users");
+        jAddusers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/newUser.png"))); // NOI18N
+        jAddusers.setText("          New User                          ");
         jAddusers.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jAddusersMouseClicked(evt);
@@ -133,7 +138,8 @@ public class jMainPage extends javax.swing.JPanel {
         jViewusers.setBackground(new java.awt.Color(217, 156, 69));
         jViewusers.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jViewusers.setForeground(new java.awt.Color(255, 255, 255));
-        jViewusers.setText("View Users");
+        jViewusers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/viewUsers.png"))); // NOI18N
+        jViewusers.setText("          View Users                       ");
         jViewusers.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jViewusersMouseClicked(evt);
@@ -143,7 +149,8 @@ public class jMainPage extends javax.swing.JPanel {
         jViewRoles.setBackground(new java.awt.Color(217, 156, 69));
         jViewRoles.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jViewRoles.setForeground(new java.awt.Color(255, 255, 255));
-        jViewRoles.setText("View Roles");
+        jViewRoles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/viewRoles.png"))); // NOI18N
+        jViewRoles.setText("          View Roles                       ");
         jViewRoles.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jViewRolesMouseClicked(evt);
@@ -153,7 +160,8 @@ public class jMainPage extends javax.swing.JPanel {
         jNewRole.setBackground(new java.awt.Color(217, 156, 69));
         jNewRole.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jNewRole.setForeground(new java.awt.Color(255, 255, 255));
-        jNewRole.setText("New Role");
+        jNewRole.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/newRole.png"))); // NOI18N
+        jNewRole.setText("         New Role                        ");
         jNewRole.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jNewRoleMouseClicked(evt);
@@ -163,7 +171,8 @@ public class jMainPage extends javax.swing.JPanel {
         jStats.setBackground(new java.awt.Color(217, 156, 69));
         jStats.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jStats.setForeground(new java.awt.Color(255, 255, 255));
-        jStats.setText("Statistics");
+        jStats.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/statistics.png"))); // NOI18N
+        jStats.setText("          Statistics                          ");
         jStats.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jStatsMouseClicked(evt);
