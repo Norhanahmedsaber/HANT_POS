@@ -25,13 +25,14 @@ public class jViewCustomer extends javax.swing.JPanel {
         _jMainPage = jmp;
         jUpdate.setEnabled(false);
         jCancel.setEnabled(false);
-        _jChooseItem =new jChooseItem(jhp, this);
+        _jChooseItem = new jChooseItem(jhp, this);
         isEditing = false;
         
     }
-    public void changecolor(int x, int y ,int z)
+     
+    public void changecolor(java.awt.Color c)
     { 
-        setBackground(new java.awt.Color(x, y, z));
+        jPanel1.setBackground(c);
     }
     public boolean checkAllValidations(){
         if(!isValidName()){
@@ -47,15 +48,7 @@ public class jViewCustomer extends javax.swing.JPanel {
         if (!isValidPhoneNo()){
             return false;
         }
-        if (!isValidCity()){
-            return false;
-        }
-        if (!isValidIncome()){
-            return false;
-        }
-        if (!isValidJop()){
-            return false;
-        }
+        
         return isValidAge();
     }
  
@@ -81,11 +74,8 @@ public class jViewCustomer extends javax.swing.JPanel {
         jNameField.setText(_chosencustomer.name);
         jNationalIdField.setText(_chosencustomer.nationalId); 
         jPhoneNoField.setText(_chosencustomer.phoneNumber); 
-        jCityField.setText(_chosencustomer.city);
         jPurchaseDateField.setText( purchaseDate); 
         jEmailField.setText(_chosencustomer.email);
-        jIncomeField.setText(Integer.toString(_chosencustomer.income) ); 
-        jJobField.setText(_chosencustomer.job);
         jAgeField.setText(Integer.toString(_chosencustomer.age));
         jgenderCombobox.selectWithKeyChar(_chosencustomer.gender.charAt(0));
     }
@@ -93,11 +83,8 @@ public class jViewCustomer extends javax.swing.JPanel {
         jNameField.setEditable(true);
         jNationalIdField.setEditable(true);
         jPhoneNoField.setEditable(true);
-        jCityField.setEditable(true);
         jPurchaseDateField.setEditable(false);
-        jEmailField.setEditable(true);
-        jIncomeField.setEditable(true);       
-        jJobField.setEditable(true);    
+        jEmailField.setEditable(true);   
         jAgeField.setEditable(true);
         jgenderCombobox.setEnabled(true);
                 
@@ -106,11 +93,8 @@ public class jViewCustomer extends javax.swing.JPanel {
         jNameField.setEditable(false);
         jNationalIdField.setEditable(false);
         jPhoneNoField.setEditable(false);
-        jCityField.setEditable(false);
         jPurchaseDateField.setEditable(false);
-        jEmailField.setEditable(false);
-        jIncomeField.setEditable(false);       
-        jJobField.setEditable(false);           
+        jEmailField.setEditable(false);           
         jAgeField.setEditable(false);
         jgenderCombobox.setEnabled(false);
                 
@@ -187,37 +171,8 @@ public class jViewCustomer extends javax.swing.JPanel {
         }
         return true;
     }
-    public boolean isValidCity(){
-        // is empty (City)
-        if(jCityField.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "City Can't be Empty!");
-            return false;
-        }
-        return true;
-    }  
-    public boolean isValidIncome(){
-        // is empty (Income)
-        if(jIncomeField.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Income Can't be Empty!");
-            return false;
-        }
-        // is valid (Income)
-        try {
-            Integer.valueOf(jIncomeField.getText());
-        }catch(NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Please Enter A number in the income field!");
-            return false;
-        }
-        return true;
-    }
-    public boolean isValidJop(){
-        // is empty (job)
-        if(jJobField.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Job can't be Empty!");
-             return false;
-        }
-        return true;
-    }
+    
+    
     public boolean isValidAge(){
         // is empty (age)
         if(jAgeField.getText().trim().isEmpty()) {
@@ -249,11 +204,8 @@ public class jViewCustomer extends javax.swing.JPanel {
         Customer customer = _chosencustomer;
         customer.name = jNameField.getText().trim();
         customer.age = Integer.parseInt(jAgeField.getText().trim());
-        customer.job = jJobField.getText().trim();
         customer.nationalId = jNationalIdField.getText().trim();
-        customer.income = Integer.parseInt(jIncomeField.getText().trim());
         customer.email = jEmailField.getText().trim();
-        customer.city = jCityField.getText().trim();
         customer.gender = (String)jgenderCombobox.getSelectedItem();
         customer.phoneNumber = jPhoneNoField.getText().trim();
         return customer;
@@ -286,23 +238,17 @@ public class jViewCustomer extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jNationalIdField = new javax.swing.JTextField();
         jNameField = new javax.swing.JTextField();
         jPhoneNoField = new javax.swing.JTextField();
-        jIncomeField = new javax.swing.JTextField();
-        jCityField = new javax.swing.JTextField();
         jAgeField = new javax.swing.JTextField();
         jShowpurchases = new javax.swing.JButton();
         jEmailField = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jPurchaseDateField = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        jJobField = new javax.swing.JTextField();
         jgenderCombobox = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jUpdate = new javax.swing.JButton();
@@ -332,14 +278,6 @@ public class jViewCustomer extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Phone No:");
-
-        jLabel3.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("City:");
-
-        jLabel4.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Income:");
 
         jLabel5.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -377,24 +315,6 @@ public class jViewCustomer extends javax.swing.JPanel {
         jPhoneNoField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jPhoneNoFieldKeyPressed(evt);
-            }
-        });
-
-        jIncomeField.setEditable(false);
-        jIncomeField.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jIncomeField.setForeground(new java.awt.Color(0, 31, 78));
-        jIncomeField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jIncomeFieldKeyPressed(evt);
-            }
-        });
-
-        jCityField.setEditable(false);
-        jCityField.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jCityField.setForeground(new java.awt.Color(0, 31, 78));
-        jCityField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jCityFieldKeyPressed(evt);
             }
         });
 
@@ -443,19 +363,6 @@ public class jViewCustomer extends javax.swing.JPanel {
         jPurchaseDateField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jPurchaseDateFieldKeyPressed(evt);
-            }
-        });
-
-        jLabel12.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("job:");
-
-        jJobField.setEditable(false);
-        jJobField.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jJobField.setForeground(new java.awt.Color(0, 31, 78));
-        jJobField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jJobFieldKeyPressed(evt);
             }
         });
 
@@ -557,51 +464,46 @@ public class jViewCustomer extends javax.swing.JPanel {
                 .addContainerGap(35, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jBack, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addComponent(jCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(38, 38, 38)
                         .addComponent(jUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(84, Short.MAX_VALUE))
+                        .addContainerGap(377, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel5)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jShowpurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel2)
+                                        .addComponent(jLabel1)
+                                        .addComponent(jLabel6)
+                                        .addComponent(jLabel8)
+                                        .addComponent(jLabel9)
+                                        .addComponent(jLabel10))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGap(22, 22, 22)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(jPhoneNoField, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jEmailField, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jNationalIdField, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                            .addGap(25, 25, 25)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jgenderCombobox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jAgeField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel7)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jPurchaseDateField, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jShowpurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel12)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel10))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(22, 22, 22)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jPhoneNoField, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jCityField, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jEmailField, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jNationalIdField, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jIncomeField, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jJobField, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addGap(25, 25, 25)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jgenderCombobox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jAgeField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPurchaseDateField, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jBack, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(38, 38, 38)
+                                .addComponent(jEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -627,23 +529,11 @@ public class jViewCustomer extends javax.swing.JPanel {
                             .addComponent(jPhoneNoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jCityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jIncomeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12)
-                    .addComponent(jJobField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jAgeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel6))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jgenderCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -657,13 +547,15 @@ public class jViewCustomer extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jShowpurchases))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addGap(34, 34, 34)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBack, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28))
+                .addGap(83, 83, 83))
         );
 
         add(jPanel1);
@@ -713,12 +605,6 @@ public class jViewCustomer extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jgenderComboboxActionPerformed
 
-    private void jJobFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jJobFieldKeyPressed
-        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
-            updateButton();
-        }
-    }//GEN-LAST:event_jJobFieldKeyPressed
-
     private void jPurchaseDateFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPurchaseDateFieldKeyPressed
         if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
             updateButton();
@@ -741,18 +627,6 @@ public class jViewCustomer extends javax.swing.JPanel {
             updateButton();
         }
     }//GEN-LAST:event_jAgeFieldKeyPressed
-
-    private void jCityFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCityFieldKeyPressed
-        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
-            updateButton();
-        }
-    }//GEN-LAST:event_jCityFieldKeyPressed
-
-    private void jIncomeFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jIncomeFieldKeyPressed
-        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
-            updateButton();
-        }
-    }//GEN-LAST:event_jIncomeFieldKeyPressed
 
     private void jPhoneNoFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPhoneNoFieldKeyPressed
         if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
@@ -809,27 +683,21 @@ public class jViewCustomer extends javax.swing.JPanel {
     
     private boolean isEditing;
     private final jMainPage _jMainPage;
-    private final jViewCustomers _jViewCustomers;
+    public final jViewCustomers _jViewCustomers;
     public CustomerServices _CustomerServices;
     public Customer _chosencustomer;
-    private final jChooseItem _jChooseItem;
+    public final jChooseItem _jChooseItem;
     public boolean  updateflag=false ;
     private final jHomePage _jHomePage;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField jAgeField;
     private javax.swing.JButton jBack;
     private javax.swing.JButton jCancel;
-    private javax.swing.JTextField jCityField;
     public javax.swing.JButton jEdit;
     private javax.swing.JTextField jEmailField;
-    private javax.swing.JTextField jIncomeField;
-    private javax.swing.JTextField jJobField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

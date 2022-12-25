@@ -2,9 +2,9 @@ package Gui;
 
 import Entities.Log;
 import Entities.User;
+import static Gui.jMainPage.toggle;
 import Services.LogServices;
-import java.awt.Color;
-import java.awt.Dimension;
+import Statistics.jViewStatistics;
 import java.awt.event.KeyEvent;
 import java.util.Date;
 import java.util.UUID;
@@ -13,14 +13,35 @@ public class jHomePage extends javax.swing.JFrame {
 
     public jHomePage() {
         initComponents();
-        _jLoginPage = new jLoginPage(this);
         loginUser = null;
         _LogServices = new LogServices();
+        _jmaMainPage = new jMainPage(this);
+        _jLoginPage = new jLoginPage(this, _jmaMainPage);
         Home();
     }
-    public void changecolor(int x, int y ,int z)
+     
+   
+    public void changecolor(java.awt.Color c, java.awt.Color c2, java.awt.Color c3, java.awt.Color c4, java.awt.Color c5)
     { 
-        setBackground(new java.awt.Color(x, y, z));
+        jPanel1.setBackground(c);
+        _jmaMainPage._jNewCustomer._jChooseItem.changecolor(c);
+        _jmaMainPage._jViewCustomers._jViewCustomer._jChooseItem.changecolor(c);
+        _jmaMainPage._jNewCustomer.changecolor(c);
+        _jmaMainPage._jViewCustomers.changecolor(c);
+        _jmaMainPage._jViewCustomers._jViewCustomer.changecolor(c);
+        _jmaMainPage._jNewItem.changecolor(c);
+        _jmaMainPage._jViewItems._jViewItem.changecolor(c);
+        _jmaMainPage._jViewItems.changecolor(c);
+        _jmaMainPage._jShowLogs.changecolor(c);
+        _jmaMainPage._jcreaterole.changecolor(c);
+        _jmaMainPage._jViewRoles.changecolor(c);
+        _jmaMainPage._jSignUpPage.changecolor(c);
+        _jmaMainPage._jViewUsers._jViewUser.changecolor(c);
+        _jmaMainPage._jViewUsers.changecolor(c);
+        _jmaMainPage.changecolor(c);
+        _jLoginPage.changecolor(c,c2,c3,c4,c5);
+        _jmaMainPage._jViewStatistics.changecolor(c);
+        
     }
     public void createLog(String action, String actedOn, String actedOnName ){
         Log log =new Log();
@@ -32,17 +53,30 @@ public class jHomePage extends javax.swing.JFrame {
         log.actedOnName = actedOnName;
         log.date= new Date(); 
         _LogServices.create(log);
-        
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
         jPanel4 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jsignin = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
+
+        jMenu2.setText("File");
+        jMenuBar2.add(jMenu2);
+
+        jMenu3.setText("Edit");
+        jMenuBar2.add(jMenu3);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
 
         jPanel4.setLayout(new java.awt.CardLayout());
@@ -81,24 +115,47 @@ public class jHomePage extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(38, Short.MAX_VALUE)
-                .addComponent(jsignin, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jsignin, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(505, Short.MAX_VALUE)
-                .addComponent(jsignin, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
+                .addContainerGap(558, Short.MAX_VALUE)
+                .addComponent(jsignin, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50))
         );
 
         jPanel4.add(jPanel1, "card2");
 
         getContentPane().add(jPanel4, "card2");
 
-        setSize(new java.awt.Dimension(768, 627));
+        jMenuBar1.setBackground(new java.awt.Color(87, 118, 130));
+
+        jMenu1.setText("Dark Mode");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu1);
+
+        jMenu4.setText("Light Mode");
+        jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu4MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu4);
+
+        jMenu5.setText("Theme");
+        jMenuBar1.add(jMenu5);
+
+        setJMenuBar(jMenuBar1);
+
+        setSize(new java.awt.Dimension(821, 755));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -126,6 +183,14 @@ public class jHomePage extends javax.swing.JFrame {
         switchPanels(_jLoginPage);
         _jLoginPage.jusername.grabFocus();
     }//GEN-LAST:event_jsigninActionPerformed
+
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+        changecolor(new java.awt.Color(50, 51, 52),new java.awt.Color(189, 135, 245), new java.awt.Color(135, 189, 245), new java.awt.Color(255, 255, 204), new java.awt.Color(255, 255, 204));
+    }//GEN-LAST:event_jMenu1MouseClicked
+
+    private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
+        changecolor(new java.awt.Color(87, 118, 130), new java.awt.Color(217, 156, 69), new java.awt.Color(255, 255, 255), new java.awt.Color(255, 255, 255), new java.awt.Color(255, 255, 255));
+    }//GEN-LAST:event_jMenu4MouseClicked
     public void switchPanels(JPanel panel) {
         jPanel4.removeAll();
         jPanel4.add(panel);
@@ -162,13 +227,19 @@ public class jHomePage extends javax.swing.JFrame {
             }
         });
     }
-    
     private final LogServices _LogServices;
     public User loginUser;
-    public jMainPage _jmaMainPage;
+    private final jMainPage _jmaMainPage;
     private final jLoginPage _jLoginPage;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
+    public javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     public javax.swing.JButton jsignin;
     // End of variables declaration//GEN-END:variables

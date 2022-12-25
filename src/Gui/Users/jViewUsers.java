@@ -15,19 +15,20 @@ public class jViewUsers extends javax.swing.JPanel {
     private final jHomePage _jHomePage;
     
     
-    public jViewUsers(jHomePage jhp , jMainPage jmp) {
+    public jViewUsers(jHomePage jhp , jMainPage jmp, jNewUsers jnu) {
         initComponents();
         _jHomePage = jhp;
         _jMainPage = jmp;
         _UserServices = new UserServices(); 
         _filterUsers = new FilterUsers();
-        _jSignUpPage = new jNewUsers(jhp , jmp);
+        _jSignUpPage = jnu;
         _jViewUser = new jViewUser(this , jhp);
         toggle = false;
     }
-     public void changecolor(int x, int y ,int z)
+     
+    public void changecolor(java.awt.Color c)
     { 
-        setBackground(new java.awt.Color(x, y, z));
+        setBackground(c);
     }
     public void renderData() { 
         String[] cols = {"ID","Name", "User Name", "Role"}; 
@@ -333,7 +334,7 @@ public class jViewUsers extends javax.swing.JPanel {
     private final UserServices _UserServices;
     private final FilterUsers _filterUsers;
     private final jNewUsers _jSignUpPage;
-    private final jViewUser _jViewUser;
+    public final jViewUser _jViewUser;
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

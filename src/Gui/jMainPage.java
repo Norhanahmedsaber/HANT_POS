@@ -27,17 +27,14 @@ public class jMainPage extends javax.swing.JPanel {
         _jHomePage = jhp;
        _jNewCustomer = new jNewCustomer(jhp, this);
         _jNewItem = new jNewItem(jhp, this);
-        _jViewItems = new jViewItems(jhp, this);
-        _jViewCustomers = new jViewCustomers(jhp, this);
+        _jViewItems = new jViewItems(jhp, this, _jNewItem);
+        _jViewCustomers = new jViewCustomers(jhp, this, _jNewCustomer);
         _jShowLogs = new jViewLogs(jhp, this);
         _jSignUpPage = new jNewUsers(jhp,this);
-        _jViewUsers = new jViewUsers(jhp , this);
+        _jViewUsers = new jViewUsers(jhp , this, _jSignUpPage);
         _jcreaterole = new jNewRole(jhp, this);
-        _jViewRoles = new jViewRoles(jhp, this);
-       _jViewCustomer = new jViewCustomer(_jViewCustomers, jhp, this);
-        _jViewItem = new jViewItem(jhp,_jViewItems, this);
-        _jViewLogs = new jViewLogs(jhp, this);
-        _jViewUser = new jViewUser(_jViewUsers, jhp);
+        _jViewRoles = new jViewRoles(jhp, this, _jcreaterole);
+        toggle = false;
   //      JPanel parent = null;
 //         if (parent instanceof jNewCustomer )
 //        {
@@ -54,7 +51,9 @@ public class jMainPage extends javax.swing.JPanel {
          toggle = false;      
   }
     
-    
+    public void changecolor(java.awt.Color c) {
+        setBackground(c);
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -70,9 +69,7 @@ public class jMainPage extends javax.swing.JPanel {
         jViewusers = new javax.swing.JButton();
         jViewRoles = new javax.swing.JButton();
         jNewRole = new javax.swing.JButton();
-        jToggleButton1 = new javax.swing.JToggleButton();
         jStats = new javax.swing.JButton();
-
 
         setBackground(new java.awt.Color(87, 118, 130));
 
@@ -262,13 +259,6 @@ public class jMainPage extends javax.swing.JPanel {
             }
         });
 
-        jToggleButton1.setText("٭🔆");
-        jToggleButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jToggleButton1MouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -293,18 +283,12 @@ public class jMainPage extends javax.swing.JPanel {
                             .addComponent(jViewitems, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jViewRoles, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jStats, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(32, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(116, 116, 116))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(76, 76, 76)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jNewcustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jViewcustomers, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -326,7 +310,7 @@ public class jMainPage extends javax.swing.JPanel {
                     .addComponent(jStats, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLogout)
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addContainerGap(237, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -426,16 +410,6 @@ public class jMainPage extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jNewRoleMouseClicked
 
-    private void jToggleButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseClicked
-      toggle = !toggle;
-       if(toggle){
-           changecolor(0,0,0);
-       }else{
-           changecolor(87,118,130);
-       }
- 
-    }//GEN-LAST:event_jToggleButton1MouseClicked
-
     private void jStatsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jStatsMouseClicked
         _jHomePage.switchPanels(_jViewStatistics);
     }//GEN-LAST:event_jStatsMouseClicked
@@ -532,28 +506,8 @@ public class jMainPage extends javax.swing.JPanel {
     }//GEN-LAST:event_jStatsActionPerformed
 
     
+   
     
-    
-     public void changecolor(int x, int y ,int z)
-    { 
-        setBackground(new java.awt.Color(x, y, z));
-       //_jChooseItem.changecolor(x, y, z);
-       _jNewCustomer.changecolor(x, y, z);
-        _jViewCustomers.changecolor(x, y, z);
-        _jViewCustomer.changecolor(x, y, z);
-        _jNewItem.changecolor(x, y, z);
-        _jViewItem.changecolor(x, y, z);
-        _jViewItems.changecolor(x, y, z);
-        _jViewLogs.changecolor(x, y, z);
-        _jcreaterole.changecolor(x, y, z);
-        _jViewRoles.changecolor(x, y, z);
-        _jSignUpPage.changecolor(x, y, z);
-        _jViewUser.changecolor(x, y, z);
-        _jViewUsers.changecolor(x, y, z);
-        _jHomePage.changecolor(x, y, z);
-       //jLoginPage.changecolor(x, y, z);
-        
-    }
     public boolean canCreateUser() {
         if(_jHomePage.loginUser.role.canCreateUser) {
             jAddusers.setEnabled(true);
@@ -698,20 +652,16 @@ public class jMainPage extends javax.swing.JPanel {
     public boolean flag;
     
   //  private final jChooseItem _jChooseItem;
-    private final jViewLogs _jViewLogs;
-   private final jViewItem _jViewItem;
-  private final jViewCustomer _jViewCustomer;
-    private final jViewRoles _jViewRoles;
-    private final jNewRole _jcreaterole;
+    public final jViewRoles _jViewRoles;
+    public final jNewRole _jcreaterole;
     public final jViewUsers _jViewUsers;
-    private final jNewUsers _jSignUpPage;
-   private final jNewCustomer _jNewCustomer;
-    private final jViewCustomers _jViewCustomers;
-    private final jViewItems _jViewItems;
-    private final jNewItem _jNewItem;
-    private final jViewLogs _jShowLogs;
-    private final jHomePage _jHomePage;
-    private final jViewUser _jViewUser;
+    public final jNewUsers _jSignUpPage;
+    public final jNewCustomer _jNewCustomer;
+    public final jViewCustomers _jViewCustomers;
+    public final jViewItems _jViewItems;
+    public final jNewItem _jNewItem;
+    public final jViewLogs _jShowLogs;
+    public final jHomePage _jHomePage;
     public final jViewStatistics _jViewStatistics;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton jAddusers;
@@ -720,7 +670,6 @@ public class jMainPage extends javax.swing.JPanel {
     public javax.swing.JButton jNewRole;
     public javax.swing.JButton jNewcustomer;
     public javax.swing.JButton jNewitem;
-    public javax.swing.JToggleButton jToggleButton1;
     public javax.swing.JButton jStats;
     public javax.swing.JButton jViewRoles;
     public javax.swing.JButton jViewcustomers;

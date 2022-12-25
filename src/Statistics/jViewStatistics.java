@@ -37,6 +37,10 @@ public class jViewStatistics extends javax.swing.JPanel {
         _filterCustomers = new filterCustomers();
         _UserServices = new UserServices();
     }
+    public void changecolor(java.awt.Color c)
+    { 
+        setBackground(c);
+    }
     // {No Items Sold, No Customer, Total profit}
     private int[] getDayInfo(LocalDateTime ldt) {
         int noItems, noCustomers, profit = 0;
@@ -124,7 +128,9 @@ public class jViewStatistics extends javax.swing.JPanel {
         chart.addData(new ModelChart(users.get(3).username, new int[] {users.get(3).dealsDoneToday, users.get(3).itemsSoldToday, users.get(3).itemsImportedToday}));
         chart.start();
     }
-    
+    public void showUserProfitToday() {
+        
+    }
     public int[] getCatInfoProfit(int x) {
         return new int[] { cats.get(x).incomeToday, cats.get(x).incomeThisWeek, cats.get(x).incomeThisMonth, cats.get(x).incomeThisYear };
     }
@@ -152,10 +158,16 @@ public class jViewStatistics extends javax.swing.JPanel {
         jBack.setBackground(new java.awt.Color(217, 156, 69));
         jBack.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jBack.setForeground(new java.awt.Color(255, 255, 255));
+        jBack.setMnemonic('b');
         jBack.setText("Back");
         jBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBackMouseClicked(evt);
+            }
+        });
+        jBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBackActionPerformed(evt);
             }
         });
         jBack.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -167,10 +179,17 @@ public class jViewStatistics extends javax.swing.JPanel {
         jSales.setBackground(new java.awt.Color(217, 156, 69));
         jSales.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jSales.setForeground(new java.awt.Color(255, 255, 255));
+        jSales.setMnemonic('s');
         jSales.setText("Sales");
+        jSales.setToolTipText("");
         jSales.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jSalesMouseClicked(evt);
+            }
+        });
+        jSales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSalesActionPerformed(evt);
             }
         });
         jSales.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -182,10 +201,16 @@ public class jViewStatistics extends javax.swing.JPanel {
         jCategories.setBackground(new java.awt.Color(217, 156, 69));
         jCategories.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jCategories.setForeground(new java.awt.Color(255, 255, 255));
+        jCategories.setMnemonic('c');
         jCategories.setText("Categories");
         jCategories.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jCategoriesMouseClicked(evt);
+            }
+        });
+        jCategories.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCategoriesActionPerformed(evt);
             }
         });
         jCategories.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -197,11 +222,17 @@ public class jViewStatistics extends javax.swing.JPanel {
         jUsers.setBackground(new java.awt.Color(217, 156, 69));
         jUsers.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jUsers.setForeground(new java.awt.Color(255, 255, 255));
+        jUsers.setMnemonic('u');
         jUsers.setText("Users Activites");
         jUsers.setToolTipText("");
         jUsers.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jUsersMouseClicked(evt);
+            }
+        });
+        jUsers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jUsersActionPerformed(evt);
             }
         });
         jUsers.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -243,7 +274,7 @@ public class jViewStatistics extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
-        _jHomePage.switchPanels(_jMainPage);
+        
     }//GEN-LAST:event_jBackMouseClicked
 
     private void jBackKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jBackKeyPressed
@@ -253,13 +284,7 @@ public class jViewStatistics extends javax.swing.JPanel {
     }//GEN-LAST:event_jBackKeyPressed
 
     private void jSalesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSalesMouseClicked
-        chart = new Chart(_jHomePage, this);
-        where = "sale";
-        _jHomePage.switchPanels(chart);
-        showItemStats();
-        chart.jProfit.setSelected(false);
-        chart.jItems_Customers.setSelected(true);
-        allDays = fetchData();
+        
     }//GEN-LAST:event_jSalesMouseClicked
 
     private void jSalesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSalesKeyPressed
@@ -275,13 +300,7 @@ public class jViewStatistics extends javax.swing.JPanel {
     }//GEN-LAST:event_jSalesKeyPressed
 
     private void jCategoriesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCategoriesMouseClicked
-        chart = new Chart(_jHomePage, this);
-        where = "cat";
-        _jHomePage.switchPanels(chart);
-        showCategoriesStates();
-        chart.jProfit.setSelected(false);
-        chart.jItems_Customers.setSelected(true);
-        allDays = fetchData();
+        
     }//GEN-LAST:event_jCategoriesMouseClicked
 
     private void jCategoriesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCategoriesKeyPressed
@@ -297,13 +316,7 @@ public class jViewStatistics extends javax.swing.JPanel {
     }//GEN-LAST:event_jCategoriesKeyPressed
 
     private void jUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jUsersMouseClicked
-        chart = new Chart(_jHomePage, this);
-        where = "user";
-        _jHomePage.switchPanels(chart);
-        showUserActivitesToday();
-        chart.jProfit.setSelected(false);
-        chart.jItems_Customers.setSelected(true);
-        allDays = fetchData();
+        
     }//GEN-LAST:event_jUsersMouseClicked
 
     private void jUsersKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jUsersKeyPressed
@@ -317,6 +330,40 @@ public class jViewStatistics extends javax.swing.JPanel {
             allDays = fetchData();
         }
     }//GEN-LAST:event_jUsersKeyPressed
+
+    private void jSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSalesActionPerformed
+        chart = new Chart(_jHomePage, this);
+        where = "sale";
+        _jHomePage.switchPanels(chart);
+        showItemStats();
+        chart.jProfit.setSelected(false);
+        chart.jItems_Customers.setSelected(true);
+        allDays = fetchData();
+    }//GEN-LAST:event_jSalesActionPerformed
+
+    private void jCategoriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCategoriesActionPerformed
+        chart = new Chart(_jHomePage, this);
+        where = "cat";
+        _jHomePage.switchPanels(chart);
+        showCategoriesStates();
+        chart.jProfit.setSelected(false);
+        chart.jItems_Customers.setSelected(true);
+        allDays = fetchData();
+    }//GEN-LAST:event_jCategoriesActionPerformed
+
+    private void jUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUsersActionPerformed
+        chart = new Chart(_jHomePage, this);
+        where = "user";
+        _jHomePage.switchPanels(chart);
+        showUserActivitesToday();
+        chart.jProfit.setSelected(false);
+        chart.jItems_Customers.setSelected(true);
+        allDays = fetchData();
+    }//GEN-LAST:event_jUsersActionPerformed
+
+    private void jBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackActionPerformed
+        _jHomePage.switchPanels(_jMainPage);
+    }//GEN-LAST:event_jBackActionPerformed
     public ArrayList<int[]> fetchData() {
         ArrayList<int[]> alldays = new ArrayList<>(); 
         LocalDateTime now = LocalDateTime.now();
@@ -345,6 +392,13 @@ public class jViewStatistics extends javax.swing.JPanel {
             chart2.jProfit.setSelected(true);
             chart2.jItems_Customers.setSelected(false);
             allDays = fetchData();
+        }else if(where.equals("user")) {
+            chart2 = new Chart(_jHomePage, this);
+            _jHomePage.switchPanels(chart2);
+            showUserProfitToday();
+            chart2.jProfit.setSelected(true);
+            chart2.jItems_Customers.setSelected(false);
+            allDays = fetchData();
         }
     }
     public void item_customerClicked() {
@@ -359,6 +413,13 @@ public class jViewStatistics extends javax.swing.JPanel {
             chart = new Chart(_jHomePage, this);
             _jHomePage.switchPanels(chart);
             showCategoriesStates();
+            chart.jProfit.setSelected(false);
+            chart.jItems_Customers.setSelected(true);
+            allDays = fetchData();
+        }else if(where.equals("user")) {
+            chart = new Chart(_jHomePage, this);
+            _jHomePage.switchPanels(chart);
+            showUserActivitesToday();
             chart.jProfit.setSelected(false);
             chart.jItems_Customers.setSelected(true);
             allDays = fetchData();
