@@ -5,10 +5,25 @@ import Entities.Item;
 import Gui.jHomePage;
 import Gui.jMainPage;
 import Services.ItemServices;
-import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 
 public class jViewItem extends javax.swing.JPanel {
@@ -31,10 +46,6 @@ public class jViewItem extends javax.swing.JPanel {
         jDescriptionField.setText("");
         jCatgoryField.setText("");
         jPriceField.setText("");
-        jErrorCatgory.setText("");
-        jErrorDescription.setText("");
-        jErrorName.setText("");
-        jErrorPrice.setText("");
        
     }
     public void renderData(){
@@ -44,6 +55,23 @@ public class jViewItem extends javax.swing.JPanel {
         jCreatedAt.setText(dateFormat.format(choosedItem.createdAt));
         jDescriptionField.setText(choosedItem.description);
         jPriceField.setText(Integer.toString(choosedItem.price));
+        BufferedImage img = null;
+        try {
+            img = ImageIO.read(new File("Images/" + choosedItem.id + ".jpg"));
+        } catch (Exception ex) {
+            img = null;
+            try {
+                img = ImageIO.read(new File("Images/photo2.png"));
+            } catch (IOException e) {
+                Logger.getLogger(jViewItem.class.getName()).log(Level.SEVERE, null, e);
+            }
+            Image dimg = img.getScaledInstance(220, 220,Image.SCALE_SMOOTH);
+            ImageIcon imageIcon = new ImageIcon(dimg);
+            jPic.setIcon(imageIcon);
+        }
+        Image dimg = img.getScaledInstance(220, 220,Image.SCALE_SMOOTH);
+        ImageIcon imageIcon = new ImageIcon(dimg);
+        jPic.setIcon(imageIcon);
     }
     public boolean checkAllValidations(){
         
@@ -56,51 +84,39 @@ public class jViewItem extends javax.swing.JPanel {
         if (!isValidPrice()){
             return false;
         }
-        if (!isValidCatgory()){
-            return false;
-        }
-        return true;
+        return isValidCatgory();
     }
     public boolean isValidName(){
         
         // chck name is empty
         if (jNameField.getText().trim().isEmpty())
         {
-            jErrorName.setText("Cant be empty!");
+            JOptionPane.showMessageDialog(null, "Username cannot be Empty!");
             return false;
-        }else jErrorName.setText("");
-        
-        
-        // check name is valid
-        for(int i=0 ; i < jNameField.getText().trim().length();i++){
-            char x = jNameField.getText().trim().charAt(i);
-            if(!(x >= 'a' && x <= 'z' || x >= 'A' && x <= 'Z' || x==' ')){
-            jErrorName.setText("you must enter chars only.");
-            return false;
-            }else jErrorName.setText("");
         }
+        
         return true;
     }
     public boolean isValidDescription(){
         if(jDescriptionField.getText().trim().isEmpty())
         {
-            jErrorDescription.setText("Cant be empty!");
+            JOptionPane.showMessageDialog(null, "Description can't be Empty!");
             return false;
-        }else jErrorDescription.setText("");
+        }
         return true;
     }
     public boolean isValidPrice(){
         // is empty (Price)
         if(jPriceField.getText().trim().isEmpty()) {
-           jErrorPrice.setText("Cant be empty!");
+            JOptionPane.showMessageDialog(null, "Price can't be Empty!");
            return false;
-        }else jErrorPrice.setText("");
+        }
         
         // is valid (Price)
         try {
-            Integer.parseInt(jPriceField.getText());
+            Integer.valueOf(jPriceField.getText());
         }catch(NumberFormatException e) {
-            jErrorPrice.setText("you must enter number.");
+            JOptionPane.showMessageDialog(null, "Please Enter a valid number!");
             return false;
         }
         return true;
@@ -108,18 +124,25 @@ public class jViewItem extends javax.swing.JPanel {
     public boolean isValidCatgory(){
         if(jCatgoryField.getText().isEmpty())
         {
-            jErrorCatgory.setText("Cant be empty!");
+            JOptionPane.showMessageDialog(null, "Category can't be Empty!");
             return false;
-        }else jErrorCatgory.setText("");
-        
+        }
         return true;
     }
     public void resetViewItemPage(){
         jNameField.setText("");
         jPriceField.setText("");
         jCatgoryField.setText("");
-        jCreatedAt.setText("");
         jDescriptionField.setText("");
+        BufferedImage img = null;
+        try {
+            img = ImageIO.read(new File("Images/photo2.png"));
+        } catch (IOException ex) {
+            Logger.getLogger(jViewItem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Image dimg = img.getScaledInstance(220, 220,Image.SCALE_SMOOTH);
+        ImageIcon imageIcon = new ImageIcon(dimg);
+        jPic.setIcon(imageIcon);
         removeUpdateANdCancelButtons();
     }
     public void updateItemData(){
@@ -130,6 +153,15 @@ public class jViewItem extends javax.swing.JPanel {
         item.price=Integer.parseInt(jPriceField.getText());
         _itemServices.update(choosedItem.id,item);
         choosedItem = _itemServices.getById(choosedItem.id);
+        File f = new File("Images/" + item.id + ".jpg");
+        f.delete();
+        File source = new File(chosenImage);
+        File dest = new File("Images/" + item.id + ".jpg");
+        try {
+            copy(source,dest);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
         _jHomePage.createLog("Updated", "Item", item.name);
     }
     public void disableItemFields(){
@@ -149,12 +181,14 @@ public class jViewItem extends javax.swing.JPanel {
         jUpdate.setEnabled(false);
         jEdit.setEnabled(true);
         jBack.setEnabled(true);
+        jUpload.setEnabled(false);
     }
     public void enableUpdateANdCancelButtons(){
         jCancel.setEnabled(true);
         jUpdate.setEnabled(true);
         jEdit.setEnabled(false);
         jBack.setEnabled(false);
+        jUpload.setEnabled(true);
     }
     public void updateButton(){
         if(!checkAllValidations()){
@@ -163,7 +197,7 @@ public class jViewItem extends javax.swing.JPanel {
         updateItemData();
         renderData();
         isEditing = false;
-        jUpdatedSuccessfuly.setText("Updated Successfully!");
+        JOptionPane.showMessageDialog(null, "Updated Successfully!");
         disableItemFields();
         removeUpdateANdCancelButtons();
     }
@@ -195,11 +229,9 @@ public class jViewItem extends javax.swing.JPanel {
         jBack = new javax.swing.JButton();
         jCancel = new javax.swing.JButton();
         jUpdate = new javax.swing.JButton();
-        jErrorName = new javax.swing.JLabel();
-        jErrorDescription = new javax.swing.JLabel();
-        jErrorPrice = new javax.swing.JLabel();
-        jErrorCatgory = new javax.swing.JLabel();
         jUpdatedSuccessfuly = new javax.swing.JLabel();
+        jPic = new javax.swing.JLabel();
+        jUpload = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(87, 118, 130));
         jPanel1.setForeground(new java.awt.Color(0, 31, 78));
@@ -216,10 +248,17 @@ public class jViewItem extends javax.swing.JPanel {
         jEdit.setBackground(new java.awt.Color(217, 156, 69));
         jEdit.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jEdit.setForeground(new java.awt.Color(255, 255, 255));
-        jEdit.setText("Edit");
+        jEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Items/editing.png"))); // NOI18N
+        jEdit.setMnemonic('e');
+        jEdit.setText("   Edit  ");
         jEdit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jEditMouseClicked(evt);
+            }
+        });
+        jEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jEditActionPerformed(evt);
             }
         });
 
@@ -311,48 +350,75 @@ public class jViewItem extends javax.swing.JPanel {
         jBack.setBackground(new java.awt.Color(217, 156, 69));
         jBack.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jBack.setForeground(new java.awt.Color(255, 255, 255));
-        jBack.setText("Back");
+        jBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Items/back.png"))); // NOI18N
+        jBack.setMnemonic('b');
+        jBack.setText("    Back   ");
         jBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBackMouseClicked(evt);
+            }
+        });
+        jBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBackActionPerformed(evt);
             }
         });
 
         jCancel.setBackground(new java.awt.Color(217, 156, 69));
         jCancel.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jCancel.setForeground(new java.awt.Color(255, 255, 255));
-        jCancel.setText("Cancel");
+        jCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Items/cancel1.png"))); // NOI18N
+        jCancel.setMnemonic('c');
+        jCancel.setText("   Cancel");
         jCancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jCancelMouseClicked(evt);
+            }
+        });
+        jCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCancelActionPerformed(evt);
             }
         });
 
         jUpdate.setBackground(new java.awt.Color(217, 156, 69));
         jUpdate.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jUpdate.setForeground(new java.awt.Color(255, 255, 255));
-        jUpdate.setText("Update");
+        jUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Items/UpdateItem.png"))); // NOI18N
+        jUpdate.setMnemonic('u');
+        jUpdate.setText("   Update  ");
         jUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jUpdateMouseClicked(evt);
             }
         });
-
-        jErrorName.setBackground(new java.awt.Color(217, 156, 69));
-        jErrorName.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jErrorName.setForeground(new java.awt.Color(255, 50, 0));
-
-        jErrorDescription.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jErrorDescription.setForeground(new java.awt.Color(255, 50, 0));
-
-        jErrorPrice.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jErrorPrice.setForeground(new java.awt.Color(255, 50, 0));
-
-        jErrorCatgory.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jErrorCatgory.setForeground(new java.awt.Color(255, 50, 0));
+        jUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jUpdateActionPerformed(evt);
+            }
+        });
 
         jUpdatedSuccessfuly.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jUpdatedSuccessfuly.setForeground(new java.awt.Color(0, 255, 100));
+
+        jPic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Items/photo2.png"))); // NOI18N
+
+        jUpload.setBackground(new java.awt.Color(217, 156, 69));
+        jUpload.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jUpload.setForeground(new java.awt.Color(255, 255, 255));
+        jUpload.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Items/UploadPhoto.png"))); // NOI18N
+        jUpload.setMnemonic('p');
+        jUpload.setText("    Upload Photo  ");
+        jUpload.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jUploadMouseClicked(evt);
+            }
+        });
+        jUpload.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jUploadActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -360,16 +426,22 @@ public class jViewItem extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jBack, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(57, 57, 57)
-                        .addComponent(jCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jBack, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(57, 57, 57)
+                                .addComponent(jCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jUpdatedSuccessfuly, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(218, 218, 218)))
+                        .addContainerGap(39, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -380,56 +452,54 @@ public class jViewItem extends javax.swing.JPanel {
                                     .addComponent(jLabel1)
                                     .addComponent(jLabel3))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jCatgoryField)
-                                    .addComponent(jDescriptionField, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
-                                    .addComponent(jPriceField)
-                                    .addComponent(jCreatedAt)
-                                    .addComponent(jNameField))))
-                        .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jCreatedAt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+                                    .addComponent(jPriceField, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jDescriptionField, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jNameField, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jCatgoryField))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jErrorName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jErrorDescription, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jErrorPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jErrorCatgory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jUpdatedSuccessfuly, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(46, Short.MAX_VALUE))
+                            .addComponent(jUpload, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPic, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(98, 98, 98)
-                .addComponent(jLabel6)
-                .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(98, 98, 98)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(26, 26, 26)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(19, 19, 19)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jDescriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel5))
+                            .addComponent(jPriceField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jErrorName, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel4)
+                            .addComponent(jCreatedAt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jErrorDescription, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel2)
-                                .addComponent(jDescriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel5))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jPriceField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jErrorPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jCreatedAt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCatgoryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jErrorCatgory, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jCatgoryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(126, 126, 126)
+                        .addComponent(jPic, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jUpload)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jUpdatedSuccessfuly)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 261, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBack, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -442,15 +512,11 @@ public class jViewItem extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 99, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -545,6 +611,97 @@ public class jViewItem extends javax.swing.JPanel {
     private void jCatgoryFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCatgoryFieldMouseClicked
             jUpdatedSuccessfuly.setText("");
     }//GEN-LAST:event_jCatgoryFieldMouseClicked
+
+    private void jUploadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jUploadMouseClicked
+        if(isEditing) {
+            JFileChooser chooser = new JFileChooser();
+            chooser.showOpenDialog(null);
+            File f = chooser.getSelectedFile();
+            String filename = f.getAbsolutePath();
+            chosenImage = filename;
+            try {
+                ImageIcon ii=new ImageIcon(scaleImage(220, 220, ImageIO.read(new File(f.getAbsolutePath()))));//get the image from file chooser and scale it to match JLabel size
+                jPic.setIcon(ii);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_jUploadMouseClicked
+
+    private void jBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackActionPerformed
+        if(!isEditing) {
+            resetViewItemPage();
+            _jViewItems.showItems();
+            _jHomePage.switchPanels(_jViewItems);  
+            _jViewItems.jItem.grabFocus();///////////////////////////3ayza te5leeh 3al selected item bas
+            jUpdatedSuccessfuly.setText("");
+            
+        } 
+    }//GEN-LAST:event_jBackActionPerformed
+
+    private void jCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCancelActionPerformed
+        if(isEditing) {
+            cancelButton();
+            jUpdatedSuccessfuly.setText("");
+        }
+    }//GEN-LAST:event_jCancelActionPerformed
+
+    private void jUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUpdateActionPerformed
+        if(isEditing) {
+            updateButton();
+        }
+    }//GEN-LAST:event_jUpdateActionPerformed
+
+    private void jEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEditActionPerformed
+        if(!isEditing) {
+            if(_jMainPage.canUpdateItem()) {
+             enableItemFields();
+             enableUpdateANdCancelButtons();
+             jUpdatedSuccessfuly.setText("");
+             isEditing = true;
+            }
+        }
+    }//GEN-LAST:event_jEditActionPerformed
+
+    private void jUploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUploadActionPerformed
+        if(isEditing) {
+            JFileChooser chooser = new JFileChooser();
+            chooser.showOpenDialog(null);
+            File f = chooser.getSelectedFile();
+            String filename = f.getAbsolutePath();
+            chosenImage = filename;
+            try {
+                ImageIcon ii=new ImageIcon(scaleImage(220, 220, ImageIO.read(new File(f.getAbsolutePath()))));//get the image from file chooser and scale it to match JLabel size
+                jPic.setIcon(ii);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_jUploadActionPerformed
+    public static void copy(File src, File dest) throws IOException { 
+        InputStream is = null;
+        OutputStream os = null;
+        is = new FileInputStream(src);
+        os = new FileOutputStream(dest);// buffer size 1K
+        byte[] buf = new byte[1024];
+        int bytesRead;
+        while ((bytesRead = is.read(buf)) > 0) {
+            os.write(buf, 0, bytesRead);
+        }
+    }
+
+
+    public static BufferedImage scaleImage(int w, int h, BufferedImage img) throws Exception {
+        BufferedImage bi;
+        bi = new BufferedImage(w, h, BufferedImage.TRANSLUCENT);
+        Graphics2D g2d = (Graphics2D) bi.createGraphics();
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.addRenderingHints(new RenderingHints(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY));
+        g2d.drawImage(img, 0, 0, w, h, null);
+        g2d.dispose();
+        return bi;
+    }
+    private String chosenImage = "Images/noImage.jpg";
     public boolean isEditing;
     public Item choosedItem;
     private final jMainPage _jMainPage;
@@ -558,10 +715,6 @@ public class jViewItem extends javax.swing.JPanel {
     private javax.swing.JTextField jCreatedAt;
     private javax.swing.JTextField jDescriptionField;
     public javax.swing.JButton jEdit;
-    private javax.swing.JLabel jErrorCatgory;
-    private javax.swing.JLabel jErrorDescription;
-    private javax.swing.JLabel jErrorName;
-    private javax.swing.JLabel jErrorPrice;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -570,8 +723,10 @@ public class jViewItem extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     public javax.swing.JTextField jNameField;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jPic;
     private javax.swing.JTextField jPriceField;
     private javax.swing.JButton jUpdate;
     private javax.swing.JLabel jUpdatedSuccessfuly;
+    private javax.swing.JButton jUpload;
     // End of variables declaration//GEN-END:variables
 }

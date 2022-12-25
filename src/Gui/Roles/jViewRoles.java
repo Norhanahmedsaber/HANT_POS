@@ -7,6 +7,7 @@ import Services.RoleServices;
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import utils.filterRoles;
 
@@ -31,12 +32,16 @@ public class jViewRoles extends javax.swing.JPanel {
     }
     Role getSelectedRole() {
         String roleName = jRoles.getSelectedValue();
-        Role role = _RoleServices.getByName(roleName);
-        return role;
+        if(roleName != null){
+            Role role = _RoleServices.getByName(roleName);
+            return role;
+        }
+        return null;
     }
     public void renderData() {
         DefaultListModel model = new DefaultListModel();
         ArrayList<String> roleNames = _RoleServices.getAll();
+        allRoles = roleNames;
         if(!roleNames.isEmpty()) {
             String searchName = jSearch.getText().trim();
             ArrayList<String> filteredRoles = _filterRoles.filter(roleNames, searchName);
@@ -48,7 +53,20 @@ public class jViewRoles extends javax.swing.JPanel {
         }
         jRoles.setModel(model);
     }
-      
+     public void updateData() {
+        DefaultListModel model = new DefaultListModel();
+        ArrayList<String> roleNames = allRoles;
+        if(!roleNames.isEmpty()) {
+            String searchName = jSearch.getText().trim();
+            ArrayList<String> filteredRoles = _filterRoles.filter(roleNames, searchName);
+            if(!filteredRoles.isEmpty()) {
+                for( String roleName : filteredRoles ) {
+                    model.addElement(roleName);
+                }
+            }
+        }
+        jRoles.setModel(model);
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -70,20 +88,34 @@ public class jViewRoles extends javax.swing.JPanel {
         jBack.setBackground(new java.awt.Color(217, 156, 69));
         jBack.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jBack.setForeground(new java.awt.Color(255, 255, 255));
-        jBack.setText("Back");
+        jBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Roles/back.png"))); // NOI18N
+        jBack.setMnemonic('b');
+        jBack.setText("    Back  ");
         jBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBackMouseClicked(evt);
+            }
+        });
+        jBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBackActionPerformed(evt);
             }
         });
 
         jEdit.setBackground(new java.awt.Color(217, 156, 69));
         jEdit.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jEdit.setForeground(new java.awt.Color(255, 255, 255));
-        jEdit.setText("Edit");
+        jEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Roles/editing.png"))); // NOI18N
+        jEdit.setMnemonic('e');
+        jEdit.setText("    Edit  ");
         jEdit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jEditMouseClicked(evt);
+            }
+        });
+        jEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jEditActionPerformed(evt);
             }
         });
 
@@ -157,16 +189,42 @@ public class jViewRoles extends javax.swing.JPanel {
     private void jEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jEditMouseClicked
        jMainPage MainPage=(jMainPage)_parent;
             if(MainPage.canUpdateRole()) {
-                _jNewRole.DoneButton(); 
+                _jNewRole.DoneButton();
                 _jNewRole._jRole = getSelectedRole();
+                if(_jNewRole._jRole == null) {
+                    JOptionPane.showMessageDialog(null, "Please Select a Role to Edit!");
+                    return;
+                }
                 _jNewRole.renderData();
                 _jHomePage.switchPanels(_jNewRole);
             }
     }//GEN-LAST:event_jEditMouseClicked
 
     private void jSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSearchKeyTyped
-        renderData();
+        updateData();
     }//GEN-LAST:event_jSearchKeyTyped
+
+    private void jBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackActionPerformed
+        jMainPage MainPage=(jMainPage)_parent;
+        clearViewRoles();
+        _jHomePage.switchPanels(_parent);
+        MainPage.jViewRoles.grabFocus();
+    }//GEN-LAST:event_jBackActionPerformed
+
+    private void jEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEditActionPerformed
+        jMainPage MainPage=(jMainPage)_parent;
+            if(MainPage.canUpdateRole()) {
+                _jNewRole.DoneButton();
+                _jNewRole._jRole = getSelectedRole();
+                if(_jNewRole._jRole == null) {
+                    JOptionPane.showMessageDialog(null, "Please Select a Role to Edit!");
+                    return;
+                }
+                _jNewRole.renderData();
+                _jHomePage.switchPanels(_jNewRole);
+            }
+    }//GEN-LAST:event_jEditActionPerformed
+    private ArrayList<String> allRoles;
     private jNewRole _jNewRole;
     private filterRoles _filterRoles;
     private RoleServices _RoleServices;

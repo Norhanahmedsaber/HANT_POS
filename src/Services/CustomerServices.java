@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList; 
+import java.util.Date;
 import java.util.UUID; 
  
 public class CustomerServices implements ICustomerServices  { 
@@ -236,6 +237,25 @@ public class CustomerServices implements ICustomerServices  {
             System.err.println(e);
             return false;
         }
+    }
+    @Override
+    public ArrayList<Customer> getDayCustomers(Date day) {
+        String sql = "SELECT * FROM customers WHERE purchaseDate = ?";
+        ArrayList<Customer> customers = new ArrayList<>();
+        try (
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ){
+                stmt.setDate(1, new java.sql.Date(day.getTime()));
+                ResultSet rs = stmt.executeQuery();
+                while (rs.next()) {
+                    Customer bean = new Customer();
+                    bean.id = UUID.fromString(rs.getString("id"));
+                    customers.add(bean);
+                }
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
+        return customers;
     }
      
 }

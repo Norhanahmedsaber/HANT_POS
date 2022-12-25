@@ -5,19 +5,21 @@ import Gui.Customers.jNewCustomer;
 import Gui.Customers.jViewCustomer;
 import Gui.Logs.jViewLogs;
 import Gui.Customers.jViewCustomers;
-import Gui.Items.jChooseItem;
 import Gui.Items.jViewItem;
 import Gui.Users.jViewUsers;
 import Gui.Items.jViewItems;
 import Gui.Roles.jViewRoles;
 import Gui.Roles.jNewRole;
 import Gui.Users.jViewUser;
-import Gui.jLoginPage;
-import java.awt.Color;
-import static java.awt.Color.black;
-import static java.awt.Color.red;
-import javax.swing.JPanel;
-
+import Statistics.jViewStatistics;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 public class jMainPage extends javax.swing.JPanel {
 
     public jMainPage(jHomePage jhp) {
@@ -47,7 +49,8 @@ public class jMainPage extends javax.swing.JPanel {
 //        } 
 //        _jChooseItem = new jChooseItem(jhp, parent );
  
-        
+
+        _jViewStatistics = new jViewStatistics(jhp, this);
          toggle = false;      
   }
     
@@ -68,106 +71,194 @@ public class jMainPage extends javax.swing.JPanel {
         jViewRoles = new javax.swing.JButton();
         jNewRole = new javax.swing.JButton();
         jToggleButton1 = new javax.swing.JToggleButton();
+        jStats = new javax.swing.JButton();
+
 
         setBackground(new java.awt.Color(87, 118, 130));
 
         jNewitem.setBackground(new java.awt.Color(217, 156, 69));
         jNewitem.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jNewitem.setForeground(new java.awt.Color(255, 255, 255));
-        jNewitem.setText("New Item");
+        jNewitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/addItem.png"))); // NOI18N
+        jNewitem.setMnemonic('i');
+        jNewitem.setText("          New Item                         ");
         jNewitem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jNewitemMouseClicked(evt);
+            }
+        });
+        jNewitem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jNewitemActionPerformed(evt);
             }
         });
 
         jViewitems.setBackground(new java.awt.Color(217, 156, 69));
         jViewitems.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jViewitems.setForeground(new java.awt.Color(255, 255, 255));
-        jViewitems.setText("View Items");
+        jViewitems.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/product.png"))); // NOI18N
+        jViewitems.setMnemonic('t');
+        jViewitems.setText("          View Items                       ");
         jViewitems.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jViewitemsMouseClicked(evt);
+            }
+        });
+        jViewitems.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jViewitemsActionPerformed(evt);
             }
         });
 
         jViewcustomers.setBackground(new java.awt.Color(217, 156, 69));
         jViewcustomers.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jViewcustomers.setForeground(new java.awt.Color(255, 255, 255));
-        jViewcustomers.setText("View Customers");
+        jViewcustomers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/newCustomers.png"))); // NOI18N
+        jViewcustomers.setMnemonic('m');
+        jViewcustomers.setText("          View Customers             ");
         jViewcustomers.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jViewcustomersMouseClicked(evt);
+            }
+        });
+        jViewcustomers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jViewcustomersActionPerformed(evt);
             }
         });
 
         jLog.setBackground(new java.awt.Color(217, 156, 69));
         jLog.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLog.setForeground(new java.awt.Color(255, 255, 255));
-        jLog.setText("Log");
+        jLog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/logs.png"))); // NOI18N
+        jLog.setMnemonic('l');
+        jLog.setText("           Log                                    ");
         jLog.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLogMouseClicked(evt);
+            }
+        });
+        jLog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jLogActionPerformed(evt);
             }
         });
 
         jNewcustomer.setBackground(new java.awt.Color(217, 156, 69));
         jNewcustomer.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jNewcustomer.setForeground(new java.awt.Color(255, 255, 255));
-        jNewcustomer.setText("New Customer");
+        jNewcustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/newcustomer.png"))); // NOI18N
+        jNewcustomer.setMnemonic('c');
+        jNewcustomer.setText("         New Customer                ");
         jNewcustomer.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jNewcustomerMouseClicked(evt);
+            }
+        });
+        jNewcustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jNewcustomerActionPerformed(evt);
             }
         });
 
         jLogout.setBackground(new java.awt.Color(217, 156, 69));
         jLogout.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLogout.setForeground(new java.awt.Color(255, 255, 255));
-        jLogout.setText("Logout");
+        jLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/logout.png"))); // NOI18N
+        jLogout.setMnemonic('e');
         jLogout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLogoutMouseClicked(evt);
+            }
+        });
+        jLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jLogoutActionPerformed(evt);
             }
         });
 
         jAddusers.setBackground(new java.awt.Color(217, 156, 69));
         jAddusers.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jAddusers.setForeground(new java.awt.Color(255, 255, 255));
-        jAddusers.setText("New Users");
+        jAddusers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/newUser.png"))); // NOI18N
+        jAddusers.setMnemonic('u');
+        jAddusers.setText("          New User                          ");
         jAddusers.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jAddusersMouseClicked(evt);
+            }
+        });
+        jAddusers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAddusersActionPerformed(evt);
             }
         });
 
         jViewusers.setBackground(new java.awt.Color(217, 156, 69));
         jViewusers.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jViewusers.setForeground(new java.awt.Color(255, 255, 255));
-        jViewusers.setText("View Users");
+        jViewusers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/viewUsers.png"))); // NOI18N
+        jViewusers.setMnemonic('e');
+        jViewusers.setText("          View Users                       ");
         jViewusers.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jViewusersMouseClicked(evt);
+            }
+        });
+        jViewusers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jViewusersActionPerformed(evt);
             }
         });
 
         jViewRoles.setBackground(new java.awt.Color(217, 156, 69));
         jViewRoles.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jViewRoles.setForeground(new java.awt.Color(255, 255, 255));
-        jViewRoles.setText("View Roles");
+        jViewRoles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/viewRoles.png"))); // NOI18N
+        jViewRoles.setMnemonic('o');
+        jViewRoles.setText("          View Roles                       ");
         jViewRoles.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jViewRolesMouseClicked(evt);
+            }
+        });
+        jViewRoles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jViewRolesActionPerformed(evt);
             }
         });
 
         jNewRole.setBackground(new java.awt.Color(217, 156, 69));
         jNewRole.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jNewRole.setForeground(new java.awt.Color(255, 255, 255));
-        jNewRole.setText("New Role");
+        jNewRole.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/newRole.png"))); // NOI18N
+        jNewRole.setMnemonic('r');
+        jNewRole.setText("         New Role                        ");
         jNewRole.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jNewRoleMouseClicked(evt);
+            }
+        });
+        jNewRole.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jNewRoleActionPerformed(evt);
+            }
+        });
+
+        jStats.setBackground(new java.awt.Color(217, 156, 69));
+        jStats.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jStats.setForeground(new java.awt.Color(255, 255, 255));
+        jStats.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/statistics.png"))); // NOI18N
+        jStats.setMnemonic('s');
+        jStats.setText("          Statistics                          ");
+        jStats.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jStatsMouseClicked(evt);
+            }
+        });
+        jStats.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jStatsActionPerformed(evt);
             }
         });
 
@@ -183,25 +274,25 @@ public class jMainPage extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLog, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(176, 176, 176))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jNewRole, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jNewitem, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jNewcustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jAddusers, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(42, 42, 42)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jViewcustomers, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jViewusers, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jViewitems, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jViewRoles, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 682, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jNewRole, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jNewitem, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jNewcustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jAddusers, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLog, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(42, 42, 42)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jViewcustomers, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jViewusers, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jViewitems, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jViewRoles, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jStats, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(32, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -229,11 +320,13 @@ public class jMainPage extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jNewRole, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jViewRoles, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addComponent(jLog, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(97, 97, 97)
-                .addComponent(jLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLog, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jStats, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLogout)
+                .addContainerGap(99, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -256,6 +349,15 @@ public class jMainPage extends javax.swing.JPanel {
         if(canCreateItem()) {
             _jHomePage.switchPanels(_jNewItem);
             _jNewItem.jNameField.grabFocus();
+            BufferedImage img = null;
+            try {
+                img = ImageIO.read(new File("Images/photo2.png"));
+            } catch (IOException e) {
+                Logger.getLogger(jViewItem.class.getName()).log(Level.SEVERE, null, e);
+            }
+            Image dimg = img.getScaledInstance(220, 220,Image.SCALE_SMOOTH);
+            ImageIcon imageIcon = new ImageIcon(dimg);
+            _jNewItem.jPic.setIcon(imageIcon);
         }
     }//GEN-LAST:event_jNewitemMouseClicked
 
@@ -333,7 +435,102 @@ public class jMainPage extends javax.swing.JPanel {
        }
  
     }//GEN-LAST:event_jToggleButton1MouseClicked
-    
+
+    private void jStatsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jStatsMouseClicked
+        _jHomePage.switchPanels(_jViewStatistics);
+    }//GEN-LAST:event_jStatsMouseClicked
+
+    private void jNewcustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNewcustomerActionPerformed
+        if(canCreateCustomer()) {
+            _jHomePage.switchPanels(_jNewCustomer);
+            _jNewCustomer.jNameField.grabFocus();
+        }
+    }//GEN-LAST:event_jNewcustomerActionPerformed
+
+    private void jLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLogoutActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLogoutActionPerformed
+
+    private void jViewcustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jViewcustomersActionPerformed
+        if(canViewCustomers()) {
+            _jViewCustomers.renderData();
+            _jHomePage.switchPanels(_jViewCustomers);   
+            _jViewCustomers.jSearchName.grabFocus();
+        }
+    }//GEN-LAST:event_jViewcustomersActionPerformed
+
+    private void jNewitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNewitemActionPerformed
+        if(canCreateItem()) {
+            _jHomePage.switchPanels(_jNewItem);
+            _jNewItem.jNameField.grabFocus();
+            BufferedImage img = null;
+            try {
+                img = ImageIO.read(new File("Images/photo2.png"));
+            } catch (IOException e) {
+                Logger.getLogger(jViewItem.class.getName()).log(Level.SEVERE, null, e);
+            }
+            Image dimg = img.getScaledInstance(220, 220,Image.SCALE_SMOOTH);
+            ImageIcon imageIcon = new ImageIcon(dimg);
+            _jNewItem.jPic.setIcon(imageIcon);
+        }
+    }//GEN-LAST:event_jNewitemActionPerformed
+
+    private void jViewitemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jViewitemsActionPerformed
+        if(canViewItems()) {
+            _jHomePage.switchPanels(_jViewItems);
+            _jViewItems.showItems();
+            _jViewItems.jsearchitems.grabFocus();
+        }
+    }//GEN-LAST:event_jViewitemsActionPerformed
+
+    private void jAddusersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAddusersActionPerformed
+        if(canCreateUser())
+        {
+            _jSignUpPage.clearSignUpPage();
+           _jHomePage.switchPanels(_jSignUpPage); 
+           _jSignUpPage.jNameField.grabFocus();
+        } 
+    }//GEN-LAST:event_jAddusersActionPerformed
+
+    private void jViewusersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jViewusersActionPerformed
+        if(canViewUsers()){
+            _jViewUsers.renderData();
+            _jHomePage.switchPanels(_jViewUsers);
+            _jViewUsers.jSearchField.grabFocus();
+        }
+    }//GEN-LAST:event_jViewusersActionPerformed
+
+    private void jNewRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNewRoleActionPerformed
+        if(canCreateRole()) {
+            _jcreaterole.DoneButton();
+            _jHomePage.switchPanels(_jcreaterole);
+            _jcreaterole.jRoleNameField.grabFocus();
+            
+        }
+    }//GEN-LAST:event_jNewRoleActionPerformed
+
+    private void jViewRolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jViewRolesActionPerformed
+        if(canViewRoles()) {
+            _jViewRoles.renderData();
+            _jHomePage.switchPanels(_jViewRoles);
+            _jViewRoles.jSearch.grabFocus();
+        }
+    }//GEN-LAST:event_jViewRolesActionPerformed
+
+    private void jLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLogActionPerformed
+        if(canViewLogs())
+        {
+            
+           _jShowLogs.renderData();
+           _jHomePage.switchPanels(_jShowLogs); 
+           _jShowLogs.jSearchField.grabFocus();
+        }
+    }//GEN-LAST:event_jLogActionPerformed
+
+    private void jStatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jStatsActionPerformed
+        _jHomePage.switchPanels(_jViewStatistics);
+    }//GEN-LAST:event_jStatsActionPerformed
+
     
     
     
@@ -515,6 +712,7 @@ public class jMainPage extends javax.swing.JPanel {
     private final jViewLogs _jShowLogs;
     private final jHomePage _jHomePage;
     private final jViewUser _jViewUser;
+    public final jViewStatistics _jViewStatistics;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton jAddusers;
     public javax.swing.JButton jLog;
@@ -523,6 +721,7 @@ public class jMainPage extends javax.swing.JPanel {
     public javax.swing.JButton jNewcustomer;
     public javax.swing.JButton jNewitem;
     public javax.swing.JToggleButton jToggleButton1;
+    public javax.swing.JButton jStats;
     public javax.swing.JButton jViewRoles;
     public javax.swing.JButton jViewcustomers;
     public javax.swing.JButton jViewitems;

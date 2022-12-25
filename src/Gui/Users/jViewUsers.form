@@ -48,11 +48,7 @@
                           </Group>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jAllItemsLabel" min="-2" pref="111" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jDeleteMessage" min="-2" pref="425" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jAllItemsLabel" alignment="0" min="-2" pref="111" max="-2" attributes="0"/>
                   <Component id="jScrollPane3" alignment="0" min="-2" pref="663" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="52" max="32767" attributes="0"/>
@@ -74,10 +70,7 @@
                   <Component id="jSortLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jAllItemsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jDeleteMessage" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
+              <Component id="jAllItemsLabel" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="29" max="32767" attributes="0"/>
               <Component id="jScrollPane3" min="-2" pref="301" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
@@ -177,16 +170,6 @@
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jBackButtonMouseClicked"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jDeleteMessage">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Calibri" size="24" style="0"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="ff" red="33" type="rgb"/>
-        </Property>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jsearchLabel">
       <Properties>

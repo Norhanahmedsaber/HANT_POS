@@ -6,6 +6,7 @@ import Services.UserServices;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.UUID;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import utils.FilterUsers;
 
@@ -55,9 +56,10 @@ public class jViewUsers extends javax.swing.JPanel {
                 _jHomePage.createLog("Deleted", "User", username);
                 m.removeRow(jUsersTable.getSelectedRow());
                 _UserServices.delete(id);
-                jDeleteMessage.setText("Deleted Successfully");
+                  JOptionPane.showMessageDialog(null, "Deleted Successfully!");
               }else{
-              jDeleteMessage.setText("Error! Please Select User");}
+              JOptionPane.showMessageDialog(null, "Please Select a User Delete!");
+              }
     }
     private User selectedUser(){ 
         DefaultTableModel m = (DefaultTableModel) jUsersTable.getModel();
@@ -65,7 +67,10 @@ public class jViewUsers extends javax.swing.JPanel {
                 UUID id = (UUID) m.getValueAt(jUsersTable.getSelectedRow(), 0);
                return  _UserServices.getById(id);
         }
-            else return null;
+            else {
+                JOptionPane.showMessageDialog(null, "Please Select a User to View!");
+                return null;
+            }
 
     }
 
@@ -79,7 +84,6 @@ public class jViewUsers extends javax.swing.JPanel {
         jAllItemsLabel = new javax.swing.JLabel();
         jShowButton = new javax.swing.JButton();
         jBackButton = new javax.swing.JButton();
-        jDeleteMessage = new javax.swing.JLabel();
         jsearchLabel = new javax.swing.JLabel();
         jSearchField = new javax.swing.JTextField();
         jSortLabel = new javax.swing.JLabel();
@@ -133,9 +137,6 @@ public class jViewUsers extends javax.swing.JPanel {
                 jBackButtonMouseClicked(evt);
             }
         });
-
-        jDeleteMessage.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jDeleteMessage.setForeground(new java.awt.Color(51, 255, 0));
 
         jsearchLabel.setBackground(new java.awt.Color(255, 255, 255));
         jsearchLabel.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
@@ -247,10 +248,7 @@ public class jViewUsers extends javax.swing.JPanel {
                                 .addComponent(jSortByCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jToggleSort))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jAllItemsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jDeleteMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jAllItemsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
@@ -267,9 +265,7 @@ public class jViewUsers extends javax.swing.JPanel {
                     .addComponent(jToggleSort)
                     .addComponent(jSortLabel))
                 .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jAllItemsLabel)
-                    .addComponent(jDeleteMessage))
+                .addComponent(jAllItemsLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42)
@@ -285,7 +281,6 @@ public class jViewUsers extends javax.swing.JPanel {
     private void jBackButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackButtonMouseClicked
         _jHomePage.switchPanels(_jMainPage);
         _jMainPage.jViewusers.grabFocus();
-        jDeleteMessage.setText("");
     }//GEN-LAST:event_jBackButtonMouseClicked
 
     private void jDeleteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDeleteButtonMouseClicked
@@ -306,7 +301,6 @@ public class jViewUsers extends javax.swing.JPanel {
             _jHomePage.switchPanels(_jViewUser);
             _jViewUser.jNameField.grabFocus();
          }
-         jDeleteMessage.setText("");
     }//GEN-LAST:event_jShowButtonMouseClicked
 
     private void jAddButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAddButtonMouseClicked
@@ -314,11 +308,11 @@ public class jViewUsers extends javax.swing.JPanel {
             _jHomePage.switchPanels(_jSignUpPage);
             _jSignUpPage.jNameField.grabFocus();
         }
-        jDeleteMessage.setText("");
+        
     }//GEN-LAST:event_jAddButtonMouseClicked
 
     private void jSearchFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchFieldMouseClicked
-        jDeleteMessage.setText("");
+       
     }//GEN-LAST:event_jSearchFieldMouseClicked
 
     private void jSearchFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSearchFieldKeyTyped
@@ -326,14 +320,13 @@ public class jViewUsers extends javax.swing.JPanel {
     }//GEN-LAST:event_jSearchFieldKeyTyped
 
     private void jSortByComboMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSortByComboMouseClicked
-        jDeleteMessage.setText("");
+        
     }//GEN-LAST:event_jSortByComboMouseClicked
 
     private void jToggleSortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleSortMouseClicked
         // TODO add your handling code here:
         toggle = !toggle;
         renderData();
-        jDeleteMessage.setText("");
     }//GEN-LAST:event_jToggleSortMouseClicked
 
     private boolean toggle ;
@@ -348,7 +341,6 @@ public class jViewUsers extends javax.swing.JPanel {
     private javax.swing.JLabel jAllItemsLabel;
     private javax.swing.JButton jBackButton;
     public javax.swing.JButton jDeleteButton;
-    private javax.swing.JLabel jDeleteMessage;
     private javax.swing.JScrollPane jScrollPane3;
     public javax.swing.JTextField jSearchField;
     private javax.swing.JButton jShowButton;

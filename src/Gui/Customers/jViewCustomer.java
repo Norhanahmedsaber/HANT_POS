@@ -1,6 +1,7 @@
 package Gui.Customers;
 
 import Entities.Customer;
+import static Gui.Customers.jNewCustomer.emailAdressen;
 import Gui.Items.jChooseItem;
 import Gui.jHomePage;
 import Gui.jMainPage;
@@ -11,6 +12,7 @@ import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 
 public class jViewCustomer extends javax.swing.JPanel {
     
@@ -23,7 +25,6 @@ public class jViewCustomer extends javax.swing.JPanel {
         _jMainPage = jmp;
         jUpdate.setEnabled(false);
         jCancel.setEnabled(false);
-        jUpdatedSuccesfully.setText("");
         _jChooseItem =new jChooseItem(jhp, this);
         isEditing = false;
         
@@ -55,17 +56,12 @@ public class jViewCustomer extends javax.swing.JPanel {
         if (!isValidJop()){
             return false;
         }
-        if (!isValidAge()){
-            return false;
-        }
-        
-        return true;
+        return isValidAge();
     }
  
     public void editButton(){   jBack.setEnabled(false);
         jUpdate.setEnabled(true);
         jCancel.setEnabled(true);
-        jUpdatedSuccesfully.setVisible(true);
         settextfielsenabled();
         jEdit.setEnabled(false);
         isEditing = true;
@@ -122,28 +118,28 @@ public class jViewCustomer extends javax.swing.JPanel {
     public boolean isValidName() {
         // is empty (nameField)
         if(jNameField.getText().trim().isEmpty()) {
-           jErrorName.setText("Cant be empty!");
+           JOptionPane.showMessageDialog(null, "Name Can't be Empty");
            return false;
-        }else jErrorName.setText("");
+        }
         //is valid (Name)
         for (int i=0 ; i < jNameField.getText().trim().length();i++){
             char x = jNameField.getText().trim().charAt(i);
             if(!(x >= 'a' && x <= 'z' || x >= 'A' && x <= 'Z' || x==' ')){
-            jErrorName.setText("you must enter chars only.");
-            return false;
-            }else jErrorName.setText("");
+                JOptionPane.showMessageDialog(null, "Name Can Only Have Letters!");
+                return false;
+            }
         }
         return true;
     }
     public boolean isValidEmail() {
         // is empty (Email)
         if(jEmailField.getText().trim().isEmpty()) {
-           jErrorEmail.setText("Cant be empty!");
+           JOptionPane.showMessageDialog(null, "Email Can't be Empty");
            return false;
-        }else jErrorEmail.setText("");
+        }
         // is valid (email)
         if (!emailAdressen(jEmailField.getText().trim())){
-            jErrorEmail.setText("your email format is false");
+            JOptionPane.showMessageDialog(null, "Please Type an Email with the right format!");
             return false;
         }
         return true;
@@ -151,73 +147,65 @@ public class jViewCustomer extends javax.swing.JPanel {
     public boolean isValidNationalId(){ 
         // is empty (National ID)
         if(jNationalIdField.getText().trim().isEmpty()) {
-           jErrorNationalId.setText("Cant be empty!");
-           return false;
-        }else jErrorNationalId.setText("");       
+            JOptionPane.showMessageDialog(null, "National ID Can't be Empty");
+            return false;
+        }      
         // is valid (National ID)
         for (int i=0 ; i < jNationalIdField.getText().trim().length();i++){
             char x = jNationalIdField.getText().trim().charAt(i);
             if((x >= 'a' && x <= 'z' || x >= 'A' && x <= 'Z' || x==' ')){
-            jErrorNationalId.setText("you must enter numbers only.");
-            return false;
-            }else jErrorNationalId.setText("");
+                JOptionPane.showMessageDialog(null, "National ID Can't Have Chars in it!");
+                return false;
+            }
         }
         if(jNationalIdField.getText().trim().length() != 14) {
-           jErrorNationalId.setText("it must be 14 number.");
-           return false;
-        }else jErrorNationalId.setText("");
+            JOptionPane.showMessageDialog(null, "National ID should be 14 Digits!");
+            return false;
+        }
         return true;
     }
     public boolean isValidPhoneNo(){
         // is empty (Phone NO)
         if(jPhoneNoField.getText().trim().isEmpty()) {
-           jErrorPhoneNo.setText("Cant be empty!");
+            JOptionPane.showMessageDialog(null, "Phone Number Can't be Empty!");
            return false;
-        }else jErrorPhoneNo.setText("");    
+        }
         // is valid (Phone NO)
         try {
-            Integer.parseInt(jPhoneNoField.getText());
+            Integer.valueOf(jPhoneNoField.getText());
         }catch(NumberFormatException e) {
-            jErrorPhoneNo.setText("you must enter number, chars not allowed.");
+            JOptionPane.showMessageDialog(null, "Phone Number Can't Have Chars in it!");
             return false;
         }
         if(!(jPhoneNoField.getText().trim().startsWith("01"))) {
-           jErrorPhoneNo.setText("the number must start with 01 .");
-           return false;
-        }else jErrorPhoneNo.setText("");
+            JOptionPane.showMessageDialog(null, "Phone Number Must start with 01");
+            return false;
+        }
         if(jPhoneNoField.getText().trim().length()!= 11) {
-           jErrorPhoneNo.setText("it must be 11 number.");
+            JOptionPane.showMessageDialog(null, "Phone Number Must be 11 Digits!");
            return false;
-        }else jErrorPhoneNo.setText("");
+        }
         return true;
     }
     public boolean isValidCity(){
         // is empty (City)
         if(jCityField.getText().trim().isEmpty()) {
-           jErrorCity.setText("Cant be empty!");
-           return false;
-        }else jErrorCity.setText("");
-        // is valid (City)
-        for (int i=0 ; i < jCityField.getText().trim().length();i++){
-            char x = jCityField.getText().trim().charAt(i);
-            if(!(x >= 'a' && x <= 'z' || x >= 'A' && x <= 'Z' || x==' ')){
-            jErrorCity.setText("you must enter chars only.");
+            JOptionPane.showMessageDialog(null, "City Can't be Empty!");
             return false;
-            }else jErrorCity.setText("");
         }
         return true;
     }  
     public boolean isValidIncome(){
         // is empty (Income)
         if(jIncomeField.getText().trim().isEmpty()) {
-           jErrorIncome.setText("Cant be empty!");
-           return false;
-        }else jErrorIncome.setText("");
+            JOptionPane.showMessageDialog(null, "Income Can't be Empty!");
+            return false;
+        }
         // is valid (Income)
         try {
-            Integer.parseInt(jIncomeField.getText());
+            Integer.valueOf(jIncomeField.getText());
         }catch(NumberFormatException e) {
-            jErrorIncome.setText("you must enter number.");
+            JOptionPane.showMessageDialog(null, "Please Enter A number in the income field!");
             return false;
         }
         return true;
@@ -225,40 +213,29 @@ public class jViewCustomer extends javax.swing.JPanel {
     public boolean isValidJop(){
         // is empty (job)
         if(jJobField.getText().trim().isEmpty()) {
-           jErrorJob.setText("Cant be empty!");
-           return false;
-        }else jErrorJob.setText("");
-        // is valid (job)
-        for (int i=0 ; i < jJobField.getText().trim().length();i++){
-            char x = jJobField.getText().trim().charAt(i);
-            if(!(x >= 'a' && x <= 'z' || x >= 'A' && x <= 'Z' || x==' ')){
-            jErrorJob.setText("you must enter chars only.");
-            return false;
-            }else jErrorJob.setText("");
+            JOptionPane.showMessageDialog(null, "Job can't be Empty!");
+             return false;
         }
         return true;
     }
     public boolean isValidAge(){
         // is empty (age)
         if(jAgeField.getText().trim().isEmpty()) {
-           jErrorAge.setText("Cant be empty!");
-           return false;
-        }else jErrorAge.setText("");
+            JOptionPane.showMessageDialog(null, "Age Can't be Empty!");
+            return false;
+        }
         // is valid (age)
         for (int i=0 ; i < jAgeField.getText().trim().length();i++){
             char x = jAgeField.getText().trim().charAt(i);
             if((x >= 'a' && x <= 'z' || x >= 'A' && x <= 'Z' || x==' ')){
-            jErrorAge.setText("you must enter numbers only.");
+            JOptionPane.showMessageDialog(null, "Age Can't Have Chars in it!");
             return false;
-            }else jErrorAge.setText("");
+            }
         }
         try {
-            if(Integer.parseInt(jAgeField.getText())<18){
-                jErrorAge.setText("Cant be less than 18 years.");
-                return false;
-            }else jErrorAge.setText("");
+            Integer.parseInt(jAgeField.getText());
         }catch(NumberFormatException e) {
-            jErrorAge.setText("you must enter number.");
+            JOptionPane.showMessageDialog(null, "Age Can't Have Chars in it!");
             return false;
         }
         return true;
@@ -277,28 +254,28 @@ public class jViewCustomer extends javax.swing.JPanel {
         customer.income = Integer.parseInt(jIncomeField.getText().trim());
         customer.email = jEmailField.getText().trim();
         customer.city = jCityField.getText().trim();
-        customer.gender = jgenderCombobox.getName();
+        customer.gender = (String)jgenderCombobox.getSelectedItem();
         customer.phoneNumber = jPhoneNoField.getText().trim();
         return customer;
     }
     public void updateButton(){
-        jUpdate.setEnabled(false);
-        jCancel.setEnabled(false);
-        jUpdatedSuccesfully.setText("Updated succesfully");
-        settextfielsdisabled();
-        jEdit.setEnabled(true);
-        jBack.setEnabled(true);
-        isEditing = false;
-     //if(!checkAllValidations()){
-       //  return;
-     //}else{
-        Customer updatedCustomer = updateCustomerData();
-        _CustomerServices.update(_chosencustomer.id , updatedCustomer);
-        _jHomePage.createLog("Updated", "Customer", _chosencustomer.name);
-        _chosencustomer = _CustomerServices.getById(_chosencustomer.id);
-        renderData();
-        updateflag=!updateflag;
-     //}
+        if(!checkAllValidations()){
+            return;
+        }else{
+            jUpdate.setEnabled(false);
+            jCancel.setEnabled(false);
+            settextfielsdisabled();
+            jEdit.setEnabled(true);
+            jBack.setEnabled(true);
+            isEditing = false;
+            Customer updatedCustomer = updateCustomerData();
+            _CustomerServices.update(_chosencustomer.id , updatedCustomer);
+            _jHomePage.createLog("Updated", "Customer", _chosencustomer.name);
+            _chosencustomer = _CustomerServices.getById(_chosencustomer.id);
+            renderData();
+            updateflag=!updateflag;
+            JOptionPane.showMessageDialog(null, "Updated Successfully!");
+        }
     }
     
     
@@ -326,21 +303,12 @@ public class jViewCustomer extends javax.swing.JPanel {
         jPurchaseDateField = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jJobField = new javax.swing.JTextField();
-        jErrorCity = new javax.swing.JLabel();
-        jErrorEmail = new javax.swing.JLabel();
-        jErrorNationalId = new javax.swing.JLabel();
-        jErrorPhoneNo = new javax.swing.JLabel();
-        jErrorIncome = new javax.swing.JLabel();
-        jErrorJob = new javax.swing.JLabel();
-        jErrorAge = new javax.swing.JLabel();
-        jErrorName = new javax.swing.JLabel();
         jgenderCombobox = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jUpdate = new javax.swing.JButton();
         jBack = new javax.swing.JButton();
         jCancel = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jUpdatedSuccesfully = new javax.swing.JLabel();
         jEdit = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -442,10 +410,17 @@ public class jViewCustomer extends javax.swing.JPanel {
         jShowpurchases.setBackground(new java.awt.Color(217, 156, 69));
         jShowpurchases.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jShowpurchases.setForeground(new java.awt.Color(255, 255, 255));
-        jShowpurchases.setText("Show purchases");
+        jShowpurchases.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Customers/showPurchases.png"))); // NOI18N
+        jShowpurchases.setMnemonic('s');
+        jShowpurchases.setText(" Show purchases");
         jShowpurchases.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jShowpurchasesMouseClicked(evt);
+            }
+        });
+        jShowpurchases.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jShowpurchasesActionPerformed(evt);
             }
         });
 
@@ -484,38 +459,6 @@ public class jViewCustomer extends javax.swing.JPanel {
             }
         });
 
-        jErrorCity.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jErrorCity.setForeground(new java.awt.Color(0, 31, 75));
-        jErrorCity.setToolTipText("");
-
-        jErrorEmail.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jErrorEmail.setForeground(new java.awt.Color(0, 31, 78));
-        jErrorEmail.setToolTipText("");
-
-        jErrorNationalId.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jErrorNationalId.setForeground(new java.awt.Color(0, 31, 78));
-        jErrorNationalId.setToolTipText("");
-
-        jErrorPhoneNo.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jErrorPhoneNo.setForeground(new java.awt.Color(0, 31, 78));
-        jErrorPhoneNo.setToolTipText("");
-
-        jErrorIncome.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jErrorIncome.setForeground(new java.awt.Color(0, 31, 78));
-        jErrorIncome.setToolTipText("");
-
-        jErrorJob.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jErrorJob.setForeground(new java.awt.Color(0, 31, 78));
-        jErrorJob.setToolTipText("");
-
-        jErrorAge.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jErrorAge.setForeground(new java.awt.Color(0, 31, 78));
-        jErrorAge.setToolTipText("");
-
-        jErrorName.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jErrorName.setForeground(new java.awt.Color(0, 31, 78));
-        jErrorName.setToolTipText("");
-
         jgenderCombobox.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jgenderCombobox.setForeground(new java.awt.Color(0, 31, 78));
         jgenderCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
@@ -537,30 +480,51 @@ public class jViewCustomer extends javax.swing.JPanel {
         jUpdate.setBackground(new java.awt.Color(217, 156, 69));
         jUpdate.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jUpdate.setForeground(new java.awt.Color(255, 255, 255));
-        jUpdate.setText("update");
+        jUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Customers/update.png"))); // NOI18N
+        jUpdate.setMnemonic('u');
+        jUpdate.setText("   Update");
         jUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jUpdateMouseClicked(evt);
+            }
+        });
+        jUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jUpdateActionPerformed(evt);
             }
         });
 
         jBack.setBackground(new java.awt.Color(217, 156, 69));
         jBack.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jBack.setForeground(new java.awt.Color(255, 255, 255));
-        jBack.setText("Back");
+        jBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Customers/back.png"))); // NOI18N
+        jBack.setMnemonic('b');
+        jBack.setText("     Back  ");
         jBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBackMouseClicked(evt);
+            }
+        });
+        jBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBackActionPerformed(evt);
             }
         });
 
         jCancel.setBackground(new java.awt.Color(217, 156, 69));
         jCancel.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jCancel.setForeground(new java.awt.Color(255, 255, 255));
-        jCancel.setText("Cancel");
+        jCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Customers/cancel1.png"))); // NOI18N
+        jCancel.setMnemonic('c');
+        jCancel.setText("   Cancel ");
         jCancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jCancelMouseClicked(evt);
+            }
+        });
+        jCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCancelActionPerformed(evt);
             }
         });
 
@@ -568,16 +532,20 @@ public class jViewCustomer extends javax.swing.JPanel {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("purchase date:");
 
-        jUpdatedSuccesfully.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jUpdatedSuccesfully.setForeground(new java.awt.Color(0, 31, 78));
-
         jEdit.setBackground(new java.awt.Color(217, 156, 69));
         jEdit.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jEdit.setForeground(new java.awt.Color(255, 255, 255));
-        jEdit.setText("Edit");
+        jEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Customers/editCustomer.png"))); // NOI18N
+        jEdit.setMnemonic('e');
+        jEdit.setText("     Edit   ");
         jEdit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jEditMouseClicked(evt);
+            }
+        });
+        jEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jEditActionPerformed(evt);
             }
         });
 
@@ -586,7 +554,7 @@ public class jViewCustomer extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
+                .addContainerGap(35, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jBack, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -596,7 +564,7 @@ public class jViewCustomer extends javax.swing.JPanel {
                         .addComponent(jUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addContainerGap(84, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -634,30 +602,7 @@ public class jViewCustomer extends javax.swing.JPanel {
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jPurchaseDateField, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jErrorCity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jErrorPhoneNo, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jErrorEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jErrorName, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jErrorNationalId, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 9, Short.MAX_VALUE))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jErrorIncome, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jErrorAge, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jErrorJob, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(65, 65, 65)
-                                        .addComponent(jUpdatedSuccesfully, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE))))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -670,85 +615,65 @@ public class jViewCustomer extends javax.swing.JPanel {
                         .addComponent(jLabel10))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(2, 2, 2)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jErrorName, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jEmailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jErrorEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jEmailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jNationalIdField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jErrorNationalId, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jErrorPhoneNo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPhoneNoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(jCityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jErrorCity, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jIncomeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jErrorIncome)))
+                    .addComponent(jIncomeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12)
-                    .addComponent(jJobField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jErrorJob, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jJobField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jAgeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jErrorAge, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jAgeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jgenderCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jgenderCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jPurchaseDateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(18, 18, 18)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jShowpurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jBack, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(97, 97, 97)
-                        .addComponent(jUpdatedSuccesfully, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(jLabel7)
+                            .addComponent(jPurchaseDateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jShowpurchases))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBack, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28))
         );
 
         add(jPanel1);
     }// </editor-fold>//GEN-END:initComponents
-    
-    private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
-       if(!isEditing) {
-           _jViewCustomers.renderData();
-           _jHomePage.switchPanels(_jViewCustomers);
-           _jViewCustomers.jSearchName.grabFocus();
-       }
-    }//GEN-LAST:event_jBackMouseClicked
+
+    private void jPanel1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel1KeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            updateButton();
+        }
+    }//GEN-LAST:event_jPanel1KeyPressed
 
     private void jEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jEditMouseClicked
         if(!isEditing) {
@@ -758,28 +683,35 @@ public class jViewCustomer extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jEditMouseClicked
 
-    private void jUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jUpdateMouseClicked
-        if(isEditing) {
-            updateButton();
-        }
-    }//GEN-LAST:event_jUpdateMouseClicked
-
     private void jCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCancelMouseClicked
         if(isEditing) {
             cancelButton();
         }
     }//GEN-LAST:event_jCancelMouseClicked
 
-    private void jShowpurchasesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jShowpurchasesMouseClicked
-        _jChooseItem.renderData();
-        _jHomePage.switchPanels(_jChooseItem);
-    }//GEN-LAST:event_jShowpurchasesMouseClicked
+    private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
+        if(!isEditing) {
+            _jViewCustomers.renderData();
+            _jHomePage.switchPanels(_jViewCustomers);
+            _jViewCustomers.jSearchName.grabFocus();
+        }
+    }//GEN-LAST:event_jBackMouseClicked
 
-    private void jNameFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jNameFieldKeyPressed
+    private void jUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jUpdateMouseClicked
+        if(isEditing) {
+            updateButton();
+        }
+    }//GEN-LAST:event_jUpdateMouseClicked
+
+    private void jgenderComboboxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jgenderComboboxKeyPressed
         if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
             updateButton();
         }
-    }//GEN-LAST:event_jNameFieldKeyPressed
+    }//GEN-LAST:event_jgenderComboboxKeyPressed
+
+    private void jgenderComboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jgenderComboboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jgenderComboboxActionPerformed
 
     private void jJobFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jJobFieldKeyPressed
         if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
@@ -787,17 +719,28 @@ public class jViewCustomer extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jJobFieldKeyPressed
 
-    private void jNationalIdFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jNationalIdFieldKeyPressed
+    private void jPurchaseDateFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPurchaseDateFieldKeyPressed
         if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
             updateButton();
         }
-    }//GEN-LAST:event_jNationalIdFieldKeyPressed
+    }//GEN-LAST:event_jPurchaseDateFieldKeyPressed
 
-    private void jPhoneNoFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPhoneNoFieldKeyPressed
+    private void jEmailFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jEmailFieldKeyPressed
         if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
             updateButton();
         }
-    }//GEN-LAST:event_jPhoneNoFieldKeyPressed
+    }//GEN-LAST:event_jEmailFieldKeyPressed
+
+    private void jShowpurchasesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jShowpurchasesMouseClicked
+        _jChooseItem.renderData();
+        _jHomePage.switchPanels(_jChooseItem);
+    }//GEN-LAST:event_jShowpurchasesMouseClicked
+
+    private void jAgeFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jAgeFieldKeyPressed
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            updateButton();
+        }
+    }//GEN-LAST:event_jAgeFieldKeyPressed
 
     private void jCityFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCityFieldKeyPressed
         if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
@@ -811,40 +754,57 @@ public class jViewCustomer extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jIncomeFieldKeyPressed
 
-    private void jgenderComboboxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jgenderComboboxKeyPressed
+    private void jPhoneNoFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPhoneNoFieldKeyPressed
         if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
             updateButton();
         }
-    }//GEN-LAST:event_jgenderComboboxKeyPressed
+    }//GEN-LAST:event_jPhoneNoFieldKeyPressed
 
-    private void jAgeFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jAgeFieldKeyPressed
+    private void jNameFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jNameFieldKeyPressed
         if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
             updateButton();
         }
-    }//GEN-LAST:event_jAgeFieldKeyPressed
+    }//GEN-LAST:event_jNameFieldKeyPressed
 
-    private void jEmailFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jEmailFieldKeyPressed
+    private void jNationalIdFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jNationalIdFieldKeyPressed
         if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
             updateButton();
         }
-    }//GEN-LAST:event_jEmailFieldKeyPressed
+    }//GEN-LAST:event_jNationalIdFieldKeyPressed
 
-    private void jPurchaseDateFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPurchaseDateFieldKeyPressed
-        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
+    private void jShowpurchasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jShowpurchasesActionPerformed
+        _jChooseItem.renderData();
+        _jHomePage.switchPanels(_jChooseItem);
+    }//GEN-LAST:event_jShowpurchasesActionPerformed
+
+    private void jBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackActionPerformed
+        if(!isEditing) {
+            _jViewCustomers.renderData();
+            _jHomePage.switchPanels(_jViewCustomers);
+            _jViewCustomers.jSearchName.grabFocus();
+        }
+    }//GEN-LAST:event_jBackActionPerformed
+
+    private void jCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCancelActionPerformed
+        if(isEditing) {
+            cancelButton();
+        }
+    }//GEN-LAST:event_jCancelActionPerformed
+
+    private void jUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUpdateActionPerformed
+        if(isEditing) {
             updateButton();
         }
-    }//GEN-LAST:event_jPurchaseDateFieldKeyPressed
+    }//GEN-LAST:event_jUpdateActionPerformed
 
-    private void jPanel1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel1KeyPressed
-        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
-            updateButton();
+    private void jEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEditActionPerformed
+        if(!isEditing) {
+            if(_jMainPage.canUpdateCustomer()) {
+                editButton();
+            }
         }
-    }//GEN-LAST:event_jPanel1KeyPressed
-
-    private void jgenderComboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jgenderComboboxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jgenderComboboxActionPerformed
-   
+    }//GEN-LAST:event_jEditActionPerformed
+       
     
     
     private boolean isEditing;
@@ -862,14 +822,6 @@ public class jViewCustomer extends javax.swing.JPanel {
     private javax.swing.JTextField jCityField;
     public javax.swing.JButton jEdit;
     private javax.swing.JTextField jEmailField;
-    private javax.swing.JLabel jErrorAge;
-    private javax.swing.JLabel jErrorCity;
-    private javax.swing.JLabel jErrorEmail;
-    private javax.swing.JLabel jErrorIncome;
-    private javax.swing.JLabel jErrorJob;
-    private javax.swing.JLabel jErrorName;
-    private javax.swing.JLabel jErrorNationalId;
-    private javax.swing.JLabel jErrorPhoneNo;
     private javax.swing.JTextField jIncomeField;
     private javax.swing.JTextField jJobField;
     private javax.swing.JLabel jLabel1;
@@ -890,7 +842,6 @@ public class jViewCustomer extends javax.swing.JPanel {
     private javax.swing.JTextField jPurchaseDateField;
     private javax.swing.JButton jShowpurchases;
     private javax.swing.JButton jUpdate;
-    private javax.swing.JLabel jUpdatedSuccesfully;
     public javax.swing.JComboBox<String> jgenderCombobox;
     // End of variables declaration//GEN-END:variables
 }

@@ -3,6 +3,7 @@ package Interfaces;
 import Entities.Customer;
 import Entities.Item;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.UUID;
 
 public interface ICustomerServices {
@@ -15,5 +16,6 @@ public interface ICustomerServices {
     ArrayList<Item> getAssignedItems(UUID customerId);
     void assignItemsToCustomer(UUID customerId, ArrayList<UUID> itemsIds);
     void updateAssignedItemsToCustomer(UUID customerId, ArrayList<UUID> itemsIds);
+    ArrayList<Customer> getDayCustomers(Date day);
 }
   

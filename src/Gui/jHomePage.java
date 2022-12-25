@@ -17,7 +17,6 @@ public class jHomePage extends javax.swing.JFrame {
         loginUser = null;
         _LogServices = new LogServices();
         Home();
-       
     }
     public void changecolor(int x, int y ,int z)
     { 
@@ -60,10 +59,16 @@ public class jHomePage extends javax.swing.JFrame {
         jsignin.setBackground(new java.awt.Color(217, 156, 69));
         jsignin.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jsignin.setForeground(new java.awt.Color(255, 255, 255));
-        jsignin.setText("Sign in");
+        jsignin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/enter.png"))); // NOI18N
+        jsignin.setMnemonic('e');
         jsignin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jsigninMouseClicked(evt);
+            }
+        });
+        jsignin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jsigninActionPerformed(evt);
             }
         });
         jsignin.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -76,17 +81,17 @@ public class jHomePage extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(220, 220, 220)
-                .addComponent(jsignin, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(220, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(38, Short.MAX_VALUE)
+                .addComponent(jsignin, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(241, 241, 241)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(505, Short.MAX_VALUE)
                 .addComponent(jsignin, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(266, Short.MAX_VALUE))
+                .addGap(40, 40, 40))
         );
 
         jPanel4.add(jPanel1, "card2");
@@ -100,6 +105,7 @@ public class jHomePage extends javax.swing.JFrame {
     private void jsigninMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jsigninMouseClicked
         switchPanels(_jLoginPage);
         _jLoginPage.jusername.grabFocus();
+        
     }//GEN-LAST:event_jsigninMouseClicked
 
     private void jsigninKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jsigninKeyPressed
@@ -115,6 +121,11 @@ public class jHomePage extends javax.swing.JFrame {
             _jLoginPage.jusername.grabFocus();
         }
     }//GEN-LAST:event_jPanel1KeyPressed
+
+    private void jsigninActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jsigninActionPerformed
+        switchPanels(_jLoginPage);
+        _jLoginPage.jusername.grabFocus();
+    }//GEN-LAST:event_jsigninActionPerformed
     public void switchPanels(JPanel panel) {
         jPanel4.removeAll();
         jPanel4.add(panel);

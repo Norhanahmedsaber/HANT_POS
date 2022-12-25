@@ -9,11 +9,11 @@ public class filterItems {
     public ArrayList<Item> filter(ArrayList<Item> items,String search,String sortitemby , boolean toggle) {
        ArrayList <Item> filtered = search(items, search);
        ArrayList <Item> sorted = Sortby(filtered , sortitemby ,toggle);
-        return sorted;       
+       return sorted;       
     }
     public ArrayList<Item> search(ArrayList<Item> items , String search )
     {
-        ArrayList <Item> itemsAftersearch = new ArrayList<Item>();
+        ArrayList <Item> itemsAftersearch = new ArrayList<>();
         for(int i=0 ; i<items.size();i++)
         {
             boolean name = items.get(i).name.contains(search.toLowerCase().trim());

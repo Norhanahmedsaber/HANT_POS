@@ -1,14 +1,14 @@
 package Gui.Customers;
 
 import Entities.Customer;
+import Entities.Item;
 import Gui.jHomePage;
 import Gui.jMainPage;
 import Services.CustomerServices;
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.UUID;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
 import utils.filterCustomers;
 
 public final class jViewCustomers extends javax.swing.JPanel  {
@@ -25,19 +25,36 @@ public final class jViewCustomers extends javax.swing.JPanel  {
         toggle = false;
         
     }
-    
-     public void changecolor(int x, int y ,int z)
+    public void changecolor(int x, int y ,int z)
     { 
         setBackground(new java.awt.Color(x, y, z));
     }
-    //Make Table unEditable:
-   
     public void renderData() { 
         String[] cols = {"ID","Name", "Email", "PurchaseDate", "PhoneNumber"}; 
         DefaultTableModel model = (DefaultTableModel) jCustomersTable.getModel();
-         model.setColumnIdentifiers(cols);
+        model.setColumnIdentifiers(cols);
         model.setRowCount(0);
-        ArrayList<Customer> customers = _CustomerServices.getAll(); 
+        ArrayList<Customer> customers = _CustomerServices.getAll();
+        allCustomers = customers;
+        if(!customers.isEmpty()) { 
+            String searchName = jSearchName.getText(); 
+            String sortBy = (String) jSortBy.getSelectedItem();
+            ArrayList<Customer> filteredCustomers = _filterCustomers.filter(customers, searchName,sortBy , toggle ); 
+            if(!filteredCustomers.isEmpty()){ 
+                for(int i=0;i<filteredCustomers.size();i++) { 
+                    Customer customer = filteredCustomers.get(i); 
+                    Object[] objs = {customer.id, customer.name, customer.email, customer.purchaseDate, customer.phoneNumber}; 
+                    model.addRow(objs); 
+                } 
+            } 
+        } 
+    }
+    public void updateData() {
+        String[] cols = {"ID","Name", "Email", "PurchaseDate", "PhoneNumber"}; 
+        DefaultTableModel model = (DefaultTableModel) jCustomersTable.getModel();
+        ArrayList<Customer> customers = allCustomers;
+        model.setColumnIdentifiers(cols);
+        model.setRowCount(0);
         if(!customers.isEmpty()) { 
             String searchName = jSearchName.getText(); 
             String sortBy = (String) jSortBy.getSelectedItem();
@@ -56,12 +73,17 @@ public final class jViewCustomers extends javax.swing.JPanel  {
             if(jCustomersTable.getSelectedRow() != -1) {
                 UUID id = (UUID) m.getValueAt(jCustomersTable.getSelectedRow(), 0);
                 String name = (String) m.getValueAt(jCustomersTable.getSelectedRow(), 1);
-               _jHomePage.createLog("Deleted", "Customer", name);
-                m.removeRow(jCustomersTable.getSelectedRow());
-                _CustomerServices.delete(id);
-               jDeleteMessage.setText("Deleted Successfully");
+                int answer = JOptionPane.showConfirmDialog(null, "Are you Sure you want to delete this Customer?");
+                if(answer == JOptionPane.YES_OPTION) {
+                    _jHomePage.createLog("Deleted", "Customer", name);
+                    m.removeRow(jCustomersTable.getSelectedRow());
+                    _CustomerServices.delete(id);
+                    JOptionPane.showMessageDialog(null, "Deleted Successfully!");
+                }
             }else{
-              jDeleteMessage.setText("Error! Please Select Customer");}
+                JOptionPane.showMessageDialog(null, "Please Select a Customer to be Deleted!");
+            }
+            renderData();
     }
     private Customer selectcustomer(){ 
         DefaultTableModel m = (DefaultTableModel) jCustomersTable.getModel();
@@ -91,7 +113,6 @@ public final class jViewCustomers extends javax.swing.JPanel  {
         jToggleSort = new javax.swing.JButton();
         jShowButton = new javax.swing.JButton();
         jAddButton = new javax.swing.JButton();
-        jDeleteMessage = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
 
@@ -103,7 +124,7 @@ public final class jViewCustomers extends javax.swing.JPanel  {
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("search by name :");
+        jLabel2.setText("Search by name :");
 
         jSearchName.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jSearchName.setForeground(new java.awt.Color(0, 31, 78));
@@ -141,20 +162,34 @@ public final class jViewCustomers extends javax.swing.JPanel  {
         jBackButton.setBackground(new java.awt.Color(217, 156, 69));
         jBackButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jBackButton.setForeground(new java.awt.Color(255, 255, 255));
-        jBackButton.setText("Back");
+        jBackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Customers/back.png"))); // NOI18N
+        jBackButton.setMnemonic('b');
+        jBackButton.setText("    Back  ");
         jBackButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBackButtonMouseClicked(evt);
+            }
+        });
+        jBackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBackButtonActionPerformed(evt);
             }
         });
 
         jDeleteButton.setBackground(new java.awt.Color(217, 156, 69));
         jDeleteButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jDeleteButton.setForeground(new java.awt.Color(255, 255, 255));
+        jDeleteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Customers/delete.png"))); // NOI18N
+        jDeleteButton.setMnemonic('d');
         jDeleteButton.setText("Delete");
         jDeleteButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jDeleteButtonMouseClicked(evt);
+            }
+        });
+        jDeleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jDeleteButtonActionPerformed(evt);
             }
         });
 
@@ -202,7 +237,7 @@ public final class jViewCustomers extends javax.swing.JPanel  {
         jToggleSort.setBackground(new java.awt.Color(217, 156, 69));
         jToggleSort.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jToggleSort.setForeground(new java.awt.Color(255, 255, 255));
-        jToggleSort.setText("↓↑\n");
+        jToggleSort.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Customers/sort3.png"))); // NOI18N
         jToggleSort.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jToggleSortMouseClicked(evt);
@@ -212,25 +247,36 @@ public final class jViewCustomers extends javax.swing.JPanel  {
         jShowButton.setBackground(new java.awt.Color(217, 156, 69));
         jShowButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jShowButton.setForeground(new java.awt.Color(255, 255, 255));
+        jShowButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Customers/showCustomer.png"))); // NOI18N
+        jShowButton.setMnemonic('s');
         jShowButton.setText("Show Customer");
         jShowButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jShowButtonMouseClicked(evt);
             }
         });
+        jShowButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jShowButtonActionPerformed(evt);
+            }
+        });
 
         jAddButton.setBackground(new java.awt.Color(217, 156, 69));
         jAddButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jAddButton.setForeground(new java.awt.Color(255, 255, 255));
+        jAddButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Customers/addcustomer.png"))); // NOI18N
+        jAddButton.setMnemonic('a');
         jAddButton.setText("Add Customer");
         jAddButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jAddButtonMouseClicked(evt);
             }
         });
-
-        jDeleteMessage.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jDeleteMessage.setForeground(new java.awt.Color(51, 255, 0));
+        jAddButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAddButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -238,6 +284,14 @@ public final class jViewCustomers extends javax.swing.JPanel  {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(191, 191, 191)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jSearchName, javax.swing.GroupLayout.PREFERRED_SIZE, 503, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jSortBy, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jToggleSort, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,23 +303,14 @@ public final class jViewCustomers extends javax.swing.JPanel  {
                                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jShowButton)
+                                            .addComponent(jDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(191, 191, 191)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSearchName, javax.swing.GroupLayout.PREFERRED_SIZE, 503, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jSortBy, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jToggleSort))
-                            .addComponent(jDeleteMessage, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(jShowButton, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jAddButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -283,13 +328,8 @@ public final class jViewCustomers extends javax.swing.JPanel  {
                         .addComponent(jSortBy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel3))
                     .addComponent(jToggleSort))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jDeleteMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(29, 29, 29)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
@@ -305,12 +345,11 @@ public final class jViewCustomers extends javax.swing.JPanel  {
     private void jBackButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackButtonMouseClicked
         _jHomePage.switchPanels(_jMainPage);
         _jMainPage.jViewcustomers.grabFocus();
-        jDeleteMessage.setText("");
     }//GEN-LAST:event_jBackButtonMouseClicked
 
 
     private void jSearchNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSearchNameKeyTyped
-        renderData();
+        updateData();
     }//GEN-LAST:event_jSearchNameKeyTyped
 
     private void jDeleteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDeleteButtonMouseClicked
@@ -323,24 +362,21 @@ public final class jViewCustomers extends javax.swing.JPanel  {
     private void jToggleSortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleSortMouseClicked
         // TODO add your handling code here:
         toggle = !toggle;
-        renderData();
-        jDeleteMessage.setText("");
+        updateData();
     }//GEN-LAST:event_jToggleSortMouseClicked
 
     private void jShowButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jShowButtonMouseClicked
         Customer customer = selectcustomer();
-        
+
         if (customer!=null)
         { 
             _jViewCustomer._chosencustomer=customer;
             _jViewCustomer.renderData();
             _jHomePage.switchPanels(_jViewCustomer);
             _jViewCustomer.jNameField.grabFocus();
-            jDeleteMessage.setText("");
             _jViewCustomer.jgenderCombobox.setEnabled(false);
-            
         }else {
-            jDeleteMessage.setText("Please Select Customer!");
+            JOptionPane.showMessageDialog(null, "Please Select Customer to View!");
         }
 
     }//GEN-LAST:event_jShowButtonMouseClicked
@@ -351,18 +387,52 @@ public final class jViewCustomers extends javax.swing.JPanel  {
             _jHomePage.switchPanels(_jNewCustomer);
             _jNewCustomer.jNameField.grabFocus();
         }
-        jDeleteMessage.setText("");
     }//GEN-LAST:event_jAddButtonMouseClicked
 
     private void jSearchNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchNameMouseClicked
-       jDeleteMessage.setText("");
+
     }//GEN-LAST:event_jSearchNameMouseClicked
 
     private void jSortByMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSortByMouseClicked
-      jDeleteMessage.setText("");
+  
     }//GEN-LAST:event_jSortByMouseClicked
 
+    private void jBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackButtonActionPerformed
+        _jHomePage.switchPanels(_jMainPage);
+        _jMainPage.jViewcustomers.grabFocus();
+    }//GEN-LAST:event_jBackButtonActionPerformed
+
+    private void jDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDeleteButtonActionPerformed
+        if(_jMainPage.canDeleteCustomer())
+        {
+            deleteCustomer();
+        }
+    }//GEN-LAST:event_jDeleteButtonActionPerformed
+
+    private void jShowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jShowButtonActionPerformed
+        Customer customer = selectcustomer();
+
+        if (customer!=null)
+        { 
+            _jViewCustomer._chosencustomer=customer;
+            _jViewCustomer.renderData();
+            _jHomePage.switchPanels(_jViewCustomer);
+            _jViewCustomer.jNameField.grabFocus();
+            _jViewCustomer.jgenderCombobox.setEnabled(false);
+        }else {
+            JOptionPane.showMessageDialog(null, "Please Select Customer to View!");
+        }
+    }//GEN-LAST:event_jShowButtonActionPerformed
+
+    private void jAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAddButtonActionPerformed
+        if(_jMainPage.canCreateCustomer()) {
+            _jHomePage.switchPanels(_jNewCustomer);
+            _jNewCustomer.jNameField.grabFocus();
+        }
+    }//GEN-LAST:event_jAddButtonActionPerformed
+    
     private boolean toggle ;
+    private ArrayList<Customer> allCustomers;
     public  jViewCustomer _jViewCustomer;
     private final filterCustomers _filterCustomers; 
     private final CustomerServices _CustomerServices; 
@@ -374,7 +444,6 @@ public final class jViewCustomers extends javax.swing.JPanel  {
     private javax.swing.JButton jBackButton;
     private javax.swing.JTable jCustomersTable;
     public javax.swing.JButton jDeleteButton;
-    private javax.swing.JLabel jDeleteMessage;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
