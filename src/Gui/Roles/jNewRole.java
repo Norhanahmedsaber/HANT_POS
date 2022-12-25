@@ -174,7 +174,8 @@ public class jNewRole extends javax.swing.JPanel {
         jBack.setBackground(new java.awt.Color(217, 156, 69));
         jBack.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jBack.setForeground(new java.awt.Color(255, 255, 255));
-        jBack.setText("back");
+        jBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Roles/back.png"))); // NOI18N
+        jBack.setText("    Back   ");
         jBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBackMouseClicked(evt);
@@ -184,7 +185,8 @@ public class jNewRole extends javax.swing.JPanel {
         jDone.setBackground(new java.awt.Color(217, 156, 69));
         jDone.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jDone.setForeground(new java.awt.Color(255, 255, 255));
-        jDone.setText("Done");
+        jDone.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Roles/done1.png"))); // NOI18N
+        jDone.setText("    Done  ");
         jDone.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jDoneMouseClicked(evt);

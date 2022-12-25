@@ -61,7 +61,7 @@ public class BlankPlotChart extends JComponent {
     private BlankPlotChatRender blankPlotChatRender;
 
     public BlankPlotChart() {
-        setBackground(Color.WHITE);
+        setBackground(new java.awt.Color(87, 118, 130));
         setOpaque(false);
         setForeground(new Color(100, 100, 100));
         setBorder(new EmptyBorder(20, 10, 10, 10));

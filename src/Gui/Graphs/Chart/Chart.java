@@ -100,6 +100,8 @@ public class Chart extends javax.swing.JPanel {
         panelLegend.setOpaque(false);
         panelLegend.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 0));
 
+        blankPlotChart.setBackground(new java.awt.Color(87, 118, 130));
+
         jBack.setBackground(new java.awt.Color(217, 156, 69));
         jBack.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jBack.setForeground(new java.awt.Color(255, 255, 255));

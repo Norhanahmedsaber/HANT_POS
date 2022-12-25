@@ -107,10 +107,16 @@ public class jMainPage extends javax.swing.JPanel {
         jNewcustomer.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jNewcustomer.setForeground(new java.awt.Color(255, 255, 255));
         jNewcustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/newcustomer.png"))); // NOI18N
+        jNewcustomer.setMnemonic('c');
         jNewcustomer.setText("         New Customer                ");
         jNewcustomer.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jNewcustomerMouseClicked(evt);
+            }
+        });
+        jNewcustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jNewcustomerActionPerformed(evt);
             }
         });
 
@@ -226,9 +232,9 @@ public class jMainPage extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLog, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jStats, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(114, 114, 114)
-                .addComponent(jLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addGap(111, 111, 111)
+                .addComponent(jLogout)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -331,6 +337,13 @@ public class jMainPage extends javax.swing.JPanel {
     private void jStatsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jStatsMouseClicked
         _jHomePage.switchPanels(_jViewStatistics);
     }//GEN-LAST:event_jStatsMouseClicked
+
+    private void jNewcustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNewcustomerActionPerformed
+        if(canCreateCustomer()) {
+            _jHomePage.switchPanels(_jNewCustomer);
+            _jNewCustomer.jNameField.grabFocus();
+        }
+    }//GEN-LAST:event_jNewcustomerActionPerformed
     
     
     
