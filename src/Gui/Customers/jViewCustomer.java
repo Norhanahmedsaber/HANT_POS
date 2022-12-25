@@ -404,7 +404,8 @@ public class jViewCustomer extends javax.swing.JPanel {
         jShowpurchases.setBackground(new java.awt.Color(217, 156, 69));
         jShowpurchases.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jShowpurchases.setForeground(new java.awt.Color(255, 255, 255));
-        jShowpurchases.setText("Show purchases");
+        jShowpurchases.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Customers/showPurchases.png"))); // NOI18N
+        jShowpurchases.setText(" Show purchases");
         jShowpurchases.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jShowpurchasesMouseClicked(evt);
@@ -467,7 +468,8 @@ public class jViewCustomer extends javax.swing.JPanel {
         jUpdate.setBackground(new java.awt.Color(217, 156, 69));
         jUpdate.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jUpdate.setForeground(new java.awt.Color(255, 255, 255));
-        jUpdate.setText("update");
+        jUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Customers/update.png"))); // NOI18N
+        jUpdate.setText("   Update");
         jUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jUpdateMouseClicked(evt);
@@ -477,7 +479,8 @@ public class jViewCustomer extends javax.swing.JPanel {
         jBack.setBackground(new java.awt.Color(217, 156, 69));
         jBack.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jBack.setForeground(new java.awt.Color(255, 255, 255));
-        jBack.setText("Back");
+        jBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Customers/back.png"))); // NOI18N
+        jBack.setText("     Back  ");
         jBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBackMouseClicked(evt);
@@ -487,7 +490,8 @@ public class jViewCustomer extends javax.swing.JPanel {
         jCancel.setBackground(new java.awt.Color(217, 156, 69));
         jCancel.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jCancel.setForeground(new java.awt.Color(255, 255, 255));
-        jCancel.setText("Cancel");
+        jCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Customers/cancel1.png"))); // NOI18N
+        jCancel.setText("   Cancel ");
         jCancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jCancelMouseClicked(evt);
@@ -501,7 +505,8 @@ public class jViewCustomer extends javax.swing.JPanel {
         jEdit.setBackground(new java.awt.Color(217, 156, 69));
         jEdit.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jEdit.setForeground(new java.awt.Color(255, 255, 255));
-        jEdit.setText("Edit");
+        jEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Customers/editCustomer.png"))); // NOI18N
+        jEdit.setText("     Edit   ");
         jEdit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jEditMouseClicked(evt);
@@ -602,7 +607,7 @@ public class jViewCustomer extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jAgeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jgenderCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -615,8 +620,8 @@ public class jViewCustomer extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jShowpurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                    .addComponent(jShowpurchases))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBack, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)

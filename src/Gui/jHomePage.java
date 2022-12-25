@@ -55,7 +55,7 @@ public class jHomePage extends javax.swing.JFrame {
         jsignin.setBackground(new java.awt.Color(217, 156, 69));
         jsignin.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jsignin.setForeground(new java.awt.Color(255, 255, 255));
-        jsignin.setText("Sign in");
+        jsignin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/enter.png"))); // NOI18N
         jsignin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jsigninMouseClicked(evt);
@@ -71,17 +71,17 @@ public class jHomePage extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(220, 220, 220)
-                .addComponent(jsignin, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(220, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(518, Short.MAX_VALUE)
+                .addComponent(jsignin, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(241, 241, 241)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(505, Short.MAX_VALUE)
                 .addComponent(jsignin, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(266, Short.MAX_VALUE))
+                .addGap(40, 40, 40))
         );
 
         jPanel4.add(jPanel1, "card2");
