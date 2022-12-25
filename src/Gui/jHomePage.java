@@ -16,8 +16,17 @@ public class jHomePage extends javax.swing.JFrame {
         loginUser = null;
         _LogServices = new LogServices();
         Home();
-        //_jLoginPage._jMainPage._jViewStatistics.allDays = _jLoginPage._jMainPage._jViewStatistics.fetchData();
+        Thread thread = new Thread(new Runnable() {
+            public void run() {
+                while(true) {
+                    _jLoginPage._jMainPage._jViewStatistics.allDays = _jLoginPage._jMainPage._jViewStatistics.fetchData();
+                }
+            }
+        });
+        thread.start();
     }
+    
+
     public void createLog(String action, String actedOn, String actedOnName ){
         Log log =new Log();
         log.id= UUID.randomUUID();
@@ -28,6 +37,14 @@ public class jHomePage extends javax.swing.JFrame {
         log.actedOnName = actedOnName;
         log.date= new Date(); 
         _LogServices.create(log);
+        Thread thread = new Thread(new Runnable() {
+            public void run() {
+                while(true) {
+                    _jLoginPage._jMainPage._jViewStatistics.allDays = _jLoginPage._jMainPage._jViewStatistics.fetchData();
+                }
+            }
+        });
+        thread.start();
         
     }
     @SuppressWarnings("unchecked")
@@ -101,6 +118,7 @@ public class jHomePage extends javax.swing.JFrame {
     private void jsigninMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jsigninMouseClicked
         switchPanels(_jLoginPage);
         _jLoginPage.jusername.grabFocus();
+        
     }//GEN-LAST:event_jsigninMouseClicked
 
     private void jsigninKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jsigninKeyPressed
