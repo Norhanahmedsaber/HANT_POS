@@ -14,4 +14,8 @@ public class CategoryInfo {
     public int NumberOfItemsThisWeek;
     public int NumberOfItemsThisMonth;
     public int NumberOfItemsThisYear;
+    public int incomeToday;
+    public int incomeThisWeek;
+    public int incomeThisMonth;
+    public int incomeThisYear;
 }

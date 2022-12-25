@@ -92,6 +92,22 @@ public class jViewStatistics extends javax.swing.JPanel {
         chart.addData(new ModelChart(cats.get(4).name, getCatInfo(4)));
         chart.start();
     }
+    public void showCategoryProfit() {
+        chart2.clear();
+        chart2.addLegend("Profit Today", new Color(189, 135, 245));
+        chart2.addLegend("Profit This Week", new Color(135, 189, 135));
+        chart2.addLegend("Profit This Month", new Color(245, 189, 135));
+        chart2.addLegend("Profit This Year", new Color(189, 245, 135));
+        chart2.addData(new ModelChart(cats.get(0).name, getCatInfoProfit(0)));
+        chart2.addData(new ModelChart(cats.get(1).name, getCatInfoProfit(1)));
+        chart2.addData(new ModelChart(cats.get(2).name, getCatInfoProfit(2)));
+        chart2.addData(new ModelChart(cats.get(3).name, getCatInfoProfit(3)));
+        chart2.addData(new ModelChart(cats.get(4).name, getCatInfoProfit(4)));
+        chart2.start();
+    }
+    public int[] getCatInfoProfit(int x) {
+        return new int[] { cats.get(x).incomeToday, cats.get(x).incomeThisWeek, cats.get(x).incomeThisMonth, cats.get(x).incomeThisYear };
+    }
     public int[] getCatInfo(int x) {
         return new int[] { cats.get(x).NumberOfItemsToday, cats.get(x).NumberOfItemsThisWeek, cats.get(x).NumberOfItemsThisMonth, cats.get(x).NumberOfItemsThisYear };
     }
@@ -106,6 +122,8 @@ public class jViewStatistics extends javax.swing.JPanel {
         jSales = new javax.swing.JButton();
         jCategories = new javax.swing.JButton();
         jUsers = new javax.swing.JButton();
+
+        setPreferredSize(new java.awt.Dimension(750, 750));
 
         jBack.setBackground(new java.awt.Color(217, 156, 69));
         jBack.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
@@ -194,7 +212,7 @@ public class jViewStatistics extends javax.swing.JPanel {
                 .addComponent(jCategories, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 419, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 412, Short.MAX_VALUE)
                 .addComponent(jBack)
                 .addContainerGap())
         );
@@ -212,6 +230,7 @@ public class jViewStatistics extends javax.swing.JPanel {
 
     private void jSalesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSalesMouseClicked
         chart = new Chart(_jHomePage, this);
+        where = "sale";
         _jHomePage.switchPanels(chart);
         showItemStats();
         chart.jProfit.setSelected(false);
@@ -221,6 +240,7 @@ public class jViewStatistics extends javax.swing.JPanel {
     private void jSalesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSalesKeyPressed
         if (evt.getKeyCode()==KeyEvent.VK_ENTER){
             chart = new Chart(_jHomePage, this);
+            where = "sale";
             _jHomePage.switchPanels(chart);
             showItemStats();
             chart.jProfit.setSelected(false);
@@ -230,19 +250,21 @@ public class jViewStatistics extends javax.swing.JPanel {
 
     private void jCategoriesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCategoriesMouseClicked
         chart = new Chart(_jHomePage, this);
+        where = "cat";
         _jHomePage.switchPanels(chart);
         showCategoriesStates();
-        chart.jProfit.setVisible(false);
-        chart.jItems_Customers.setVisible(false);
+        chart.jProfit.setSelected(false);
+        chart.jItems_Customers.setSelected(true);
     }//GEN-LAST:event_jCategoriesMouseClicked
 
     private void jCategoriesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCategoriesKeyPressed
         if (evt.getKeyCode()==KeyEvent.VK_ENTER){
             chart = new Chart(_jHomePage, this);
+            where = "cat";
             _jHomePage.switchPanels(chart);
             showCategoriesStates();
-            chart.jProfit.setVisible(false);
-            chart.jItems_Customers.setVisible(false);
+            chart.jProfit.setSelected(false);
+            chart.jItems_Customers.setSelected(true);
         }
     }//GEN-LAST:event_jCategoriesKeyPressed
 
@@ -266,19 +288,36 @@ public class jViewStatistics extends javax.swing.JPanel {
         return alldays;
     }
     public void profitClicked() {
-        chart2 = new Chart(_jHomePage, this);
-        _jHomePage.switchPanels(chart2);
-        showDailyProfit();
-        chart2.jProfit.setSelected(true);
-        chart2.jItems_Customers.setSelected(false);
+        if(where.equals("sale")) {
+            chart2 = new Chart(_jHomePage, this);
+            _jHomePage.switchPanels(chart2);
+            showDailyProfit();
+            chart2.jProfit.setSelected(true);
+            chart2.jItems_Customers.setSelected(false);
+        }else if(where.equals("cat")) {
+            chart2 = new Chart(_jHomePage, this);
+            _jHomePage.switchPanels(chart2);
+            showCategoryProfit();
+            chart2.jProfit.setSelected(true);
+            chart2.jItems_Customers.setSelected(false);
+        }
     }
     public void item_customerClicked() {
-        chart = new Chart(_jHomePage, this);
-        _jHomePage.switchPanels(chart);
-        showItemStats();
-        chart.jProfit.setSelected(false);
-        chart.jItems_Customers.setSelected(true);
+        if(where.equals("sale")) {
+            chart = new Chart(_jHomePage, this);
+            _jHomePage.switchPanels(chart);
+            showItemStats();
+            chart.jProfit.setSelected(false);
+            chart.jItems_Customers.setSelected(true);
+        }else if(where.equals("cat")) {
+            chart = new Chart(_jHomePage, this);
+            _jHomePage.switchPanels(chart);
+            showCategoriesStates();
+            chart.jProfit.setSelected(false);
+            chart.jItems_Customers.setSelected(true);
+        }
     }
+    public String where;
     private ItemServices _ItemServices;
     public ArrayList<CategoryInfo> cats;
     public Chart chart2;

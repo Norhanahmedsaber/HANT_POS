@@ -10,8 +10,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.time.YearMonth;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
@@ -190,6 +192,10 @@ public class ItemServices implements IItemServices {
             bean.NumberOfItemsThisWeek = 0;
             bean.NumberOfItemsThisYear = 0;
             bean.NumberOfItemsToday = 0;
+            bean.incomeThisMonth = 0;
+            bean.incomeThisWeek = 0;
+            bean.incomeThisYear = 0;
+            bean.incomeToday = 0;
             cats.add(bean);
         }
         sql = "SELECT id, purchaseDate FROM customers";
@@ -210,6 +216,10 @@ public class ItemServices implements IItemServices {
                                     cat.NumberOfItemsThisMonth++;
                                     cat.NumberOfItemsThisWeek++;
                                     cat.NumberOfItemsThisYear++;
+                                    cat.incomeThisMonth += item.price;
+                                    cat.incomeThisWeek += item.price;
+                                    cat.incomeThisYear += item.price;
+                                    cat.incomeToday += item.price;
                                 }
                             }
                         }
@@ -220,6 +230,9 @@ public class ItemServices implements IItemServices {
                                     cat.NumberOfItemsThisMonth++;
                                     cat.NumberOfItemsThisWeek++;
                                     cat.NumberOfItemsThisYear++;
+                                    cat.incomeThisMonth += item.price;
+                                    cat.incomeThisWeek += item.price;
+                                    cat.incomeThisYear += item.price;
                                 }
                             }
                         }
@@ -229,6 +242,8 @@ public class ItemServices implements IItemServices {
                                 if (item.category.equals(cat.name)) {
                                     cat.NumberOfItemsThisMonth++;
                                     cat.NumberOfItemsThisYear++;
+                                    cat.incomeThisMonth += item.price;
+                                    cat.incomeThisYear += item.price;
                                 }
                             }
                         }
@@ -237,6 +252,7 @@ public class ItemServices implements IItemServices {
                             for(CategoryInfo cat : cats) {
                                 if (item.category.equals(cat.name)) {
                                     cat.NumberOfItemsThisYear++;
+                                    cat.incomeThisYear += item.price;
                                 }
                             }
                         }
@@ -251,30 +267,36 @@ public class ItemServices implements IItemServices {
         return cats;
     }
     private static boolean isDateToday(Date date) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");  
-        LocalDateTime now = LocalDateTime.now();  
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-        return dtf.format(now).equals(dateFormat.format(date)); 
+        LocalDate currentDate = LocalDate.now();
+        LocalDate currentDateMinus1Day = currentDate.minusDays(1);
+        LocalDate ldate = Instant.ofEpochMilli(date.getTime())
+      .atZone(ZoneId.systemDefault())
+      .toLocalDate();
+        return !ldate.isBefore(currentDateMinus1Day);
     }
     private static boolean isDateInCurrentWeek(Date date) {
-        Calendar currentCalendar = Calendar.getInstance();
-        int week = currentCalendar.get(Calendar.WEEK_OF_YEAR);
-        int year = currentCalendar.get(Calendar.YEAR);
-        Calendar targetCalendar = Calendar.getInstance();
-        targetCalendar.setTime(date);
-        int targetWeek = targetCalendar.get(Calendar.WEEK_OF_YEAR);
-        int targetYear = targetCalendar.get(Calendar.YEAR);
-        return week == targetWeek && year == targetYear;
+        LocalDate currentDate = LocalDate.now();
+        LocalDate currentDateMinus1Week = currentDate.minusWeeks(1);
+        LocalDate ldate = Instant.ofEpochMilli(date.getTime())
+      .atZone(ZoneId.systemDefault())
+      .toLocalDate();
+        return !ldate.isBefore(currentDateMinus1Week);
     }
     private static boolean isDateInCurrentMonth(Date date) {
         LocalDate currentDate = LocalDate.now();
         LocalDate currentDateMinus1Months = currentDate.minusMonths(1);
-        return !currentDate.isBefore(currentDateMinus1Months);
+        LocalDate ldate = Instant.ofEpochMilli(date.getTime())
+      .atZone(ZoneId.systemDefault())
+      .toLocalDate();
+        return !ldate.isBefore(currentDateMinus1Months);
     }
     private static boolean isDateInCurrentYear(Date date) {
         LocalDate currentDate = LocalDate.now();
-        LocalDate currentDateMinus12Months = currentDate.minusMonths(12);
-        return !currentDate.isBefore(currentDateMinus12Months);
+        LocalDate currentDateMinus1Year = currentDate.minusYears(1);
+        LocalDate ldate = Instant.ofEpochMilli(date.getTime())
+      .atZone(ZoneId.systemDefault())
+      .toLocalDate();
+        return !ldate.isBefore(currentDateMinus1Year);
     }
     
 }
