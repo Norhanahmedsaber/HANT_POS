@@ -4,6 +4,7 @@ import Entities.Role;
 import Gui.jHomePage;
 import Gui.jMainPage;
 import Services.RoleServices;
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JPanel;
@@ -18,6 +19,11 @@ public class jViewRoles extends javax.swing.JPanel {
         _RoleServices = new RoleServices();
         _jNewRole = new jNewRole(jhp, this);
         _filterRoles = new filterRoles();
+    }
+    
+     public void changecolor(int x, int y ,int z)
+    { 
+        setBackground(new java.awt.Color(x, y, z));
     }
     public void clearViewRoles() {
         jSearch.setText("");

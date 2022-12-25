@@ -3,6 +3,7 @@ package Gui;
 import Entities.Log;
 import Entities.User;
 import Services.LogServices;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.util.Date;
@@ -17,6 +18,10 @@ public class jHomePage extends javax.swing.JFrame {
         _LogServices = new LogServices();
         Home();
        
+    }
+    public void changecolor(int x, int y ,int z)
+    { 
+        setBackground(new java.awt.Color(x, y, z));
     }
     public void createLog(String action, String actedOn, String actedOnName ){
         Log log =new Log();

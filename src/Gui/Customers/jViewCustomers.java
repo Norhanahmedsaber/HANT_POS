@@ -25,6 +25,11 @@ public final class jViewCustomers extends javax.swing.JPanel  {
         toggle = false;
         
     }
+    
+     public void changecolor(int x, int y ,int z)
+    { 
+        setBackground(new java.awt.Color(x, y, z));
+    }
     //Make Table unEditable:
    
     public void renderData() { 
@@ -225,7 +230,7 @@ public final class jViewCustomers extends javax.swing.JPanel  {
         });
 
         jDeleteMessage.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jDeleteMessage.setForeground(new java.awt.Color(0, 31, 78));
+        jDeleteMessage.setForeground(new java.awt.Color(51, 255, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -324,7 +329,7 @@ public final class jViewCustomers extends javax.swing.JPanel  {
 
     private void jShowButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jShowButtonMouseClicked
         Customer customer = selectcustomer();
-
+        
         if (customer!=null)
         { 
             _jViewCustomer._chosencustomer=customer;
@@ -333,6 +338,7 @@ public final class jViewCustomers extends javax.swing.JPanel  {
             _jViewCustomer.jNameField.grabFocus();
             jDeleteMessage.setText("");
             _jViewCustomer.jgenderCombobox.setEnabled(false);
+            
         }else {
             jDeleteMessage.setText("Please Select Customer!");
         }

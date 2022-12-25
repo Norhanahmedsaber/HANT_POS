@@ -5,6 +5,7 @@ import Gui.Items.jChooseItem;
 import Gui.jHomePage;
 import Gui.jMainPage;
 import Services.CustomerServices;
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.text.Format;
 import java.text.SimpleDateFormat;
@@ -25,6 +26,11 @@ public class jViewCustomer extends javax.swing.JPanel {
         jUpdatedSuccesfully.setText("");
         _jChooseItem =new jChooseItem(jhp, this);
         isEditing = false;
+        
+    }
+    public void changecolor(int x, int y ,int z)
+    { 
+        setBackground(new java.awt.Color(x, y, z));
     }
     public boolean checkAllValidations(){
         if(!isValidName()){
@@ -879,7 +885,7 @@ public class jViewCustomer extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     public javax.swing.JTextField jNameField;
     private javax.swing.JTextField jNationalIdField;
-    private javax.swing.JPanel jPanel1;
+    public javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jPhoneNoField;
     private javax.swing.JTextField jPurchaseDateField;
     private javax.swing.JButton jShowpurchases;

@@ -3,6 +3,7 @@ import Entities.Item;
 import Gui.jHomePage;
 import Gui.jMainPage;
 import Services.ItemServices;
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.Date;
 import java.util.UUID;
@@ -15,6 +16,11 @@ public class jNewItem extends javax.swing.JPanel {
         _jHomePage = jhp;
         _parent = parent;
         _itemServices = new ItemServices();
+    }
+    
+      public void changecolor(int x, int y ,int z)
+    { 
+        setBackground(new java.awt.Color(x, y, z));
     }
     public void clearNewitemPage(){
         jNameField.setText("");

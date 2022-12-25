@@ -3,6 +3,7 @@ import Entities.Role;
 import Gui.jHomePage;
 import Gui.jMainPage;
 import Services.RoleServices;
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import javax.swing.JPanel;
 public class jNewRole extends javax.swing.JPanel {
@@ -13,6 +14,11 @@ public class jNewRole extends javax.swing.JPanel {
         _jHomePage=jhp;
         _RoleServices =new RoleServices();
          _parent= parent;  
+    }
+   
+   public void changecolor(int x, int y ,int z)
+    { 
+        setBackground(new java.awt.Color(x, y, z));
     }
    public void clearCreateRolePage(){
         jRoleNameField.setText("");
