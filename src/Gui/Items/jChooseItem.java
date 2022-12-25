@@ -265,20 +265,34 @@ public class jChooseItem extends javax.swing.JPanel {
         jBack.setBackground(new java.awt.Color(217, 156, 69));
         jBack.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jBack.setForeground(new java.awt.Color(255, 255, 255));
-        jBack.setText("Back");
+        jBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Items/back.png"))); // NOI18N
+        jBack.setMnemonic('b');
+        jBack.setText("   Back  ");
         jBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBackMouseClicked(evt);
+            }
+        });
+        jBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBackActionPerformed(evt);
             }
         });
 
         jAdd.setBackground(new java.awt.Color(217, 156, 69));
         jAdd.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jAdd.setForeground(new java.awt.Color(255, 255, 255));
-        jAdd.setText("ADD");
+        jAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Items/addItem1.png"))); // NOI18N
+        jAdd.setMnemonic('a');
+        jAdd.setText("  ADD       ");
         jAdd.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jAddMouseClicked(evt);
+            }
+        });
+        jAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAddActionPerformed(evt);
             }
         });
 
@@ -299,20 +313,34 @@ public class jChooseItem extends javax.swing.JPanel {
         jRemove.setBackground(new java.awt.Color(217, 156, 69));
         jRemove.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jRemove.setForeground(new java.awt.Color(255, 255, 255));
-        jRemove.setText("Remove");
+        jRemove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Items/delete.png"))); // NOI18N
+        jRemove.setMnemonic('r');
+        jRemove.setText("   Remove  ");
         jRemove.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jRemoveMouseClicked(evt);
+            }
+        });
+        jRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRemoveActionPerformed(evt);
             }
         });
 
         jDone.setBackground(new java.awt.Color(217, 156, 69));
         jDone.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jDone.setForeground(new java.awt.Color(255, 255, 255));
-        jDone.setText("Done");
+        jDone.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Items/done1.png"))); // NOI18N
+        jDone.setMnemonic('d');
+        jDone.setText("   Done  ");
         jDone.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jDoneMouseClicked(evt);
+            }
+        });
+        jDone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jDoneActionPerformed(evt);
             }
         });
 
@@ -322,30 +350,51 @@ public class jChooseItem extends javax.swing.JPanel {
         jedit.setBackground(new java.awt.Color(217, 156, 69));
         jedit.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jedit.setForeground(new java.awt.Color(255, 255, 255));
-        jedit.setText("Edit");
+        jedit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Items/editing.png"))); // NOI18N
+        jedit.setMnemonic('e');
+        jedit.setText("  Edit    ");
         jedit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jeditMouseClicked(evt);
+            }
+        });
+        jedit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jeditActionPerformed(evt);
             }
         });
 
         jupdate.setBackground(new java.awt.Color(217, 156, 69));
         jupdate.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jupdate.setForeground(new java.awt.Color(255, 255, 255));
-        jupdate.setText("Update");
+        jupdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Items/UpdateItem.png"))); // NOI18N
+        jupdate.setMnemonic('u');
+        jupdate.setText("   Update  ");
         jupdate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jupdateMouseClicked(evt);
+            }
+        });
+        jupdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jupdateActionPerformed(evt);
             }
         });
 
         jcancel.setBackground(new java.awt.Color(217, 156, 69));
         jcancel.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jcancel.setForeground(new java.awt.Color(255, 255, 255));
-        jcancel.setText("Cancel");
+        jcancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Items/cancel1.png"))); // NOI18N
+        jcancel.setMnemonic('c');
+        jcancel.setText("   Cancel    ");
         jcancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jcancelMouseClicked(evt);
+            }
+        });
+        jcancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcancelActionPerformed(evt);
             }
         });
 
@@ -434,7 +483,7 @@ public class jChooseItem extends javax.swing.JPanel {
         jToggleSort.setBackground(new java.awt.Color(217, 156, 69));
         jToggleSort.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jToggleSort.setForeground(new java.awt.Color(255, 255, 255));
-        jToggleSort.setText("↓↑\n");
+        jToggleSort.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Items/sort3.png"))); // NOI18N
         jToggleSort.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jToggleSortMouseClicked(evt);
@@ -475,10 +524,10 @@ public class jChooseItem extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jError, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(jItemsCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jToggleSort))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jItemsCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jToggleSort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addComponent(jSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 89, Short.MAX_VALUE)))
                 .addGap(32, 32, 32))
@@ -553,6 +602,38 @@ public class jChooseItem extends javax.swing.JPanel {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_jToggleSortMouseClicked
+
+    private void jcancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcancelActionPerformed
+        setDefault();
+        Cancel();
+    }//GEN-LAST:event_jcancelActionPerformed
+
+    private void jeditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jeditActionPerformed
+        setDefault();
+       edit();
+    }//GEN-LAST:event_jeditActionPerformed
+
+    private void jupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jupdateActionPerformed
+        updateCustomer();
+        setDefault();
+        update();
+    }//GEN-LAST:event_jupdateActionPerformed
+
+    private void jBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackActionPerformed
+        _jHomePage.switchPanels(_parent);
+    }//GEN-LAST:event_jBackActionPerformed
+
+    private void jRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRemoveActionPerformed
+       removeItemFromPreviewTable();
+    }//GEN-LAST:event_jRemoveActionPerformed
+
+    private void jDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDoneActionPerformed
+        done();
+    }//GEN-LAST:event_jDoneActionPerformed
+
+    private void jAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAddActionPerformed
+        addItemToPreviewTable();
+    }//GEN-LAST:event_jAddActionPerformed
      private final JPanel _parent;
     private final ItemServices _ItemServices;
     private final CustomerServices _CustomerServices; 

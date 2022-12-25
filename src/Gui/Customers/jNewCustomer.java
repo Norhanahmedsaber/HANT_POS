@@ -430,10 +430,16 @@ public class jNewCustomer extends javax.swing.JPanel {
         jAddCustomer.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jAddCustomer.setForeground(new java.awt.Color(255, 255, 255));
         jAddCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Customers/addcustomer.png"))); // NOI18N
+        jAddCustomer.setMnemonic('a');
         jAddCustomer.setText("Add Customer");
         jAddCustomer.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jAddCustomerMouseClicked(evt);
+            }
+        });
+        jAddCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAddCustomerActionPerformed(evt);
             }
         });
 
@@ -441,10 +447,16 @@ public class jNewCustomer extends javax.swing.JPanel {
         jChooseItem.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jChooseItem.setForeground(new java.awt.Color(255, 255, 255));
         jChooseItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Customers/chooseItem.png"))); // NOI18N
+        jChooseItem.setMnemonic('c');
         jChooseItem.setText("      Choose Item    ");
         jChooseItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jChooseItemMouseClicked(evt);
+            }
+        });
+        jChooseItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jChooseItemActionPerformed(evt);
             }
         });
 
@@ -452,10 +464,16 @@ public class jNewCustomer extends javax.swing.JPanel {
         jBack.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jBack.setForeground(new java.awt.Color(255, 255, 255));
         jBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Customers/back.png"))); // NOI18N
+        jBack.setMnemonic('b');
         jBack.setText("    Back  ");
         jBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBackMouseClicked(evt);
+            }
+        });
+        jBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBackActionPerformed(evt);
             }
         });
 
@@ -595,7 +613,7 @@ public class jNewCustomer extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jAddCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBack, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -713,6 +731,21 @@ public class jNewCustomer extends javax.swing.JPanel {
     private void jAgeFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAgeFieldMouseClicked
           
     }//GEN-LAST:event_jAgeFieldMouseClicked
+
+    private void jChooseItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jChooseItemActionPerformed
+        _jChooseItem.resetPanel();
+        _jChooseItem.renderData();
+        _jHomePage.switchPanels(_jChooseItem);
+        _jChooseItem.jSearch.grabFocus();
+    }//GEN-LAST:event_jChooseItemActionPerformed
+
+    private void jBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackActionPerformed
+        BackButton();
+    }//GEN-LAST:event_jBackActionPerformed
+
+    private void jAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAddCustomerActionPerformed
+        addCustomerButton(); 
+    }//GEN-LAST:event_jAddCustomerActionPerformed
 
     private final JPanel _parent;
     private final CustomerServices _CustomerServices;

@@ -122,7 +122,7 @@ public final class jViewCustomers extends javax.swing.JPanel  {
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("search by name :");
+        jLabel2.setText("Search by name :");
 
         jSearchName.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jSearchName.setForeground(new java.awt.Color(0, 31, 78));
@@ -161,10 +161,16 @@ public final class jViewCustomers extends javax.swing.JPanel  {
         jBackButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jBackButton.setForeground(new java.awt.Color(255, 255, 255));
         jBackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Customers/back.png"))); // NOI18N
+        jBackButton.setMnemonic('b');
         jBackButton.setText("    Back  ");
         jBackButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBackButtonMouseClicked(evt);
+            }
+        });
+        jBackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBackButtonActionPerformed(evt);
             }
         });
 
@@ -172,10 +178,16 @@ public final class jViewCustomers extends javax.swing.JPanel  {
         jDeleteButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jDeleteButton.setForeground(new java.awt.Color(255, 255, 255));
         jDeleteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Customers/delete.png"))); // NOI18N
+        jDeleteButton.setMnemonic('d');
         jDeleteButton.setText("Delete");
         jDeleteButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jDeleteButtonMouseClicked(evt);
+            }
+        });
+        jDeleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jDeleteButtonActionPerformed(evt);
             }
         });
 
@@ -223,7 +235,7 @@ public final class jViewCustomers extends javax.swing.JPanel  {
         jToggleSort.setBackground(new java.awt.Color(217, 156, 69));
         jToggleSort.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jToggleSort.setForeground(new java.awt.Color(255, 255, 255));
-        jToggleSort.setText("↓↑\n");
+        jToggleSort.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Customers/sort3.png"))); // NOI18N
         jToggleSort.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jToggleSortMouseClicked(evt);
@@ -234,10 +246,16 @@ public final class jViewCustomers extends javax.swing.JPanel  {
         jShowButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jShowButton.setForeground(new java.awt.Color(255, 255, 255));
         jShowButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Customers/showCustomer.png"))); // NOI18N
+        jShowButton.setMnemonic('s');
         jShowButton.setText("Show Customer");
         jShowButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jShowButtonMouseClicked(evt);
+            }
+        });
+        jShowButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jShowButtonActionPerformed(evt);
             }
         });
 
@@ -245,10 +263,16 @@ public final class jViewCustomers extends javax.swing.JPanel  {
         jAddButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jAddButton.setForeground(new java.awt.Color(255, 255, 255));
         jAddButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Customers/addcustomer.png"))); // NOI18N
+        jAddButton.setMnemonic('a');
         jAddButton.setText("Add Customer");
         jAddButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jAddButtonMouseClicked(evt);
+            }
+        });
+        jAddButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAddButtonActionPerformed(evt);
             }
         });
 
@@ -370,6 +394,40 @@ public final class jViewCustomers extends javax.swing.JPanel  {
     private void jSortByMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSortByMouseClicked
   
     }//GEN-LAST:event_jSortByMouseClicked
+
+    private void jBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackButtonActionPerformed
+        _jHomePage.switchPanels(_jMainPage);
+        _jMainPage.jViewcustomers.grabFocus();
+    }//GEN-LAST:event_jBackButtonActionPerformed
+
+    private void jDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDeleteButtonActionPerformed
+        if(_jMainPage.canDeleteCustomer())
+        {
+            deleteCustomer();
+        }
+    }//GEN-LAST:event_jDeleteButtonActionPerformed
+
+    private void jShowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jShowButtonActionPerformed
+        Customer customer = selectcustomer();
+
+        if (customer!=null)
+        { 
+            _jViewCustomer._chosencustomer=customer;
+            _jViewCustomer.renderData();
+            _jHomePage.switchPanels(_jViewCustomer);
+            _jViewCustomer.jNameField.grabFocus();
+            _jViewCustomer.jgenderCombobox.setEnabled(false);
+        }else {
+            JOptionPane.showMessageDialog(null, "Please Select Customer to View!");
+        }
+    }//GEN-LAST:event_jShowButtonActionPerformed
+
+    private void jAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAddButtonActionPerformed
+        if(_jMainPage.canCreateCustomer()) {
+            _jHomePage.switchPanels(_jNewCustomer);
+            _jNewCustomer.jNameField.grabFocus();
+        }
+    }//GEN-LAST:event_jAddButtonActionPerformed
     
     private boolean toggle ;
     private ArrayList<Customer> allCustomers;

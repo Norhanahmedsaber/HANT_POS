@@ -405,10 +405,16 @@ public class jViewCustomer extends javax.swing.JPanel {
         jShowpurchases.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jShowpurchases.setForeground(new java.awt.Color(255, 255, 255));
         jShowpurchases.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Customers/showPurchases.png"))); // NOI18N
+        jShowpurchases.setMnemonic('s');
         jShowpurchases.setText(" Show purchases");
         jShowpurchases.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jShowpurchasesMouseClicked(evt);
+            }
+        });
+        jShowpurchases.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jShowpurchasesActionPerformed(evt);
             }
         });
 
@@ -469,10 +475,16 @@ public class jViewCustomer extends javax.swing.JPanel {
         jUpdate.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jUpdate.setForeground(new java.awt.Color(255, 255, 255));
         jUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Customers/update.png"))); // NOI18N
+        jUpdate.setMnemonic('u');
         jUpdate.setText("   Update");
         jUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jUpdateMouseClicked(evt);
+            }
+        });
+        jUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jUpdateActionPerformed(evt);
             }
         });
 
@@ -480,10 +492,16 @@ public class jViewCustomer extends javax.swing.JPanel {
         jBack.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jBack.setForeground(new java.awt.Color(255, 255, 255));
         jBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Customers/back.png"))); // NOI18N
+        jBack.setMnemonic('b');
         jBack.setText("     Back  ");
         jBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBackMouseClicked(evt);
+            }
+        });
+        jBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBackActionPerformed(evt);
             }
         });
 
@@ -491,10 +509,16 @@ public class jViewCustomer extends javax.swing.JPanel {
         jCancel.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jCancel.setForeground(new java.awt.Color(255, 255, 255));
         jCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Customers/cancel1.png"))); // NOI18N
+        jCancel.setMnemonic('c');
         jCancel.setText("   Cancel ");
         jCancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jCancelMouseClicked(evt);
+            }
+        });
+        jCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCancelActionPerformed(evt);
             }
         });
 
@@ -506,10 +530,16 @@ public class jViewCustomer extends javax.swing.JPanel {
         jEdit.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jEdit.setForeground(new java.awt.Color(255, 255, 255));
         jEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Customers/editCustomer.png"))); // NOI18N
+        jEdit.setMnemonic('e');
         jEdit.setText("     Edit   ");
         jEdit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jEditMouseClicked(evt);
+            }
+        });
+        jEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jEditActionPerformed(evt);
             }
         });
 
@@ -735,6 +765,39 @@ public class jViewCustomer extends javax.swing.JPanel {
             updateButton();
         }
     }//GEN-LAST:event_jNationalIdFieldKeyPressed
+
+    private void jShowpurchasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jShowpurchasesActionPerformed
+        _jChooseItem.renderData();
+        _jHomePage.switchPanels(_jChooseItem);
+    }//GEN-LAST:event_jShowpurchasesActionPerformed
+
+    private void jBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackActionPerformed
+        if(!isEditing) {
+            _jViewCustomers.renderData();
+            _jHomePage.switchPanels(_jViewCustomers);
+            _jViewCustomers.jSearchName.grabFocus();
+        }
+    }//GEN-LAST:event_jBackActionPerformed
+
+    private void jCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCancelActionPerformed
+        if(isEditing) {
+            cancelButton();
+        }
+    }//GEN-LAST:event_jCancelActionPerformed
+
+    private void jUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUpdateActionPerformed
+        if(isEditing) {
+            updateButton();
+        }
+    }//GEN-LAST:event_jUpdateActionPerformed
+
+    private void jEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEditActionPerformed
+        if(!isEditing) {
+            if(_jMainPage.canUpdateCustomer()) {
+                editButton();
+            }
+        }
+    }//GEN-LAST:event_jEditActionPerformed
        
     
     

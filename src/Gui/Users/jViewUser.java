@@ -224,40 +224,68 @@ public class jViewUser extends javax.swing.JPanel {
         jBackButton.setBackground(new java.awt.Color(217, 156, 69));
         jBackButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jBackButton.setForeground(new java.awt.Color(255, 255, 255));
-        jBackButton.setText("Back");
+        jBackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Users/back.png"))); // NOI18N
+        jBackButton.setMnemonic('b');
+        jBackButton.setText("   Back  ");
         jBackButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBackButtonMouseClicked(evt);
+            }
+        });
+        jBackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBackButtonActionPerformed(evt);
             }
         });
 
         jCancelButton.setBackground(new java.awt.Color(217, 156, 69));
         jCancelButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jCancelButton.setForeground(new java.awt.Color(255, 255, 255));
-        jCancelButton.setText("Cancel");
+        jCancelButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Users/cancel1.png"))); // NOI18N
+        jCancelButton.setMnemonic('c');
+        jCancelButton.setText("    Cancel  ");
         jCancelButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jCancelButtonMouseClicked(evt);
+            }
+        });
+        jCancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCancelButtonActionPerformed(evt);
             }
         });
 
         jUpdateButton.setBackground(new java.awt.Color(217, 156, 69));
         jUpdateButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jUpdateButton.setForeground(new java.awt.Color(255, 255, 255));
-        jUpdateButton.setText("Update");
+        jUpdateButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Users/update.png"))); // NOI18N
+        jUpdateButton.setMnemonic('u');
+        jUpdateButton.setText("   Update ");
         jUpdateButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jUpdateButtonMouseClicked(evt);
+            }
+        });
+        jUpdateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jUpdateButtonActionPerformed(evt);
             }
         });
 
         jEditButton.setBackground(new java.awt.Color(217, 156, 69));
         jEditButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jEditButton.setForeground(new java.awt.Color(255, 255, 255));
-        jEditButton.setText("Edit");
+        jEditButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Users/editing.png"))); // NOI18N
+        jEditButton.setMnemonic('e');
+        jEditButton.setText("    Edit  ");
         jEditButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jEditButtonMouseClicked(evt);
+            }
+        });
+        jEditButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jEditButtonActionPerformed(evt);
             }
         });
 
@@ -399,6 +427,35 @@ public class jViewUser extends javax.swing.JPanel {
     private void jRolesComboMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRolesComboMouseClicked
           
     }//GEN-LAST:event_jRolesComboMouseClicked
+
+    private void jBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackButtonActionPerformed
+        if(!isEditing) {
+            resetViewUserPage();
+            _jViewUsers.renderData();
+            _jHomePage.switchPanels(_jViewUsers);
+            
+        }
+    }//GEN-LAST:event_jBackButtonActionPerformed
+
+    private void jCancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCancelButtonActionPerformed
+        if(isEditing) {
+            cancelButton();
+        }
+    }//GEN-LAST:event_jCancelButtonActionPerformed
+
+    private void jUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUpdateButtonActionPerformed
+        if(isEditing) {
+            updateButton();
+        }
+    }//GEN-LAST:event_jUpdateButtonActionPerformed
+
+    private void jEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEditButtonActionPerformed
+        if(!isEditing) {
+            enableUserFields();
+            enableUpdateANdCancelButtons();
+            isEditing = true;
+        }
+    }//GEN-LAST:event_jEditButtonActionPerformed
     private boolean isEditing;
     public User choosedUser;
     private final RoleServices _RoleServices;

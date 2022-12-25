@@ -73,9 +73,15 @@ public class jHomePage extends javax.swing.JFrame {
         jsignin.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jsignin.setForeground(new java.awt.Color(255, 255, 255));
         jsignin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/enter.png"))); // NOI18N
+        jsignin.setMnemonic('e');
         jsignin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jsigninMouseClicked(evt);
+            }
+        });
+        jsignin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jsigninActionPerformed(evt);
             }
         });
         jsignin.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -89,8 +95,8 @@ public class jHomePage extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(518, Short.MAX_VALUE)
-                .addComponent(jsignin, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(38, Short.MAX_VALUE)
+                .addComponent(jsignin, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38))
         );
         jPanel1Layout.setVerticalGroup(
@@ -128,6 +134,11 @@ public class jHomePage extends javax.swing.JFrame {
             _jLoginPage.jusername.grabFocus();
         }
     }//GEN-LAST:event_jPanel1KeyPressed
+
+    private void jsigninActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jsigninActionPerformed
+        switchPanels(_jLoginPage);
+        _jLoginPage.jusername.grabFocus();
+    }//GEN-LAST:event_jsigninActionPerformed
     public void switchPanels(JPanel panel) {
         jPanel4.removeAll();
         jPanel4.add(panel);

@@ -109,17 +109,29 @@ public class jViewUsers extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(87, 118, 130));
 
+        jAddButton.setMnemonic('a');
         jAddButton.setText("Add User");
         jAddButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jAddButtonMouseClicked(evt);
             }
         });
+        jAddButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAddButtonActionPerformed(evt);
+            }
+        });
 
+        jDeleteButton.setMnemonic('d');
         jDeleteButton.setText("Delete");
         jDeleteButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jDeleteButtonMouseClicked(evt);
+            }
+        });
+        jDeleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jDeleteButtonActionPerformed(evt);
             }
         });
 
@@ -144,10 +156,16 @@ public class jViewUsers extends javax.swing.JPanel {
 
         jAllItemsLabel.setText("All Items :");
 
+        jShowButton.setMnemonic('s');
         jShowButton.setText("Show User");
         jShowButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jShowButtonMouseClicked(evt);
+            }
+        });
+        jShowButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jShowButtonActionPerformed(evt);
             }
         });
 
@@ -166,10 +184,16 @@ public class jViewUsers extends javax.swing.JPanel {
 
         jSortLabel.setText("Sort by :");
 
+        jBackButton.setMnemonic('b');
         jBackButton.setText("Back");
         jBackButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBackButtonMouseClicked(evt);
+            }
+        });
+        jBackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBackButtonActionPerformed(evt);
             }
         });
 
@@ -303,6 +327,39 @@ public class jViewUsers extends javax.swing.JPanel {
     private void jSortByComboMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSortByComboMouseClicked
        
     }//GEN-LAST:event_jSortByComboMouseClicked
+
+    private void jBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackButtonActionPerformed
+        _jHomePage.switchPanels(_jMainPage);
+        _jMainPage.jViewusers.grabFocus();
+    }//GEN-LAST:event_jBackButtonActionPerformed
+
+    private void jDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDeleteButtonActionPerformed
+        if(_jMainPage.canDeleteUser()) {
+            deleteUser();
+            renderData();
+        }
+    }//GEN-LAST:event_jDeleteButtonActionPerformed
+
+    private void jShowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jShowButtonActionPerformed
+        User user = selectedUser();
+         if (user!=null)
+         { 
+            _jViewUser.choosedUser = user;
+            _jViewUser.renderData();
+            _jViewUser.removeUpdateANdCancelButtons();
+            _jViewUser.disableUserFields();
+            _jViewUser.jRolesCombo.selectWithKeyChar(user.role.name.charAt(0));
+            _jHomePage.switchPanels(_jViewUser);
+            _jViewUser.jNameField.grabFocus();
+         }
+    }//GEN-LAST:event_jShowButtonActionPerformed
+
+    private void jAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAddButtonActionPerformed
+        if(_jMainPage.canCreateUser()) {
+            _jHomePage.switchPanels(_jSignUpPage);
+            _jSignUpPage.jNameField.grabFocus();
+        }
+    }//GEN-LAST:event_jAddButtonActionPerformed
     private ArrayList<User> allUsers;
     private boolean toggle ;
     private final UserServices _UserServices;

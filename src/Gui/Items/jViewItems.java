@@ -88,37 +88,58 @@ public class jViewItems extends javax.swing.JPanel {
         jBack.setBackground(new java.awt.Color(217, 156, 69));
         jBack.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jBack.setForeground(new java.awt.Color(255, 255, 255));
-        jBack.setText("Back");
+        jBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Items/back.png"))); // NOI18N
+        jBack.setMnemonic('b');
+        jBack.setText("     Back   ");
         jBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBackMouseClicked(evt);
+            }
+        });
+        jBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBackActionPerformed(evt);
             }
         });
 
         jadditem.setBackground(new java.awt.Color(217, 156, 69));
         jadditem.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jadditem.setForeground(new java.awt.Color(255, 255, 255));
-        jadditem.setText("Add Item");
+        jadditem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Items/addItem1.png"))); // NOI18N
+        jadditem.setMnemonic('a');
+        jadditem.setText("  Add Item ");
         jadditem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jadditemMouseClicked(evt);
+            }
+        });
+        jadditem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jadditemActionPerformed(evt);
             }
         });
 
         jdelete.setBackground(new java.awt.Color(217, 156, 69));
         jdelete.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jdelete.setForeground(new java.awt.Color(255, 255, 255));
-        jdelete.setText("delete");
+        jdelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Items/delete.png"))); // NOI18N
+        jdelete.setMnemonic('d');
+        jdelete.setText("    Delete   ");
         jdelete.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jdeleteMouseClicked(evt);
+            }
+        });
+        jdelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jdeleteActionPerformed(evt);
             }
         });
 
         jToggleSort.setBackground(new java.awt.Color(217, 156, 69));
         jToggleSort.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jToggleSort.setForeground(new java.awt.Color(255, 255, 255));
-        jToggleSort.setText("↓↑\n");
+        jToggleSort.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Items/sort3.png"))); // NOI18N
         jToggleSort.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jToggleSortMouseClicked(evt);
@@ -128,10 +149,17 @@ public class jViewItems extends javax.swing.JPanel {
         jShowItem.setBackground(new java.awt.Color(217, 156, 69));
         jShowItem.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jShowItem.setForeground(new java.awt.Color(255, 255, 255));
+        jShowItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Items/show.png"))); // NOI18N
+        jShowItem.setMnemonic('s');
         jShowItem.setText("Show Item");
         jShowItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jShowItemMouseClicked(evt);
+            }
+        });
+        jShowItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jShowItemActionPerformed(evt);
             }
         });
 
@@ -188,14 +216,13 @@ public class jViewItems extends javax.swing.JPanel {
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(13, 13, 13)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(13, 13, 13)
-                                .addComponent(jsearchitems, javax.swing.GroupLayout.PREFERRED_SIZE, 503, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jsortitemsby, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jToggleSort)))
+                                .addComponent(jsortitemsby, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jToggleSort, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jsearchitems, javax.swing.GroupLayout.PREFERRED_SIZE, 503, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,7 +249,7 @@ public class jViewItems extends javax.swing.JPanel {
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jsortitemsby, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToggleSort, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 43, Short.MAX_VALUE)
+                .addGap(20, 44, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -361,6 +388,48 @@ public class jViewItems extends javax.swing.JPanel {
     private void jsortitemsbyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jsortitemsbyMouseClicked
        
     }//GEN-LAST:event_jsortitemsbyMouseClicked
+
+    private void jBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackActionPerformed
+        _jHomePage.switchPanels(_jMainPage);
+        _jMainPage.jViewitems.grabFocus();
+    }//GEN-LAST:event_jBackActionPerformed
+
+    private void jdeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jdeleteActionPerformed
+        if(_jMainPage.canDeleteItem())
+       {
+           deleteItem();
+           showItems();
+       }
+    }//GEN-LAST:event_jdeleteActionPerformed
+
+    private void jShowItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jShowItemActionPerformed
+        _jViewItem.resetViewItemPage();
+        Item item  = getSelectedItem();
+        if(item != null){
+            _jViewItem.choosedItem = item;
+            _jHomePage.switchPanels(_jViewItem);
+            _jViewItem.jNameField.grabFocus();
+            _jViewItem.renderData();
+        }else{
+            JOptionPane.showMessageDialog(null, "Please Select an Item to View!");
+        }
+    }//GEN-LAST:event_jShowItemActionPerformed
+
+    private void jadditemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jadditemActionPerformed
+        if(_jMainPage.canCreateItem()) {
+            _jHomePage.switchPanels(_jNewItem);
+            _jNewItem.jNameField.grabFocus();
+            BufferedImage img = null;
+            try {
+                img = ImageIO.read(new File("Images/noImage.jpg"));
+            } catch (IOException e) {
+                Logger.getLogger(jViewItem.class.getName()).log(Level.SEVERE, null, e);
+            }
+            Image dimg = img.getScaledInstance(220, 220,Image.SCALE_SMOOTH);
+            ImageIcon imageIcon = new ImageIcon(dimg);
+            _jNewItem.jPic.setIcon(imageIcon);
+       }
+    }//GEN-LAST:event_jadditemActionPerformed
     private ArrayList<Item> allItems;
     private boolean toggle;
     public final jViewItem _jViewItem;

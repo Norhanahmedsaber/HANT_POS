@@ -174,20 +174,34 @@ public class jNewRole extends javax.swing.JPanel {
         jBack.setBackground(new java.awt.Color(217, 156, 69));
         jBack.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jBack.setForeground(new java.awt.Color(255, 255, 255));
-        jBack.setText("back");
+        jBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Roles/back.png"))); // NOI18N
+        jBack.setMnemonic('b');
+        jBack.setText("    Back   ");
         jBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBackMouseClicked(evt);
+            }
+        });
+        jBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBackActionPerformed(evt);
             }
         });
 
         jDone.setBackground(new java.awt.Color(217, 156, 69));
         jDone.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jDone.setForeground(new java.awt.Color(255, 255, 255));
-        jDone.setText("Done");
+        jDone.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Roles/done1.png"))); // NOI18N
+        jDone.setMnemonic('d');
+        jDone.setText("    Done  ");
         jDone.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jDoneMouseClicked(evt);
+            }
+        });
+        jDone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jDoneActionPerformed(evt);
             }
         });
 
@@ -627,6 +641,31 @@ public class jNewRole extends javax.swing.JPanel {
     private void JUpdateRoleKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JUpdateRoleKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_JUpdateRoleKeyPressed
+
+    private void jBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackActionPerformed
+        if (_parent instanceof jMainPage )
+        {
+            jAddedRoleSuccessfully.setText("");
+            clearCreateRolePage();
+            jMainPage mainPage=(jMainPage)_parent;
+             _jHomePage.switchPanels(_parent);
+             mainPage.jNewRole.grabFocus();
+              jAddedRoleSuccessfully.setText("");
+        }
+        else 
+      {
+        jViewRoles ViewRoles= (jViewRoles) _parent;
+        clearCreateRolePage();
+        ViewRoles.renderData();
+        _jHomePage.switchPanels(_parent);
+        ViewRoles.jSearch.grabFocus();
+        jAddedRoleSuccessfully.setText("");
+      }
+    }//GEN-LAST:event_jBackActionPerformed
+
+    private void jDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDoneActionPerformed
+        DoneButtonClicked();
+    }//GEN-LAST:event_jDoneActionPerformed
 
     
     
