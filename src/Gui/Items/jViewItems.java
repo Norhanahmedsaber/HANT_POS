@@ -4,6 +4,7 @@ import Entities.Item;
 import Gui.jHomePage;
 import Gui.jMainPage;
 import Services.ItemServices;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -262,6 +263,11 @@ public class jViewItems extends javax.swing.JPanel {
                 .addGap(26, 26, 26))
         );
     }// </editor-fold>//GEN-END:initComponents
+    
+  public void changecolor(int x, int y ,int z)
+    { 
+        setBackground(new java.awt.Color(x, y, z));
+    }
     public void showItems (){
             String [] titles= {"Id", "Name","Category","Price","CreatedAt"};
             DefaultTableModel m = (DefaultTableModel) jItem.getModel();

@@ -25,8 +25,10 @@ public final class jViewCustomers extends javax.swing.JPanel  {
         toggle = false;
         
     }
-    //Make Table unEditable:
-   
+    public void changecolor(int x, int y ,int z)
+    { 
+        setBackground(new java.awt.Color(x, y, z));
+    }
     public void renderData() { 
         String[] cols = {"ID","Name", "Email", "PurchaseDate", "PhoneNumber"}; 
         DefaultTableModel model = (DefaultTableModel) jCustomersTable.getModel();

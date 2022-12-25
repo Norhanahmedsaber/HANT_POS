@@ -2,6 +2,7 @@ package Gui;
  
 import Entities.User;
 import Services.AccountServices;
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 public class jLoginPage extends javax.swing.JPanel {
@@ -11,6 +12,11 @@ public class jLoginPage extends javax.swing.JPanel {
         _jHomePage = jhp;
         _jMainPage = new jMainPage(jhp); 
         _AccountServices=new AccountServices();
+    }
+    
+   public  void changecolor(int x, int y ,int z)
+    { 
+        setBackground(new java.awt.Color(x, y, z));
     }
     
     @SuppressWarnings("unchecked")

@@ -6,6 +6,7 @@ import Gui.jHomePage;
 import Gui.Customers.jNewCustomer;
 import Services.CustomerServices;
 import Services.ItemServices;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
@@ -24,7 +25,6 @@ public class jChooseItem extends javax.swing.JPanel {
         _parent= parent;   
         if (parent instanceof jNewCustomer )
         {
-            //fn tzabat el gui
             _jNewCustomer =(jNewCustomer)parent;
             _jViewCustomer=null;
           // jNewCustomer.
@@ -35,6 +35,10 @@ public class jChooseItem extends javax.swing.JPanel {
            _jNewCustomer=null;
         } 
 
+    }
+     public  void changecolor(int x, int y ,int z)
+    { 
+        setBackground(new java.awt.Color(x, y, z));
     }
     public void edit()
     {

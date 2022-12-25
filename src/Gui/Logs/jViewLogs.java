@@ -21,6 +21,10 @@ public class jViewLogs extends javax.swing.JPanel {
 
         jLogDetails.setEditable(false);
     }
+    public void changecolor(int x, int y ,int z)
+    { 
+        setBackground(new java.awt.Color(x, y, z));
+    }
     public void renderData() { 
         String[] cols = {"ID","UserName", "Action", "Acted On" ,"Date"}; 
         DefaultTableModel model = (DefaultTableModel) jLogsTable.getModel();

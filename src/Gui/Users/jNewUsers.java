@@ -20,6 +20,9 @@ public class jNewUsers extends javax.swing.JPanel {
         _AccountServices = new AccountServices();
         _RoleServices = new RoleServices();
     }
+    public void changecolor(int x, int y, int z) {
+        setBackground(new java.awt.Color(x,y,z));
+    }
     public boolean isValidName() {
         // is empty (nameField)
         if(jNameField.getText().trim().isEmpty()) {
@@ -254,7 +257,7 @@ public class jNewUsers extends javax.swing.JPanel {
                                     .addComponent(jPasswordField)
                                     .addComponent(jUsernameField)
                                     .addComponent(jNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addGap(0, 336, Short.MAX_VALUE))
+                .addGap(0, 328, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

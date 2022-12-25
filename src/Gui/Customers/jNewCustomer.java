@@ -7,6 +7,7 @@ import Gui.jHomePage;
 import Gui.jMainPage;
 import Services.CustomerServices;
 import Services.ItemServices;
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,7 +27,14 @@ public class jNewCustomer extends javax.swing.JPanel {
         _chosenitems=new ArrayList<>();
         _jItemServices=new ItemServices();
         _parent = parent;
+      
     }
+    
+     public void changecolor(int x, int y ,int z)
+    { 
+        setBackground(new java.awt.Color(x, y, z));
+    }
+        
     public ArrayList<Item> getselecteditems(){ 
         return _chosenitems ;
     }
@@ -613,7 +621,7 @@ public class jNewCustomer extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jAddCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBack, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -624,9 +632,7 @@ public class jNewCustomer extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 43, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -731,6 +737,7 @@ public class jNewCustomer extends javax.swing.JPanel {
     private void jAgeFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAgeFieldMouseClicked
           
     }//GEN-LAST:event_jAgeFieldMouseClicked
+
 
     private void jChooseItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jChooseItemActionPerformed
         _jChooseItem.resetPanel();

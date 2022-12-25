@@ -328,8 +328,6 @@ public class jViewStatistics extends javax.swing.JPanel {
         alldays.add(getDayInfo(now.minusDays(2)));
         alldays.add(getDayInfo(now.minusDays(1)));
         alldays.add(getDayInfo(now));
-        System.out.println(users);
-        System.out.println("khalst");
         return alldays;
     }
     public void profitClicked() {

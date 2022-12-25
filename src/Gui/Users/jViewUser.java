@@ -23,6 +23,10 @@ public class jViewUser extends javax.swing.JPanel {
         _RoleServices = new RoleServices();
         isEditing = false;
     } 
+    public void changecolor(int x, int y ,int z)
+    { 
+        setBackground(new java.awt.Color(x, y, z));
+    }
     public void renderData( ){  
         
         jNameField.setText(choosedUser.name);
