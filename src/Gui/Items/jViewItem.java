@@ -37,9 +37,10 @@ public class jViewItem extends javax.swing.JPanel {
         _itemServices = new ItemServices();
         isEditing = false;
     }
-    public void changecolor(int x, int y ,int z)
+     
+    public void changecolor(java.awt.Color c)
     { 
-        setBackground(new java.awt.Color(x, y, z));
+        jPanel1.setBackground(c);
     }
     public void clearNewitemPage(){
         jNameField.setText("");

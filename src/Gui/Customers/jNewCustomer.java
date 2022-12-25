@@ -27,12 +27,12 @@ public class jNewCustomer extends javax.swing.JPanel {
         _chosenitems=new ArrayList<>();
         _jItemServices=new ItemServices();
         _parent = parent;
-      
     }
     
-     public void changecolor(int x, int y ,int z)
+     
+    public void changecolor(java.awt.Color c)
     { 
-        setBackground(new java.awt.Color(x, y, z));
+        jPanel1.setBackground(c);
     }
         
     public ArrayList<Item> getselecteditems(){ 
@@ -116,37 +116,9 @@ public class jNewCustomer extends javax.swing.JPanel {
         }
         return true;
     }
-    public boolean isValidCity(){
-        // is empty (City)
-        if(jCityField.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "City Can't be Empty!");
-            return false;
-        }
-        return true;
-    }  
-    public boolean isValidIncome(){
-        // is empty (Income)
-        if(jIncomeField.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Income Can't be Empty!");
-            return false;
-        }
-        // is valid (Income)
-        try {
-            Integer.valueOf(jIncomeField.getText());
-        }catch(NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Please Enter A number in the income field!");
-            return false;
-        }
-        return true;
-    }
-    public boolean isValidJop(){
-        // is empty (job)
-        if(jJobField.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Job can't be Empty!");
-             return false;
-        }
-        return true;
-    }
+    
+    
+    
     public boolean isValidAge(){
         // is empty (age)
         if(jAgeField.getText().trim().isEmpty()) {
@@ -189,15 +161,7 @@ public class jNewCustomer extends javax.swing.JPanel {
         if (!isValidPhoneNo()){
             return false;
         }
-        if (!isValidCity()){
-            return false;
-        }
-        if (!isValidIncome()){
-            return false;
-        }
-        if (!isValidJop()){
-            return false;
-        }
+        
         if (!isValidAge()){
             return false;
         }
@@ -213,11 +177,8 @@ public class jNewCustomer extends javax.swing.JPanel {
         _Customer.id = UUID.randomUUID();
         _Customer.name = jNameField.getText().trim();
         _Customer.age = Integer.parseInt(jAgeField.getText().trim());
-        _Customer.job = jJobField.getText().trim();
         _Customer.nationalId = jNationalIdField.getText().trim();
-        _Customer.income = Integer.parseInt(jIncomeField.getText().trim());
         _Customer.email = jEmailField.getText().trim();
-        _Customer.city = jCityField.getText().trim();
         _Customer.gender = (String)jGenderComboBox.getSelectedItem();
         _Customer.phoneNumber = jPhoneNoField.getText().trim();
         _Customer.purchaseDate=new Date();
@@ -235,11 +196,8 @@ public class jNewCustomer extends javax.swing.JPanel {
         jNameField.setText("");
         jAgeField.setText("");
         jEmailField.setText("");
-        jIncomeField.setText("");
         jPhoneNoField.setText("");
         jNationalIdField.setText("");
-        jCityField.setText("");
-        jJobField.setText("");   
         
     } 
     public void addCustomerButton(){
@@ -274,19 +232,13 @@ public class jNewCustomer extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jNationalIdField = new javax.swing.JTextField();
         jNameField = new javax.swing.JTextField();
         jPhoneNoField = new javax.swing.JTextField();
-        jIncomeField = new javax.swing.JTextField();
-        jJobField = new javax.swing.JTextField();
-        jCityField = new javax.swing.JTextField();
         jAgeField = new javax.swing.JTextField();
         jAddCustomer = new javax.swing.JButton();
         jChooseItem = new javax.swing.JButton();
@@ -315,14 +267,6 @@ public class jNewCustomer extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Phone No:");
 
-        jLabel3.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("City:");
-
-        jLabel4.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Income:");
-
         jLabel5.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Purchases:");
@@ -330,10 +274,6 @@ public class jNewCustomer extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Age:");
-
-        jLabel7.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Job:");
 
         jLabel8.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -379,45 +319,6 @@ public class jNewCustomer extends javax.swing.JPanel {
         jPhoneNoField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jPhoneNoFieldKeyPressed(evt);
-            }
-        });
-
-        jIncomeField.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jIncomeField.setForeground(new java.awt.Color(0, 31, 78));
-        jIncomeField.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jIncomeFieldMouseClicked(evt);
-            }
-        });
-        jIncomeField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jIncomeFieldKeyPressed(evt);
-            }
-        });
-
-        jJobField.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jJobField.setForeground(new java.awt.Color(0, 31, 78));
-        jJobField.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jJobFieldMouseClicked(evt);
-            }
-        });
-        jJobField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jJobFieldKeyPressed(evt);
-            }
-        });
-
-        jCityField.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jCityField.setForeground(new java.awt.Color(0, 31, 78));
-        jCityField.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jCityFieldMouseClicked(evt);
-            }
-        });
-        jCityField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jCityFieldKeyPressed(evt);
             }
         });
 
@@ -485,8 +386,9 @@ public class jNewCustomer extends javax.swing.JPanel {
             }
         });
 
+        jGenderComboBox.setBackground(new java.awt.Color(217, 156, 69));
         jGenderComboBox.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jGenderComboBox.setForeground(new java.awt.Color(255, 255, 255));
+        jGenderComboBox.setForeground(new java.awt.Color(0, 31, 78));
         jGenderComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", " " }));
 
         jLabel10.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
@@ -515,53 +417,38 @@ public class jNewCustomer extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jCityField, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(38, 38, 38)
-                                .addComponent(jIncomeField, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPhoneNoField, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jNationalIdField, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jJobField, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jAgeField, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jGenderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(9, 9, 9))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(28, 28, 28)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jPhoneNoField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jNationalIdField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jEmailField, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(jNameField)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(39, 39, 39)
-                                .addComponent(jChooseItem, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jEmailField, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jNameField))
+                        .addGap(0, 368, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jBack, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(14, 14, 14)
-                                .addComponent(jAddCustomer)))
-                        .addGap(0, 11, Short.MAX_VALUE)))
-                .addGap(356, 356, 356))
+                                .addComponent(jAddCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(39, 39, 39)
+                                .addComponent(jChooseItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jAgeField, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jGenderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(365, 365, 365))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -590,21 +477,6 @@ public class jNewCustomer extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(jPhoneNoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jCityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel3)))
-                .addGap(32, 32, 32)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jIncomeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jJobField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -617,11 +489,11 @@ public class jNewCustomer extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jChooseItem))
-                .addGap(32, 32, 32)
+                .addGap(44, 44, 44)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jAddCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBack, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(158, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -682,24 +554,6 @@ public class jNewCustomer extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jPhoneNoFieldKeyPressed
 
-    private void jCityFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCityFieldKeyPressed
-        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
-            addCustomerButton();
-        }
-    }//GEN-LAST:event_jCityFieldKeyPressed
-
-    private void jIncomeFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jIncomeFieldKeyPressed
-        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
-            addCustomerButton();
-        }
-    }//GEN-LAST:event_jIncomeFieldKeyPressed
-
-    private void jJobFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jJobFieldKeyPressed
-        if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
-            addCustomerButton();
-        }
-    }//GEN-LAST:event_jJobFieldKeyPressed
-
     private void jAgeFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jAgeFieldKeyPressed
         if ( evt.getKeyCode() == KeyEvent.VK_ENTER ){
             addCustomerButton();
@@ -721,18 +575,6 @@ public class jNewCustomer extends javax.swing.JPanel {
     private void jPhoneNoFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPhoneNoFieldMouseClicked
     
     }//GEN-LAST:event_jPhoneNoFieldMouseClicked
-
-    private void jCityFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCityFieldMouseClicked
-   
-    }//GEN-LAST:event_jCityFieldMouseClicked
-
-    private void jIncomeFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jIncomeFieldMouseClicked
-      
-    }//GEN-LAST:event_jIncomeFieldMouseClicked
-
-    private void jJobFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jJobFieldMouseClicked
-     
-    }//GEN-LAST:event_jJobFieldMouseClicked
 
     private void jAgeFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAgeFieldMouseClicked
           
@@ -756,7 +598,7 @@ public class jNewCustomer extends javax.swing.JPanel {
 
     private final JPanel _parent;
     private final CustomerServices _CustomerServices;
-    private final jChooseItem _jChooseItem;
+    public final jChooseItem _jChooseItem;
     private final jHomePage _jHomePage;
     public ArrayList<Item> _chosenitems;
     private ItemServices _jItemServices;
@@ -765,19 +607,13 @@ public class jNewCustomer extends javax.swing.JPanel {
     private javax.swing.JTextField jAgeField;
     private javax.swing.JButton jBack;
     private javax.swing.JButton jChooseItem;
-    private javax.swing.JTextField jCityField;
     private javax.swing.JTextField jEmailField;
     private javax.swing.JComboBox<String> jGenderComboBox;
-    private javax.swing.JTextField jIncomeField;
-    private javax.swing.JTextField jJobField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     public javax.swing.JTextField jNameField;

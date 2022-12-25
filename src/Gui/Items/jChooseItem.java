@@ -36,9 +36,10 @@ public class jChooseItem extends javax.swing.JPanel {
         } 
 
     }
-     public  void changecolor(int x, int y ,int z)
+     
+    public void changecolor(java.awt.Color c)
     { 
-        setBackground(new java.awt.Color(x, y, z));
+        setBackground(c);
     }
     public void edit()
     {

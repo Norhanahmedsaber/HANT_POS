@@ -23,7 +23,7 @@ public class filterCustomers {
         ArrayList <Customer> customerAfterSearch = new ArrayList<Customer>();
         for( int i=0 ; i<customers.size() ; i++)
         {
-            if(customers.get(i).name.contains(searchName.toLowerCase().trim()))
+            if(customers.get(i).name.toLowerCase().contains(searchName.toLowerCase().trim()))
             {
                 customerAfterSearch.add(customers.get(i));
             }
@@ -38,7 +38,7 @@ public class filterCustomers {
          {     
              Collections.sort(customers,new Comparator<Customer>() {
                  public int compare(Customer c1, Customer c2) {
-                     return c1.name.compareTo(c2.name);
+                     return c1.name.toLowerCase().trim().compareTo(c2.name.toLowerCase().trim());
                  }
              });
              return customers ;
@@ -49,7 +49,7 @@ public class filterCustomers {
          {     
              Collections.sort(customers,new Comparator<Customer>() {
                  public int compare(Customer c1, Customer c2) {
-                     return c1.name.compareTo(c2.name);
+                     return c1.name.toLowerCase().trim().compareTo(c2.name.toLowerCase().trim());
                  }
              });
              Collections.reverse(customers);

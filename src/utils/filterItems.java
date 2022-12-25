@@ -16,9 +16,9 @@ public class filterItems {
         ArrayList <Item> itemsAftersearch = new ArrayList<>();
         for(int i=0 ; i<items.size();i++)
         {
-            boolean name = items.get(i).name.contains(search.toLowerCase().trim());
-            boolean catgory =items.get(i).category.contains(search.toLowerCase().trim());
-            boolean description = items.get(i).description.contains(search.toLowerCase().trim());
+            boolean name = items.get(i).name.toLowerCase().contains(search.toLowerCase().trim());
+            boolean catgory =items.get(i).category.toLowerCase().contains(search.toLowerCase().trim());
+            boolean description = items.get(i).description.toLowerCase().trim().contains(search.toLowerCase().trim());
             if(name || catgory || description)
            {      
                itemsAftersearch.add(items.get(i));
@@ -37,7 +37,7 @@ public class filterItems {
             Collections.sort(items,new Comparator<Item>() {
                 @Override
                 public int compare(Item i1, Item i2) {
-                    return i1.name.compareTo(i2.name);
+                    return i1.name.toLowerCase().trim().compareTo(i2.name.toLowerCase().trim());
                 }
             });
             return items ;
@@ -48,7 +48,7 @@ public class filterItems {
             Collections.sort(items,new Comparator<Item>() {
                 @Override
                 public int compare(Item i1, Item i2) {
-                    return i1.name.compareTo(i2.name);
+                    return i1.name.trim().toLowerCase().compareTo(i2.name.toLowerCase().trim());
                 }
             });
             Collections.reverse(items);

@@ -13,18 +13,19 @@ import utils.filterRoles;
 
 public class jViewRoles extends javax.swing.JPanel {
 
-    public jViewRoles(jHomePage jhp, JPanel parent) {
+    public jViewRoles(jHomePage jhp, JPanel parent, jNewRole jnr) {
         initComponents();
         _jHomePage = jhp;
         _parent= parent;  
         _RoleServices = new RoleServices();
-        _jNewRole = new jNewRole(jhp, this);
+        _jNewRole = jnr;
         _filterRoles = new filterRoles();
     }
     
-     public void changecolor(int x, int y ,int z)
+     
+    public void changecolor(java.awt.Color c)
     { 
-        setBackground(new java.awt.Color(x, y, z));
+        setBackground(c);
     }
     public void clearViewRoles() {
         jSearch.setText("");

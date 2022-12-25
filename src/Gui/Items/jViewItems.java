@@ -23,12 +23,12 @@ import utils.filterItems;
 public class jViewItems extends javax.swing.JPanel {
 
 
-    public jViewItems(jHomePage jhp, jMainPage jmp) {
+    public jViewItems(jHomePage jhp, jMainPage jmp, jNewItem jni) {
         initComponents();
         _jHomePage = jhp;
         _jMainPage = jmp;
          _jfilterItems=new filterItems();
-         _jNewItem = new jNewItem(jhp,this);
+         _jNewItem = jni;
         _ItemServices = new ItemServices();
         _jViewItem = new jViewItem(jhp,this,jmp);
         toggle=false;
@@ -264,9 +264,10 @@ public class jViewItems extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     
-  public void changecolor(int x, int y ,int z)
+   
+    public void changecolor(java.awt.Color c)
     { 
-        setBackground(new java.awt.Color(x, y, z));
+        setBackground(c);
     }
     public void showItems (){
             String [] titles= {"Id", "Name","Category","Price","CreatedAt"};
@@ -434,7 +435,7 @@ public class jViewItems extends javax.swing.JPanel {
             Image dimg = img.getScaledInstance(220, 220,Image.SCALE_SMOOTH);
             ImageIcon imageIcon = new ImageIcon(dimg);
             _jNewItem.jPic.setIcon(imageIcon);
-       }
+        }
     }//GEN-LAST:event_jadditemActionPerformed
     private ArrayList<Item> allItems;
     private boolean toggle;

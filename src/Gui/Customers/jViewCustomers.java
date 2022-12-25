@@ -13,21 +13,20 @@ import utils.filterCustomers;
 
 public final class jViewCustomers extends javax.swing.JPanel  {
 
-    public jViewCustomers(jHomePage jhp, jMainPage jmp) { 
+    public jViewCustomers(jHomePage jhp, jMainPage jmp, jNewCustomer jnc) { 
         initComponents(); 
         _jHomePage = jhp; 
         _jMainPage = jmp; 
         _CustomerServices = new CustomerServices(); 
         _filterCustomers = new filterCustomers();
-        _jViewCustomer= new jViewCustomer(this, jhp, jmp);
-        _jNewCustomer = new jNewCustomer(jhp, this);
-        
+        _jNewCustomer = jnc;
+        _jViewCustomer = new jViewCustomer(this, jhp, jmp);
         toggle = false;
         
     }
-    public void changecolor(int x, int y ,int z)
+    public void changecolor(java.awt.Color c)
     { 
-        setBackground(new java.awt.Color(x, y, z));
+        setBackground(c);
     }
     public void renderData() { 
         String[] cols = {"ID","Name", "Email", "PurchaseDate", "PhoneNumber"}; 
@@ -99,8 +98,6 @@ public final class jViewCustomers extends javax.swing.JPanel  {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jSearchName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -113,10 +110,6 @@ public final class jViewCustomers extends javax.swing.JPanel  {
         jToggleSort = new javax.swing.JButton();
         jShowButton = new javax.swing.JButton();
         jAddButton = new javax.swing.JButton();
-
-        jTextField1.setText("jTextField1");
-
-        jLabel4.setText("jLabel4");
 
         setBackground(new java.awt.Color(87, 118, 130));
         setForeground(new java.awt.Color(255, 255, 255));
@@ -447,12 +440,10 @@ public final class jViewCustomers extends javax.swing.JPanel  {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JTextField jSearchName;
     private javax.swing.JButton jShowButton;
     private javax.swing.JComboBox<String> jSortBy;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton jToggleSort;
     // End of variables declaration//GEN-END:variables
 }

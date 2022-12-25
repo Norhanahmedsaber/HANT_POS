@@ -20,8 +20,10 @@ public class jNewUsers extends javax.swing.JPanel {
         _AccountServices = new AccountServices();
         _RoleServices = new RoleServices();
     }
-    public void changecolor(int x, int y, int z) {
-        setBackground(new java.awt.Color(x,y,z));
+     
+    public void changecolor(java.awt.Color c)
+    { 
+        setBackground(c);
     }
     public boolean isValidName() {
         // is empty (nameField)
