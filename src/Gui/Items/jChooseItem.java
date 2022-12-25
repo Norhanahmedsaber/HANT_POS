@@ -285,11 +285,6 @@ public class jChooseItem extends javax.swing.JPanel {
         jAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Items/addItem1.png"))); // NOI18N
         jAdd.setMnemonic('a');
         jAdd.setText("  ADD       ");
-        jAdd.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jAddMouseClicked(evt);
-            }
-        });
         jAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jAddActionPerformed(evt);
@@ -316,11 +311,6 @@ public class jChooseItem extends javax.swing.JPanel {
         jRemove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Items/delete.png"))); // NOI18N
         jRemove.setMnemonic('r');
         jRemove.setText("   Remove  ");
-        jRemove.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jRemoveMouseClicked(evt);
-            }
-        });
         jRemove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRemoveActionPerformed(evt);
@@ -570,14 +560,6 @@ public class jChooseItem extends javax.swing.JPanel {
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
         _jHomePage.switchPanels(_parent);
     }//GEN-LAST:event_jBackMouseClicked
-
-    private void jAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAddMouseClicked
-        addItemToPreviewTable();
-    }//GEN-LAST:event_jAddMouseClicked
-
-    private void jRemoveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRemoveMouseClicked
-        removeItemFromPreviewTable();
-    }//GEN-LAST:event_jRemoveMouseClicked
 
     private void jDoneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDoneMouseClicked
         done();

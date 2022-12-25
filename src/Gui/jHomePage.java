@@ -16,14 +16,6 @@ public class jHomePage extends javax.swing.JFrame {
         loginUser = null;
         _LogServices = new LogServices();
         Home();
-        Thread thread = new Thread(new Runnable() {
-            public void run() {
-                while(true) {
-                    _jLoginPage._jMainPage._jViewStatistics.allDays = _jLoginPage._jMainPage._jViewStatistics.fetchData();
-                }
-            }
-        });
-        thread.start();
     }
     
 
@@ -37,14 +29,6 @@ public class jHomePage extends javax.swing.JFrame {
         log.actedOnName = actedOnName;
         log.date= new Date(); 
         _LogServices.create(log);
-        Thread thread = new Thread(new Runnable() {
-            public void run() {
-                while(true) {
-                    _jLoginPage._jMainPage._jViewStatistics.allDays = _jLoginPage._jMainPage._jViewStatistics.fetchData();
-                }
-            }
-        });
-        thread.start();
         
     }
     @SuppressWarnings("unchecked")
