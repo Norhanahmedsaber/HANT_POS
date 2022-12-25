@@ -4,6 +4,7 @@ package Statistics;
 import Entities.CategoryInfo;
 import Entities.Customer;
 import Entities.Item;
+import Entities.UserInfo;
 import Gui.Graphs.BlankChart.BlankPlotChart;
 import Gui.Graphs.BlankChart.BlankPlotChatRender;
 import Gui.Graphs.BlankChart.SeriesSize;
@@ -14,6 +15,7 @@ import Gui.jHomePage;
 import Gui.jMainPage;
 import Services.CustomerServices;
 import Services.ItemServices;
+import Services.UserServices;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
@@ -33,6 +35,7 @@ public class jViewStatistics extends javax.swing.JPanel {
         _CustomerServices = new CustomerServices();
         _ItemServices = new ItemServices();
         _filterCustomers = new filterCustomers();
+        _UserServices = new UserServices();
     }
     // {No Items Sold, No Customer, Total profit}
     private int[] getDayInfo(LocalDateTime ldt) {
@@ -105,6 +108,18 @@ public class jViewStatistics extends javax.swing.JPanel {
         chart2.addData(new ModelChart(cats.get(4).name, getCatInfoProfit(4)));
         chart2.start();
     }
+    public void showUserActivitesToday() {
+        chart.clear();
+        chart.addLegend("Number Of Deals", new Color(135, 189, 245));
+        chart.addLegend("Number Of Items Sold", new Color(189, 135, 245));
+        chart.addLegend("Number Of Items Imported", new Color(245, 135, 189));
+        chart.addData(new ModelChart(users.get(0).username, new int[] {users.get(0).dealsDoneToday, users.get(0).itemsSoldToday, users.get(0).itemsImportedToday}));
+        chart.addData(new ModelChart(users.get(1).username, new int[] {users.get(1).dealsDoneToday, users.get(1).itemsSoldToday, users.get(1).itemsImportedToday}));
+        chart.addData(new ModelChart(users.get(2).username, new int[] {users.get(2).dealsDoneToday, users.get(2).itemsSoldToday, users.get(2).itemsImportedToday}));
+        chart.addData(new ModelChart(users.get(3).username, new int[] {users.get(3).dealsDoneToday, users.get(3).itemsSoldToday, users.get(3).itemsImportedToday}));
+        chart.start();
+    }
+    
     public int[] getCatInfoProfit(int x) {
         return new int[] { cats.get(x).incomeToday, cats.get(x).incomeThisWeek, cats.get(x).incomeThisMonth, cats.get(x).incomeThisYear };
     }
@@ -113,6 +128,9 @@ public class jViewStatistics extends javax.swing.JPanel {
     }
     public ArrayList<CategoryInfo> getTopCategories() {
         return _ItemServices.getCatsInfo();
+    }
+    public ArrayList<UserInfo> getUsers() {
+        return _UserServices.getUsersInfo();
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -270,22 +288,37 @@ public class jViewStatistics extends javax.swing.JPanel {
     }//GEN-LAST:event_jCategoriesKeyPressed
 
     private void jUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jUsersMouseClicked
-        // TODO add your handling code here:
+        chart = new Chart(_jHomePage, this);
+        where = "user";
+        _jHomePage.switchPanels(chart);
+        showUserActivitesToday();
+        chart.jProfit.setSelected(false);
+        chart.jItems_Customers.setSelected(true);
     }//GEN-LAST:event_jUsersMouseClicked
 
     private void jUsersKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jUsersKeyPressed
-        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            chart = new Chart(_jHomePage, this);
+            where = "user";
+            _jHomePage.switchPanels(chart);
+            showUserActivitesToday();
+            chart.jProfit.setSelected(false);
+            chart.jItems_Customers.setSelected(true);
+        }
     }//GEN-LAST:event_jUsersKeyPressed
     public ArrayList<int[]> fetchData() {
         ArrayList<int[]> alldays = new ArrayList<>(); 
         LocalDateTime now = LocalDateTime.now();
         cats = getTopCategories();
+        users = getUsers();
         alldays.add(getDayInfo(now.minusDays(5)));
         alldays.add(getDayInfo(now.minusDays(4)));
         alldays.add(getDayInfo(now.minusDays(3)));
         alldays.add(getDayInfo(now.minusDays(2)));
         alldays.add(getDayInfo(now.minusDays(1)));
         alldays.add(getDayInfo(now));
+        System.out.println(users);
+        System.out.println("khalst");
         return alldays;
     }
     public void profitClicked() {
@@ -318,6 +351,8 @@ public class jViewStatistics extends javax.swing.JPanel {
             chart.jItems_Customers.setSelected(true);
         }
     }
+    private UserServices _UserServices;
+    public ArrayList<UserInfo> users;
     public String where;
     private ItemServices _ItemServices;
     public ArrayList<CategoryInfo> cats;
