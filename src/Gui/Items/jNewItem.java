@@ -171,10 +171,17 @@ public class jNewItem extends javax.swing.JPanel {
         jAddItem.setBackground(new java.awt.Color(217, 156, 69));
         jAddItem.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jAddItem.setForeground(new java.awt.Color(255, 255, 255));
-        jAddItem.setText("Add Item");
+        jAddItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Items/addItem1.png"))); // NOI18N
+        jAddItem.setMnemonic('a');
+        jAddItem.setText("   Add Item");
         jAddItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jAddItemMouseClicked(evt);
+            }
+        });
+        jAddItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAddItemActionPerformed(evt);
             }
         });
         jAddItem.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -238,22 +245,36 @@ public class jNewItem extends javax.swing.JPanel {
         jBack.setBackground(new java.awt.Color(217, 156, 69));
         jBack.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jBack.setForeground(new java.awt.Color(255, 255, 255));
-        jBack.setText("Back");
+        jBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Items/back.png"))); // NOI18N
+        jBack.setMnemonic('b');
+        jBack.setText("    Back  ");
         jBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBackMouseClicked(evt);
             }
         });
+        jBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBackActionPerformed(evt);
+            }
+        });
 
-        jPic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Items/noImage.jpg"))); // NOI18N
+        jPic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Items/photo2.png"))); // NOI18N
 
         jUpload.setBackground(new java.awt.Color(217, 156, 69));
         jUpload.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jUpload.setForeground(new java.awt.Color(255, 255, 255));
-        jUpload.setText("Upload Photo");
+        jUpload.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Items/UploadPhoto.png"))); // NOI18N
+        jUpload.setMnemonic('u');
+        jUpload.setText("     Upload Photo     ");
         jUpload.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jUploadMouseClicked(evt);
+            }
+        });
+        jUpload.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jUploadActionPerformed(evt);
             }
         });
 
@@ -279,8 +300,8 @@ public class jNewItem extends javax.swing.JPanel {
                             .addComponent(jNameField))
                         .addGap(55, 55, 55)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jPic, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jUpload)))
+                            .addComponent(jPic, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jUpload, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBack, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(42, 42, 42)
@@ -290,9 +311,9 @@ public class jNewItem extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(97, 97, 97)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(98, 98, 98)
                         .addComponent(jLabel0)
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -305,17 +326,15 @@ public class jNewItem extends javax.swing.JPanel {
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jPriceField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jCatgoryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(156, 156, 156)
-                        .addComponent(jPic, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jUpload)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                            .addComponent(jPriceField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPic, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jCatgoryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jUpload))
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBack, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jAddItem, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -402,6 +421,38 @@ public class jNewItem extends javax.swing.JPanel {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_jUploadMouseClicked
+
+    private void jBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackActionPerformed
+        if(_parent instanceof jViewItems)
+        {
+          jViewItems viewitems= (jViewItems) _parent;
+          viewitems.showItems();
+        }
+        else 
+        {
+            jMainPage mainPage=(jMainPage)_parent;
+            mainPage.jNewitem.grabFocus();
+        }
+        _jHomePage.switchPanels(_parent);
+    }//GEN-LAST:event_jBackActionPerformed
+
+    private void jAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAddItemActionPerformed
+        addItemButton();
+    }//GEN-LAST:event_jAddItemActionPerformed
+
+    private void jUploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUploadActionPerformed
+        JFileChooser chooser = new JFileChooser();
+        chooser.showOpenDialog(null);
+        File f = chooser.getSelectedFile();
+        String filename = f.getAbsolutePath();
+        chosenImage = filename;
+        try {
+            ImageIcon ii=new ImageIcon(scaleImage(220, 220, ImageIO.read(new File(f.getAbsolutePath()))));//get the image from file chooser and scale it to match JLabel size
+            jPic.setIcon(ii);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_jUploadActionPerformed
     public static void copy(File src, File dest) throws IOException { 
         InputStream is = null;
         OutputStream os = null;

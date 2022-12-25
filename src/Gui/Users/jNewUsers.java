@@ -187,10 +187,17 @@ public class jNewUsers extends javax.swing.JPanel {
         jAddAccount.setBackground(new java.awt.Color(217, 156, 69));
         jAddAccount.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jAddAccount.setForeground(new java.awt.Color(255, 255, 255));
+        jAddAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Users/addcustomer.png"))); // NOI18N
+        jAddAccount.setMnemonic('a');
         jAddAccount.setText("Add Account ");
         jAddAccount.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jAddAccountMouseClicked(evt);
+            }
+        });
+        jAddAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAddAccountActionPerformed(evt);
             }
         });
         jAddAccount.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -202,10 +209,17 @@ public class jNewUsers extends javax.swing.JPanel {
         jBack.setBackground(new java.awt.Color(217, 156, 69));
         jBack.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jBack.setForeground(new java.awt.Color(255, 255, 255));
-        jBack.setText("Back");
+        jBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Users/back.png"))); // NOI18N
+        jBack.setMnemonic('b');
+        jBack.setText("     Back   ");
         jBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBackMouseClicked(evt);
+            }
+        });
+        jBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBackActionPerformed(evt);
             }
         });
 
@@ -220,11 +234,10 @@ public class jNewUsers extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jBack, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jAddAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jAddAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -240,8 +253,8 @@ public class jNewUsers extends javax.swing.JPanel {
                                     .addComponent(jRolesCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jPasswordField)
                                     .addComponent(jUsernameField)
-                                    .addComponent(jNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 336, Short.MAX_VALUE))))
+                                    .addComponent(jNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addGap(0, 336, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -329,6 +342,16 @@ public class jNewUsers extends javax.swing.JPanel {
     private void jRolesComboMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRolesComboMouseClicked
 
     }//GEN-LAST:event_jRolesComboMouseClicked
+
+    private void jAddAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAddAccountActionPerformed
+        addAccountButton();
+    }//GEN-LAST:event_jAddAccountActionPerformed
+
+    private void jBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackActionPerformed
+        _jHomePage.switchPanels(_jMainPage);
+        _jMainPage.jAddusers.grabFocus();
+        clearSignUpPage();
+    }//GEN-LAST:event_jBackActionPerformed
     
     private final jMainPage _jMainPage;
     private final jHomePage _jHomePage;
