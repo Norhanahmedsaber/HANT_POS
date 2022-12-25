@@ -123,6 +123,7 @@ public class jViewStatistics extends javax.swing.JPanel {
         jCategories = new javax.swing.JButton();
         jUsers = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(87, 118, 130));
         setPreferredSize(new java.awt.Dimension(750, 750));
 
         jBack.setBackground(new java.awt.Color(217, 156, 69));
