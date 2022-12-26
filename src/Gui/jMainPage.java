@@ -25,7 +25,7 @@ public class jMainPage extends javax.swing.JPanel {
     public jMainPage(jHomePage jhp) {
         initComponents();
         _jHomePage = jhp;
-       _jNewCustomer = new jNewCustomer(jhp, this);
+        _jNewCustomer = new jNewCustomer(jhp, this);
         _jNewItem = new jNewItem(jhp, this);
         _jViewItems = new jViewItems(jhp, this, _jNewItem);
         _jViewCustomers = new jViewCustomers(jhp, this, _jNewCustomer);
@@ -35,20 +35,7 @@ public class jMainPage extends javax.swing.JPanel {
         _jcreaterole = new jNewRole(jhp, this);
         _jViewRoles = new jViewRoles(jhp, this, _jcreaterole);
         toggle = false;
-  //      JPanel parent = null;
-//         if (parent instanceof jNewCustomer )
-//        {
-//            parent = _jNewCustomer;
-//        }
-//        else 
-//        {   
-//           parent = _jViewCustomer;
-//        } 
-//        _jChooseItem = new jChooseItem(jhp, parent );
- 
-
-        _jViewStatistics = new jViewStatistics(jhp, this);
-         toggle = false;      
+        _jViewStatistics = new jViewStatistics(jhp, this);     
   }
     
     public void changecolor(java.awt.Color c1, java.awt.Color c2, java.awt.Color c3, java.awt.Color c4, java.awt.Color c5){

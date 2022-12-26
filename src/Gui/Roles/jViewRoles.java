@@ -13,12 +13,12 @@ import utils.filterRoles;
 
 public class jViewRoles extends javax.swing.JPanel {
 
-    public jViewRoles(jHomePage jhp, JPanel parent, jNewRole jnr) {
+    public jViewRoles(jHomePage jhp, jMainPage jmp, jNewRole jnr) {
         initComponents();
         _jHomePage = jhp;
-        _parent= parent;  
+        _jMainPage = jmp;  
         _RoleServices = new RoleServices();
-        _jNewRole = jnr;
+        _jNewRole = new jNewRole(jhp, this);
         _filterRoles = new filterRoles();
     }
     
@@ -34,6 +34,7 @@ public class jViewRoles extends javax.swing.JPanel {
         jLabel1.setForeground(c3);
         jLabel2.setForeground(c3);
         jRoles.setBackground(c2);
+        jRoles.setForeground(c4);
         jScrollPane1.setBackground(c5);
         jSearch.setBackground(c5);
     }
@@ -188,16 +189,15 @@ public class jViewRoles extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
-       jMainPage MainPage=(jMainPage)_parent;
         clearViewRoles();
-        _jHomePage.switchPanels(_parent);
-        MainPage.jViewRoles.grabFocus();
+        _jHomePage.switchPanels(_jMainPage);
+        _jMainPage.jViewRoles.grabFocus();
         
     }//GEN-LAST:event_jBackMouseClicked
 
     private void jEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jEditMouseClicked
-       jMainPage MainPage=(jMainPage)_parent;
-            if(MainPage.canUpdateRole()) {
+
+            if(_jMainPage.canUpdateRole()) {
                 _jNewRole.DoneButton();
                 _jNewRole._jRole = getSelectedRole();
                 if(_jNewRole._jRole == null) {
@@ -214,15 +214,14 @@ public class jViewRoles extends javax.swing.JPanel {
     }//GEN-LAST:event_jSearchKeyTyped
 
     private void jBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackActionPerformed
-        jMainPage MainPage=(jMainPage)_parent;
+        
         clearViewRoles();
-        _jHomePage.switchPanels(_parent);
-        MainPage.jViewRoles.grabFocus();
+        _jHomePage.switchPanels(_jMainPage);
+        _jMainPage.jViewRoles.grabFocus();
     }//GEN-LAST:event_jBackActionPerformed
 
     private void jEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEditActionPerformed
-        jMainPage MainPage=(jMainPage)_parent;
-            if(MainPage.canUpdateRole()) {
+            if(_jMainPage.canUpdateRole()) {
                 _jNewRole.DoneButton();
                 _jNewRole._jRole = getSelectedRole();
                 if(_jNewRole._jRole == null) {
@@ -234,11 +233,10 @@ public class jViewRoles extends javax.swing.JPanel {
             }
     }//GEN-LAST:event_jEditActionPerformed
     private ArrayList<String> allRoles;
-    private jNewRole _jNewRole;
+    public jNewRole _jNewRole;
     private filterRoles _filterRoles;
     private RoleServices _RoleServices;
     private jHomePage _jHomePage;
-    private final JPanel _parent;
     private jMainPage _jMainPage;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBack;
