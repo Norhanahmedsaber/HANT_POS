@@ -69,8 +69,8 @@ public class jThemePage extends javax.swing.JPanel {
 
         jTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null}
+                {"hant", "bouns"},
+                {"hadeer", "<3"}
             },
             new String [] {
                 "Title 1", "Title 2"
@@ -117,8 +117,8 @@ public class jThemePage extends javax.swing.JPanel {
                     .addComponent(jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton)
                 .addContainerGap(24, Short.MAX_VALUE))
         );
@@ -271,7 +271,6 @@ public class jThemePage extends javax.swing.JPanel {
     }//GEN-LAST:event_jBachgroundButtonActionPerformed
 
     private void jLabelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLabelButtonActionPerformed
-        
         c3 = jColorChooser.getColor();
         jLabel.setForeground(c3);
         jRadioButton.setForeground(c3);
@@ -287,6 +286,8 @@ public class jThemePage extends javax.swing.JPanel {
     private void jButtonForgroundButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonForgroundButtonActionPerformed
         
         c4 = jColorChooser.getColor();
+        
+        jTable.setForeground(c4);
         jButton.setForeground(c4);
     }//GEN-LAST:event_jButtonForgroundButtonActionPerformed
 

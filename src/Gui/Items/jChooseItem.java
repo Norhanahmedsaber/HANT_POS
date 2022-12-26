@@ -13,7 +13,6 @@ import java.util.UUID;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
-import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.DefaultTableModel;
 import utils.filterItems;
 
@@ -36,7 +35,6 @@ public class jChooseItem extends javax.swing.JPanel {
            _jViewCustomer =(jViewCustomer)parent;
            _jNewCustomer=null;
         } 
-
     }
      
     public void changecolor(java.awt.Color c1,java.awt.Color c2,java.awt.Color c3,java.awt.Color c4,java.awt.Color c5)
@@ -49,6 +47,7 @@ public class jChooseItem extends javax.swing.JPanel {
         jDone.setBackground(c2);
         jDone.setForeground(c4);
         jItems.setBackground(c2);
+        jAddedItems.setForeground(c4);
         jItemsCombo.setBackground(c5);
         jLabel2.setForeground(c3);
         jLabel3.setForeground(c3);
@@ -66,6 +65,7 @@ public class jChooseItem extends javax.swing.JPanel {
         jupdate.setBackground(c2);
         jupdate.setForeground(c4);
         jAddedItems.setBackground(c2);
+         jAddedItems.setForeground(c4);
     }
     public void edit()
     {

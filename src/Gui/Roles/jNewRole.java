@@ -9,12 +9,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 public class jNewRole extends javax.swing.JPanel {
  
-   public jNewRole(jHomePage jhp,JPanel parent ) {
+   public jNewRole(jHomePage jhp,JPanel parent) {
         initComponents();
         _jRole=new Role();
         _jHomePage=jhp;
         _RoleServices =new RoleServices();
-         _parent= parent;  
+        _parent= parent;  
     }
    
     
@@ -65,35 +65,47 @@ public class jNewRole extends javax.swing.JPanel {
         jViewRole.setSelected(false);
     }
    public void assignPermissions(){   
-       Role newRole = getData();
-       _RoleServices.create(newRole); 
-       _jHomePage.createLog("Created", "Role", newRole.name);
+        Role newRole = getData();
+        if(newRole != null) {
+            _RoleServices.create(newRole); 
+            _jHomePage.createLog("Created", "Role", newRole.name);
+            JOptionPane.showMessageDialog(null, "Permissions are assigned successfully!");
+        }
+        
    }
-   public Role getData(){
-       _jRole.name=jRoleNameField.getText();
-       _jRole.canCreateCustomer=JCreateCustomer.isSelected();
-       _jRole.canCreateItem=jCreateItem.isSelected();
-       _jRole.canCreateUser=jCreateUser.isSelected();
-       _jRole.canDeleteCustomer=JDeleteCustomer.isSelected();
-       _jRole.canDeleteItem=jDeleteItem.isSelected();
-       _jRole.canUpdateCustomer=jUpdateCustomer.isSelected();
-       _jRole.canUpdateItem=jUpdateItem.isSelected();
-       _jRole.canViewCustomers=jViewCustomer.isSelected();
-       _jRole.canViewItems=jViewItem.isSelected();
-       _jRole.canViewLogs=JviewLogs.isSelected();
-       _jRole.canViewUsers=jViewUser.isSelected();  
-       _jRole.canDeleteUser = JDeleteUser.isSelected();
-       _jRole.canCreateRole = jCreateRole.isSelected();
-       _jRole.canUpdateRole = JUpdateRole.isSelected();
-       _jRole.canViewRoles = jViewRole.isSelected();
-       _jRole.canDeleteLog = JDeleteLog.isSelected();
-       return _jRole;
+    public Role getData(){
+        _jRole.name=jRoleNameField.getText();
+        if(!"".equals(_jRole.name)) {
+            _jRole.canCreateCustomer=JCreateCustomer.isSelected();
+            _jRole.canCreateItem=jCreateItem.isSelected();
+            _jRole.canCreateUser=jCreateUser.isSelected();
+            _jRole.canDeleteCustomer=JDeleteCustomer.isSelected();
+            _jRole.canDeleteItem=jDeleteItem.isSelected();
+            _jRole.canUpdateCustomer=jUpdateCustomer.isSelected();
+            _jRole.canUpdateItem=jUpdateItem.isSelected();
+            _jRole.canViewCustomers=jViewCustomer.isSelected();
+            _jRole.canViewItems=jViewItem.isSelected();
+            _jRole.canViewLogs=JviewLogs.isSelected();
+            _jRole.canViewUsers=jViewUser.isSelected();  
+            _jRole.canDeleteUser = JDeleteUser.isSelected();
+            _jRole.canCreateRole = jCreateRole.isSelected();
+            _jRole.canUpdateRole = JUpdateRole.isSelected();
+            _jRole.canViewRoles = jViewRole.isSelected();
+            _jRole.canDeleteLog = JDeleteLog.isSelected();
+            return _jRole;
+        }else {
+            JOptionPane.showMessageDialog(null, "Role Name Can't be Empty!");
+            return null;
+        }
+       
+       
    }
   
    public void DoneButton(){ 
         if (_parent instanceof jViewRoles ){   
             jRoleNameField.setEditable(false);
             jDone.setText("Update");
+            System.out.println("xxjxnxjx");
         }
         else{
             jDone.setText("Create");
@@ -102,7 +114,6 @@ public class jNewRole extends javax.swing.JPanel {
    private void DoneButtonClicked(){
         if (_parent instanceof jMainPage ){
             assignPermissions();
-            JOptionPane.showMessageDialog(null, "Permissions are assigned successfully!");
             clearCreateRolePage();
         }
         else{
