@@ -25,8 +25,10 @@ public class jHomePage extends javax.swing.JFrame {
     { 
         jPanel1.setBackground(c1);
         jsignin.setForeground(c3);
-        _jmaMainPage._jNewCustomer._jChooseItem.changecolor(c1,c2,c3,c4,c5 );
+        _jmaMainPage._jNewCustomer._jChooseItem.changecolor(c1,c2,c3,c4,c5);
         _jmaMainPage._jViewCustomers._jViewCustomer._jChooseItem.changecolor(c1,c2,c3,c4,c5);
+        _jmaMainPage._jViewStatistics.chart.changecolor(c1,c2,c3,c4,c5);
+        _jmaMainPage._jViewStatistics.chart2.changecolor(c1,c2,c3,c4,c5);
         //_jmaMainPage._jNewCustomer.changecolor(c1,c2,c3,c4,c5);
        // _jmaMainPage._jViewCustomers.changecolor(c1,c2,c3,c4,c5);
        // _jmaMainPage._jViewCustomers._jViewCustomer.changecolor(c1,c2,c3,c4,c5);

@@ -72,11 +72,6 @@
       </Layout>
     </Container>
     <Container class="Gui.Graphs.BlankChart.BlankPlotChart" name="blankPlotChart">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="82" green="76" red="57" type="rgb"/>
-        </Property>
-      </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>

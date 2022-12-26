@@ -30,9 +30,28 @@ public class jNewCustomer extends javax.swing.JPanel {
     }
     
      
-    public void changecolor(java.awt.Color c)
+    public void changecolor(java.awt.Color c1,java.awt.Color c2,java.awt.Color c3,java.awt.Color c4,java.awt.Color c5)
     { 
-        jPanel1.setBackground(c);
+        jPanel1.setBackground(c1);
+        jAddCustomer.setBackground(c2);
+        jAddCustomer.setForeground(c4);
+         jAgeField.setBackground(c5);
+        jBack.setBackground(c2);
+        jBack.setForeground(c4);
+        jChooseItem.setBackground(c2);
+        jChooseItem.setForeground(c4);
+         jEmailField.setBackground(c5);
+        jGenderComboBox.setBackground(c5);
+         jLabel1.setForeground(c3);
+         jLabel10.setForeground(c3);
+         jLabel2.setForeground(c3);
+         jLabel5.setForeground(c3);
+         jLabel6.setForeground(c3);
+         jLabel8.setForeground(c3);
+         jLabel9.setForeground(c3);
+         jNameField.setBackground(c5);
+       jNationalIdField.setBackground(c5);
+        jPhoneNoField.setBackground(c5);
     }
         
     public ArrayList<Item> getselecteditems(){ 

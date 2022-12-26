@@ -21,11 +21,25 @@ public class jViewLogs extends javax.swing.JPanel {
 
         jLogDetails.setEditable(false);
     }
-    public void changecolor(java.awt.Color c)
-    { 
-        System.out.println(c);
-        setBackground(c);
-    }
+   public void changecolor(java.awt.Color c1,java.awt.Color c2,java.awt.Color c3,java.awt.Color c4,java.awt.Color c5)
+    {
+    // setBackground(c);
+//         private javax.swing.JButton jBack;
+   //  jBack.setBackground(c2);
+     //   jBack.setForeground(c4);
+//    private javax.swing.JButton jDelete;
+//    private javax.swing.JLabel jLabel1;
+//    private javax.swing.JLabel jLabel2;
+//    private javax.swing.JLabel jLabel3;
+//    private javax.swing.JTextArea jLogDetails;
+//    private javax.swing.JTable jLogsTable;
+//    private javax.swing.JScrollPane jScrollPane1;
+//    private javax.swing.JScrollPane jScrollPane3;
+//    public javax.swing.JTextField jSearchField;
+//    private javax.swing.JComboBox<String> jSortByCombo;
+//    private javax.swing.JButton jToggleSort;
+   }
+   
     public void renderData() { 
         String[] cols = {"ID","UserName", "Action", "Acted On" ,"Date"}; 
         DefaultTableModel model = (DefaultTableModel) jLogsTable.getModel();
