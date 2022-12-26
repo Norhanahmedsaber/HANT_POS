@@ -23,9 +23,19 @@ public class jViewRoles extends javax.swing.JPanel {
     }
     
      
-    public void changecolor(java.awt.Color c)
+     public void changecolor(java.awt.Color c1,java.awt.Color c2,java.awt.Color c3,java.awt.Color c4,java.awt.Color c5)
     { 
-        setBackground(c);
+        setBackground(c1);
+        jBack.setBackground(c2);
+        jBack.setForeground(c4);
+        jComboBox1.setBackground(c5);
+        jEdit.setBackground(c2);
+        jEdit.setForeground(c4);
+        jLabel1.setForeground(c3);
+        jLabel2.setForeground(c3);
+        jRoles.setBackground(c2);
+        jScrollPane1.setBackground(c5);
+        jSearch.setBackground(c5);
     }
     public void clearViewRoles() {
         jSearch.setText("");
