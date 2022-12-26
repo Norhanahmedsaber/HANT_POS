@@ -266,7 +266,7 @@ public class jNewItem extends javax.swing.JPanel {
             }
         });
 
-        jPic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Items/photo3.png"))); // NOI18N
+        jPic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Items/photo2.png"))); // NOI18N
 
         jUpload.setBackground(new java.awt.Color(217, 156, 69));
         jUpload.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N

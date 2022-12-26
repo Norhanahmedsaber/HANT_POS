@@ -49,44 +49,47 @@
                           <Component id="jUpdatedSuccessfuly" min="-2" pref="488" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel6" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel2" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
-                                      <Component id="jLabel5" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
-                                      <Component id="jLabel4" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
-                                      <Component id="jLabel1" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
-                                      <Component id="jLabel3" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                                      <Component id="jLabel6" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jLabel2" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                                              <Component id="jLabel5" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                                              <Component id="jLabel4" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                                              <Component id="jLabel1" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                                              <Component id="jLabel3" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                              <Component id="jCreatedAt" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
+                                              <Component id="jPriceField" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
+                                              <Component id="jDescriptionField" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
+                                              <Component id="jNameField" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
+                                              <Component id="jCatgoryField" min="-2" pref="250" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
                                   </Group>
-                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="jCreatedAt" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
-                                      <Component id="jPriceField" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
-                                      <Component id="jDescriptionField" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
-                                      <Component id="jNameField" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
-                                      <Component id="jCatgoryField" min="-2" pref="250" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jUpload" min="-2" pref="250" max="-2" attributes="0"/>
+                                      <Component id="jPic" min="-2" pref="250" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jBack" min="-2" pref="175" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                  <Component id="jCancel" min="-2" pref="175" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                  <Component id="jUpdate" min="-2" pref="175" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                  <Component id="jEdit" min="-2" pref="175" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jUpload" min="-2" pref="250" max="-2" attributes="0"/>
-                              <Component id="jPic" min="-2" pref="250" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jBack" min="-2" pref="175" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          <Component id="jCancel" min="-2" pref="175" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          <Component id="jUpdate" min="-2" pref="175" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          <Component id="jEdit" min="-2" pref="175" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                          <EmptySpace min="50" pref="50" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -379,7 +382,7 @@
         <Component class="javax.swing.JLabel" name="jPic">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Gui/Items/photo3.png"/>
+              <Image iconType="3" name="/Gui/Items/photo2.png"/>
             </Property>
           </Properties>
         </Component>

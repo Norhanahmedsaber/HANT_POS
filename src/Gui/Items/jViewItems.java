@@ -433,7 +433,7 @@ public class jViewItems extends javax.swing.JPanel {
             _jNewItem.jNameField.grabFocus();
             BufferedImage img = null;
             try {
-                img = ImageIO.read(new File("Images/noImage.jpg"));
+                img = ImageIO.read(new File("Images/photo2.png"));
             } catch (IOException e) {
                 Logger.getLogger(jViewItem.class.getName()).log(Level.SEVERE, null, e);
             }
