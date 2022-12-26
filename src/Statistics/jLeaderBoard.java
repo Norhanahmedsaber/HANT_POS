@@ -5,6 +5,10 @@
  */
 package Statistics;
 
+import Entities.CategoryInfo;
+import Entities.UserInfo;
+import Gui.jHomePage;
+
 /**
  *
  * @author norha
@@ -14,8 +18,10 @@ public class jLeaderBoard extends javax.swing.JPanel {
     /**
      * Creates new form jLeaderBoard
      */
-    public jLeaderBoard() {
+    public jLeaderBoard(jHomePage jhp ,jViewStatistics jvs) {
         initComponents();
+        _jHomePage=jhp;
+        _jViewStatistics=jvs;
     }
 
     /**
@@ -34,22 +40,22 @@ public class jLeaderBoard extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jMostSoldItem = new javax.swing.JLabel();
-        jMostSoldCategory = new javax.swing.JLabel();
-        jUserWithTheMostSales = new javax.swing.JLabel();
-        jUserWithTheMostDeals = new javax.swing.JLabel();
-        jUserWithTheMostImports = new javax.swing.JLabel();
-        jMostSoldItemScore = new javax.swing.JLabel();
-        jMostSoldCategoryScore = new javax.swing.JLabel();
-        jUserWithTheMostSalesScore = new javax.swing.JLabel();
-        jUserWithTheMostDealsScore = new javax.swing.JLabel();
-        jUserWithTheMostImportsScore = new javax.swing.JLabel();
         jBack2 = new javax.swing.JButton();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         jRadioButton3 = new javax.swing.JRadioButton();
         jRadioButton4 = new javax.swing.JRadioButton();
         jPeriod = new javax.swing.JLabel();
+        jUserWithTheMostSales = new javax.swing.JTextField();
+        jMostSoldItem = new javax.swing.JTextField();
+        jMostSoldCategory = new javax.swing.JTextField();
+        jUserWithTheMostDeals = new javax.swing.JTextField();
+        jUserWithTheMostImports = new javax.swing.JTextField();
+        jUserWithTheMostSalesscore = new javax.swing.JTextField();
+        jMostSoldItemscore = new javax.swing.JTextField();
+        jMostSoldCategoryscore = new javax.swing.JTextField();
+        jUserWithTheMostDealsscore = new javax.swing.JTextField();
+        jUserWithTheMostImportsscore = new javax.swing.JTextField();
 
         jLabel2.setFont(new java.awt.Font("Lucida Fax", 1, 56)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Statistics/Icons/winner.png"))); // NOI18N
@@ -70,36 +76,6 @@ public class jLeaderBoard extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel7.setText("User With The Most Imports");
 
-        jMostSoldItem.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jMostSoldItem.setText("jLabel3");
-
-        jMostSoldCategory.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jMostSoldCategory.setText("jLabel4");
-
-        jUserWithTheMostSales.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jUserWithTheMostSales.setText("jLabel5");
-
-        jUserWithTheMostDeals.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jUserWithTheMostDeals.setText("jLabel6");
-
-        jUserWithTheMostImports.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jUserWithTheMostImports.setText("jLabel7");
-
-        jMostSoldItemScore.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jMostSoldItemScore.setText("jLabel3");
-
-        jMostSoldCategoryScore.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jMostSoldCategoryScore.setText("jLabel4");
-
-        jUserWithTheMostSalesScore.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jUserWithTheMostSalesScore.setText("jLabel5");
-
-        jUserWithTheMostDealsScore.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jUserWithTheMostDealsScore.setText("jLabel6");
-
-        jUserWithTheMostImportsScore.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jUserWithTheMostImportsScore.setText("jLabel7");
-
         jBack2.setBackground(new java.awt.Color(217, 156, 69));
         jBack2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jBack2.setForeground(new java.awt.Color(255, 255, 255));
@@ -119,12 +95,27 @@ public class jLeaderBoard extends javax.swing.JPanel {
 
         jGroup.add(jRadioButton1);
         jRadioButton1.setText("Today");
+        jRadioButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jRadioButton1MouseClicked(evt);
+            }
+        });
 
         jGroup.add(jRadioButton2);
         jRadioButton2.setText("This Week");
+        jRadioButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jRadioButton2MouseClicked(evt);
+            }
+        });
 
         jGroup.add(jRadioButton3);
         jRadioButton3.setText("This Month");
+        jRadioButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jRadioButton3MouseClicked(evt);
+            }
+        });
         jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton3ActionPerformed(evt);
@@ -133,9 +124,34 @@ public class jLeaderBoard extends javax.swing.JPanel {
 
         jGroup.add(jRadioButton4);
         jRadioButton4.setText("This Year");
+        jRadioButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jRadioButton4MouseClicked(evt);
+            }
+        });
 
         jPeriod.setFont(new java.awt.Font("Lucida Fax", 1, 36)); // NOI18N
         jPeriod.setText("Period");
+
+        jUserWithTheMostSales.setToolTipText("");
+
+        jMostSoldItem.setText("jTextField1");
+
+        jMostSoldCategory.setText("jTextField1");
+
+        jUserWithTheMostDeals.setText("jTextField1");
+
+        jUserWithTheMostImports.setText("jTextField1");
+
+        jUserWithTheMostSalesscore.setText("jTextField1");
+
+        jMostSoldItemscore.setText("jTextField1");
+
+        jMostSoldCategoryscore.setText("jTextField1");
+
+        jUserWithTheMostDealsscore.setText("jTextField1");
+
+        jUserWithTheMostImportsscore.setText("jTextField1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -145,7 +161,35 @@ public class jLeaderBoard extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(75, 75, 75)
+                                        .addComponent(jUserWithTheMostImports, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(62, 62, 62)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jUserWithTheMostDeals, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jMostSoldItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(179, 179, 179)
+                                                .addComponent(jMostSoldCategoryscore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                    .addComponent(jUserWithTheMostSales)
+                                                    .addComponent(jMostSoldCategory))
+                                                .addGap(107, 107, 107)
+                                                .addComponent(jUserWithTheMostSalesscore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jUserWithTheMostImportsscore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jBack2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(141, 141, 141)
@@ -153,86 +197,74 @@ public class jLeaderBoard extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jRadioButton2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton3))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
-                                .addGap(88, 88, 88)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jMostSoldCategory)
-                                    .addComponent(jUserWithTheMostSales)
-                                    .addComponent(jUserWithTheMostDeals)
-                                    .addComponent(jMostSoldItem)
-                                    .addComponent(jUserWithTheMostImports))))
+                                    .addComponent(jUserWithTheMostDealsscore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jRadioButton3))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jUserWithTheMostImportsScore)
-                                    .addComponent(jMostSoldCategoryScore)
-                                    .addComponent(jMostSoldItemScore)
-                                    .addComponent(jUserWithTheMostSalesScore)
-                                    .addComponent(jUserWithTheMostDealsScore))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jRadioButton4)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(jRadioButton4)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 88, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jPeriod, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(136, 136, 136))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jMostSoldItemscore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(225, 225, 225))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jPeriod, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jPeriod, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42)
+                        .addComponent(jMostSoldItemscore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jUserWithTheMostDealsScore)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel3)
-                                    .addComponent(jMostSoldItemScore))
-                                .addGap(39, 39, 39)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jMostSoldCategoryScore))
+                                    .addComponent(jMostSoldItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(38, 38, 38)
+                                .addComponent(jLabel4)
                                 .addGap(122, 122, 122))
                             .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addGap(4, 4, 4))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jMostSoldCategoryscore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(45, 45, 45)
+                                        .addComponent(jUserWithTheMostSalesscore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(35, 35, 35)))
+                                .addComponent(jUserWithTheMostDealsscore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jUserWithTheMostSalesScore))
-                                .addGap(44, 44, 44)
-                                .addComponent(jLabel6)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(jUserWithTheMostImportsScore)
-                            .addComponent(jUserWithTheMostImports)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jMostSoldItem)
-                                .addGap(39, 39, 39)
-                                .addComponent(jMostSoldCategory)
-                                .addGap(122, 122, 122))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jUserWithTheMostSales)
-                                .addGap(44, 44, 44)
-                                .addComponent(jUserWithTheMostDeals)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(39, 39, 39)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jUserWithTheMostImportsscore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jMostSoldCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(jUserWithTheMostSales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48)
+                        .addComponent(jUserWithTheMostDeals, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(39, 39, 39))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jUserWithTheMostImports, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(54, 54, 54)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jBack2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
@@ -243,9 +275,196 @@ public class jLeaderBoard extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
+        public void today(){
+            _jViewStatistics.allDays=_jViewStatistics.fetchData();
+            jPeriod.setText("Of The Day");
+            String maxName = "";
+            int max = 0;
+            for(CategoryInfo cat : _jViewStatistics.cats) {
+                if(cat.NumberOfItemsToday > max) {
+                    max = cat.NumberOfItemsToday;
+                    maxName = cat.name;
+                }
+            }
+            jMostSoldCategory.setText(maxName);
+            jMostSoldCategoryscore.setText(Integer.toString(max));
+            
+            maxName = "";
+            max = 0;
+            for(UserInfo user : _jViewStatistics.users) {
+                if(user.profitToday > max) {
+                    max = user.profitToday;
+                    maxName = user.username;
+                }
+            }
+            jUserWithTheMostSales.setText(maxName);
+            jUserWithTheMostSalesscore.setText(Integer.toString(max));
+            
+            maxName = "";
+            max = 0;
+            for(UserInfo user : _jViewStatistics.users) {
+                if(user.dealsDoneToday > max) {
+                    max = user.dealsDoneToday;
+                    maxName = user.username;
+                }
+            }
+            jUserWithTheMostDeals.setText(maxName);
+            jUserWithTheMostDealsscore.setText(Integer.toString(max));
+            
+            maxName = "";
+            max = 0;
+            for(UserInfo user : _jViewStatistics.users) {
+                if(user.itemsImportedToday > max) {
+                    max = user.itemsImportedToday;
+                    maxName = user.username;
+                }
+            }
+            jUserWithTheMostImports.setText(maxName);
+            jUserWithTheMostImportsscore.setText(Integer.toString(max));
+        } 
+        public void week(){
+            _jViewStatistics.allDays=_jViewStatistics.fetchData();
+            jPeriod.setText("Of The Week");
+            String maxName = "";
+            int max = 0;
+            for(CategoryInfo cat : _jViewStatistics.cats) {
+                if(cat.NumberOfItemsThisWeek > max) {
+                    max = cat.NumberOfItemsThisWeek;
+                    maxName = cat.name;
+                }
+            }
+            jMostSoldCategory.setText(maxName);
+            jMostSoldCategoryscore.setText(Integer.toString(max));
+            
+            maxName = "";
+            max = 0;
+            for(UserInfo user : _jViewStatistics.users) {
+                if(user.profitThisWeek > max) {
+                    max = user.profitThisWeek;
+                    maxName = user.username;
+                }
+            }
+            jUserWithTheMostSales.setText(maxName);
+            jUserWithTheMostSalesscore.setText(Integer.toString(max));
+            
+            maxName = "";
+            max = 0;
+            for(UserInfo user : _jViewStatistics.users) {
+                if(user.dealsDoneThisWeek > max) {
+                    max = user.dealsDoneThisWeek;
+                    maxName = user.username;
+                }
+            }
+            jUserWithTheMostDeals.setText(maxName);
+            jUserWithTheMostDealsscore.setText(Integer.toString(max));
+            
+            maxName = "";
+            max = 0;
+            for(UserInfo user : _jViewStatistics.users) {
+                if(user.itemsImportedThisWeek > max) {
+                    max = user.itemsImportedThisWeek;
+                    maxName = user.username;
+                }
+            }
+            jUserWithTheMostImports.setText(maxName);
+            jUserWithTheMostImportsscore.setText(Integer.toString(max));
+        } 
+        public void month(){
+            _jViewStatistics.allDays=_jViewStatistics.fetchData();
+            jPeriod.setText("Of The Month");
+            String maxName = "";
+            int max = 0;
+            for(CategoryInfo cat : _jViewStatistics.cats) {
+                if(cat.NumberOfItemsThisMonth > max) {
+                    max = cat.NumberOfItemsThisMonth;
+                    maxName = cat.name;
+                }
+            }
+            jMostSoldCategory.setText(maxName);
+            jMostSoldCategoryscore.setText(Integer.toString(max));
+            
+            maxName = "";
+            max = 0;
+            for(UserInfo user : _jViewStatistics.users) {
+                if(user.profitThisMonth > max) {
+                    max = user.profitThisMonth;
+                    maxName = user.username;
+                }
+            }
+            jUserWithTheMostSales.setText(maxName);
+            jUserWithTheMostSalesscore.setText(Integer.toString(max));
+            
+            maxName = "";
+            max = 0;
+            for(UserInfo user : _jViewStatistics.users) {
+                if(user.dealsDoneThisMonth > max) {
+                    max = user.dealsDoneThisMonth;
+                    maxName = user.username;
+                }
+            }
+            jUserWithTheMostDeals.setText(maxName);
+            jUserWithTheMostDealsscore.setText(Integer.toString(max));
+            
+            maxName = "";
+            max = 0;
+            for(UserInfo user : _jViewStatistics.users) {
+                if(user.itemsImportedThisMonth > max) {
+                    max = user.itemsImportedThisMonth;
+                    maxName = user.username;
+                }
+            }
+            jUserWithTheMostImports.setText(maxName);
+            jUserWithTheMostImportsscore.setText(Integer.toString(max));
+        } 
+        public void year(){
+            _jViewStatistics.allDays=_jViewStatistics.fetchData();
+            jPeriod.setText("Of The Year");
+            String maxName = "";
+            int max = 0;
+            for(CategoryInfo cat : _jViewStatistics.cats) {
+                if(cat.NumberOfItemsThisYear > max) {
+                    max = cat.NumberOfItemsThisYear;
+                    maxName = cat.name;
+                }
+            }
+            jMostSoldCategory.setText(maxName);
+            jMostSoldCategoryscore.setText(Integer.toString(max));
+            
+            maxName = "";
+            max = 0;
+            for(UserInfo user : _jViewStatistics.users) {
+                if(user.profitThisYear > max) {
+                    max = user.profitThisYear;
+                    maxName = user.username;
+                }
+            }
+            jUserWithTheMostSales.setText(maxName);
+            jUserWithTheMostSalesscore.setText(Integer.toString(max));
+            
+            maxName = "";
+            max = 0;
+            for(UserInfo user : _jViewStatistics.users) {
+                if(user.dealsDoneThisYear > max) {
+                    max = user.dealsDoneThisYear;
+                    maxName = user.username;
+                }
+            }
+            jUserWithTheMostDeals.setText(maxName);
+            jUserWithTheMostDealsscore.setText(Integer.toString(max));
+            
+            maxName = "";
+            max = 0;
+            for(UserInfo user : _jViewStatistics.users) {
+                if(user.itemsImportedThisYear > max) {
+                    max = user.itemsImportedThisYear;
+                    maxName = user.username;
+                }
+            }
+            jUserWithTheMostImports.setText(maxName);
+            jUserWithTheMostImportsscore.setText(Integer.toString(max));
+        } 
     private void jBack2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBack2MouseClicked
-        
+        _jHomePage.switchPanels(_jViewStatistics);
 
     }//GEN-LAST:event_jBack2MouseClicked
 
@@ -257,10 +476,25 @@ public class jLeaderBoard extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton3ActionPerformed
 
+    private void jRadioButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButton1MouseClicked
+        today();
+    }//GEN-LAST:event_jRadioButton1MouseClicked
 
+    private void jRadioButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButton2MouseClicked
+        week();
+    }//GEN-LAST:event_jRadioButton2MouseClicked
+
+    private void jRadioButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButton3MouseClicked
+        month();
+    }//GEN-LAST:event_jRadioButton3MouseClicked
+
+    private void jRadioButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButton4MouseClicked
+        year();
+    }//GEN-LAST:event_jRadioButton4MouseClicked
+
+private jHomePage _jHomePage;
+private jViewStatistics _jViewStatistics;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBack;
-    private javax.swing.JButton jBack1;
     private javax.swing.JButton jBack2;
     private javax.swing.ButtonGroup jGroup;
     private javax.swing.JLabel jLabel2;
@@ -269,20 +503,20 @@ public class jLeaderBoard extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jMostSoldCategory;
-    private javax.swing.JLabel jMostSoldCategoryScore;
-    private javax.swing.JLabel jMostSoldItem;
-    private javax.swing.JLabel jMostSoldItemScore;
+    private javax.swing.JTextField jMostSoldCategory;
+    private javax.swing.JTextField jMostSoldCategoryscore;
+    private javax.swing.JTextField jMostSoldItem;
+    private javax.swing.JTextField jMostSoldItemscore;
     private javax.swing.JLabel jPeriod;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JLabel jUserWithTheMostDeals;
-    private javax.swing.JLabel jUserWithTheMostDealsScore;
-    private javax.swing.JLabel jUserWithTheMostImports;
-    private javax.swing.JLabel jUserWithTheMostImportsScore;
-    private javax.swing.JLabel jUserWithTheMostSales;
-    private javax.swing.JLabel jUserWithTheMostSalesScore;
+    private javax.swing.JTextField jUserWithTheMostDeals;
+    private javax.swing.JTextField jUserWithTheMostDealsscore;
+    private javax.swing.JTextField jUserWithTheMostImports;
+    private javax.swing.JTextField jUserWithTheMostImportsscore;
+    private javax.swing.JTextField jUserWithTheMostSales;
+    private javax.swing.JTextField jUserWithTheMostSalesscore;
     // End of variables declaration//GEN-END:variables
 }
