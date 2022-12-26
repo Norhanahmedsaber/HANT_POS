@@ -197,7 +197,7 @@ public class jThemePage extends javax.swing.JPanel {
         jCancelButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jCancelButton.setForeground(new java.awt.Color(255, 255, 255));
         jCancelButton.setMnemonic('c');
-        jCancelButton.setText("Cancel");
+        jCancelButton.setText("Reset Default");
         jCancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCancelButtonActionPerformed(evt);
