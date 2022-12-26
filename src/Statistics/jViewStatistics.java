@@ -37,6 +37,7 @@ public class jViewStatistics extends javax.swing.JPanel {
         _ItemServices = new ItemServices();
         _filterCustomers = new filterCustomers();
         _UserServices = new UserServices();
+        _jLeaderBoard=new jLeaderBoard(jhp,this);
         changecolor(new java.awt.Color(87, 118, 130), new java.awt.Color(217, 156, 69), new java.awt.Color(255, 255, 255), new java.awt.Color(255, 255, 255), new java.awt.Color(255, 255, 255));
     }
     public void changecolor(java.awt.Color c1,java.awt.Color c2,java.awt.Color c3,java.awt.Color c4,java.awt.Color c5)
@@ -236,6 +237,7 @@ public class jViewStatistics extends javax.swing.JPanel {
         jSales = new javax.swing.JButton();
         jCategories = new javax.swing.JButton();
         jUsers = new javax.swing.JButton();
+        jLeader = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(87, 118, 130));
         setPreferredSize(new java.awt.Dimension(750, 750));
@@ -330,6 +332,28 @@ public class jViewStatistics extends javax.swing.JPanel {
             }
         });
 
+        jLeader.setBackground(new java.awt.Color(217, 156, 69));
+        jLeader.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLeader.setForeground(new java.awt.Color(255, 255, 255));
+        jLeader.setMnemonic('u');
+        jLeader.setText("Leaderboard");
+        jLeader.setToolTipText("");
+        jLeader.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLeaderMouseClicked(evt);
+            }
+        });
+        jLeader.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jLeaderActionPerformed(evt);
+            }
+        });
+        jLeader.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jLeaderKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -351,11 +375,13 @@ public class jViewStatistics extends javax.swing.JPanel {
                 .addComponent(jSales, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(jCategories, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(170, 170, 170)
+                .addGap(18, 18, 18)
+                .addComponent(jLeader, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(71, 71, 71)
                 .addComponent(jBack, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
+                .addGap(208, 208, 208))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -474,6 +500,19 @@ public class jViewStatistics extends javax.swing.JPanel {
     private void jBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackActionPerformed
         _jHomePage.switchPanels(_jMainPage);
     }//GEN-LAST:event_jBackActionPerformed
+
+    private void jLeaderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLeaderMouseClicked
+        _jHomePage.switchPanels(_jLeaderBoard);
+        _jLeaderBoard.today();
+    }//GEN-LAST:event_jLeaderMouseClicked
+
+    private void jLeaderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLeaderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLeaderActionPerformed
+
+    private void jLeaderKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLeaderKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLeaderKeyPressed
     public ArrayList<int[]> fetchData() {
         ArrayList<int[]> alldays = new ArrayList<>(); 
         LocalDateTime now = LocalDateTime.now();
@@ -648,6 +687,7 @@ public class jViewStatistics extends javax.swing.JPanel {
             item_customerClicked();
         }
     }
+    public jLeaderBoard _jLeaderBoard;
     private java.awt.Color[] colors;
     private UserServices _UserServices;
     public ArrayList<UserInfo> users;
@@ -665,6 +705,7 @@ public class jViewStatistics extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton jBack;
     public javax.swing.JButton jCategories;
+    public javax.swing.JButton jLeader;
     public javax.swing.JButton jSales;
     public javax.swing.JButton jUsers;
     // End of variables declaration//GEN-END:variables
