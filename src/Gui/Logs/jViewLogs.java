@@ -23,21 +23,22 @@ public class jViewLogs extends javax.swing.JPanel {
     }
    public void changecolor(java.awt.Color c1,java.awt.Color c2,java.awt.Color c3,java.awt.Color c4,java.awt.Color c5)
     {
-    // setBackground(c);
-//         private javax.swing.JButton jBack;
-   //  jBack.setBackground(c2);
-     //   jBack.setForeground(c4);
-//    private javax.swing.JButton jDelete;
-//    private javax.swing.JLabel jLabel1;
-//    private javax.swing.JLabel jLabel2;
-//    private javax.swing.JLabel jLabel3;
-//    private javax.swing.JTextArea jLogDetails;
-//    private javax.swing.JTable jLogsTable;
-//    private javax.swing.JScrollPane jScrollPane1;
-//    private javax.swing.JScrollPane jScrollPane3;
-//    public javax.swing.JTextField jSearchField;
-//    private javax.swing.JComboBox<String> jSortByCombo;
-//    private javax.swing.JButton jToggleSort;
+        setBackground(c1);
+        jBack.setBackground(c2);
+        jBack.setForeground(c4);
+        jDelete.setBackground(c2);
+        jDelete.setForeground(c4);
+        jLabel1.setForeground(c3);
+        jLabel2.setForeground(c3);
+        jLabel3.setForeground(c3);
+        jLogDetails.setBackground(c5);
+        jLogsTable.setBackground(c2);
+        jScrollPane1.setBackground(c5);
+        jScrollPane3.setBackground(c5);
+        jSearchField.setBackground(c5);
+        jSortByCombo.setBackground(c5);
+        jToggleSort.setBackground(c2);
+        jToggleSort.setForeground(c4);
    }
 
     public void renderData() { 
@@ -156,6 +157,11 @@ public class jViewLogs extends javax.swing.JPanel {
         jSortByCombo.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jSortByCombo.setForeground(new java.awt.Color(0, 31, 78));
         jSortByCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User Name", "Action", "Acted On", "Date" }));
+        jSortByCombo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jSortByComboItemStateChanged(evt);
+            }
+        });
         jSortByCombo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jSortByComboMouseClicked(evt);
@@ -277,19 +283,20 @@ public class jViewLogs extends javax.swing.JPanel {
                     .addComponent(jScrollPane3)
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, 0)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jSortByCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20)
-                                .addComponent(jToggleSort, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jSearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, 0)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jSortByCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(20, 20, 20)
+                                        .addComponent(jToggleSort, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jSearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
@@ -362,6 +369,10 @@ public class jViewLogs extends javax.swing.JPanel {
     private void jSortByComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSortByComboActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jSortByComboActionPerformed
+
+    private void jSortByComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jSortByComboItemStateChanged
+        renderData();
+    }//GEN-LAST:event_jSortByComboItemStateChanged
 
     
     private ArrayList<Log> allLogs;

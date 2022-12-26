@@ -21,9 +21,22 @@ public class jNewUsers extends javax.swing.JPanel {
         _RoleServices = new RoleServices();
     }
      
-    public void changecolor(java.awt.Color c)
+    public void changecolor(java.awt.Color c1,java.awt.Color c2,java.awt.Color c3,java.awt.Color c4,java.awt.Color c5)
     { 
-        setBackground(c);
+         setBackground(c1);
+        jAddAccount.setBackground(c2);
+        jAddAccount.setForeground(c4); 
+        jBack.setBackground(c2);
+        jBack.setForeground(c4);
+        jLabel1.setForeground(c3);
+        jLabel2.setForeground(c3);
+        jLabel3.setForeground(c3);
+        jLabel4.setForeground(c3);
+        jLabel5.setForeground(c3);
+        jNameField.setBackground(c5);
+        jPasswordField.setBackground(c5);
+        jRolesCombo.setBackground(c5);
+        jUsernameField.setBackground(c5);
     }
     public boolean isValidName() {
         // is empty (nameField)

@@ -24,9 +24,26 @@ public class jViewUser extends javax.swing.JPanel {
         isEditing = false;
     } 
      
-    public void changecolor(java.awt.Color c)
+    public void changecolor(java.awt.Color c1,java.awt.Color c2,java.awt.Color c3,java.awt.Color c4,java.awt.Color c5)
     { 
-        setBackground(c);
+        setBackground(c1);
+        jBackButton.setBackground(c2);
+        jBackButton.setForeground(c4);
+        jCancelButton.setBackground(c2);
+        jCancelButton.setForeground(c4);
+        jEditButton.setBackground(c2);
+        jEditButton.setForeground(c4);
+         jLabel1.setForeground(c3);
+        jNameField.setBackground(c5);
+         jNameLabel.setForeground(c3);
+         jPasswordField.setBackground(c5);
+         jPasswordLabel.setForeground(c3);
+        jRoleLabel.setForeground(c3);
+        jRolesCombo.setBackground(c5);
+        jUpdateButton.setBackground(c2);
+        jUpdateButton.setForeground(c4);
+        jUserNameLabel.setForeground(c3);
+        jUsernameField.setBackground(c5);
     }
     public void renderData( ){  
         

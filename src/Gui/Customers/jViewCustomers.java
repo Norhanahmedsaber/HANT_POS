@@ -159,6 +159,11 @@ public final class jViewCustomers extends javax.swing.JPanel  {
         jSortBy.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jSortBy.setForeground(new java.awt.Color(0, 31, 78));
         jSortBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Name", "Date" }));
+        jSortBy.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jSortByItemStateChanged(evt);
+            }
+        });
         jSortBy.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jSortByMouseClicked(evt);
@@ -444,6 +449,10 @@ public final class jViewCustomers extends javax.swing.JPanel  {
     private void jSortByActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSortByActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jSortByActionPerformed
+
+    private void jSortByItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jSortByItemStateChanged
+        renderData();
+    }//GEN-LAST:event_jSortByItemStateChanged
     
     private boolean toggle ;
     private ArrayList<Customer> allCustomers;
