@@ -270,9 +270,27 @@ public class jViewItems extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
     
    
-    public void changecolor(java.awt.Color c)
+    public void changecolor(java.awt.Color c1, java.awt.Color c2, java.awt.Color c3, java.awt.Color c4, java.awt.Color c5)
     { 
-        setBackground(c);
+        setBackground(c1);
+        jBack.setBackground(c2);
+        jBack.setForeground(c4);
+        jItem.setBackground(c2);
+        jItem.setForeground(c4);
+        jLabel1.setForeground(c3);
+         jLabel2.setForeground(c3);
+        jLabel3.setForeground(c3);
+         jScrollPane2.setBackground(c5);
+         jShowItem.setBackground(c2);
+         jShowItem.setForeground(c4);
+         jToggleSort.setBackground(c2);
+         jToggleSort.setForeground(c4);
+         jadditem.setBackground(c2);
+         jadditem.setForeground(c4);
+         jdelete.setBackground(c2);
+         jdelete.setForeground(c4);
+         jsearchitems.setBackground(c5);
+        jsortitemsby.setBackground(c5);
     }
     public void showItems (){
             String [] titles= {"Id", "Name","Category","Price","CreatedAt"};

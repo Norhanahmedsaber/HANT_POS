@@ -21,26 +21,27 @@ public class jHomePage extends javax.swing.JFrame {
     }
      
    
-    public void changecolor(java.awt.Color c, java.awt.Color c2, java.awt.Color c3, java.awt.Color c4, java.awt.Color c5)
+    public void changecolor(java.awt.Color c1, java.awt.Color c2, java.awt.Color c3, java.awt.Color c4, java.awt.Color c5)
     { 
-        jPanel1.setBackground(c);
-        _jmaMainPage._jNewCustomer._jChooseItem.changecolor(c);
-        _jmaMainPage._jViewCustomers._jViewCustomer._jChooseItem.changecolor(c);
-        _jmaMainPage._jNewCustomer.changecolor(c);
-        _jmaMainPage._jViewCustomers.changecolor(c);
-        _jmaMainPage._jViewCustomers._jViewCustomer.changecolor(c);
-        _jmaMainPage._jNewItem.changecolor(c);
-        _jmaMainPage._jViewItems._jViewItem.changecolor(c);
-        _jmaMainPage._jViewItems.changecolor(c);
-        _jmaMainPage._jShowLogs.changecolor(c);
-        _jmaMainPage._jcreaterole.changecolor(c);
-        _jmaMainPage._jViewRoles.changecolor(c);
-        _jmaMainPage._jSignUpPage.changecolor(c);
-        _jmaMainPage._jViewUsers._jViewUser.changecolor(c);
-        _jmaMainPage._jViewUsers.changecolor(c);
-        _jmaMainPage.changecolor(c);
-        _jLoginPage.changecolor(c,c2,c3,c4,c5);
-        _jmaMainPage._jViewStatistics.changecolor(c);
+        jPanel1.setBackground(c1);
+        jsignin.setForeground(c3);
+        _jmaMainPage._jNewCustomer._jChooseItem.changecolor(c1,c2,c3,c4,c5 );
+        _jmaMainPage._jViewCustomers._jViewCustomer._jChooseItem.changecolor(c1,c2,c3,c4,c5);
+        //_jmaMainPage._jNewCustomer.changecolor(c1,c2,c3,c4,c5);
+       // _jmaMainPage._jViewCustomers.changecolor(c1,c2,c3,c4,c5);
+       // _jmaMainPage._jViewCustomers._jViewCustomer.changecolor(c1,c2,c3,c4,c5);
+        _jmaMainPage._jNewItem.changecolor(c1, c2, c3, c4, c5);
+        _jmaMainPage._jViewItems._jViewItem.changecolor(c1,c2,c3,c4,c5);
+        _jmaMainPage._jViewItems.changecolor(c1,c2,c3,c4,c5);
+      //  _jmaMainPage._jShowLogs.changecolor(c1,c2,c3,c4,c5);
+       // _jmaMainPage._jcreaterole.changecolor(c1,c2,c3,c4,c5);
+       // _jmaMainPage._jViewRoles.changecolor(c1, c2, c3, c4, c5);
+       // _jmaMainPage._jSignUpPage.changecolor(c1,c2,c3,c4,c5);
+        //_jmaMainPage._jViewUsers._jViewUser.changecolor(c1,c2,c3,c4,c5);
+        //_jmaMainPage._jViewUsers.changecolor(c1,c2,c3,c4,c5);
+       // _jmaMainPage.changecolor(c1);
+        _jLoginPage.changecolor(c1,c2,c3,c4,c5);
+        _jmaMainPage._jViewStatistics.changecolor(c1);
         
     }
     public void createLog(String action, String actedOn, String actedOnName ){
