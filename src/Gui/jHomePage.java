@@ -21,6 +21,7 @@ public class jHomePage extends javax.swing.JFrame {
         _LogServices = new LogServices();
         _jmaMainPage = new jMainPage(this);
         _jLoginPage = new jLoginPage(this, _jmaMainPage);
+        _ThemeF = new ThemeF(this);
         Home();
     }
      
@@ -51,6 +52,7 @@ public class jHomePage extends javax.swing.JFrame {
         _jLoginPage.changecolor(c1,c2,c3,c4,c5);
         _jmaMainPage._jViewStatistics.changecolor(c1,c2,c3,c4,c5);
         _jmaMainPage._jViewRoles._jNewRole.changecolor(c1, c2, c3, c4, c5);
+        _jmaMainPage._jViewStatistics._jLeaderBoard.changecolor(c1, c2, c3, c4, c5);
         _ThemeF._jThemePage.changecolor(c1,c2,c3,c4,c5);
         
     }
@@ -233,7 +235,6 @@ public class jHomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu5ActionPerformed
 
     private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
-        _ThemeF = new ThemeF(this);
         _ThemeF.setVisible(true);
     }//GEN-LAST:event_jMenu5MouseClicked
     public void switchPanels(JPanel panel) {

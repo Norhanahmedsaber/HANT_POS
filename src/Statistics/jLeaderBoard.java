@@ -23,7 +23,31 @@ public class jLeaderBoard extends javax.swing.JPanel {
         _jHomePage=jhp;
         _jViewStatistics=jvs;
     }
-
+public void changecolor(java.awt.Color c1,java.awt.Color c2,java.awt.Color c3,java.awt.Color c4,java.awt.Color c5)
+    {
+        setBackground(c1);
+        jBack2.setBackground(c2);
+        jBack2.setForeground(c4);
+     jLabel2.setForeground(c3);
+     jLabel4.setForeground(c3);
+    jLabel5.setForeground(c3);
+     jLabel6.setForeground(c3);
+   jLabel7.setForeground(c3);
+    jMostSoldCategory.setBackground(c5);
+  jMostSoldCategoryscore.setBackground(c5);
+     jPeriod.setForeground(c3);
+     jRadioButton1.setBackground(c5);
+    jRadioButton2.setBackground(c5);
+  jRadioButton3.setBackground(c5);
+    jRadioButton4.setBackground(c5);
+  jUserWithTheMostDeals.setBackground(c5);
+    jUserWithTheMostDealsscore.setBackground(c5);
+     jUserWithTheMostImports.setBackground(c5);
+    jUserWithTheMostImportsscore.setBackground(c5);
+   jUserWithTheMostSales.setBackground(c5);
+  jUserWithTheMostSalesscore.setBackground(c5);
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
