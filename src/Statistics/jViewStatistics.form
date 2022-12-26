@@ -66,8 +66,11 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Statistics/back.png"/>
+        </Property>
         <Property name="mnemonic" type="int" value="98"/>
-        <Property name="text" type="java.lang.String" value="Back"/>
+        <Property name="text" type="java.lang.String" value="    Back   "/>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jBackMouseClicked"/>
@@ -90,8 +93,11 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Statistics/Sales.png"/>
+        </Property>
         <Property name="mnemonic" type="int" value="115"/>
-        <Property name="text" type="java.lang.String" value="Sales"/>
+        <Property name="text" type="java.lang.String" value="                                  Sales                                                       "/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
       <Events>
@@ -115,8 +121,11 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Statistics/Item stst.png"/>
+        </Property>
         <Property name="mnemonic" type="int" value="99"/>
-        <Property name="text" type="java.lang.String" value="Categories"/>
+        <Property name="text" type="java.lang.String" value="                                 Categories                                             "/>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jCategoriesMouseClicked"/>
@@ -139,8 +148,11 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Statistics/userStat.png"/>
+        </Property>
         <Property name="mnemonic" type="int" value="117"/>
-        <Property name="text" type="java.lang.String" value="Users Activites"/>
+        <Property name="text" type="java.lang.String" value="                                Users Activites                                     "/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
       <Events>
