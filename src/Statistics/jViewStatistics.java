@@ -243,8 +243,9 @@ public class jViewStatistics extends javax.swing.JPanel {
         jBack.setBackground(new java.awt.Color(217, 156, 69));
         jBack.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jBack.setForeground(new java.awt.Color(255, 255, 255));
+        jBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Statistics/back.png"))); // NOI18N
         jBack.setMnemonic('b');
-        jBack.setText("Back");
+        jBack.setText("    Back   ");
         jBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBackMouseClicked(evt);
@@ -264,8 +265,9 @@ public class jViewStatistics extends javax.swing.JPanel {
         jSales.setBackground(new java.awt.Color(217, 156, 69));
         jSales.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jSales.setForeground(new java.awt.Color(255, 255, 255));
+        jSales.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Statistics/Sales.png"))); // NOI18N
         jSales.setMnemonic('s');
-        jSales.setText("Sales");
+        jSales.setText("                                  Sales                                                       ");
         jSales.setToolTipText("");
         jSales.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -286,8 +288,9 @@ public class jViewStatistics extends javax.swing.JPanel {
         jCategories.setBackground(new java.awt.Color(217, 156, 69));
         jCategories.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jCategories.setForeground(new java.awt.Color(255, 255, 255));
+        jCategories.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Statistics/Item stst.png"))); // NOI18N
         jCategories.setMnemonic('c');
-        jCategories.setText("Categories");
+        jCategories.setText("                                 Categories                                             ");
         jCategories.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jCategoriesMouseClicked(evt);
@@ -307,8 +310,9 @@ public class jViewStatistics extends javax.swing.JPanel {
         jUsers.setBackground(new java.awt.Color(217, 156, 69));
         jUsers.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jUsers.setForeground(new java.awt.Color(255, 255, 255));
+        jUsers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Statistics/userStat.png"))); // NOI18N
         jUsers.setMnemonic('u');
-        jUsers.setText("Users Activites");
+        jUsers.setText("                                Users Activites                                     ");
         jUsers.setToolTipText("");
         jUsers.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -331,16 +335,13 @@ public class jViewStatistics extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jSales, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCategories, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(jBack, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                        .addComponent(jSales, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jCategories, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jBack, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(

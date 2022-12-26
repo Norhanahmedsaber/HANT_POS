@@ -116,7 +116,8 @@ public class jViewUsers extends javax.swing.JPanel {
         jAddButton.setBackground(new java.awt.Color(217, 156, 69));
         jAddButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jAddButton.setForeground(new java.awt.Color(255, 255, 255));
-        jAddButton.setText("Add User");
+        jAddButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Users/addcustomer.png"))); // NOI18N
+        jAddButton.setText("   Add User");
         jAddButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jAddButtonMouseClicked(evt);
@@ -126,7 +127,8 @@ public class jViewUsers extends javax.swing.JPanel {
         jDeleteButton.setBackground(new java.awt.Color(217, 156, 69));
         jDeleteButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jDeleteButton.setForeground(new java.awt.Color(255, 255, 255));
-        jDeleteButton.setText("Delete");
+        jDeleteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Users/delete.png"))); // NOI18N
+        jDeleteButton.setText("    Delete  ");
         jDeleteButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jDeleteButtonMouseClicked(evt);
@@ -140,7 +142,8 @@ public class jViewUsers extends javax.swing.JPanel {
         jShowButton.setBackground(new java.awt.Color(217, 156, 69));
         jShowButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jShowButton.setForeground(new java.awt.Color(255, 255, 255));
-        jShowButton.setText("Show User");
+        jShowButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Users/showCustomer.png"))); // NOI18N
+        jShowButton.setText("   Show User");
         jShowButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jShowButtonMouseClicked(evt);
@@ -150,7 +153,8 @@ public class jViewUsers extends javax.swing.JPanel {
         jBackButton.setBackground(new java.awt.Color(217, 156, 69));
         jBackButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jBackButton.setForeground(new java.awt.Color(255, 255, 255));
-        jBackButton.setText("Back");
+        jBackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Users/back.png"))); // NOI18N
+        jBackButton.setText("    Back   ");
         jBackButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBackButtonMouseClicked(evt);
@@ -198,7 +202,7 @@ public class jViewUsers extends javax.swing.JPanel {
         jToggleSort.setBackground(new java.awt.Color(217, 156, 69));
         jToggleSort.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jToggleSort.setForeground(new java.awt.Color(255, 255, 255));
-        jToggleSort.setText("↓↑\n");
+        jToggleSort.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Users/sort3.png"))); // NOI18N
         jToggleSort.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jToggleSortMouseClicked(evt);

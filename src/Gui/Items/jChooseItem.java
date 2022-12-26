@@ -35,7 +35,6 @@ public class jChooseItem extends javax.swing.JPanel {
            _jViewCustomer =(jViewCustomer)parent;
            _jNewCustomer=null;
         } 
-       
     }
      
     public void changecolor(java.awt.Color c1,java.awt.Color c2,java.awt.Color c3,java.awt.Color c4,java.awt.Color c5)
