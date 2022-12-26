@@ -57,7 +57,16 @@ public class Chart extends javax.swing.JPanel {
             }
         });
     }
-    
+     public void changecolor(java.awt.Color c1,java.awt.Color c2,java.awt.Color c3,java.awt.Color c4,java.awt.Color c5)
+     {
+     jBack.setBackground(c2);
+        jBack.setForeground(c4);
+        jItems_Customers.setForeground(c3);
+     jItems_Customers.setBackground(c5);
+     jProfit.setForeground(c3);
+  jProfit.setBackground(c5);
+     panelLegend.setBackground(c1);
+    }
     public void addLegend(String name, Color color) {
         ModelLegend data = new ModelLegend(name, color);
         legends.add(data);
