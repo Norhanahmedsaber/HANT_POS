@@ -119,6 +119,8 @@ public void changecolor(java.awt.Color c1,java.awt.Color c2,java.awt.Color c3,ja
         });
 
         jGroup.add(jRadioButton1);
+        jRadioButton1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton1.setText("Today");
         jRadioButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -127,6 +129,8 @@ public void changecolor(java.awt.Color c1,java.awt.Color c2,java.awt.Color c3,ja
         });
 
         jGroup.add(jRadioButton2);
+        jRadioButton2.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton2.setText("This Week");
         jRadioButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -135,6 +139,8 @@ public void changecolor(java.awt.Color c1,java.awt.Color c2,java.awt.Color c3,ja
         });
 
         jGroup.add(jRadioButton3);
+        jRadioButton3.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jRadioButton3.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton3.setText("This Month");
         jRadioButton3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -148,6 +154,8 @@ public void changecolor(java.awt.Color c1,java.awt.Color c2,java.awt.Color c3,ja
         });
 
         jGroup.add(jRadioButton4);
+        jRadioButton4.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jRadioButton4.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton4.setText("This Year");
         jRadioButton4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

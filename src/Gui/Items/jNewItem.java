@@ -5,6 +5,7 @@ import Gui.jMainPage;
 import Services.ItemServices;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
@@ -59,6 +60,17 @@ public class jNewItem extends javax.swing.JPanel {
         jDescriptionField.setText("");
         jCatgoryField.setText("");
         jPriceField.setText("");
+        BufferedImage img = null;
+        try {
+            img = ImageIO.read(new File("Images/photo2.png"));
+        } catch (IOException ex) {
+            Logger.getLogger(jViewItem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Image dimg = img.getScaledInstance(220, 220,Image.SCALE_SMOOTH);
+        ImageIcon imageIcon = new ImageIcon(dimg);
+        jPic.setIcon(imageIcon);
+
+        
       
     }
     public boolean checkAllValidations(){
@@ -139,7 +151,7 @@ public class jNewItem extends javax.swing.JPanel {
         }
         _jHomePage.createLog("Created", "Item", item.name);
     }
-    @SuppressWarnings("SuspiciousIndentAfterControlStatement")
+    @SuppressWarnings("SuspiciousIndentAfterCiontrolStatement")
     public void addItemButton(){
         if(!checkAllValidations()){
            return;

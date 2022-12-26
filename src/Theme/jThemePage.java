@@ -126,7 +126,7 @@ public class jThemePage extends javax.swing.JPanel {
         jButtonBackgroundButton.setBackground(new java.awt.Color(217, 156, 69));
         jButtonBackgroundButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jButtonBackgroundButton.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonBackgroundButton.setMnemonic('g');
+        jButtonBackgroundButton.setMnemonic('u');
         jButtonBackgroundButton.setText("Button");
         jButtonBackgroundButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,7 +137,7 @@ public class jThemePage extends javax.swing.JPanel {
         jBachgroundButton.setBackground(new java.awt.Color(217, 156, 69));
         jBachgroundButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jBachgroundButton.setForeground(new java.awt.Color(255, 255, 255));
-        jBachgroundButton.setMnemonic('k');
+        jBachgroundButton.setMnemonic('b');
         jBachgroundButton.setText("Background");
         jBachgroundButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,7 +148,7 @@ public class jThemePage extends javax.swing.JPanel {
         jButtonForgroundButton.setBackground(new java.awt.Color(217, 156, 69));
         jButtonForgroundButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jButtonForgroundButton.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonForgroundButton.setMnemonic('f');
+        jButtonForgroundButton.setMnemonic('o');
         jButtonForgroundButton.setText("Button Text");
         jButtonForgroundButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -196,7 +196,7 @@ public class jThemePage extends javax.swing.JPanel {
         jCancelButton.setBackground(new java.awt.Color(217, 156, 69));
         jCancelButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jCancelButton.setForeground(new java.awt.Color(255, 255, 255));
-        jCancelButton.setMnemonic('c');
+        jCancelButton.setMnemonic('r');
         jCancelButton.setText("Reset Default");
         jCancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -207,7 +207,7 @@ public class jThemePage extends javax.swing.JPanel {
         jExitButton.setBackground(new java.awt.Color(217, 156, 69));
         jExitButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jExitButton.setForeground(new java.awt.Color(255, 255, 255));
-        jExitButton.setMnemonic('b');
+        jExitButton.setMnemonic('e');
         jExitButton.setText("Exit");
         jExitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
