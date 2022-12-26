@@ -22,65 +22,65 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="jBackButton" min="-2" pref="150" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                      <Component id="jDeleteButton" min="-2" pref="150" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jShowButton" min="-2" pref="150" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jAddButton" min="-2" pref="150" max="-2" attributes="0"/>
+                      <Component id="jBackButton" min="-2" pref="175" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Component id="jDeleteButton" min="-2" pref="175" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Component id="jShowButton" min="-2" pref="175" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Component id="jAddButton" min="-2" pref="175" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jsearchLabel" min="-2" max="-2" attributes="0"/>
-                          <Component id="jSortLabel" min="-2" pref="86" max="-2" attributes="0"/>
+                          <Component id="jsearchLabel" min="-2" pref="150" max="-2" attributes="0"/>
+                          <Component id="jSortLabel" min="-2" pref="150" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jSearchField" min="-2" pref="503" max="-2" attributes="0"/>
+                          <Component id="jSearchField" min="-2" pref="550" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="jSortByCombo" min="-2" pref="426" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jToggleSort" min="-2" max="-2" attributes="0"/>
+                              <Component id="jSortByCombo" min="-2" pref="450" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="jToggleSort" min="-2" pref="80" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
-                  <Component id="jAllItemsLabel" alignment="0" min="-2" pref="111" max="-2" attributes="0"/>
-                  <Component id="jScrollPane3" alignment="0" min="-2" pref="663" max="-2" attributes="0"/>
+                  <Component id="jAllItemsLabel" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                  <Component id="jScrollPane3" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="52" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jsearchLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jSearchField" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                  <Component id="jsearchLabel" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="jSearchField" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jSortByCombo" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jToggleSort" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jSortLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jSortByCombo" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="jToggleSort" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="jSortLabel" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-              <Component id="jAllItemsLabel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="29" max="32767" attributes="0"/>
-              <Component id="jScrollPane3" min="-2" pref="301" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <Component id="jAllItemsLabel" min="-2" pref="30" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Component id="jScrollPane3" min="-2" pref="270" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jBackButton" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                  <Component id="jDeleteButton" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                  <Component id="jShowButton" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                  <Component id="jAddButton" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                  <Component id="jBackButton" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="jDeleteButton" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="jShowButton" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="jAddButton" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -182,7 +182,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="search by name :"/>
+        <Property name="text" type="java.lang.String" value="Search by name :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jSearchField">
