@@ -5,6 +5,7 @@ import Gui.jMainPage;
 import Services.RoleServices;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 public class jNewRole extends javax.swing.JPanel {
  
@@ -69,7 +70,6 @@ public class jNewRole extends javax.swing.JPanel {
        _jHomePage.createLog("Created", "Role", newRole.name);
    }
    public Role getData(){
-      /// Role newRole=new Role();
        _jRole.name=jRoleNameField.getText();
        _jRole.canCreateCustomer=JCreateCustomer.isSelected();
        _jRole.canCreateItem=jCreateItem.isSelected();
@@ -102,12 +102,12 @@ public class jNewRole extends javax.swing.JPanel {
    private void DoneButtonClicked(){
         if (_parent instanceof jMainPage ){
             assignPermissions();
-           // jAddedRoleSuccessfully.setText("Permissions are assigned successfully");
+            JOptionPane.showMessageDialog(null, "Permissions are assigned successfully!");
             clearCreateRolePage();
         }
         else{
-            //jAddedRoleSuccessfully.setText("Updated successfully");
             Role role = getData();
+            JOptionPane.showMessageDialog(null, "Permissions are assigned successfully!");
             _jHomePage.createLog("Updated", "Role", role.name); 
             _RoleServices.update(_RoleServices.getByName(_jRole.name).id, role);
           
@@ -552,12 +552,10 @@ public class jNewRole extends javax.swing.JPanel {
     private void jBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackMouseClicked
         if (_parent instanceof jMainPage )
         {
-            //jAddedRoleSuccessfully.setText("");
             clearCreateRolePage();
             jMainPage mainPage=(jMainPage)_parent;
              _jHomePage.switchPanels(_parent);
              mainPage.jNewRole.grabFocus();
-              //jAddedRoleSuccessfully.setText("");
         }
         else 
       {
@@ -566,7 +564,6 @@ public class jNewRole extends javax.swing.JPanel {
         ViewRoles.renderData();
         _jHomePage.switchPanels(_parent);
         ViewRoles.jSearch.grabFocus();
-        //jAddedRoleSuccessfully.setText("");
       }
        
       
@@ -685,12 +682,10 @@ public class jNewRole extends javax.swing.JPanel {
     private void jBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackActionPerformed
         if (_parent instanceof jMainPage )
         {
-            //jAddedRoleSuccessfully.setText("");
             clearCreateRolePage();
             jMainPage mainPage=(jMainPage)_parent;
              _jHomePage.switchPanels(_parent);
              mainPage.jNewRole.grabFocus();
-              //jAddedRoleSuccessfully.setText("");
         }
         else 
       {
@@ -699,7 +694,6 @@ public class jNewRole extends javax.swing.JPanel {
         ViewRoles.renderData();
         _jHomePage.switchPanels(_parent);
         ViewRoles.jSearch.grabFocus();
-        //jAddedRoleSuccessfully.setText("");
       }
     }//GEN-LAST:event_jBackActionPerformed
 
@@ -716,7 +710,8 @@ public class jNewRole extends javax.swing.JPanel {
     }//GEN-LAST:event_JUpdateUser1ActionPerformed
 
     private void JUpdateUser1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JUpdateUser1KeyPressed
-        // TODO add your handling code here:
+        
+            
     }//GEN-LAST:event_JUpdateUser1KeyPressed
 
     
@@ -725,8 +720,6 @@ public class jNewRole extends javax.swing.JPanel {
     
     private final jHomePage _jHomePage;
     public Role _jRole;
-    //private final jMainPage _jMainPage;
-    //private final jViewRoles _jViewRoles;
     private final RoleServices _RoleServices;
     private final JPanel _parent;
     // Variables declaration - do not modify//GEN-BEGIN:variables

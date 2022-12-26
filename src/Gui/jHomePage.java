@@ -5,10 +5,14 @@ import Entities.User;
 import static Gui.jMainPage.toggle;
 import Services.LogServices;
 import Statistics.jViewStatistics;
+import Theme.jThemePage;
 import java.awt.event.KeyEvent;
 import java.util.Date;
 import java.util.UUID;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 public class jHomePage extends javax.swing.JFrame {
 
     public jHomePage() {
@@ -47,6 +51,11 @@ public class jHomePage extends javax.swing.JFrame {
         _jLoginPage.changecolor(c1,c2,c3,c4,c5);
         _jmaMainPage._jViewStatistics.changecolor(c1,c2,c3,c4,c5);
         
+        _ThemeF._jThemePage.changecolor(c1,c2,c3,c4,c5);
+        
+        UIManager UI=new UIManager(); 
+        UI.put("OptionPane.background",new ColorUIResource(255,53,23));
+        UI.put("Panel.background",new ColorUIResource(255,234,12));
     }
     public void createLog(String action, String actedOn, String actedOnName ){
         Log log =new Log();
@@ -155,7 +164,18 @@ public class jHomePage extends javax.swing.JFrame {
         });
         jMenuBar1.add(jMenu4);
 
+        jMenu5.setMnemonic('t');
         jMenu5.setText("Theme");
+        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu5MouseClicked(evt);
+            }
+        });
+        jMenu5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu5ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
@@ -196,6 +216,15 @@ public class jHomePage extends javax.swing.JFrame {
     private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
         changecolor(new java.awt.Color(87, 118, 130), new java.awt.Color(217, 156, 69), new java.awt.Color(255, 255, 255), new java.awt.Color(255, 255, 255), new java.awt.Color(255, 255, 255));
     }//GEN-LAST:event_jMenu4MouseClicked
+
+    private void jMenu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5ActionPerformed
+        
+    }//GEN-LAST:event_jMenu5ActionPerformed
+
+    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
+        _ThemeF = new ThemeF(this);
+        _ThemeF.setVisible(true);
+    }//GEN-LAST:event_jMenu5MouseClicked
     public void switchPanels(JPanel panel) {
         jPanel4.removeAll();
         jPanel4.add(panel);
@@ -232,10 +261,12 @@ public class jHomePage extends javax.swing.JFrame {
             }
         });
     }
+    
     private final LogServices _LogServices;
     public User loginUser;
     private final jMainPage _jmaMainPage;
     private final jLoginPage _jLoginPage;
+    private ThemeF _ThemeF;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;

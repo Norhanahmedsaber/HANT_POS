@@ -12,6 +12,8 @@ import java.util.Date;
 import java.util.UUID;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.DefaultTableModel;
 import utils.filterItems;
 
@@ -34,7 +36,9 @@ public class jChooseItem extends javax.swing.JPanel {
            _jViewCustomer =(jViewCustomer)parent;
            _jNewCustomer=null;
         } 
-
+        
+        UI=new UIManager(); 
+        UI.put("OptionPane.background",new ColorUIResource(255,53,23));
     }
      
     public void changecolor(java.awt.Color c1,java.awt.Color c2,java.awt.Color c3,java.awt.Color c4,java.awt.Color c5)
@@ -634,7 +638,8 @@ public class jChooseItem extends javax.swing.JPanel {
     private void jAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAddActionPerformed
         addItemToPreviewTable();
     }//GEN-LAST:event_jAddActionPerformed
-     private final JPanel _parent;
+    private UIManager UI;
+    private final JPanel _parent;
     private final ItemServices _ItemServices;
     private final CustomerServices _CustomerServices; 
     private final jHomePage _jHomePage;
