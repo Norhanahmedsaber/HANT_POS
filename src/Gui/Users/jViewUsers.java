@@ -45,6 +45,7 @@ public class jViewUsers extends javax.swing.JPanel {
         jToggleSort.setBackground(c2);
         jToggleSort.setForeground(c4);
         jUsersTable.setBackground(c2);
+        jUsersTable.setForeground(c4);
         jsearchLabel.setForeground(c3);
     }
     public void renderData() { 

@@ -32,7 +32,8 @@ public final class jViewCustomers extends javax.swing.JPanel  {
         jAddButton.setForeground(c4);
      jBackButton.setBackground(c2);
         jBackButton.setForeground(c4);
-    jCustomersTable.setBackground(c2);
+    jCustomersTable.setBackground(c2); 
+    jCustomersTable.setForeground(c4);
      jDeleteButton.setBackground(c2);
         jDeleteButton.setForeground(c4);
    jLabel1.setForeground(c3);

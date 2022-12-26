@@ -50,12 +50,9 @@ public class jHomePage extends javax.swing.JFrame {
         _jmaMainPage.changecolor(c1,c2,c3,c4,c5);
         _jLoginPage.changecolor(c1,c2,c3,c4,c5);
         _jmaMainPage._jViewStatistics.changecolor(c1,c2,c3,c4,c5);
-        
+        _jmaMainPage._jViewRoles._jNewRole.changecolor(c1, c2, c3, c4, c5);
         _ThemeF._jThemePage.changecolor(c1,c2,c3,c4,c5);
         
-        UIManager UI=new UIManager(); 
-        UI.put("OptionPane.background",new ColorUIResource(255,53,23));
-        UI.put("Panel.background",new ColorUIResource(255,234,12));
     }
     public void createLog(String action, String actedOn, String actedOnName ){
         Log log =new Log();
@@ -78,6 +75,7 @@ public class jHomePage extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jsignin = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
@@ -125,19 +123,28 @@ public class jHomePage extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/toka.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jsignin, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(jsignin, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(149, 149, 149)
+                        .addComponent(jLabel1)))
                 .addGap(50, 50, 50))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(466, Short.MAX_VALUE)
+                .addContainerGap(65, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(59, 59, 59)
                 .addComponent(jsignin, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
         );
@@ -268,6 +275,7 @@ public class jHomePage extends javax.swing.JFrame {
     private final jLoginPage _jLoginPage;
     private ThemeF _ThemeF;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;

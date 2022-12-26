@@ -22,9 +22,9 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="50" pref="50" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="jLog" alignment="1" pref="325" max="32767" attributes="0"/>
                           <Component id="jNewcustomer" alignment="1" max="32767" attributes="0"/>
@@ -41,10 +41,7 @@
                           <Component id="jViewcustomers" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                      <Component id="jLogout" min="-2" pref="700" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jLogout" min="-2" pref="700" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
           </Group>
