@@ -23,7 +23,6 @@ public class jViewLogs extends javax.swing.JPanel {
     }
     public void changecolor(java.awt.Color c)
     { 
-        System.out.println(c);
         setBackground(c);
     }
     public void renderData() { 
