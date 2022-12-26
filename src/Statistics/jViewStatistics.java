@@ -32,14 +32,26 @@ public class jViewStatistics extends javax.swing.JPanel {
         _jHomePage = jhp;
         _jMainPage = jmp;
         chart = new Chart(jhp,this);
+        chart2 = new Chart(jhp,this);
         _CustomerServices = new CustomerServices();
         _ItemServices = new ItemServices();
         _filterCustomers = new filterCustomers();
         _UserServices = new UserServices();
+        changecolor(new java.awt.Color(87, 118, 130), new java.awt.Color(217, 156, 69), new java.awt.Color(255, 255, 255), new java.awt.Color(255, 255, 255), new java.awt.Color(255, 255, 255));
     }
-    public void changecolor(java.awt.Color c)
-    { 
-        setBackground(c);
+    public void changecolor(java.awt.Color c1,java.awt.Color c2,java.awt.Color c3,java.awt.Color c4,java.awt.Color c5)
+    {
+        colors = new java.awt.Color []{c1, c2, c3, c4, c5};
+        setBackground(c1);
+        jBack.setBackground(c2);
+        jBack.setForeground(c4);
+        jCategories.setBackground(c2);
+        jCategories.setForeground(c4);
+        jSales.setBackground(c2);
+        jSales.setForeground(c4);
+        jUsers.setBackground(c2);
+        jUsers.setForeground(c4);
+        
     }
     // {No Items Sold, No Customer, Total profit}
     private int[] getDayInfo(LocalDateTime ldt) {
@@ -76,17 +88,17 @@ public class jViewStatistics extends javax.swing.JPanel {
     }
     public void showDailyProfit() {
         allDays = fetchData();
-        chart2.clear();
-        chart2.addLegend("Total Profit", new Color(189, 135, 245));
+        chart.clear();
+        chart.addLegend("Total Profit", new Color(189, 135, 245));
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");  
         LocalDateTime now = LocalDateTime.now();
-        chart2.addData(new ModelChart(dtf.format(now.minusDays(5)), new int[] { allDays.get(0)[2] }));
-        chart2.addData(new ModelChart(dtf.format(now.minusDays(4)), new int[] { allDays.get(1)[2] }));
-        chart2.addData(new ModelChart(dtf.format(now.minusDays(3)), new int[] { allDays.get(2)[2] }));
-        chart2.addData(new ModelChart(dtf.format(now.minusDays(2)), new int[] { allDays.get(3)[2] }));
-        chart2.addData(new ModelChart(dtf.format(now.minusDays(1)), new int[] { allDays.get(4)[2] }));
-        chart2.addData(new ModelChart(dtf.format(now), new int[] { allDays.get(5)[2] }));
-        chart2.start();
+        chart.addData(new ModelChart(dtf.format(now.minusDays(5)), new int[] { allDays.get(0)[2] }));
+        chart.addData(new ModelChart(dtf.format(now.minusDays(4)), new int[] { allDays.get(1)[2] }));
+        chart.addData(new ModelChart(dtf.format(now.minusDays(3)), new int[] { allDays.get(2)[2] }));
+        chart.addData(new ModelChart(dtf.format(now.minusDays(2)), new int[] { allDays.get(3)[2] }));
+        chart.addData(new ModelChart(dtf.format(now.minusDays(1)), new int[] { allDays.get(4)[2] }));
+        chart.addData(new ModelChart(dtf.format(now), new int[] { allDays.get(5)[2] }));
+        chart.start();
     }
     public void showCategoriesStates() {
         allDays = fetchData();
@@ -104,20 +116,20 @@ public class jViewStatistics extends javax.swing.JPanel {
     }
     public void showCategoryProfit() {
         allDays = fetchData();
-        chart2.clear();
-        chart2.addLegend("Profit Today", new Color(189, 135, 245));
-        chart2.addLegend("Profit This Week", new Color(135, 189, 135));
-        chart2.addLegend("Profit This Month", new Color(245, 189, 135));
-        chart2.addLegend("Profit This Year", new Color(189, 245, 135));
-        chart2.addData(new ModelChart(cats.get(0).name, getCatInfoProfit(0)));
-        chart2.addData(new ModelChart(cats.get(1).name, getCatInfoProfit(1)));
-        chart2.addData(new ModelChart(cats.get(2).name, getCatInfoProfit(2)));
-        chart2.addData(new ModelChart(cats.get(3).name, getCatInfoProfit(3)));
-        chart2.addData(new ModelChart(cats.get(4).name, getCatInfoProfit(4)));
-        chart2.start();
+        chart.clear();
+        chart.addLegend("Profit Today", new Color(189, 135, 245));
+        chart.addLegend("Profit This Week", new Color(135, 189, 135));
+        chart.addLegend("Profit This Month", new Color(245, 189, 135));
+        chart.addLegend("Profit This Year", new Color(189, 245, 135));
+        chart.addData(new ModelChart(cats.get(0).name, getCatInfoProfit(0)));
+        chart.addData(new ModelChart(cats.get(1).name, getCatInfoProfit(1)));
+        chart.addData(new ModelChart(cats.get(2).name, getCatInfoProfit(2)));
+        chart.addData(new ModelChart(cats.get(3).name, getCatInfoProfit(3)));
+        chart.addData(new ModelChart(cats.get(4).name, getCatInfoProfit(4)));
+        chart.start();
     }
     public void showUserActivitesToday() {
-        allDays = fetchData();
+        allDays=fetchData();
         chart.clear();
         chart.addLegend("Number Of Deals", new Color(135, 189, 245));
         chart.addLegend("Number Of Items Sold", new Color(189, 135, 245));
@@ -129,7 +141,80 @@ public class jViewStatistics extends javax.swing.JPanel {
         chart.start();
     }
     public void showUserProfitToday() {
-        
+        allDays=fetchData();
+        chart.clear();
+        chart.addLegend("Number Of Deals", new Color(135, 189, 245));
+        chart.addData(new ModelChart(users.get(0).username, new int[] {users.get(0).profitToday}));
+        chart.addData(new ModelChart(users.get(1).username, new int[] {users.get(1).profitToday}));
+        chart.addData(new ModelChart(users.get(2).username, new int[] {users.get(2).profitToday}));
+        chart.addData(new ModelChart(users.get(3).username, new int[] {users.get(3).profitToday}));
+        chart.start();
+    }
+    public void showUserActivitiesThisWeek() {
+        allDays=fetchData();
+        chart.clear();
+        chart.addLegend("Number Of Deals", new Color(135, 189, 245));
+        chart.addLegend("Number Of Items Sold", new Color(189, 135, 245));
+        chart.addLegend("Number Of Items Imported", new Color(245, 135, 189));
+        chart.addData(new ModelChart(users.get(0).username, new int[] {users.get(0).dealsDoneThisWeek, users.get(0).itemsSoldThisWeek, users.get(0).itemsImportedThisWeek}));
+        chart.addData(new ModelChart(users.get(1).username, new int[] {users.get(1).dealsDoneThisWeek, users.get(1).itemsSoldThisWeek, users.get(1).itemsImportedThisWeek}));
+        chart.addData(new ModelChart(users.get(2).username, new int[] {users.get(2).dealsDoneThisWeek, users.get(2).itemsSoldThisWeek, users.get(2).itemsImportedThisWeek}));
+        chart.addData(new ModelChart(users.get(3).username, new int[] {users.get(3).dealsDoneThisWeek, users.get(3).itemsSoldThisWeek, users.get(3).itemsImportedThisWeek}));
+        chart.start();
+    }
+    public void showUserProfitThisWeek() {
+        allDays=fetchData();
+        chart.clear();
+        chart.addLegend("Number Of Deals", new Color(135, 189, 245));
+        chart.addData(new ModelChart(users.get(0).username, new int[] {users.get(0).profitThisWeek}));
+        chart.addData(new ModelChart(users.get(1).username, new int[] {users.get(1).profitThisWeek}));
+        chart.addData(new ModelChart(users.get(2).username, new int[] {users.get(2).profitThisWeek}));
+        chart.addData(new ModelChart(users.get(3).username, new int[] {users.get(3).profitThisWeek}));
+        chart.start();
+    }
+    public void showUserActivitesThisMonth() {
+        allDays=fetchData();
+        chart.clear();
+        chart.addLegend("Number Of Deals", new Color(135, 189, 245));
+        chart.addLegend("Number Of Items Sold", new Color(189, 135, 245));
+        chart.addLegend("Number Of Items Imported", new Color(245, 135, 189));
+        chart.addData(new ModelChart(users.get(0).username, new int[] {users.get(0).dealsDoneThisMonth, users.get(0).itemsSoldThisMonth, users.get(0).itemsImportedThisMonth}));
+        chart.addData(new ModelChart(users.get(1).username, new int[] {users.get(1).dealsDoneThisMonth, users.get(1).itemsSoldThisMonth, users.get(1).itemsImportedThisMonth}));
+        chart.addData(new ModelChart(users.get(2).username, new int[] {users.get(2).dealsDoneThisMonth, users.get(2).itemsSoldThisMonth, users.get(2).itemsImportedThisMonth}));
+        chart.addData(new ModelChart(users.get(3).username, new int[] {users.get(3).dealsDoneThisMonth, users.get(3).itemsSoldThisMonth, users.get(3).itemsImportedThisMonth}));
+        chart.start();
+    }
+    public void showUserProfitThisMonth() {
+        allDays=fetchData();
+        chart.clear();
+        chart.addLegend("Number Of Deals", new Color(135, 189, 245));
+        chart.addData(new ModelChart(users.get(0).username, new int[] {users.get(0).profitThisMonth}));
+        chart.addData(new ModelChart(users.get(1).username, new int[] {users.get(1).profitThisMonth}));
+        chart.addData(new ModelChart(users.get(2).username, new int[] {users.get(2).profitThisMonth}));
+        chart.addData(new ModelChart(users.get(3).username, new int[] {users.get(3).profitThisMonth}));
+        chart.start();
+    }
+    public void showUserActivitesThisYear() {
+        allDays=fetchData();
+        chart.clear();
+        chart.addLegend("Number Of Deals", new Color(135, 189, 245));
+        chart.addLegend("Number Of Items Sold", new Color(189, 135, 245));
+        chart.addLegend("Number Of Items Imported", new Color(245, 135, 189));
+        chart.addData(new ModelChart(users.get(0).username, new int[] {users.get(0).dealsDoneThisYear, users.get(0).itemsSoldThisYear, users.get(0).itemsImportedThisYear}));
+        chart.addData(new ModelChart(users.get(1).username, new int[] {users.get(1).dealsDoneThisYear, users.get(1).itemsSoldThisYear, users.get(1).itemsImportedThisYear}));
+        chart.addData(new ModelChart(users.get(2).username, new int[] {users.get(2).dealsDoneThisYear, users.get(2).itemsSoldThisYear, users.get(2).itemsImportedThisYear}));
+        chart.addData(new ModelChart(users.get(3).username, new int[] {users.get(3).dealsDoneThisYear, users.get(3).itemsSoldThisYear, users.get(3).itemsImportedThisYear}));
+        chart.start();
+    }
+    public void showUserProfitThisYear(){
+        allDays=fetchData();
+        chart.clear();
+        chart.addLegend("Number Of Deals", new Color(135, 189, 245));
+        chart.addData(new ModelChart(users.get(0).username, new int[] {users.get(0).profitThisYear}));
+        chart.addData(new ModelChart(users.get(1).username, new int[] {users.get(1).profitThisYear}));
+        chart.addData(new ModelChart(users.get(2).username, new int[] {users.get(2).profitThisYear}));
+        chart.addData(new ModelChart(users.get(3).username, new int[] {users.get(3).profitThisYear}));
+        chart.start();
     }
     public int[] getCatInfoProfit(int x) {
         return new int[] { cats.get(x).incomeToday, cats.get(x).incomeThisWeek, cats.get(x).incomeThisMonth, cats.get(x).incomeThisYear };
@@ -290,12 +375,17 @@ public class jViewStatistics extends javax.swing.JPanel {
     private void jSalesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSalesKeyPressed
         if (evt.getKeyCode()==KeyEvent.VK_ENTER){
             chart = new Chart(_jHomePage, this);
+            chart.changecolor(colors[0], colors[1], colors[2], colors[3], colors[4]);
             where = "sale";
             _jHomePage.switchPanels(chart);
             showItemStats();
             chart.jProfit.setSelected(false);
             chart.jItems_Customers.setSelected(true);
             allDays = fetchData();
+            chart.jRadioButton1.setVisible(false);
+            chart.jRadioButton2.setVisible(false);
+            chart.jRadioButton3.setVisible(false);
+            chart.jRadioButton4.setVisible(false);
         }
     }//GEN-LAST:event_jSalesKeyPressed
 
@@ -306,12 +396,17 @@ public class jViewStatistics extends javax.swing.JPanel {
     private void jCategoriesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCategoriesKeyPressed
         if (evt.getKeyCode()==KeyEvent.VK_ENTER){
             chart = new Chart(_jHomePage, this);
+            chart.changecolor(colors[0], colors[1], colors[2], colors[3], colors[4]);
             where = "cat";
             _jHomePage.switchPanels(chart);
             showCategoriesStates();
             chart.jProfit.setSelected(false);
             chart.jItems_Customers.setSelected(true);
             allDays = fetchData();
+            chart.jRadioButton1.setVisible(false);
+            chart.jRadioButton2.setVisible(false);
+            chart.jRadioButton3.setVisible(false);
+            chart.jRadioButton4.setVisible(false);
         }
     }//GEN-LAST:event_jCategoriesKeyPressed
 
@@ -322,43 +417,57 @@ public class jViewStatistics extends javax.swing.JPanel {
     private void jUsersKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jUsersKeyPressed
         if (evt.getKeyCode()==KeyEvent.VK_ENTER){
             chart = new Chart(_jHomePage, this);
+            chart.changecolor(colors[0], colors[1], colors[2], colors[3], colors[4]);
             where = "user";
             _jHomePage.switchPanels(chart);
             showUserActivitesToday();
             chart.jProfit.setSelected(false);
             chart.jItems_Customers.setSelected(true);
             allDays = fetchData();
+            chart.jRadioButton1.setSelected(true);
         }
     }//GEN-LAST:event_jUsersKeyPressed
 
     private void jSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSalesActionPerformed
         chart = new Chart(_jHomePage, this);
+        chart.changecolor(colors[0], colors[1], colors[2], colors[3], colors[4]);
         where = "sale";
         _jHomePage.switchPanels(chart);
         showItemStats();
         chart.jProfit.setSelected(false);
         chart.jItems_Customers.setSelected(true);
         allDays = fetchData();
+        chart.jRadioButton1.setVisible(false);
+        chart.jRadioButton2.setVisible(false);
+        chart.jRadioButton3.setVisible(false);
+        chart.jRadioButton4.setVisible(false);
     }//GEN-LAST:event_jSalesActionPerformed
 
     private void jCategoriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCategoriesActionPerformed
         chart = new Chart(_jHomePage, this);
+        chart.changecolor(colors[0], colors[1], colors[2], colors[3], colors[4]);
         where = "cat";
         _jHomePage.switchPanels(chart);
         showCategoriesStates();
         chart.jProfit.setSelected(false);
         chart.jItems_Customers.setSelected(true);
         allDays = fetchData();
+        chart.jRadioButton1.setVisible(false);
+        chart.jRadioButton2.setVisible(false);
+        chart.jRadioButton3.setVisible(false);
+        chart.jRadioButton4.setVisible(false);
     }//GEN-LAST:event_jCategoriesActionPerformed
 
     private void jUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUsersActionPerformed
         chart = new Chart(_jHomePage, this);
+        chart.changecolor(colors[0], colors[1], colors[2], colors[3], colors[4]);
         where = "user";
         _jHomePage.switchPanels(chart);
         showUserActivitesToday();
         chart.jProfit.setSelected(false);
         chart.jItems_Customers.setSelected(true);
         allDays = fetchData();
+        chart.jRadioButton1.setSelected(true);
     }//GEN-LAST:event_jUsersActionPerformed
 
     private void jBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackActionPerformed
@@ -379,52 +488,166 @@ public class jViewStatistics extends javax.swing.JPanel {
     }
     public void profitClicked() {
         if(where.equals("sale")) {
-            chart2 = new Chart(_jHomePage, this);
-            _jHomePage.switchPanels(chart2);
+            chart = new Chart(_jHomePage, this);
+            chart.changecolor(colors[0], colors[1], colors[2], colors[3], colors[4]);
+            _jHomePage.switchPanels(chart);
             showDailyProfit();
-            chart2.jProfit.setSelected(true);
-            chart2.jItems_Customers.setSelected(false);
+            chart.jProfit.setSelected(true);
+            chart.jItems_Customers.setSelected(false);
             allDays = fetchData();
+            chart.jRadioButton1.setVisible(false);
+            chart.jRadioButton2.setVisible(false);
+            chart.jRadioButton3.setVisible(false);
+            chart.jRadioButton4.setVisible(false);
         }else if(where.equals("cat")) {
-            chart2 = new Chart(_jHomePage, this);
-            _jHomePage.switchPanels(chart2);
+            chart = new Chart(_jHomePage, this);
+            _jHomePage.switchPanels(chart);
             showCategoryProfit();
-            chart2.jProfit.setSelected(true);
-            chart2.jItems_Customers.setSelected(false);
+            chart.jProfit.setSelected(true);
+            chart.jItems_Customers.setSelected(false);
             allDays = fetchData();
+            chart.jRadioButton1.setVisible(false);
+            chart.jRadioButton2.setVisible(false);
+            chart.jRadioButton3.setVisible(false);
+            chart.jRadioButton4.setVisible(false);
         }else if(where.equals("user")) {
-            chart2 = new Chart(_jHomePage, this);
-            _jHomePage.switchPanels(chart2);
-            showUserProfitToday();
-            chart2.jProfit.setSelected(true);
-            chart2.jItems_Customers.setSelected(false);
-            allDays = fetchData();
+            if(chart.jRadioButton1.isSelected()) {
+                chart = new Chart(_jHomePage, this);
+                chart.jRadioButton1.setSelected(true);
+                chart.changecolor(colors[0], colors[1], colors[2], colors[3], colors[4]);
+                _jHomePage.switchPanels(chart);
+                showUserProfitToday();
+                chart.jProfit.setSelected(true);
+                chart.jItems_Customers.setSelected(false);
+                allDays = fetchData();
+            }else if(chart.jRadioButton2.isSelected()) {
+                chart = new Chart(_jHomePage, this);
+                chart.jRadioButton2.setSelected(true);
+                chart.changecolor(colors[0], colors[1], colors[2], colors[3], colors[4]);
+                _jHomePage.switchPanels(chart);
+                showUserProfitThisWeek();
+                chart.jProfit.setSelected(true);
+                chart.jItems_Customers.setSelected(false);
+                allDays = fetchData();
+            }else if(chart.jRadioButton3.isSelected()) {
+                chart = new Chart(_jHomePage, this);
+                chart.jRadioButton3.setSelected(true);
+                chart.changecolor(colors[0], colors[1], colors[2], colors[3], colors[4]);
+                _jHomePage.switchPanels(chart);
+                showUserProfitThisMonth();
+                chart.jProfit.setSelected(true);
+                chart.jItems_Customers.setSelected(false);
+                allDays = fetchData();
+            }else if(chart.jRadioButton4.isSelected()) {
+                chart = new Chart(_jHomePage, this);
+                chart.jRadioButton4.setSelected(true);
+                chart.changecolor(colors[0], colors[1], colors[2], colors[3], colors[4]);
+                _jHomePage.switchPanels(chart);
+                showUserProfitThisYear();
+                chart.jProfit.setSelected(true);
+                chart.jItems_Customers.setSelected(false);
+                allDays = fetchData();
+            }
+            chart.jProfit.setSelected(true);
+            chart.jItems_Customers.setSelected(false);
         }
     }
     public void item_customerClicked() {
         if(where.equals("sale")) {
             chart = new Chart(_jHomePage, this);
+            chart.changecolor(colors[0], colors[1], colors[2], colors[3], colors[4]);
             _jHomePage.switchPanels(chart);
             showItemStats();
             chart.jProfit.setSelected(false);
             chart.jItems_Customers.setSelected(true);
+            chart.jRadioButton1.setVisible(false);
+            chart.jRadioButton2.setVisible(false);
+            chart.jRadioButton3.setVisible(false);
+            chart.jRadioButton4.setVisible(false);
             allDays = fetchData();
         }else if(where.equals("cat")) {
             chart = new Chart(_jHomePage, this);
+            chart.changecolor(colors[0], colors[1], colors[2], colors[3], colors[4]);
             _jHomePage.switchPanels(chart);
             showCategoriesStates();
             chart.jProfit.setSelected(false);
             chart.jItems_Customers.setSelected(true);
             allDays = fetchData();
+            chart.jRadioButton1.setVisible(false);
+            chart.jRadioButton2.setVisible(false);
+            chart.jRadioButton3.setVisible(false);
+            chart.jRadioButton4.setVisible(false);
         }else if(where.equals("user")) {
-            chart = new Chart(_jHomePage, this);
-            _jHomePage.switchPanels(chart);
-            showUserActivitesToday();
+            if(chart.jRadioButton1.isSelected()) {
+                chart = new Chart(_jHomePage, this);
+                chart.jRadioButton1.setSelected(true);
+                chart.changecolor(colors[0], colors[1], colors[2], colors[3], colors[4]);
+                _jHomePage.switchPanels(chart);
+                showUserActivitesToday();
+                chart.jProfit.setSelected(true);
+                chart.jItems_Customers.setSelected(false);
+                allDays = fetchData();
+            }else if(chart.jRadioButton2.isSelected()) {
+                chart = new Chart(_jHomePage, this);
+                chart.jRadioButton2.setSelected(true);
+                chart.changecolor(colors[0], colors[1], colors[2], colors[3], colors[4]);
+                _jHomePage.switchPanels(chart);
+                showUserActivitiesThisWeek();
+                chart.jProfit.setSelected(true);
+                chart.jItems_Customers.setSelected(false);
+                allDays = fetchData();
+            }else if(chart.jRadioButton3.isSelected()) {
+                chart = new Chart(_jHomePage, this);
+                chart.jRadioButton3.setSelected(true);
+                chart.changecolor(colors[0], colors[1], colors[2], colors[3], colors[4]);
+                _jHomePage.switchPanels(chart);
+                showUserActivitesThisMonth();
+                chart.jProfit.setSelected(true);
+                chart.jItems_Customers.setSelected(false);
+                allDays = fetchData();
+            }else if(chart.jRadioButton4.isSelected()) {
+                chart = new Chart(_jHomePage, this);
+                chart.jRadioButton4.setSelected(true);
+                chart.changecolor(colors[0], colors[1], colors[2], colors[3], colors[4]);
+                _jHomePage.switchPanels(chart);
+                showUserActivitesThisYear();
+                chart.jProfit.setSelected(true);
+                chart.jItems_Customers.setSelected(false);
+                allDays = fetchData();
+            }
             chart.jProfit.setSelected(false);
             chart.jItems_Customers.setSelected(true);
-            allDays = fetchData();
         }
     }
+    public void todayClicked() {
+        if(chart.jProfit.isSelected()) {
+            profitClicked();;
+        }else {
+            item_customerClicked();
+        }
+    }
+    public void thisWeekClicked() {
+        if(chart.jProfit.isSelected()) {
+            profitClicked();;
+        }else {
+            item_customerClicked();
+        }
+    }
+    public void thisMonthClicked() {
+        if(chart.jProfit.isSelected()) {
+            profitClicked();;
+        }else {
+            item_customerClicked();
+        }
+    }
+    public void thisYearClicked() {
+        if(chart.jProfit.isSelected()) {
+            profitClicked();;
+        }else {
+            item_customerClicked();
+        }
+    }
+    private java.awt.Color[] colors;
     private UserServices _UserServices;
     public ArrayList<UserInfo> users;
     public String where;

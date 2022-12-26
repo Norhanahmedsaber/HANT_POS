@@ -24,9 +24,27 @@ public final class jViewCustomers extends javax.swing.JPanel  {
         toggle = false;
         
     }
-    public void changecolor(java.awt.Color c)
+    public void changecolor(java.awt.Color c1,java.awt.Color c2,java.awt.Color c3,java.awt.Color c4,java.awt.Color c5)
     { 
-        setBackground(c);
+        setBackground(c1);
+        
+          jAddButton.setBackground(c2);
+        jAddButton.setForeground(c4);
+     jBackButton.setBackground(c2);
+        jBackButton.setForeground(c4);
+    jCustomersTable.setBackground(c2);
+     jDeleteButton.setBackground(c2);
+        jDeleteButton.setForeground(c4);
+   jLabel1.setForeground(c3);
+    jLabel2.setForeground(c3);
+    jLabel3.setForeground(c3);
+     jScrollPane2.setBackground(c5);
+   jSearchName.setBackground(c5);
+     jShowButton.setBackground(c2);
+        jShowButton.setForeground(c4);
+  jSortBy.setBackground(c5);
+     jToggleSort.setBackground(c2);
+        jToggleSort.setForeground(c4);
     }
     public void renderData() { 
         String[] cols = {"ID","Name", "Email", "PurchaseDate", "PhoneNumber"}; 
@@ -141,6 +159,11 @@ public final class jViewCustomers extends javax.swing.JPanel  {
         jSortBy.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jSortBy.setForeground(new java.awt.Color(0, 31, 78));
         jSortBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Name", "Date" }));
+        jSortBy.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jSortByItemStateChanged(evt);
+            }
+        });
         jSortBy.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jSortByMouseClicked(evt);
@@ -426,6 +449,10 @@ public final class jViewCustomers extends javax.swing.JPanel  {
     private void jSortByActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSortByActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jSortByActionPerformed
+
+    private void jSortByItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jSortByItemStateChanged
+        renderData();
+    }//GEN-LAST:event_jSortByItemStateChanged
     
     private boolean toggle ;
     private ArrayList<Customer> allCustomers;

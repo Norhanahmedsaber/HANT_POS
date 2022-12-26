@@ -18,9 +18,32 @@ public class jNewRole extends javax.swing.JPanel {
     }
    
     
-    public void changecolor(java.awt.Color c)
-    { 
-        setBackground(c);
+    public void changecolor(java.awt.Color c1,java.awt.Color c2,java.awt.Color c3,java.awt.Color c4,java.awt.Color c5)
+    {  
+        setBackground(c1);
+        JCreateCustomer.setForeground(c3);
+        JDeleteCustomer.setForeground(c3);
+        JDeleteLog.setForeground(c3);
+        JDeleteUser.setForeground(c3);
+        JUpdateRole.setForeground(c3);
+        JUpdateUser1.setForeground(c3);
+        JviewLogs.setForeground(c3);
+        jBack.setBackground(c2);
+        jBack.setForeground(c4);
+        jCreateItem.setForeground(c3);
+        jCreateRole.setForeground(c3);
+        jCreateUser.setForeground(c3);
+        jDeleteItem.setForeground(c3);
+        jDone.setBackground(c2);
+        jDone.setForeground(c4);
+        jLabel1.setForeground(c3);
+        jRoleNameField.setBackground(c5);
+        jUpdateCustomer.setForeground(c3);
+        jUpdateItem.setForeground(c3);
+        jViewCustomer.setForeground(c3);
+        jViewItem.setForeground(c3);
+        jViewRole.setForeground(c3);
+        jViewUser.setForeground(c3);
     }
    public void clearCreateRolePage(){
         jRoleNameField.setText("");

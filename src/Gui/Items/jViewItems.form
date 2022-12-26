@@ -24,27 +24,24 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="jLabel3" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
-                                  <Component id="jLabel2" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
-                                  <Component id="jLabel1" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="jLabel3" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                              <Component id="jLabel2" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                              <Component id="jLabel1" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="jsortitemsby" min="-2" pref="450" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="jToggleSort" min="-2" pref="80" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="jsortitemsby" min="-2" pref="450" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                                      <Component id="jToggleSort" min="-2" pref="80" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="jsearchitems" min="-2" pref="550" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="jsearchitems" min="-2" pref="550" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jBack" min="-2" pref="175" max="-2" attributes="0"/>
@@ -54,9 +51,9 @@
                       <Component id="jShowItem" min="-2" pref="175" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                       <Component id="jadditem" min="-2" pref="175" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -103,6 +100,7 @@
         </Property>
       </Properties>
       <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jsortitemsbyItemStateChanged"/>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jsortitemsbyMouseClicked"/>
       </Events>
       <AuxValues>

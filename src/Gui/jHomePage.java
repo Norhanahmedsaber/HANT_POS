@@ -27,25 +27,29 @@ public class jHomePage extends javax.swing.JFrame {
    
     public void changecolor(java.awt.Color c1, java.awt.Color c2, java.awt.Color c3, java.awt.Color c4, java.awt.Color c5)
     { 
+        jsignin.setBackground(c2);
+        jsignin.setForeground(c4);
         jPanel1.setBackground(c1);
         jsignin.setForeground(c3);
-        _jmaMainPage._jNewCustomer._jChooseItem.changecolor(c1,c2,c3,c4,c5 );
+        _jmaMainPage._jNewCustomer._jChooseItem.changecolor(c1,c2,c3,c4,c5);
         _jmaMainPage._jViewCustomers._jViewCustomer._jChooseItem.changecolor(c1,c2,c3,c4,c5);
-        //_jmaMainPage._jNewCustomer.changecolor(c1,c2,c3,c4,c5);
-       // _jmaMainPage._jViewCustomers.changecolor(c1,c2,c3,c4,c5);
-       // _jmaMainPage._jViewCustomers._jViewCustomer.changecolor(c1,c2,c3,c4,c5);
+        _jmaMainPage._jViewStatistics.chart.changecolor(c1,c2,c3,c4,c5);
+        _jmaMainPage._jViewStatistics.chart2.changecolor(c1,c2,c3,c4,c5);
+        _jmaMainPage._jNewCustomer.changecolor(c1,c2,c3,c4,c5);
+        _jmaMainPage._jViewCustomers.changecolor(c1,c2,c3,c4,c5);
+        _jmaMainPage._jViewCustomers._jViewCustomer.changecolor(c1,c2,c3,c4,c5);
         _jmaMainPage._jNewItem.changecolor(c1, c2, c3, c4, c5);
         _jmaMainPage._jViewItems._jViewItem.changecolor(c1,c2,c3,c4,c5);
         _jmaMainPage._jViewItems.changecolor(c1,c2,c3,c4,c5);
-      //  _jmaMainPage._jShowLogs.changecolor(c1,c2,c3,c4,c5);
-       // _jmaMainPage._jcreaterole.changecolor(c1,c2,c3,c4,c5);
-       // _jmaMainPage._jViewRoles.changecolor(c1, c2, c3, c4, c5);
-       // _jmaMainPage._jSignUpPage.changecolor(c1,c2,c3,c4,c5);
-        //_jmaMainPage._jViewUsers._jViewUser.changecolor(c1,c2,c3,c4,c5);
-        //_jmaMainPage._jViewUsers.changecolor(c1,c2,c3,c4,c5);
+        _jmaMainPage._jShowLogs.changecolor(c1,c2,c3,c4,c5);
+        _jmaMainPage._jcreaterole.changecolor(c1,c2,c3,c4,c5);
+        _jmaMainPage._jViewRoles.changecolor(c1, c2, c3, c4, c5);
+        _jmaMainPage._jSignUpPage.changecolor(c1,c2,c3,c4,c5);
+        _jmaMainPage._jViewUsers._jViewUser.changecolor(c1,c2,c3,c4,c5);
+        _jmaMainPage._jViewUsers.changecolor(c1,c2,c3,c4,c5);
         _jmaMainPage.changecolor(c1,c2,c3,c4,c5);
         _jLoginPage.changecolor(c1,c2,c3,c4,c5);
-        _jmaMainPage._jViewStatistics.changecolor(c1);
+        _jmaMainPage._jViewStatistics.changecolor(c1,c2,c3,c4,c5);
         
         _ThemeF._jThemePage.changecolor(c1,c2,c3,c4,c5);
         
