@@ -158,7 +158,7 @@ public class jHomePage extends javax.swing.JFrame {
 
         jMenuBar1.setBackground(new java.awt.Color(87, 118, 130));
 
-        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/logo1.png"))); // NOI18N
+        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/logos.png"))); // NOI18N
         jMenuBar1.add(jMenu6);
 
         jMenu1.setText("Dark Mode");

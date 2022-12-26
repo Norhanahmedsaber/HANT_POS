@@ -31,7 +31,7 @@ public class FilterLogs {
         {     
             Collections.sort(logs,new Comparator<Log>() {
                 public int compare(Log l1, Log l2) {
-                    return l1.userName.compareTo(l2.userName);
+                    return l1.userName.toLowerCase().compareTo(l2.userName.toLowerCase());
                 }
             });
             return logs;
@@ -42,7 +42,7 @@ public class FilterLogs {
         {     
             Collections.sort(logs,new Comparator<Log>() {
                 public int compare(Log l1, Log l2) {
-                    return l1.userName.compareTo(l2.userName);
+                    return l1.userName.toLowerCase().compareTo(l2.userName.toLowerCase());
                 }
             });
             Collections.reverse(logs);
@@ -54,7 +54,7 @@ public class FilterLogs {
         {     
             Collections.sort(logs,new Comparator<Log>() {
                 public int compare(Log l1, Log l2) {
-                    return l1.action.compareTo(l2.action);
+                    return l1.action.toLowerCase().compareTo(l2.action.toLowerCase());
                 }
             });
             return logs;
@@ -65,7 +65,7 @@ public class FilterLogs {
         {     
             Collections.sort(logs,new Comparator<Log>() {
                 public int compare(Log l1, Log l2) {
-                    return l1.action.compareTo(l2.action);
+                    return l1.action.toLowerCase().compareTo(l2.action.toLowerCase());
                 }
             });
             Collections.reverse(logs);
@@ -77,7 +77,7 @@ public class FilterLogs {
         {     
             Collections.sort(logs,new Comparator<Log>() {
                 public int compare(Log l1, Log l2) {
-                    return l1.actedOn.compareTo(l2.actedOn);
+                    return l1.actedOn.toLowerCase().compareTo(l2.actedOn.toLowerCase());
                 }
             });
             return logs;
@@ -88,7 +88,7 @@ public class FilterLogs {
         {     
             Collections.sort(logs,new Comparator<Log>() {
                 public int compare(Log l1, Log l2) {
-                    return l1.actedOn.compareTo(l2.actedOn);
+                    return l1.actedOn.toLowerCase().compareTo(l2.actedOn.toLowerCase());
                 }
             });
             Collections.reverse(logs);
