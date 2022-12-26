@@ -51,8 +51,33 @@ public class jMainPage extends javax.swing.JPanel {
          toggle = false;      
   }
     
-    public void changecolor(java.awt.Color c) {
-        setBackground(c);
+    public void changecolor(java.awt.Color c1, java.awt.Color c2, java.awt.Color c3, java.awt.Color c4, java.awt.Color c5){
+        setBackground(c1);
+                jAddusers.setBackground(c2);
+                jAddusers.setForeground(c4);
+                jLog.setBackground(c2);
+                jLog.setForeground(c4);
+                jLogout.setBackground(c2);
+                jLogout.setForeground(c4);
+                jNewRole.setBackground(c2);
+                jNewRole.setForeground(c4);
+                jNewcustomer.setBackground(c2);
+                jNewcustomer.setForeground(c4);
+                jNewitem.setBackground(c2);
+                jNewitem.setForeground(c4);
+                jStats.setBackground(c2);
+                jStats.setForeground(c4);
+                jViewRoles.setBackground(c2);
+                jViewRoles.setForeground(c4);
+                jViewcustomers.setBackground(c2);
+                jViewcustomers.setForeground(c4);
+                jViewitems.setBackground(c2);
+                jViewitems.setForeground(c4);
+                jViewusers.setBackground(c2);
+                jViewusers.setForeground(c4);
+
+ 
+   
     }
 
     @SuppressWarnings("unchecked")

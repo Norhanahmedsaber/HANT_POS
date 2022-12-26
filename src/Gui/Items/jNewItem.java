@@ -34,9 +34,25 @@ public class jNewItem extends javax.swing.JPanel {
     }
     
      
-    public void changecolor(java.awt.Color c)
+    public void changecolor(java.awt.Color c1, java.awt.Color c2, java.awt.Color c3, java.awt.Color c4, java.awt.Color c5)
     { 
-        setBackground(c);
+             setBackground(c1);
+            jAddItem .setBackground(c2);
+            jAddItem.setForeground(c4);
+            jBack.setBackground(c2);
+            jBack.setForeground(c4);
+             jCatgoryField.setBackground(c5);
+            jDescriptionField.setBackground(c5);
+            jLabel0.setForeground(c3);
+            jLabel1.setForeground(c3);
+            jLabel2.setForeground(c3);
+            jLabel3.setForeground(c3);
+            jLabel4.setForeground(c3);
+            jNameField.setBackground(c5);
+            jPic.setForeground(c3);
+            jPriceField.setBackground(c5);
+            jUpload .setBackground(c2);
+            jUpload.setForeground(c4);
     }
     public void clearNewitemPage(){
         jNameField.setText("");

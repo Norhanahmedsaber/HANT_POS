@@ -37,9 +37,31 @@ public class jChooseItem extends javax.swing.JPanel {
 
     }
      
-    public void changecolor(java.awt.Color c)
-    { 
-        setBackground(c);
+    public void changecolor(java.awt.Color c1,java.awt.Color c2,java.awt.Color c3,java.awt.Color c4,java.awt.Color c5)
+    {  
+        jBack.setBackground(c2);
+        jBack.setForeground(c4);
+        jDone.setBackground(c2);
+        jDone.setForeground(c4);
+        jError.setBackground(c2);
+        jItems.setBackground(c2);
+        jItemsCombo.setBackground(c5);
+        jLabel2.setForeground(c3);
+        jLabel3.setForeground(c3);
+        jRemove.setBackground(c2);
+        jRemove.setForeground(c4);
+        jScrollPane3.setBackground(c5);
+        jScrollPane4.setBackground(c5);
+        jSearch.setBackground(c5);
+        jToggleSort.setBackground(c2);
+        jToggleSort.setForeground(c4);
+        jcancel.setBackground(c2);
+        jcancel.setForeground(c4);
+        jedit.setBackground(c2);
+        jedit.setForeground(c4);
+        jupdate.setBackground(c2);
+        jupdate.setForeground(c4);
+        jAddedItems.setBackground(c2);
     }
     public void edit()
     {

@@ -38,9 +38,34 @@ public class jViewItem extends javax.swing.JPanel {
         isEditing = false;
     }
      
-    public void changecolor(java.awt.Color c)
+    public void changecolor(java.awt.Color c1, java.awt.Color c2, java.awt.Color c3, java.awt.Color c4, java.awt.Color c5)
     { 
-        jPanel1.setBackground(c);
+        jPanel1.setBackground(c1);
+            // Variables declaration - do not modify                     
+
+     jBack.setBackground(c2);
+        jBack.setForeground(c4);
+     jCancel.setBackground(c2);
+        jCancel.setForeground(c4);
+     jCatgoryField.setBackground(c5);
+    jCreatedAt.setBackground(c5);
+     jDescriptionField.setBackground(c5);
+        jEdit.setBackground(c2);
+        jEdit.setForeground(c4);
+     jLabel1.setForeground(c3);
+    jLabel2.setForeground(c3);
+      jLabel3.setForeground(c3);
+     jLabel4.setForeground(c3);
+     jLabel5.setForeground(c3);
+     jLabel6.setForeground(c3);
+     jNameField.setBackground(c5);
+    jPic.setForeground(c3);
+     jPriceField.setBackground(c5);
+     jUpdate.setBackground(c2);
+        jUpdate.setForeground(c4);
+     jUpdatedSuccessfuly.setForeground(c3);
+        jUpload.setBackground(c2);
+        jUpload.setForeground(c4);
     }
     public void clearNewitemPage(){
         jNameField.setText("");
