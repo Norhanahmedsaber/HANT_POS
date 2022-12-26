@@ -703,7 +703,7 @@ public class jViewStatistics extends javax.swing.JPanel {
     public Chart chart;
     private final jHomePage _jHomePage;
     private final jMainPage _jMainPage;
-    private jLeaderBoard _jLeaderBoard;
+    public jLeaderBoard _jLeaderBoard;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton jBack;
     public javax.swing.JButton jCategories;
