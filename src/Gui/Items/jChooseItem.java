@@ -12,7 +12,6 @@ import java.util.Date;
 import java.util.UUID;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import utils.filterItems;
 
@@ -192,7 +191,6 @@ public class jChooseItem extends javax.swing.JPanel {
         DefaultTableModel m2 = (DefaultTableModel) jAddedItems.getModel();
         m2.setColumnIdentifiers(titles);
         m2.setRowCount(0);
-        jSearch.setText("");
         jItemsCombo.selectWithKeyChar('n');
     }
     private void removeItemFromPreviewTable() {
@@ -291,6 +289,11 @@ public class jChooseItem extends javax.swing.JPanel {
         jToggleSort = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(87, 118, 130));
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                formKeyTyped(evt);
+            }
+        });
 
         jBack.setBackground(new java.awt.Color(217, 156, 69));
         jBack.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
@@ -331,6 +334,11 @@ public class jChooseItem extends javax.swing.JPanel {
 
         jSearch.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jSearch.setForeground(new java.awt.Color(0, 31, 78));
+        jSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jSearchKeyTyped(evt);
+            }
+        });
 
         jItemsCombo.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jItemsCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Category", "Name", "ID", "Price" }));
@@ -636,7 +644,17 @@ public class jChooseItem extends javax.swing.JPanel {
     private void jAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAddActionPerformed
         addItemToPreviewTable();
     }//GEN-LAST:event_jAddActionPerformed
-    private UIManager UI;
+
+    private void formKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyTyped
+        
+    }//GEN-LAST:event_formKeyTyped
+
+    private void jSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSearchKeyTyped
+      renderData();
+    }//GEN-LAST:event_jSearchKeyTyped
+   
+
+    
     private final JPanel _parent;
     private final ItemServices _ItemServices;
     private final CustomerServices _CustomerServices; 

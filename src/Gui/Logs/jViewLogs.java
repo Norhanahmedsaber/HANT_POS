@@ -156,7 +156,7 @@ public class jViewLogs extends javax.swing.JPanel {
 
         jSortByCombo.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jSortByCombo.setForeground(new java.awt.Color(0, 31, 78));
-        jSortByCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User Name", "Action", "Acted On", "Date" }));
+        jSortByCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User Name", "Action", "Date" }));
         jSortByCombo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jSortByComboItemStateChanged(evt);

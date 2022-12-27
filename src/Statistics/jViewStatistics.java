@@ -52,6 +52,7 @@ public class jViewStatistics extends javax.swing.JPanel {
         jSales.setForeground(c4);
         jUsers.setBackground(c2);
         jUsers.setForeground(c4);
+        jleader.setBackground(c2);
         
     }
     // {No Items Sold, No Customer, Total profit}
@@ -335,9 +336,9 @@ public class jViewStatistics extends javax.swing.JPanel {
         jleader.setBackground(new java.awt.Color(217, 156, 69));
         jleader.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jleader.setForeground(new java.awt.Color(255, 255, 255));
-        jleader.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Statistics/userStat.png"))); // NOI18N
+        jleader.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Statistics/rank.png"))); // NOI18N
         jleader.setMnemonic('u');
-        jleader.setText("                                Leaderboard                                     ");
+        jleader.setText("                                Leaderboard                                          ");
         jleader.setToolTipText("");
         jleader.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -381,7 +382,7 @@ public class jViewStatistics extends javax.swing.JPanel {
                 .addComponent(jUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jleader, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(100, 100, 100)
+                .addGap(72, 72, 72)
                 .addComponent(jBack, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
         );
