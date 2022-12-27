@@ -20,8 +20,6 @@ public class Role {
     public boolean canDeleteLog;
     public boolean canUpdateRole;
     public boolean canViewRoles;
-    
-    
     public boolean canDeleteRole;
     public boolean canCreateRole;
 }

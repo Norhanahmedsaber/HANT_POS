@@ -13,7 +13,7 @@ public class FilterUsers {
         ArrayList <User> customerAfterSearch = new ArrayList<User>();
         for( int i=0 ; i<customers.size() ; i++)
         {
-            if(customers.get(i).name.trim().contains(searchName.toLowerCase().trim()))
+            if(customers.get(i).name.toLowerCase().trim().contains(searchName.toLowerCase().trim()))
             {
                 customerAfterSearch.add(customers.get(i));
             }

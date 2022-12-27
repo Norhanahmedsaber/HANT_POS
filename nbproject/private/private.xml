@@ -3,20 +3,22 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/LENOVO/Desktop/java2/hant/src/Gui/Customers/jViewCustomer.java</file>
-            <file>file:/C:/Users/LENOVO/Desktop/java2/hant/src/Gui/jHomePage.java</file>
-            <file>file:/C:/Users/LENOVO/Desktop/java2/hant/src/Gui/jMainPage.java</file>
-            <file>file:/C:/Users/LENOVO/Desktop/java2/hant/src/Gui/Items/jViewItems.java</file>
-            <file>file:/C:/Users/LENOVO/Desktop/java2/hant/src/Gui/Items/jViewItem.java</file>
-            <file>file:/C:/Users/LENOVO/Desktop/java2/hant/src/Gui/Logs/jViewLogs.java</file>
-            <file>file:/C:/Users/LENOVO/Desktop/java2/hant/src/Gui/Users/jViewUser.java</file>
-            <file>file:/C:/Users/LENOVO/Desktop/java2/hant/src/Gui/log-in%20(1).png</file>
-            <file>file:/C:/Users/LENOVO/Desktop/java2/hant/src/Gui/Customers/jViewCustomers.java</file>
-            <file>file:/C:/Users/LENOVO/Desktop/java2/hant/src/Gui/Items/jNewItem.java</file>
-            <file>file:/C:/Users/LENOVO/Desktop/java2/hant/src/Gui/Users/jNewUsers.java</file>
-            <file>file:/C:/Users/LENOVO/Desktop/java2/hant/src/Gui/Roles/jNewRole.java</file>
-            <file>file:/C:/Users/LENOVO/Desktop/java2/hant/src/Gui/jLoginPage.java</file>
-            <file>file:/C:/Users/LENOVO/Desktop/java2/hant/src/Gui/Customers/jNewCustomer.java</file>
+            <file>file:/C:/Users/norha/OneDrive/Desktop/Project/src/Interfaces/ICustomerServices.java</file>
+            <file>file:/C:/Users/norha/OneDrive/Desktop/Project/src/Entities/Customer.java</file>
+            <file>file:/C:/Users/norha/OneDrive/Desktop/Project/src/Entities/User.java</file>
+            <file>file:/C:/Users/norha/OneDrive/Desktop/Project/src/Statistics/jLeaderBoard.java</file>
+            <file>file:/C:/Users/norha/OneDrive/Desktop/Project/src/Entities/Role.java</file>
+            <file>file:/C:/Users/norha/OneDrive/Desktop/Project/src/Services/ItemServices.java</file>
+            <file>file:/C:/Users/norha/OneDrive/Desktop/Project/src/Gui/Items/jViewItems.java</file>
+            <file>file:/C:/Users/norha/OneDrive/Desktop/Project/src/Gui/Customers/jViewCustomer.java</file>
+            <file>file:/C:/Users/norha/OneDrive/Desktop/Project/src/utils/filterItems.java</file>
+            <file>file:/C:/Users/norha/OneDrive/Desktop/Project/src/Entities/Item.java</file>
+            <file>file:/C:/Users/norha/OneDrive/Desktop/Project/src/Gui/Users/jViewUser.java</file>
+            <file>file:/C:/Users/norha/OneDrive/Desktop/Project/src/Gui/jHomePage.java</file>
+            <file>file:/C:/Users/norha/OneDrive/Desktop/Project/src/Gui/Customers/jViewCustomers.java</file>
+            <file>file:/C:/Users/norha/OneDrive/Desktop/Project/src/Gui/Items/jChooseItem.java</file>
+            <file>file:/C:/Users/norha/OneDrive/Desktop/Project/src/Gui/Users/jNewUsers.java</file>
+            <file>file:/C:/Users/norha/OneDrive/Desktop/Project/src/Services/CustomerServices.java</file>
         </group>
     </open-files>
 </project-private>

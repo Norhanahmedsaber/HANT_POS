@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.UUID;
 
 public class Customer {
-    // id (GUID)
     public UUID id;
     public String name;
     public String nationalId;
@@ -15,7 +14,6 @@ public class Customer {
     public String email;
     public int income;
     public String job;
-    // public enum gender;
     public String gender;
     public int age;
     public ArrayList<UUID> itemIds;
