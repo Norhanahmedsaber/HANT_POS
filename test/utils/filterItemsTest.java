@@ -148,7 +148,6 @@ public class filterItemsTest {
         expResult5.add(item3);
         expResult5.add(item1);
         result = instance.filter(items, search, sortitemby, toggle);
-        System.out.println(result);
         assertArrayEquals(expResult5.toArray(), result.toArray());
         
         ArrayList<Item> expResult6 = new ArrayList<>();
@@ -158,7 +157,6 @@ public class filterItemsTest {
         expResult6.add(item1);
         expResult6.add(item3);
         result = instance.filter(items, search, sortitemby, toggle);
-        System.out.println(result);
         assertArrayEquals(expResult6.toArray(), result.toArray());
         
         //search and sortby date
@@ -169,7 +167,6 @@ public class filterItemsTest {
         expResult7.add(item1);
         expResult7.add(item3);
         result = instance.filter(items, search, sortitemby, toggle);
-        System.out.println(result);
         assertArrayEquals(expResult7.toArray(), result.toArray());
         
         ArrayList<Item> expResult8 = new ArrayList<>();
@@ -179,7 +176,6 @@ public class filterItemsTest {
         expResult8.add(item3);
         expResult8.add(item1);
         result = instance.filter(items, search, sortitemby, toggle);
-        System.out.println(result);
         assertArrayEquals(expResult8.toArray(), result.toArray());
         
         //search and sortby catgory
@@ -190,7 +186,6 @@ public class filterItemsTest {
         expResult9.add(item1);
         expResult9.add(item3);
         result = instance.filter(items, search, sortitemby, toggle);
-        System.out.println(result);
         assertArrayEquals(expResult9.toArray(), result.toArray());
         
         ArrayList<Item> expResult10 = new ArrayList<>();
@@ -200,7 +195,6 @@ public class filterItemsTest {
         expResult10.add(item3);
         expResult10.add(item1);
         result = instance.filter(items, search, sortitemby, toggle);
-        System.out.println(result);
         assertArrayEquals(expResult10.toArray(), result.toArray());
         
        //search and sortby Price
@@ -212,7 +206,6 @@ public class filterItemsTest {
         expResult11.add(item1);
         expResult11.add(item3);
         result = instance.filter(items, search, sortitemby, toggle);
-        System.out.println(result);
         assertArrayEquals(expResult11.toArray(), result.toArray());
         
         ArrayList<Item> expResult12 = new ArrayList<>();
@@ -222,7 +215,6 @@ public class filterItemsTest {
         expResult12.add(item3);
         expResult12.add(item1);
         result = instance.filter(items, search, sortitemby, toggle);
-        System.out.println(result);
         assertArrayEquals(expResult12.toArray(), result.toArray());
         
     }
@@ -292,7 +284,6 @@ public class filterItemsTest {
         expResult1.add(item1);
         expResult1.add(item2);
         result = instance.Sortby(items, sortitemby, toggle);
-        System.out.println(result);
         assertArrayEquals(expResult1.toArray(), result.toArray());
         
         ArrayList<Item> expResult2 = new ArrayList<>();
@@ -316,7 +307,6 @@ public class filterItemsTest {
         expResult3.add(item3);
         expResult3.add(item5);
         result = instance.Sortby(items, sortitemby, toggle);
-        System.out.println(result);
         assertArrayEquals(expResult3.toArray(), result.toArray());
         
         ArrayList<Item> expResult4 = new ArrayList<>();
@@ -328,7 +318,6 @@ public class filterItemsTest {
         expResult4.add(item1);
         expResult4.add(item2);
         result = instance.Sortby(items, sortitemby, toggle);
-        System.out.println(result);
         assertArrayEquals(expResult4.toArray(), result.toArray());
         
         //sortby catgory
@@ -341,7 +330,6 @@ public class filterItemsTest {
         expResult5.add(item2);
         expResult5.add(item4);
         result = instance.Sortby(items, sortitemby, toggle);
-        System.out.println(result);
         assertArrayEquals(expResult5.toArray(), result.toArray());
         
          ArrayList<Item> expResult6 = new ArrayList<>();
@@ -366,7 +354,6 @@ public class filterItemsTest {
         expResult7.add(item4);
         expResult7.add(item5);
         result = instance.Sortby(items, sortitemby, toggle);
-        System.out.println(result);
         assertArrayEquals(expResult7.toArray(), result.toArray());
         
          ArrayList<Item> expResult8 = new ArrayList<>();
