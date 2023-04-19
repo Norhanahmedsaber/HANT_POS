@@ -22,8 +22,7 @@ public class filterItems {
             if(name || catgory || description)
            {      
                itemsAftersearch.add(items.get(i));
-               System.out.println("hehe");
-                
+               
            }
 
         }
