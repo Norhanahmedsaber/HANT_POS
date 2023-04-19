@@ -12,4 +12,9 @@ public class Item {
     public Date createdAt;
     public Date updatedAt;
     
+    
+    @Override
+    public String toString() {
+            return this.name+this.description+this.price+this.category+this.createdAt;
+        }
 }

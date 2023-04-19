@@ -33,7 +33,7 @@ public class ItemServices implements IItemServices {
     }
      
     @Override
-    public void create(Item item) {
+    public boolean create(Item item) {
         String sql = "INSERT into items (id, name, description, price, category, createdAt) " +
                         "VALUES (?, ?, ?, ?, ?, ?)";
         try (
@@ -53,9 +53,11 @@ public class ItemServices implements IItemServices {
                 } else {
                         System.err.println("Error!");
                 }
-
+                return true;
+                
         } catch (SQLException e) {
                 System.err.println(e);
+                return false;
         }
     }
 
