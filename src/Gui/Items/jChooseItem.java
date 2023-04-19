@@ -193,13 +193,14 @@ public class jChooseItem extends javax.swing.JPanel {
         m2.setRowCount(0);
         jItemsCombo.selectWithKeyChar('n');
     }
-    private void removeItemFromPreviewTable() {
+    private boolean removeItemFromPreviewTable() {
         if(jAddedItems.getSelectedRow() != -1) {
             DefaultTableModel m = (DefaultTableModel) jAddedItems.getModel();
             m.removeRow(jAddedItems.getSelectedRow());
-            
+            return true;
         }else {
             JOptionPane.showMessageDialog(null, "Plese Select an Item to Remove it!");
+            return false;
         }
     }
     private void addItemToPreviewTable() {
