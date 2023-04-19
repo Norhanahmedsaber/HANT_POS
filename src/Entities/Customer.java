@@ -18,5 +18,8 @@ public class Customer {
     public int age;
     public ArrayList<UUID> itemIds;
     public ArrayList<Item> items;
-    
+    @Override
+    public String toString() {
+        return name;
+    }
 }

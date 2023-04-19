@@ -1,5 +1,4 @@
 package utils;
-
 import Entities.Role;
 import Entities.User;
 import java.util.ArrayList;
@@ -77,7 +76,6 @@ public class FilterUsersTest {
         User user3 = users.get(2);
         User user4 = users.get(3);
         User user5 = users.get(4);
-        
         
         // Test Case 1
         searchName = "An";
