@@ -22,7 +22,7 @@ public class ConnectionManager {
     private final String H_CONN_STRING =
                     "jdbc:hsqldb:data/hant";
     private DBType dbType = DBType.MYSQL;
-
+    
     private Connection conn = null;
 
     private ConnectionManager() {
