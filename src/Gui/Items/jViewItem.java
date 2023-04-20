@@ -735,9 +735,9 @@ public class jViewItem extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBack;
     private javax.swing.JButton jCancel;
-    private javax.swing.JTextField jCatgoryField;
-    private javax.swing.JTextField jCreatedAt;
-    private javax.swing.JTextField jDescriptionField;
+    public javax.swing.JTextField jCatgoryField;
+    public javax.swing.JTextField jCreatedAt;
+    public javax.swing.JTextField jDescriptionField;
     public javax.swing.JButton jEdit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -748,7 +748,7 @@ public class jViewItem extends javax.swing.JPanel {
     public javax.swing.JTextField jNameField;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel jPic;
-    private javax.swing.JTextField jPriceField;
+    public javax.swing.JTextField jPriceField;
     private javax.swing.JButton jUpdate;
     private javax.swing.JLabel jUpdatedSuccessfuly;
     private javax.swing.JButton jUpload;
