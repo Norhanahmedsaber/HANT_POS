@@ -224,18 +224,6 @@ public class jNewCustomerTest {
     }
 
 
-    /**
-     * Test of saveCustomerData method, of class jNewCustomer.
-     */
-    @Test
-    public void testSaveCustomerData() {
-        System.out.println("saveCustomerData");
-        jNewCustomer instance = null;
-        instance.saveCustomerData();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
     
     
 }
