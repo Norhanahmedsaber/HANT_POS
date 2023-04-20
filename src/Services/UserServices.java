@@ -14,6 +14,8 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class UserServices implements IUserServices{
     public Connection conn;
@@ -140,7 +142,23 @@ public class UserServices implements IUserServices{
         
         return users;
     } 
-
+    
+    @Override
+    public boolean deleteAll() {
+        String sql = "DELETE FROM users";
+        try (
+            Statement stmt = conn.createStatement();
+            
+            ){
+            int affected = stmt.executeUpdate(sql);
+            if(affected > 0) return true;
+            else return false;
+            } catch (SQLException ex) {
+            Logger.getLogger(UserServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
     @Override
     public ArrayList<UserInfo> getUsersInfo() {
         String sql = "Select userName FROM users";
@@ -328,6 +346,8 @@ public class UserServices implements IUserServices{
             return null;
         }
     }
+    
+    
     private static boolean isDateToday(Date date) {
         LocalDate currentDate = LocalDate.now();
         LocalDate currentDateMinus1Day = currentDate.minusDays(1);
@@ -360,5 +380,6 @@ public class UserServices implements IUserServices{
       .toLocalDate();
         return !ldate.isBefore(currentDateMinus1Year);
     }
-    
+
+  
 }

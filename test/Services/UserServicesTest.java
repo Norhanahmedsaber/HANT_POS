@@ -1,5 +1,6 @@
 package Services;
 
+import Entities.Role;
 import Entities.User;
 import Entities.UserInfo;
 import java.util.ArrayList;
@@ -13,21 +14,20 @@ import static org.junit.Assert.*;
 
 
 public class UserServicesTest {
+    private UserServices userServices;
+    private RoleServices roleServices;
     
     public UserServicesTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
+        userServices = new UserServices();
+        roleServices = new RoleServices();
         
     }
     
-    @AfterClass
-    public static void tearDownClass() {
-    }
     
     @Before
     public void setUp() {
+        userServices.deleteAll();
+        roleServices.deleteAll();
     }
     
     @After
@@ -36,22 +36,47 @@ public class UserServicesTest {
 
     @Test
     public void testCreate() {
-        System.out.println("create");
-        User user = null;
-        UserServices instance = new UserServices();
-        instance.create(user);
-        fail("The test case is a prototype.");
+        Role role = new Role();
+        role.name = "admin";
+        roleServices.create(role);
+        User bean = new User();
+        UUID id = UUID.randomUUID();
+        bean.id = id;
+        bean.name = "Anas Hesham";
+        bean.userName = "Anazz";
+        bean.password = "123";
+        Role r = new Role();
+        r.name = "admin";
+        bean.role = r;
+        userServices.create(bean);
+        
+        User user = userServices.getById(id);
+        User result = user;
+        assertEquals(result.toString(), bean.toString());
     }
 
     @Test
     public void testDelete() {
-        System.out.println("delete");
-        UUID userId = null;
-        UserServices instance = new UserServices();
-        boolean expResult = false;
-        boolean result = instance.delete(userId);
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+        Role role = new Role();
+        role.name = "admin";
+        roleServices.create(role);
+        User bean = new User();
+        UUID id = UUID.randomUUID();
+        bean.id = id;
+        bean.name = "Anas Hesham";
+        bean.userName = "Anazz";
+        bean.password = "123";
+        Role r = new Role();
+        r.name = "admin";
+        bean.role = r;
+        userServices.create(bean);
+        
+        // Test Case 1
+        boolean result = userServices.delete(id);
+        assertTrue(result);
+        
+        result = userServices.delete(UUID.randomUUID());
+        assertFalse(result);
     }
 
     @Test

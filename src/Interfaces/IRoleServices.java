@@ -10,5 +10,6 @@ public interface IRoleServices {
     void update(UUID id, Role role);
     ArrayList<String> getAll(); 
     Role getByName(String name);
+    void deleteAll();
 } 
  

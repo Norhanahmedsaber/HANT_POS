@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class RoleServices implements IRoleServices{
     public Connection conn;
@@ -167,6 +169,19 @@ public class RoleServices implements IRoleServices{
         } catch (SQLException e) {
                 System.err.println(e);
                 return null;
+        }
+    }
+
+    @Override
+    public void deleteAll() {
+        String sql = "DELETE FROM roles";
+        try (
+            Statement stmt = conn.createStatement();
+            
+            ){
+              stmt.executeUpdate(sql);
+            } catch (SQLException ex) {
+            Logger.getLogger(UserServices.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
