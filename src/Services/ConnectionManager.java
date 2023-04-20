@@ -15,14 +15,14 @@ public class ConnectionManager {
     private final String USERNAME = "root";
     private final String PASSWORD = "root";
     private final String M_CONN_STRING =
-                    "jdbc:mysql://localhost:3306/hant";
+                    "jdbc:mysql://localhost:3306/hant_test";
     
     
     
     private final String H_CONN_STRING =
                     "jdbc:hsqldb:data/hant";
     private DBType dbType = DBType.MYSQL;
-
+    
     private Connection conn = null;
 
     private ConnectionManager() {
