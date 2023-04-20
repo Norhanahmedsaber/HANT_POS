@@ -91,11 +91,7 @@ public class filterCustomersTest {
        Customer cu2= customers.get(2);
        Customer cu3= customers.get(3);
        Customer cu4= customers.get(4);
-          System.out.println(cu0.purchaseDate);
-                System.out.println(cu1.purchaseDate);
-        System.out.println(cu2.purchaseDate);
-        System.out.println(cu3.purchaseDate);
-        System.out.println(cu4.purchaseDate);
+
        
        //test cases1
         searchName = "an";
@@ -125,7 +121,6 @@ public class filterCustomersTest {
         expCustomers.add(cu2);
         expCustomers.add(cu0);
         result = instance.filter(customers, searchName, sortBy, toggle);
-        System.out.println(result);
         assertArrayEquals(expCustomers.toArray(), result.toArray());
         
         //test case4
@@ -136,7 +131,6 @@ public class filterCustomersTest {
         expCustomers.add(cu0);
         expCustomers.add(cu2);
         result = instance.filter(customers, searchName, sortBy, toggle);
-                System.out.println(result);
 
         assertArrayEquals(expCustomers.toArray(), result.toArray());
          
@@ -171,9 +165,7 @@ public class filterCustomersTest {
         assertArrayEquals(expCustomers.toArray(), result.toArray());
     }
 
-    /**
-     * Test of Sortby method, of class filterCustomers.
-     */
+  
     @Test
     public void testSortby() {
         System.out.println("Sortby");
@@ -224,7 +216,6 @@ public class filterCustomersTest {
         expCustomers.add(cu1);
         expCustomers.add(cu4);
         result = instance.Sortby(customers, sortedby, toggle);
-        System.out.println(result);
         assertArrayEquals(expCustomers.toArray(), result.toArray());
         
         //test case4
