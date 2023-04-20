@@ -86,14 +86,7 @@ public class jViewCustomerTest {
     }
 
   
-    @Test
-    public void testRenderData() {
-        System.out.println("renderData");
-        jViewCustomer instance = null;
-        instance.renderData();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+    
 
     /**
      * Test of isValidName method, of class jViewCustomer.
@@ -224,18 +217,6 @@ public class jViewCustomerTest {
 
  
 
-    /**
-     * Test of updateCustomerData method, of class jViewCustomer.
-     */
-    @Test
-    public void testUpdateCustomerData() {
-        System.out.println("updateCustomerData");
-        jViewCustomer instance = null;
-        Customer expResult = null;
-        Customer result = instance.updateCustomerData();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+   
 
 }
