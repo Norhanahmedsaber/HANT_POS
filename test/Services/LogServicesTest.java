@@ -28,7 +28,7 @@ public class LogServicesTest {
     
     @Before
     public void setUp() {
-        
+        logServices.deleteAll();
     }
     
     @After
@@ -37,24 +37,44 @@ public class LogServicesTest {
 
     @Test
     public void testDeleteLog() {
-        System.out.println("deleteLog");
-        UUID logId = null;
-        LogServices instance = new LogServices();
-        boolean expResult = false;
-        boolean result = instance.deleteLog(logId);
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+        Log bean = new Log();
+        UUID id = UUID.randomUUID();
+        bean.id = id;
+        bean.actedOn = "Item";
+        bean.action = "Created";
+        bean.userName = "anazz";
+        bean.actedOnName = "anas";
+        bean.userRole = "admin";
+        bean.date = Date.from(Instant.EPOCH);
+        logServices.create(bean);
+        boolean result = logServices.deleteLog(id);
+        assertTrue(result);
+        
+        result = logServices.deleteLog(UUID.randomUUID());
+        assertFalse(result);
     }
 
     @Test
     public void testGetById() {
-        System.out.println("getById");
-        UUID logId = null;
-        LogServices instance = new LogServices();
-        Log expResult = null;
-        Log result = instance.getById(logId);
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+        Log bean = new Log();
+        UUID id = UUID.randomUUID();
+        bean.id = id;
+        bean.actedOn = "Item";
+        bean.action = "Created";
+        bean.userName = "anazz";
+        bean.actedOnName = "anas";
+        bean.userRole = "admin";
+        bean.date = Date.from(Instant.EPOCH);
+        logServices.create(bean);
+        
+        
+        // Test Case 1
+        Log result = logServices.getById(id);
+        assertEquals(result.toString(), bean.toString());
+        
+        // Test Case 2
+        result = logServices.getById(UUID.randomUUID());
+        assertEquals(null, result);        
     }
 
     @Test
@@ -76,22 +96,71 @@ public class LogServicesTest {
 
     @Test
     public void testGetAll() {
-        System.out.println("getAll");
-        LogServices instance = new LogServices();
-        ArrayList<Log> expResult = null;
-        ArrayList<Log> result = instance.getAll();
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+        Log bean = new Log();
+        UUID id = UUID.randomUUID();
+        bean.id = id;
+        bean.actedOn = "Item";
+        bean.action = "Created";
+        bean.userName = "anazz";
+        bean.actedOnName = "anas";
+        bean.userRole = "admin";
+        bean.date = Date.from(Instant.EPOCH);
+        logServices.create(bean);
+        
+        Log bean2 = new Log();
+        UUID id2 = UUID.randomUUID();
+        bean2.id = id2;
+        bean2.actedOn = "Item";
+        bean2.action = "Created";
+        bean2.userName = "anazz";
+        bean2.actedOnName = "anas";
+        bean2.userRole = "admin";
+        bean2.date = Date.from(Instant.EPOCH);
+        logServices.create(bean2);
+        
+        ArrayList<Log> logs = logServices.getAll();
+        ArrayList<Log> exp = new ArrayList<>();
+        ArrayList<String> actual = new ArrayList<>();
+        ArrayList<String> expected = new ArrayList<>();
+        
+        exp.add(bean);
+        exp.add(bean2);
+        for(Log log : exp) {
+            expected.add(log.toString());
+        }
+        for(Log log : logs) {
+            actual.add(log.toString());
+        }
+        assertArrayEquals(expected.toArray(), actual.toArray());
     }
 
     @Test
     public void testDeleteAll() {
-        System.out.println("deleteAll");
-        LogServices instance = new LogServices();
-        boolean expResult = false;
-        boolean result = instance.deleteAll();
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+        Log bean = new Log();
+        UUID id = UUID.randomUUID();
+        bean.id = id;
+        bean.actedOn = "Item";
+        bean.action = "Created";
+        bean.userName = "anazz";
+        bean.actedOnName = "anas";
+        bean.userRole = "admin";
+        bean.date = Date.from(Instant.EPOCH);
+        logServices.create(bean);
+        
+        Log bean2 = new Log();
+        UUID id2 = UUID.randomUUID();
+        bean2.id = id2;
+        bean2.actedOn = "Item";
+        bean2.action = "Created";
+        bean2.userName = "anazz";
+        bean2.actedOnName = "anas";
+        bean2.userRole = "admin";
+        bean2.date = Date.from(Instant.EPOCH);
+        logServices.create(bean2);
+        
+        logServices.deleteAll();
+        ArrayList<Log> logs = logServices.getAll();
+        assertEquals(0, logs.size());
     }
     
 }
