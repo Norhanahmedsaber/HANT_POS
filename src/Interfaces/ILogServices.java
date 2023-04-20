@@ -9,6 +9,6 @@ public interface ILogServices {
     Log getById(UUID idlog);
     void create(Log log);
     ArrayList<Log> getAll();
-    
+    boolean deleteAll();
 }
  
