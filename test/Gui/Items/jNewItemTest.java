@@ -12,9 +12,6 @@ public class jNewItemTest {
 
     }
 
-
-
-
     public jNewItem getInstance() {
         return new jNewItem(new jHomePage(), new JPanel());
     }

@@ -394,8 +394,8 @@ public class jNewUsers extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     public javax.swing.JTextField jNameField;
-    private javax.swing.JPasswordField jPasswordField;
-    private javax.swing.JComboBox<String> jRolesCombo;
-    private javax.swing.JTextField jUsernameField;
+    public static javax.swing.JPasswordField jPasswordField;
+    public static javax.swing.JComboBox<String> jRolesCombo;
+    public static javax.swing.JTextField jUsernameField;
     // End of variables declaration//GEN-END:variables
 }
