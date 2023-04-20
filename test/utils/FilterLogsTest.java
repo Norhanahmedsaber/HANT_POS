@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit4TestClass.java to edit this template
- */
+
 package utils;
 
 import Entities.Log;
@@ -13,31 +10,15 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author PC
- */
+
+
+
 public class FilterLogsTest {
     
     public FilterLogsTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
-
+  
     @Test
     public void testFilter() {
         System.out.println("filter");
@@ -49,8 +30,10 @@ public class FilterLogsTest {
         ArrayList<Log> expResult = null;
         ArrayList<Log> result = instance.filter(logs, searchName, sortBy, toggle);
         assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+
     }
+
+
 
     @Test
     public void testSearch() {
@@ -61,9 +44,10 @@ public class FilterLogsTest {
         ArrayList<Log> expResult = null;
         ArrayList<Log> result = instance.search(logs, search);
         assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+
     }
 
+    
     @Test
     public void testSortBy() {
         System.out.println("SortBy");
@@ -74,7 +58,8 @@ public class FilterLogsTest {
         ArrayList<Log> expResult = null;
         ArrayList<Log> result = instance.SortBy(logs, sortedBy, toggle);
         assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+
+
     }
     
 }

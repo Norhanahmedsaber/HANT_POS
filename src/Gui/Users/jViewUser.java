@@ -222,6 +222,11 @@ public class jViewUser extends javax.swing.JPanel {
                 jUsernameFieldMouseClicked(evt);
             }
         });
+        jUsernameField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jUsernameFieldActionPerformed(evt);
+            }
+        });
         jUsernameField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jUsernameFieldKeyPressed(evt);
@@ -231,6 +236,11 @@ public class jViewUser extends javax.swing.JPanel {
         jPasswordField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPasswordFieldMouseClicked(evt);
+            }
+        });
+        jPasswordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordFieldActionPerformed(evt);
             }
         });
         jPasswordField.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -489,6 +499,14 @@ public class jViewUser extends javax.swing.JPanel {
             isEditing = true;
         }
     }//GEN-LAST:event_jEditButtonActionPerformed
+
+    private void jUsernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUsernameFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jUsernameFieldActionPerformed
+
+    private void jPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordFieldActionPerformed
     private boolean isEditing;
     public User choosedUser;
     private final RoleServices _RoleServices;
@@ -500,14 +518,14 @@ public class jViewUser extends javax.swing.JPanel {
     private javax.swing.JButton jCancelButton;
     private javax.swing.JButton jEditButton;
     private javax.swing.JLabel jLabel1;
-    public javax.swing.JTextField jNameField;
+    public static javax.swing.JTextField jNameField;
     private javax.swing.JLabel jNameLabel;
-    private javax.swing.JPasswordField jPasswordField;
+    public static javax.swing.JPasswordField jPasswordField;
     private javax.swing.JLabel jPasswordLabel;
     private javax.swing.JLabel jRoleLabel;
     public javax.swing.JComboBox<String> jRolesCombo;
     private javax.swing.JButton jUpdateButton;
     private javax.swing.JLabel jUserNameLabel;
-    private javax.swing.JTextField jUsernameField;
+    public static javax.swing.JTextField jUsernameField;
     // End of variables declaration//GEN-END:variables
 }
