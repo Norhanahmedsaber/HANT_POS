@@ -85,7 +85,7 @@ public class UserServices implements IUserServices{
                     bean.id = userId;
                     bean.name = rs.getString("name");
                     bean.userName = rs.getString("userName");
-                    bean.role = _RoleServices.getByName(rs.getString("roleName"));
+                    bean.role = _RoleServices.getById((UUID.fromString(rs.getString("roleId"))));
                     return bean;
                 } else {
                     return null;
@@ -133,7 +133,7 @@ public class UserServices implements IUserServices{
                        user.id = UUID.fromString(rs.getString("id"));
                        user.name = rs.getString("name");
                        user.userName = rs.getString("userName");
-                       user.role = _RoleServices.getByName(rs.getString("roleName"));
+                       user.role = _RoleServices.getById(UUID.fromString(rs.getString("roleName")));
                        users.add(user);
                 }
         } catch (SQLException ex) {
