@@ -725,11 +725,11 @@ public class jViewCustomer extends javax.swing.JPanel {
     public boolean  updateflag=false ;
     private final jHomePage _jHomePage;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField jAgeField;
+    public javax.swing.JTextField jAgeField;
     private javax.swing.JButton jBack;
     private javax.swing.JButton jCancel;
     public javax.swing.JButton jEdit;
-    private javax.swing.JTextField jEmailField;
+    public javax.swing.JTextField jEmailField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -739,11 +739,11 @@ public class jViewCustomer extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     public javax.swing.JTextField jNameField;
-    private javax.swing.JTextField jNationalIdField;
+    public javax.swing.JTextField jNationalIdField;
     public javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jPhoneNoField;
-    private javax.swing.JTextField jPurchaseDateField;
-    private javax.swing.JButton jShowpurchases;
+    public javax.swing.JTextField jPhoneNoField;
+    public javax.swing.JTextField jPurchaseDateField;
+    public javax.swing.JButton jShowpurchases;
     private javax.swing.JButton jUpdate;
     public javax.swing.JComboBox<String> jgenderCombobox;
     // End of variables declaration//GEN-END:variables
