@@ -27,7 +27,7 @@ public class RoleServices implements IRoleServices{
         try (
                 PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ) {
-                stmt.setString(1, UUID.randomUUID().toString());
+                stmt.setString(1, role.id.toString());
                 stmt.setString(2, role.name);
                 stmt.setBoolean(3, role.canCreateCustomer);
                 stmt.setBoolean(4, role.canViewCustomers);
@@ -113,17 +113,17 @@ public class RoleServices implements IRoleServices{
 
     @Override
     public Role getById(UUID id) {
-      String sql = "SELECT * FROM roles WHERE id = ?";
-        ResultSet rs;
-        
-        try (
+        String sql ="SELECT * From roles WHERE id = ?";
+        ResultSet rs = null;
+         try (
                 PreparedStatement stmt = conn.prepareStatement(sql);
             ){
-                stmt.setString(1, id.toString());
+                String idd = id.toString();
+                stmt.setString(1, idd);
                 rs = stmt.executeQuery();
-
-                if (rs.next()) {
-                   Role bean = new Role();
+                if(rs.next())
+                {
+                    Role bean = new Role();
                     bean.id = UUID.fromString(rs.getString("id"));
                     bean.name = rs.getString("name");
                     bean.canCreateCustomer = rs.getBoolean("canCreateCustomer");
@@ -147,12 +147,14 @@ public class RoleServices implements IRoleServices{
                 } else {
                     return null;
                 }
-
-        } catch (SQLException e) {
+         }   
+            
+         catch (SQLException e) {
                 System.err.println(e);
                 return null;
-        }  
-    }
+        }
+        
+     }
 
     @Override
     public ArrayList<String> getAll() {

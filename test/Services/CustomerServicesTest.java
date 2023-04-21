@@ -90,7 +90,7 @@ public class CustomerServicesTest {
 
     }
 
-    @Test
+//    @Test
 //    public void testGetAll() {
 //        System.out.println("getAll");
 //        ArrayList<UUID>

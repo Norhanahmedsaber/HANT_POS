@@ -18,6 +18,7 @@ public class UserServicesTest {
     private RoleServices roleServices;
 
     public UserServicesTest() {
+        System.out.println("anas");
         userServices = new UserServices();
         roleServices = new RoleServices();
 
@@ -31,12 +32,16 @@ public class UserServicesTest {
     
     @After
     public void tearDown() {
+        userServices.deleteAll();
+        roleServices.deleteAll();
     }
 
    @Test
     public void testCreate() {
         Role role = new Role();
         role.name = "admin";
+        UUID roleId = UUID.randomUUID();
+        role.id = roleId;
         roleServices.create(role);
         User bean = new User();
         UUID id = UUID.randomUUID();
@@ -44,9 +49,7 @@ public class UserServicesTest {
         bean.name = "Anas Hesham";
         bean.userName = "Anazz";
         bean.password = "123";
-        Role r = new Role();
-        r.name = "admin";
-        bean.role = r;
+        bean.role = roleServices.getById(roleId);
         userServices.create(bean);
 
         User user = userServices.getById(id);
@@ -58,6 +61,7 @@ public class UserServicesTest {
     public void testDelete() {
         Role role = new Role();
         role.name = "admin";
+        role.id = UUID.randomUUID();
         roleServices.create(role);
         User bean = new User();
         UUID id = UUID.randomUUID();
@@ -65,9 +69,7 @@ public class UserServicesTest {
         bean.name = "Anas Hesham";
         bean.userName = "Anazz";
         bean.password = "123";
-        Role r = new Role();
-        r.name = "admin";
-        bean.role = r;
+        bean.role = role;
         userServices.create(bean);
         
         // Test Case 1
@@ -80,9 +82,9 @@ public class UserServicesTest {
 
       @Test
     public void testGetById() {
-        System.out.println("getById");
-         Role role = new Role();
+        Role role = new Role();
         role.name = "admin";
+        role.id = UUID.randomUUID();
         roleServices.create(role);
         User bean = new User();
         UUID id = UUID.randomUUID();
@@ -90,9 +92,7 @@ public class UserServicesTest {
         bean.name = "Anas Hesham";
         bean.userName = "Anazz";
         bean.password = "123";
-        Role r = new Role();
-        r.name = "admin";
-        bean.role = r;
+        bean.role = role;
         UserServices instance = new UserServices();
         userServices.create(bean);
         
@@ -114,6 +114,7 @@ public class UserServicesTest {
         System.out.println("update");
         Role role = new Role();
         role.name = "admin";
+        role.id = UUID.randomUUID();
         roleServices.create(role);
         User bean = new User();
         UUID id = UUID.randomUUID();
@@ -121,10 +122,7 @@ public class UserServicesTest {
         bean.name = "Anas Hesham";
         bean.userName = "Anazz";
         bean.password = "123";
-        Role r = new Role();
-        r.name = "admin";
-        bean.role = r;
-        UserServices instance = new UserServices();
+        bean.role = role;
         userServices.create(bean);
         
         // Test Case 1
@@ -167,10 +165,15 @@ public class UserServicesTest {
         Role role4 = new Role();
         Role role5 = new Role();     
         role1.name = "admin";
+        role1.id = UUID.randomUUID();
         role2.name = "Technical Support";
+        role2.id = UUID.randomUUID();
         role3.name = "ceo";
+        role3.id = UUID.randomUUID();
         role4.name = "Analyst";
+        role4.id = UUID.randomUUID();
         role5.name = "Saler";
+        role5.id = UUID.randomUUID();
         roleServices.create(role1);
         roleServices.create(role2);
         roleServices.create(role3);
@@ -225,13 +228,7 @@ public class UserServicesTest {
         expResult.add(user4);
         expResult.add(user5);
         
-        ArrayList<User> result = instance.getAll();
-        
-        System.out.println("the result="+result);
-        System.out.println(" user1="+user1);
-        System.out.println(" user2="+user2);
-        System.out.println(" user3="+user3);
-        System.out.println(" user4="+user4);
+        ArrayList<User> result = userServices.getAll();
         
         int expSize=expResult.size();
         int resSize=result.size();
@@ -240,11 +237,9 @@ public class UserServicesTest {
 
         @Test
     public void testDeleteAll() {
-        System.out.println("deleteAll");
-        
-        UserServices instance = new UserServices();
         Role role1 = new Role();
         role1.name = "admin";
+        role1.id = UUID.randomUUID();
         roleServices.create(role1);
         User bean1 = new User();
         UUID id1 = UUID.randomUUID();
@@ -252,12 +247,11 @@ public class UserServicesTest {
         bean1.name = "norhan";
         bean1.userName = "nora";
         bean1.password = "888";
-        Role r1 = new Role();
-        r1.name = "admin";
-        bean1.role = r1;
+        bean1.role = role1;
         
         Role role2 = new Role();
         role2.name = "analyst";
+        role2.id = UUID.randomUUID();
         roleServices.create(role2);
         User bean2 = new User();
         UUID id2 = UUID.randomUUID();
@@ -265,9 +259,7 @@ public class UserServicesTest {
         bean2.name = "norhan";
         bean2.userName = "nora";
         bean2.password = "888";
-        Role r2 = new Role();
-        r1.name = "admin";
-        bean2.role = r2;
+        bean2.role = role2;
        
         //test case1
         userServices.create(bean1);

@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class LogServices implements ILogServices{
     private final Connection conn;
@@ -105,6 +107,22 @@ public class LogServices implements ILogServices{
         }
         return logs;
     } 
+
+    @Override
+    public boolean deleteAll() {
+        String sql = "DELETE FROM logs";
+        try (
+            Statement stmt = conn.createStatement();
+            
+            ){
+              int affected = stmt.executeUpdate(sql);
+              if(affected > 0) return true;
+              return false;
+            } catch (SQLException ex) {
+            Logger.getLogger(UserServices.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
     
     
 }
