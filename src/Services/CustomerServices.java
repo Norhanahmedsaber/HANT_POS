@@ -10,6 +10,8 @@ import java.sql.Statement;
 import java.util.ArrayList; 
 import java.util.Date;
 import java.util.UUID; 
+import java.util.logging.Level;
+import java.util.logging.Logger;
  
 public class CustomerServices implements ICustomerServices  { 
     public Connection conn;
@@ -251,5 +253,22 @@ public class CustomerServices implements ICustomerServices  {
         }
         return customers;
     }
+
+    @Override
+    public boolean deleteAll() {
+    
+              String sql = "DELETE FROM customers";
+        try (
+            Statement stmt = conn.createStatement();
+            
+            ){
+             int affected= stmt.executeUpdate(sql);
+             if(affected>0) return true;
+             else return false;
+            } catch (SQLException ex) {
+            Logger.getLogger(CustomerServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    }
      
-}

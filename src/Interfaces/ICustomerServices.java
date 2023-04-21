@@ -17,5 +17,7 @@ public interface ICustomerServices {
     void assignItemsToCustomer(UUID customerId, ArrayList<UUID> itemsIds);
     void updateAssignedItemsToCustomer(UUID customerId, ArrayList<UUID> itemsIds);
     ArrayList<Customer> getDayCustomers(Date day);
+      public  boolean deleteAll();
+
 }
   

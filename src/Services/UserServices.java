@@ -34,20 +34,17 @@ public class UserServices implements IUserServices{
         try (
                 PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ) {
-
                 stmt.setString(1, user.id.toString());
                 stmt.setString(2, user.name);
                 stmt.setString(3, user.userName);
                 stmt.setString(4, user.password);
                 stmt.setString(5, user.role.name);
                 int affected = stmt.executeUpdate();
-
                 if (affected == 1) {
                         System.out.print("Done!");
                 } else {
                         System.err.println("Error!");
                 }
-
         } catch (SQLException e) {
                 System.err.println(e);
         } 
@@ -68,8 +65,7 @@ public class UserServices implements IUserServices{
                 return false;
         }
 }
-
-    @Override
+@Override
     public User getById(UUID userId) {
         String sql = "SELECT * FROM users WHERE id = ?";
         ResultSet rs;
@@ -79,7 +75,6 @@ public class UserServices implements IUserServices{
             ){
                 stmt.setString(1, userId.toString());
                 rs = stmt.executeQuery();
-
                 if (rs.next()) {
                     User bean = new User();
                     bean.id = userId;
@@ -90,7 +85,6 @@ public class UserServices implements IUserServices{
                 } else {
                     return null;
                 }
-
         } catch (SQLException e) {
                 System.err.println(e);
                 return null;
@@ -136,6 +130,7 @@ public class UserServices implements IUserServices{
                        user.role = _RoleServices.getByName(rs.getString("roleName"));
                        users.add(user);
                 }
+                 return users;
         } catch (SQLException ex) {
             System.err.println(ex);
         }
