@@ -33,6 +33,7 @@ public class LogServicesTest {
     
     @After
     public void tearDown() {
+        logServices.deleteAll();
     }
 
     @Test

@@ -20,8 +20,10 @@ import static org.junit.Assert.*;
  * @author PC
  */
 public class RoleServicesTest {
-    
+        private RoleServices roleServices;
+
     public RoleServicesTest() {
+         roleServices = new RoleServices();
     }
     
     @BeforeClass
@@ -34,59 +36,146 @@ public class RoleServicesTest {
     
     @Before
     public void setUp() {
+         roleServices.deleteAll();
     }
     
     @After
     public void tearDown() {
+        roleServices.deleteAll();
     }
 
     @Test
     public void testCreate() {
-        System.out.println("create");
-        Role role = null;
-        RoleServices instance = new RoleServices();
-        instance.create(role);
-        fail("The test case is a prototype.");
+        Role bean = new Role();
+        bean.name = "admin";
+        UUID id = UUID.randomUUID();
+        String od = id.toString();
+        System.out.println(od);
+        bean.id = id;
+        roleServices.create(bean);
+        
+        //test case1
+        Role result = roleServices.getById(id);
+
+        assertEquals(result.toString(), bean.toString());
+
     }
 
     @Test
     public void testUpdate() {
         System.out.println("update");
-        UUID roleId = null;
-        Role role = null;
+        Role role = new Role();
+        role.name = "admin";
+        UUID id = UUID.randomUUID();
+        role.id = id;
         RoleServices instance = new RoleServices();
-        instance.update(roleId, role);
-        fail("The test case is a prototype.");
+        roleServices.create(role);
+        
+        // Test Case1
+        role.name="admin";
+       // role.id=id;
+        boolean result = instance.update(id,role);
+        assertTrue(result);
+        
+        // Test Case2
+        role.name = "analyst";
+        result = instance.update(id,role);
+        assertTrue(result);
+        
+        // Test Case3
+        role.name = "analyst";
+         result = instance.update(UUID.randomUUID(),role);
+        assertFalse(result);
+
     }
 
     @Test
     public void testGetById() {
-        System.out.println("getById");
-        UUID id = null;
-        RoleServices instance = new RoleServices();
-        instance.getById(id);
-        fail("The test case is a prototype.");
+        Role role1 = new Role();
+        role1.name = "admin";
+        UUID id= UUID.randomUUID();  
+        role1.id=id;
+        roleServices.create(role1);
+        
+        //test case1
+        Role expResult = role1;
+        Role result = roleServices.getById(id);
+        assertEquals(expResult.toString(), result.toString());
+        
+        //test case2
+        result = roleServices.getById(UUID.randomUUID()); 
+        System.out.println("testgetbyid result2="+result);
+        assertEquals(null, result);
     }
 
     @Test
     public void testGetAll() {
         System.out.println("getAll");
+        Role role1 = new Role();
+        Role role2 = new Role();
+        Role role3 = new Role();
+        Role role4 = new Role();
+        Role role5 = new Role();    
+        
+        role1.name = "admin";
+        role1.id = UUID.randomUUID();
+        role2.name = "Technical Support";
+        role2.id = UUID.randomUUID();        
+        role3.name = "ceo";
+        role3.id = UUID.randomUUID();
+        role4.name = "Analyst";      
+        role4.id = UUID.randomUUID();        
+        role5.name = "Saler";
+        role5.id = UUID.randomUUID();
+        
+        roleServices.create(role1);
+        roleServices.create(role2);
+        roleServices.create(role3);
+        roleServices.create(role4);
+        roleServices.create(role5);  
+        
+        String Role1=role1.toString();
+        String Role2=role2.toString();
+        String Role3=role3.toString();
+        String Role4=role4.toString();
+        String Role5=role5.toString();
+
         RoleServices instance = new RoleServices();
-        ArrayList<String> expResult = null;
+        ArrayList<String> expResult = new ArrayList<>();
+        expResult.add(Role1);
+        expResult.add(Role2);
+        expResult.add(Role3);
+        expResult.add(Role4);
+        expResult.add(Role5);
         ArrayList<String> result = instance.getAll();
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+        
+        int expSize=expResult.size();
+        int resSize=result.size();
+        assertEquals(expSize, resSize);
     }
 
-    @Test
-    public void testGetByName() {
-        System.out.println("getByName");
-        String name = "";
-        RoleServices instance = new RoleServices();
-        Role expResult = null;
-        Role result = instance.getByName(name);
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
-    }
     
+    @Test
+    public void testDeleteAll() {
+         System.out.println("deleteAll");
+        
+        UserServices instance = new UserServices();
+        Role role1 = new Role();
+        role1.id = UUID.randomUUID();
+        role1.name = "admin";
+        
+        Role role2 = new Role();
+        role2.id = UUID.randomUUID();
+        role2.name = "analyst";
+
+        //test case1
+        roleServices.create(role1);
+        roleServices.create(role2);
+        boolean result = roleServices.deleteAll();
+        assertTrue(result);
+        
+        //test case2
+        result = roleServices.deleteAll();
+        assertFalse(result);
+    }
 }
