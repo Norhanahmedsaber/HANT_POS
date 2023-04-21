@@ -29,7 +29,7 @@ public class UserServices implements IUserServices{
      
     @Override
     public void create(User user) {
-        String sql = "INSERT into users (id, name, userName, password, roleName) " +
+        String sql = "INSERT into users (id, name, userName, password, roleId) " +
                         "VALUES (?, ?, ?, ?, ?)";
         try (
                 PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -39,7 +39,7 @@ public class UserServices implements IUserServices{
                 stmt.setString(2, user.name);
                 stmt.setString(3, user.userName);
                 stmt.setString(4, user.password);
-                stmt.setString(5, user.role.name);
+                stmt.setString(5, user.role.id.toString());
                 int affected = stmt.executeUpdate();
 
                 if (affected == 1) {
@@ -100,7 +100,7 @@ public class UserServices implements IUserServices{
     @Override
     public boolean update(UUID userId, User user) {
         String sql = "UPDATE users SET " +
-                     "name = ?, userName = ?, password = ?, roleName = ? " +
+                     "name = ?, userName = ?, password = ?, roleId = ? " +
                      "WHERE id = ?";
         try (
                 PreparedStatement stmt = conn.prepareStatement(sql);
@@ -108,7 +108,7 @@ public class UserServices implements IUserServices{
                 stmt.setString(1, user.name);
                 stmt.setString(2, user.userName);
                 stmt.setString(3, user.password);
-                stmt.setString(4, user.role.name);
+                stmt.setString(4, user.role.id.toString());
                 stmt.setString(5, userId.toString());
                 int affected = stmt.executeUpdate();
                 return affected == 1;
@@ -122,7 +122,7 @@ public class UserServices implements IUserServices{
     
     @Override
     public ArrayList<User> getAll() {
-        String sql = "SELECT id, name, userName, roleName FROM users";
+        String sql = "SELECT id, name, userName, roldId FROM users";
         ArrayList<User> users = new ArrayList<>();
         try (
             Statement stmt = conn.createStatement();
@@ -133,7 +133,7 @@ public class UserServices implements IUserServices{
                        user.id = UUID.fromString(rs.getString("id"));
                        user.name = rs.getString("name");
                        user.userName = rs.getString("userName");
-                       user.role = _RoleServices.getById(UUID.fromString(rs.getString("roleName")));
+                       user.role = _RoleServices.getById(UUID.fromString(rs.getString("roleId")));
                        users.add(user);
                 }
         } catch (SQLException ex) {

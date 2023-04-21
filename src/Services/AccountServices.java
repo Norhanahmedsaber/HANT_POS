@@ -31,7 +31,7 @@ public class AccountServices implements IAccountServices{
                     bean.name = rs.getString("name");
                     bean.userName = rs.getString("userName");
                     bean.password = rs.getString("password");
-                    bean.role = _RoleServices.getByName(rs.getString("roleName"));
+                    bean.role = _RoleServices.getById(UUID.fromString(rs.getString("roleId")));
                     return bean;
                 } else {
                     return null;

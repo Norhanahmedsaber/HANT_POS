@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 19, 2023 at 01:02 PM
+-- Generation Time: Apr 20, 2023 at 06:54 PM
 -- Server version: 5.7.24
--- PHP Version: 7.4.16
+-- PHP Version: 8.0.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -713,7 +713,7 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `canCreateCustomer`, `canViewCustomers`, `canDeleteCustomer`, `canUpdateCustomer`, `canCreateItem`, `canViewItems`, `canDeleteItem`, `canUpdateItem`, `canViewUsers`, `canCreateUser`, `canViewLogs`, `canCreateLog`, `canDeleteLog`, `canCreateRole`, `canDeleteRole`, `canUpdateRole`, `canViewRoles`, `canDeleteUser`) VALUES
-('00e99cd1-9ae9-4264-8567-2dc379e2c8bb', 'Accountant ', 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('00e99cd1-9ae9-4264-8567-2dc379e2c8bb', 'Accountant ', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 ('01f95e48-aab2-4a0e-b4bc-668f8875aa0f', 'mortag3', 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0),
 ('0550526b-119f-4330-b47c-d7665c8e690c', 'Admin', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1),
 ('a2dcdc96-e9dc-49ca-90c1-f155ff59a9ad', 'New Role', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0),
@@ -733,18 +733,18 @@ CREATE TABLE `users` (
   `name` varchar(50) NOT NULL,
   `userName` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `roleName` varchar(50) NOT NULL
+  `roleId` varchar(36) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `userName`, `password`, `roleName`) VALUES
-('0b881dbc-add2-4ba3-96f2-3a91d9d9f420', 'Hussien Mostafa', 's7s', '00000000', 'Analyst'),
-('af2834c1-b935-45b5-b5ca-073d61293c5c', 'norhan ahmed', 'nora', '88888888', 'Admin'),
-('d6a119d3-1a98-41c3-9186-8d157c2ba1d8', 'toka Abdel Gawad', 'toka', '00000000', 'Accountant '),
-('f00cb8f7-4d20-4112-941f-9b7b08fdac53', 'Anas Hesham', 'anas', '0102736245', 'Admin');
+INSERT INTO `users` (`id`, `name`, `userName`, `password`, `roleId`) VALUES
+('43759f10-dfab-11ed-bcc0-5c60ba4ad538', 'Anas Hesham', 'anas', '0102736245', '00e99cd1-9ae9-4264-8567-2dc379e2c8bb'),
+('6698d7dc-dfab-11ed-bcc0-5c60ba4ad538', 'Toka Abd El Gwad', 'toka', '00000000', '00e99cd1-9ae9-4264-8567-2dc379e2c8bb'),
+('83f346ad-dfab-11ed-bcc0-5c60ba4ad538', 'Hussien Mostafa', 's7s', '00000000', '00e99cd1-9ae9-4264-8567-2dc379e2c8bb'),
+('9fa48c61-dfab-11ed-bcc0-5c60ba4ad538', 'Norhan Ahmed', 'nora', '00000000', '00e99cd1-9ae9-4264-8567-2dc379e2c8bb');
 
 --
 -- Indexes for dumped tables
@@ -786,8 +786,7 @@ ALTER TABLE `roles`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `users_ibfk_2` (`roleName`);
+  ADD KEY `fk_role` (`roleId`);
 
 --
 -- Constraints for dumped tables
@@ -804,8 +803,7 @@ ALTER TABLE `customeritem`
 -- Constraints for table `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`roleName`) REFERENCES `roles` (`name`) ON DELETE CASCADE,
-  ADD CONSTRAINT `users_ibfk_2` FOREIGN KEY (`roleName`) REFERENCES `roles` (`name`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_role` FOREIGN KEY (`roleId`) REFERENCES `roles` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
