@@ -59,6 +59,8 @@ public class UserServicesTest {
     public void testDelete() {
         Role role = new Role();
         role.name = "admin";
+        UUID idr = UUID.randomUUID();
+        role.id=idr;
         roleServices.create(role);
         User bean = new User();
         UUID id = UUID.randomUUID();
@@ -68,7 +70,7 @@ public class UserServicesTest {
         bean.password = "123";
         Role r = new Role();
         r.name = "admin";
-        bean.role = r;
+        bean.role = role;
         userServices.create(bean);
         
         // Test Case 1

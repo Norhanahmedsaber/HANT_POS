@@ -29,7 +29,7 @@ public class UserServices implements IUserServices{
      
     @Override
     public void create(User user) {
-        String sql = "INSERT into users (id, name, userName, password, roleName) " +
+        String sql = "INSERT into users (id, name, userName, password, roleId) " +
                         "VALUES (?, ?, ?, ?, ?)";
         try (
                 PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -39,7 +39,7 @@ public class UserServices implements IUserServices{
                 stmt.setString(2, user.name);
                 stmt.setString(3, user.userName);
                 stmt.setString(4, user.password);
-                stmt.setString(5, user.role.name);
+                stmt.setString(5, user.role.id.toString());
                 int affected = stmt.executeUpdate();
 
                 if (affected == 1) {

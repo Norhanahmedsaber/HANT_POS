@@ -15,6 +15,6 @@ public class Item {
     
     @Override
     public String toString() {
-            return this.name+this.description+this.price+this.category+this.createdAt;
+            return this.name+this.description+this.price+this.category;
         }
 }
