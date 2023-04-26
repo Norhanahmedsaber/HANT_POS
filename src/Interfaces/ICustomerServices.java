@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.UUID;
 
 public interface ICustomerServices {
-    void create(Customer customer, ArrayList<UUID> itemsIds);
+    boolean create(Customer customer, ArrayList<UUID> itemsIds);
     boolean deleteAssignedItems(UUID customerId);
     boolean delete(UUID customerId);
     ArrayList<Customer> getAll();
@@ -18,6 +18,5 @@ public interface ICustomerServices {
     void updateAssignedItemsToCustomer(UUID customerId, ArrayList<UUID> itemsIds);
     ArrayList<Customer> getDayCustomers(Date day);
       public  boolean deleteAll();
-
 }
   
