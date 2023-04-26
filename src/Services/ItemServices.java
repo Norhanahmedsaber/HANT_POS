@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.input.DataFormat;
 
 public class ItemServices implements IItemServices {
@@ -300,5 +302,17 @@ public class ItemServices implements IItemServices {
       .toLocalDate();
         return !ldate.isBefore(currentDateMinus1Year);
     }
-    
+    public boolean deleteAll() {      
+        String sql = "DELETE FROM items";
+        try (          
+                Statement stmt = conn.createStatement();
+                        ){
+            int affected = stmt.executeUpdate(sql); 
+            if(affected > 0) return true;
+            else return false;          
+        } catch (SQLException ex) {
+                Logger.getLogger(UserServices.class.getName()).log(Level.SEVERE, null, ex);        }
+        return false;       
+    }
+   
 }
