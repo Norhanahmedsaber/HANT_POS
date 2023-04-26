@@ -3,8 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/DELL/Desktop/HANTT/hant/test/Services/ItemServicesTest.java</file>
             <file>file:/C:/Users/DELL/Desktop/HANTT/hant/src/Entities/Item.java</file>
+=======
+            <file>file:/F:/hant%20project/hant/src/Services/CustomerServices.java</file>
+            <file>file:/F:/hant%20project/hant/src/Interfaces/ICustomerServices.java</file>
+>>>>>>> master
         </group>
     </open-files>
 </project-private>

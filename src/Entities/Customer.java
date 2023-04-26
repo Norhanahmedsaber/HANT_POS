@@ -18,8 +18,10 @@ public class Customer {
     public int age;
     public ArrayList<UUID> itemIds;
     public ArrayList<Item> items;
+
     @Override
     public String toString() {
-        return name;
+        return "Customer{" + "id=" + id + ", name=" + name + ", nationalId=" + nationalId + ", phoneNumber=" + phoneNumber + ", city=" + city + ", purchaseDate=" + purchaseDate + ", email=" + email + ", income=" + income + ", job=" + job + ", gender=" + gender + ", age=" + age + ", itemIds=" + itemIds + ", items=" + items + '}';
     }
+    
 }

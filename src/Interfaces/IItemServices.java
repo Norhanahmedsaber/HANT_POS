@@ -16,5 +16,7 @@ public interface IItemServices {
     void deleteItemFromCustomers(UUID itemId);
     ArrayList<CategoryInfo> getCatsInfo(); 
     boolean deleteAll();
+
+
 }
  

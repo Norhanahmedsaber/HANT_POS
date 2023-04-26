@@ -304,7 +304,6 @@ public class ItemServices implements IItemServices {
       .toLocalDate();
         return !ldate.isBefore(currentDateMinus1Year);
     }
-
     @Override
     public boolean deleteAll() {
          String sql = "DELETE FROM items";
@@ -321,7 +320,5 @@ public class ItemServices implements IItemServices {
         return false;
        
     }
-    
-    
     
 }

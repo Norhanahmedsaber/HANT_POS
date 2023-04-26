@@ -10,6 +10,8 @@ import java.sql.Statement;
 import java.util.ArrayList; 
 import java.util.Date;
 import java.util.UUID; 
+import java.util.logging.Level;
+import java.util.logging.Logger;
  
 public class CustomerServices implements ICustomerServices  { 
     public Connection conn;
@@ -19,10 +21,10 @@ public class CustomerServices implements ICustomerServices  {
     }
     
     @Override 
-    public void create(Customer customer, ArrayList<UUID> itemsIds) { 
+    public boolean create(Customer customer, ArrayList<UUID> itemsIds) { 
         String sql = "INSERT into customers (id, name, nationalId, phoneNumber, "
-                + " city, purchaseDate, email, income, job, gender, age) " +
-                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ? ,? ,? )";
+                + " purchaseDate, email, gender, age) " +
+                        "VALUES (  ?, ?, ?, ?, ?, ? ,? ,? )";
         try (
                 PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ) {
@@ -31,23 +33,25 @@ public class CustomerServices implements ICustomerServices  {
                 stmt.setString(2, customer.name);
                 stmt.setString(3, customer.nationalId);
                 stmt.setString(4, customer.phoneNumber);
-                stmt.setString(5, customer.city);
-                stmt.setDate(6, new java.sql.Date(customer.purchaseDate.getTime()));
-                stmt.setString(7, customer.email);
-                stmt.setInt(8, customer.income);
-                stmt.setString(9, customer.job);
-                stmt.setString(10, customer.gender);
-                stmt.setInt(11, customer.age);
+                stmt.setDate(5, new java.sql.Date(customer.purchaseDate.getTime()));
+                stmt.setString(6, customer.email);
+                stmt.setString(7, customer.gender);
+                stmt.setInt(8, customer.age);
                 int affected = stmt.executeUpdate();
                 if (affected == 1) {
                         assignItemsToCustomer(customer.id, itemsIds);
+                        return true;
                 } else {
                         System.err.println("Error!");
+                        return false;
                 }
 
         } catch (SQLException e) {
                 System.err.println(e);
+                return false;
         }
+
+        
     } 
  
     @Override 
@@ -106,7 +110,7 @@ public class CustomerServices implements ICustomerServices  {
     public boolean update(UUID customerId, Customer customer) { 
         String sql = "UPDATE customers SET " +
                      "name = ?, nationalId = ?, phoneNumber = ?, " +
-                     "city = ?, purchaseDate = ?, email = ?, income = ?, job = ?, gender = ?, age = ? " + 
+                     " purchaseDate = ?, email = ?, gender = ?, age = ? " + 
                      "WHERE id = ?";
         try (
                 PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -114,14 +118,11 @@ public class CustomerServices implements ICustomerServices  {
                 stmt.setString(1, customer.name);
                 stmt.setString(2, customer.nationalId);
                 stmt.setString(3, customer.phoneNumber);
-                stmt.setString(4, customer.city);
-                stmt.setDate(5, new java.sql.Date(customer.purchaseDate.getTime()));
-                stmt.setString(6, customer.email);
-                stmt.setInt(7, customer.income);
-                stmt.setString(8, customer.job);
-                stmt.setString(9, customer.gender);
-                stmt.setInt(10, customer.age);
-                stmt.setString(11, customer.id.toString());
+                stmt.setDate(4, new java.sql.Date(customer.purchaseDate.getTime()));
+                stmt.setString(5, customer.email);
+                stmt.setString(6, customer.gender);
+                stmt.setInt(7, customer.age);
+                stmt.setString(8, customer.id.toString());
                 int affected = stmt.executeUpdate();
                 return affected == 1;
 
@@ -251,5 +252,30 @@ public class CustomerServices implements ICustomerServices  {
         }
         return customers;
     }
-     
+
+   public boolean deleteAll()
+   {
+       String sql1="DELETE FROM customeritem  ";
+       String sql2="DELETE  FROM customers";
+       String sql3="DELETE FROM items";
+       try(
+            Statement stmt = conn.createStatement();
+               ){
+           conn.setAutoCommit(false);
+          int affected1= stmt.executeUpdate(sql1);
+          int affected2= stmt.executeUpdate(sql2);
+          int affected3= stmt.executeUpdate(sql3);
+            conn.commit();
+        if(affected1>0&&affected2>0&&affected3>0)
+        { 
+            return true;
+        }        else { 
+            return false;
+        }
+       }
+      catch (SQLException ex) {
+                Logger.getLogger(UserServices.class.getName()).log(Level.SEVERE, null, ex);        
+        return false;
+   }   
+}
 }
