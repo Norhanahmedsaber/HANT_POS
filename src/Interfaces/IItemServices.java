@@ -15,6 +15,8 @@ public interface IItemServices {
     void addItemsToCustomer(UUID customerId, ArrayList<UUID> itemsIds);
     void deleteItemFromCustomers(UUID itemId);
     ArrayList<CategoryInfo> getCatsInfo(); 
-     public boolean deleteAll();
+    boolean deleteAll();
+
+
 }
  

@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -96,6 +97,7 @@ public class ItemServices implements IItemServices {
                 item.description = rs.getString("description");
                 item.price = rs.getInt("price");
                 item.createdAt = rs.getDate("createdAt");
+             
                 return item;
             }
         } catch (SQLException ex) {
@@ -302,17 +304,21 @@ public class ItemServices implements IItemServices {
       .toLocalDate();
         return !ldate.isBefore(currentDateMinus1Year);
     }
-    public boolean deleteAll() {      
-        String sql = "DELETE FROM items";
-        try (          
-                Statement stmt = conn.createStatement();
-                        ){
-            int affected = stmt.executeUpdate(sql); 
+    @Override
+    public boolean deleteAll() {
+         String sql = "DELETE FROM items";
+        try (
+            Statement stmt = conn.createStatement();
+            
+            ){
+            int affected = stmt.executeUpdate(sql);
             if(affected > 0) return true;
-            else return false;          
-        } catch (SQLException ex) {
-                Logger.getLogger(UserServices.class.getName()).log(Level.SEVERE, null, ex);        }
-        return false;       
+            else return false;
+            } catch (SQLException ex) {
+            Logger.getLogger(UserServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+       
     }
-   
+    
 }
