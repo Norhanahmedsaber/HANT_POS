@@ -15,7 +15,5 @@ public class Log {
     @Override
     public String toString() {
         return this.userName+this.userRole+this.action+this.actedOn+this.actedOnName;
-
-
     }
 }
