@@ -44,6 +44,7 @@ public class ItemServicesTest {
     
     @After
     public void tearDown() {
+        itemServices.deleteAll();
     }
 
     /**

@@ -18,7 +18,6 @@ public class UserServicesTest {
     private RoleServices roleServices;
 
     public UserServicesTest() {
-        System.out.println("anas");
         userServices = new UserServices();
         roleServices = new RoleServices();
 

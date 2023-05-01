@@ -36,7 +36,7 @@ public class RoleServicesTest {
     
     @Before
     public void setUp() {
-         roleServices.deleteAll();
+        roleServices.deleteAll();
     }
     
     @After
@@ -49,11 +49,8 @@ public class RoleServicesTest {
         Role bean = new Role();
         bean.name = "admin";
         UUID id = UUID.randomUUID();
-        String od = id.toString();
-        System.out.println(od);
         bean.id = id;
         roleServices.create(bean);
-        
         //test case1
         Role result = roleServices.getById(id);
 
@@ -84,7 +81,7 @@ public class RoleServicesTest {
         
         // Test Case3
         role.name = "analyst";
-         result = instance.update(UUID.randomUUID(),role);
+        result = instance.update(UUID.randomUUID(),role);
         assertFalse(result);
 
     }
@@ -104,7 +101,6 @@ public class RoleServicesTest {
         
         //test case2
         result = roleServices.getById(UUID.randomUUID()); 
-        System.out.println("testgetbyid result2="+result);
         assertEquals(null, result);
     }
 
@@ -149,15 +145,14 @@ public class RoleServicesTest {
         expResult.add(Role5);
         ArrayList<String> result = instance.getAll();
         
-        int expSize=expResult.size();
-        int resSize=result.size();
+        int expSize = expResult.size();
+        int resSize = result.size();
         assertEquals(expSize, resSize);
     }
 
     
     @Test
     public void testDeleteAll() {
-         System.out.println("deleteAll");
         
         UserServices instance = new UserServices();
         Role role1 = new Role();

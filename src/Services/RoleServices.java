@@ -95,13 +95,9 @@ public class RoleServices implements IRoleServices{
                 int affected = stmt.executeUpdate();
 
                 if (affected == 1) {
-                        System.out.print("affected=1");
                         return true;
-
                 } else {
-                        System.err.println("Error!");
                         return false;
-
                 }
 
         } catch (SQLException e) {

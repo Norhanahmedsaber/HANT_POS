@@ -42,7 +42,7 @@ public class jNewCustomerTest {
         
         //testcase 1 :
         instance.jNameField.setText("");
-        boolean expResult = false ;
+        boolean expResult = false;
         boolean result = instance.isValidName();
         assertEquals(expResult, result);
         
@@ -51,7 +51,7 @@ public class jNewCustomerTest {
        instance.jNameField.setText("2324tt");
        expResult=false;
        result = instance.isValidName();
-        assertEquals(expResult, result);
+       assertEquals(expResult, result);
         
         //testcase 3 :
         instance.jNameField.setText("toka");

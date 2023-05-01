@@ -255,8 +255,8 @@ public class CustomerServices implements ICustomerServices  {
 
    public boolean deleteAll()
    {
-       String sql1="DELETE FROM customeritem  ";
-       String sql2="DELETE  FROM customers";
+       String sql1="DELETE FROM customeritem";
+       String sql2="DELETE FROM customers";
        String sql3="DELETE FROM items";
        try(
             Statement stmt = conn.createStatement();

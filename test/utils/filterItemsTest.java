@@ -258,9 +258,7 @@ public class filterItemsTest {
         
     }
 
-    /**
-     * Test of Sortby method, of class filterItems.
-     */
+   
     @Test
     public void testSortby() {
         ArrayList<Item> items = getTestData();

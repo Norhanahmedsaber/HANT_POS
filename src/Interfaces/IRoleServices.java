@@ -12,4 +12,3 @@ public interface IRoleServices {
     Role getByName(String name);
     boolean deleteAll();
 } 
- 

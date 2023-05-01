@@ -306,13 +306,15 @@ public class ItemServices implements IItemServices {
     }
     @Override
     public boolean deleteAll() {
-         String sql = "DELETE FROM items";
+        String sql = "DELETE FROM customeritem";
+        String sql2 = "DELETE FROM items";
         try (
             Statement stmt = conn.createStatement();
             
             ){
-            int affected = stmt.executeUpdate(sql);
-            if(affected > 0) return true;
+            stmt.executeUpdate(sql);
+            int affected2 = stmt.executeUpdate(sql2);
+            if(affected2 > 0) return true;
             else return false;
             } catch (SQLException ex) {
             Logger.getLogger(UserServices.class.getName()).log(Level.SEVERE, null, ex);
