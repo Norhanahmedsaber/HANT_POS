@@ -21,9 +21,11 @@ import static org.junit.Assert.*;
  */
 public class RoleServicesTest {
         private RoleServices roleServices;
+        private UserServices userServices;
 
     public RoleServicesTest() {
          roleServices = new RoleServices();
+         userServices = new UserServices();
     }
     
     @BeforeClass
@@ -36,11 +38,13 @@ public class RoleServicesTest {
     
     @Before
     public void setUp() {
+        userServices.deleteAll();
         roleServices.deleteAll();
     }
     
     @After
     public void tearDown() {
+        userServices.deleteAll();
         roleServices.deleteAll();
     }
 
