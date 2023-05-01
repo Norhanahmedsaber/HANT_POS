@@ -6,17 +6,19 @@ import java.util.Collections;
 import java.util.Comparator;
  
 public class FilterLogs {
+    
     public ArrayList<Log> filter(ArrayList<Log> logs, String searchName, String sortBy , boolean toggle ) {
          
         return SortBy( search(logs, searchName ),sortBy,toggle);  
     }
+    
     public ArrayList<Log> search(ArrayList<Log> logs , String search ){
         ArrayList <Log> logsAftersearch = new ArrayList<Log>();
         for(int i=0 ; i<logs.size();i++)
         {
-            boolean userName = logs.get(i).userName.contains(search.toLowerCase().trim());
-            boolean action =logs.get(i).action.contains(search.toLowerCase().trim());
-            boolean actedOn = logs.get(i).actedOn.contains(search.toLowerCase().trim());
+            boolean userName = logs.get(i).userName.toLowerCase().contains(search.toLowerCase().trim());
+            boolean action =logs.get(i).action.toLowerCase().contains(search.toLowerCase().trim());
+            boolean actedOn = logs.get(i).actedOn.toLowerCase().contains(search.toLowerCase().trim());
 
             if(userName || action || actedOn)
             {      
@@ -122,4 +124,5 @@ public class FilterLogs {
   
         return logs ;
    }
+    
 }
