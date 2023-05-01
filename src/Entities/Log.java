@@ -11,9 +11,11 @@ public class Log {
     public String actedOn; // Customer, Item, User
     public String actedOnName;
     public Date date; 
-    
+
     @Override
     public String toString() {
-        return userName + userRole + action + actedOn + actedOnName;
+        return this.userName+this.userRole+this.action+this.actedOn+this.actedOnName+this.date;
+
+
     }
 }
