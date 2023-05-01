@@ -5,6 +5,7 @@ import Gui.jMainPage;
 import Services.RoleServices;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.util.UUID;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 public class jNewRole extends javax.swing.JPanel {
@@ -67,6 +68,7 @@ public class jNewRole extends javax.swing.JPanel {
    public void assignPermissions(){   
         Role newRole = getData();
         if(newRole != null) {
+            newRole.id = UUID.randomUUID();
             _RoleServices.create(newRole); 
             _jHomePage.createLog("Created", "Role", newRole.name);
             JOptionPane.showMessageDialog(null, "Permissions are assigned successfully!");

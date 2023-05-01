@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -22,6 +23,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.input.DataFormat;
 
 public class ItemServices implements IItemServices {
@@ -33,7 +36,7 @@ public class ItemServices implements IItemServices {
     }
      
     @Override
-    public void create(Item item) {
+    public boolean create(Item item) {
         String sql = "INSERT into items (id, name, description, price, category, createdAt) " +
                         "VALUES (?, ?, ?, ?, ?, ?)";
         try (
@@ -53,9 +56,11 @@ public class ItemServices implements IItemServices {
                 } else {
                         System.err.println("Error!");
                 }
-
+                return true;
+                
         } catch (SQLException e) {
                 System.err.println(e);
+                return false;
         }
     }
 
@@ -92,6 +97,7 @@ public class ItemServices implements IItemServices {
                 item.description = rs.getString("description");
                 item.price = rs.getInt("price");
                 item.createdAt = rs.getDate("createdAt");
+             
                 return item;
             }
         } catch (SQLException ex) {
@@ -297,6 +303,24 @@ public class ItemServices implements IItemServices {
       .atZone(ZoneId.systemDefault())
       .toLocalDate();
         return !ldate.isBefore(currentDateMinus1Year);
+    }
+    @Override
+    public boolean deleteAll() {
+        String sql = "DELETE FROM customeritem";
+        String sql2 = "DELETE FROM items";
+        try (
+            Statement stmt = conn.createStatement();
+            
+            ){
+            stmt.executeUpdate(sql);
+            int affected2 = stmt.executeUpdate(sql2);
+            if(affected2 > 0) return true;
+            else return false;
+            } catch (SQLException ex) {
+            Logger.getLogger(UserServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+       
     }
     
 }

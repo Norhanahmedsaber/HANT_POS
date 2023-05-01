@@ -37,7 +37,11 @@ public class jMainPage extends javax.swing.JPanel {
         toggle = false;
         _jViewStatistics = new jViewStatistics(jhp, this);     
   }
-    
+
+    public jMainPage() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public void changecolor(java.awt.Color c1, java.awt.Color c2, java.awt.Color c3, java.awt.Color c4, java.awt.Color c5){
         setBackground(c1);
                 jAddusers.setBackground(c2);

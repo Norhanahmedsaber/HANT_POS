@@ -8,10 +8,10 @@ import utils.DBType;
 public class ConnectionManager {
     private static ConnectionManager instance = null;
 
-    private final String USERNAME2 = "admin";
-    private final String PASSWORD2 = "bYE87ppv";
-    private final String M_CONN_STRING2 =
-                    "jdbc:mysql://181.215.242.74:18939/dbs";
+//    private final String USERNAME2 = "admin";
+//    private final String PASSWORD2 = "bYE87ppv";
+//    private final String M_CONN_STRING2 =
+//                    "jdbc:mysql://181.215.242.74:18939/dbs";
     private final String USERNAME = "root";
     private final String PASSWORD = "root";
     private final String M_CONN_STRING =
@@ -22,7 +22,7 @@ public class ConnectionManager {
     private final String H_CONN_STRING =
                     "jdbc:hsqldb:data/hant";
     private DBType dbType = DBType.MYSQL;
-
+    
     private Connection conn = null;
 
     private ConnectionManager() {

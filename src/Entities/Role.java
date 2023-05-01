@@ -22,4 +22,9 @@ public class Role {
     public boolean canViewRoles;
     public boolean canDeleteRole;
     public boolean canCreateRole;
-}
+
+ @Override
+    public String toString() {
+        return this.name + this.id ;
+    }
+    }

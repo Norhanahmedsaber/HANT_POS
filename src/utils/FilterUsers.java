@@ -7,13 +7,16 @@ import java.util.Comparator;
 public class FilterUsers { 
     
     public ArrayList<User> filter(ArrayList<User> users, String searchName, String sortBy , boolean toggle ) { 
-       return SortBy( Search(users, searchName ),sortBy,toggle);  
+        ArrayList<User> filtered = Search(users, searchName);
+        ArrayList<User> sorted = SortBy(filtered,sortBy,toggle);  
+        return sorted;
     }
     public ArrayList<User> Search( ArrayList<User> customers , String searchName ){
         ArrayList <User> customerAfterSearch = new ArrayList<User>();
         for( int i=0 ; i<customers.size() ; i++)
         {
-            if(customers.get(i).name.toLowerCase().trim().contains(searchName.toLowerCase().trim()))
+            boolean nameMatch = customers.get(i).name.toLowerCase().contains(searchName.toLowerCase().trim());
+            if(nameMatch)
             {
                 customerAfterSearch.add(customers.get(i));
             }

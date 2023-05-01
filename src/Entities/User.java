@@ -8,4 +8,8 @@ public class User {
     public String userName;
     public String password;// hash
     public Role role;
+    @Override
+    public String toString() {
+        return name + userName + role.name;
+    }
 }

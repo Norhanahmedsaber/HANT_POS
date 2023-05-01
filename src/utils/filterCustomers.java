@@ -57,7 +57,7 @@ public class filterCustomers {
 
          } 
         // sortby Date Ascendingly :
-        else if (sortedby=="Date" && toggle== true)
+        else if (sortedby=="Date" && toggle== false)
          { 
               Collections.sort(customers,new Comparator<Customer>() {
                  public int compare(Customer c1, Customer c2) {
@@ -68,7 +68,7 @@ public class filterCustomers {
              return customers ;
          }
           // sortby Date  Descendingly:
-          else if (sortedby=="Date" && toggle== false)
+          else if (sortedby=="Date" && toggle== true)
          { 
               Collections.sort(customers,new Comparator<Customer>() {
                  public int compare(Customer c1, Customer c2) {
