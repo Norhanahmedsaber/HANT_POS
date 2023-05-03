@@ -2,6 +2,7 @@
 package Requirments;
 
 import Entities.Item;
+import Entities.Log;
 import Entities.Role;
 import Entities.User;
 import Gui.Items.jNewItem;
@@ -15,6 +16,7 @@ import Services.LogServices;
 import Services.RoleServices;
 import Services.UserServices;
 import java.awt.Color;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -124,6 +126,34 @@ public class Test1 {
         
         return item1;
     }
+    
+    private ArrayList<Log> getLogs()
+    {
+        Log bean = new Log();
+        UUID id = UUID.randomUUID();
+        bean.id = id;
+        bean.actedOn = "Item";
+        bean.action = "Created";
+        bean.userName = "anazz";
+        bean.actedOnName = "anas";
+        bean.userRole = "admin";
+        bean.date = Date.from(Instant.EPOCH);
+        
+        Log bean2 = new Log();
+        UUID id2 = UUID.randomUUID();
+        bean.id = id2;
+        bean.actedOn = "Item";
+        bean.action = "Created";
+        bean.userName = "anazz";
+        bean.actedOnName = "anas";
+        bean.userRole = "admin";
+        bean.date = Date.from(Instant.EPOCH);
+        
+         ArrayList<Log> logs = new ArrayList<>();
+         logs.add(bean);
+         logs.add(bean2);
+         return logs;
+    }
     @Before
     public void setUp() {
         userServices.deleteAll();
@@ -182,6 +212,36 @@ public class Test1 {
         //user can create customer and item
         
         //admin
+        user = accountServices.login("admin","00000000");
+        assertNotNull(user);
+        assertTrue(user.role.canCreateItem);
+        
+        
+        assertTrue(user.role.canCreateCustomer);
+      
+        
+        
+        assertTrue(user.role.canViewLogs);
+       
+        ArrayList<Log> actualLogs = new ArrayList<>();
+        actualLogs = getLogs();
+       
+        ArrayList<Log> expLogs = new ArrayList<Log>();
+        expLogs=logServices.getAll();
+        
+        ArrayList<String> actual = new ArrayList<>();
+        ArrayList<String> expected = new ArrayList<>();
+        
+        for(Log log : expLogs) {
+            expected.add(log.toString());
+        }
+        for(Log log : actualLogs) {
+            actual.add(log.toString());
+        }
+        assertArrayEquals(expected.toArray(), actual.toArray());
+        
+        
+        
         
     }
   
