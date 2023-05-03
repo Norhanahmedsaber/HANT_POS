@@ -172,7 +172,7 @@ public class RoleServices implements IRoleServices{
 
     @Override
     public Role getByName(String name) {
-        String sql = "SELECT * FROM roles WHERE";
+        String sql = "SELECT * FROM roles WHERE name = ?";
         ResultSet rs = null;
 
         try (
