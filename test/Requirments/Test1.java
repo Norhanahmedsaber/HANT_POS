@@ -8,6 +8,8 @@ package Requirments;
 import Entities.Item;
 import Entities.Role;
 import Entities.User;
+import Entities.Customer;
+import Gui.Customers.jNewCustomer;
 import Gui.Users.*;
 import Gui.jHomePage;
 import Gui.jMainPage;
@@ -18,10 +20,12 @@ import Services.LogServices;
 import Services.RoleServices;
 import Services.UserServices;
 import java.awt.Color;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
+import javax.swing.JPanel;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -37,8 +41,13 @@ public class Test1 {
     ItemServices itemServices;
     CustomerServices customerServices;
     LogServices logServices;
+    
     public Test1() {
         accountServices = new AccountServices();
+    }
+     public jNewCustomer getInstance()
+    {
+        return new jNewCustomer(new jHomePage(), new JPanel());
     }
     private void setUpRoles() {
         Role admin = new Role();
@@ -121,6 +130,22 @@ public class Test1 {
         
         return item1;
     }
+    private Customer getcustomer()
+    {
+          Customer customer= new Customer();
+          Calendar D=Calendar.getInstance();
+          
+          customer.name="norhan ahmed";
+          customer.age=22;
+           D.setTime(new Date());
+           D.add(Calendar.MONTH, 1);
+          customer.purchaseDate = D.getTime();
+          customer.email="norhan3182001@gmail.com";
+          customer.phoneNumber="01119554367";
+          customer.nationalId="30108310102083";
+          customer.gender="female";
+        return customer;
+    }
     @Before
     public void setUp() {
         userServices.deleteAll();
@@ -151,7 +176,53 @@ public class Test1 {
         
         //user can create customer and item
         
-        //admin
+        //fail test
+        user=accountServices.login("user2","00000000");
+        assertNotNull(user);
+        
+        assertTrue(user.role.canCreateItem);
+        
+        item = getItem();
+        itemServices.create(item);
+        
+        assertTrue(user.role.canCreateCustomer);
+        jNewCustomer instance = getInstance();
+        Customer customer=getcustomer();
+        ArrayList<UUID> itemsIds=new ArrayList<>();
+        itemsIds.add(item.id);
+        instance.jNameField.setText("");
+        instance.jAgeField.setText(Integer.toString(customer.age));
+        instance.jPhoneNoField.setText(customer.phoneNumber);
+        instance.jNationalIdField.setText(customer.nationalId);
+        instance.jEmailField.setText(customer.email);
+        instance.checkAllValidations();
+        customerServices.create(customer,itemsIds);
+        assertTrue(user.role.canCreateItem);
+        
+        //test true
+         user=accountServices.login("user2","00000000");
+        assertNotNull(user);
+        
+        assertTrue(user.role.canCreateItem);
+        
+        item = getItem();
+        itemServices.create(item);
+        
+        assertTrue(user.role.canCreateItem);
+        assertTrue(user.role.canCreateCustomer);
+        itemsIds.add(item.id);
+        instance.jNameField.setText(customer.name);
+        instance.jAgeField.setText(Integer.toString(customer.age));
+        instance.jPhoneNoField.setText(customer.phoneNumber);
+        instance.jNationalIdField.setText(customer.nationalId);
+        instance.jEmailField.setText(customer.email);
+        instance.checkAllValidations();
+        customerServices.create(customer,itemsIds);
+        assertFalse(user.role.canCreateLog);
+        
+        
+        
+        //adminc
         
     }
   
