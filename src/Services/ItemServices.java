@@ -51,11 +51,7 @@ public class ItemServices implements IItemServices {
                 stmt.setDate(6, new java.sql.Date(item.createdAt.getTime()));
                 int affected = stmt.executeUpdate();
 
-                if (affected == 1) {
-                        System.out.print("Done!");
-                } else {
-                        System.err.println("Error!");
-                }
+                
                 return true;
                 
         } catch (SQLException e) {

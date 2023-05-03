@@ -1,14 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Requirments;
 
 import Entities.Item;
 import Entities.Log;
 import Entities.Role;
 import Entities.User;
+import Gui.Items.jNewItem;
 import Gui.Users.*;
 import Gui.jHomePage;
 import Gui.jMainPage;
@@ -24,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
+import javax.swing.JPanel;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -39,8 +37,11 @@ public class Test1 {
     ItemServices itemServices;
     CustomerServices customerServices;
     LogServices logServices;
+    jNewItem jnewitem;
+    
     public Test1() {
         accountServices = new AccountServices();
+        jnewitem= new jNewItem(new jHomePage(), new JPanel());
     }
     private void setUpRoles() {
         Role admin = new Role();
@@ -111,13 +112,15 @@ public class Test1 {
     }
     private Item getItem() {
         Item item1 = new Item();
-        Calendar cl = Calendar.getInstance();
         
+        Calendar cl = Calendar.getInstance();
+        cl.setTime(new Date());
+        cl. add(Calendar.MONTH, 1);
+        
+        item1.id=UUID.randomUUID();
         item1.name="Oven";
         item1.category="Electrical devices";
         item1.description="Toshiba";
-        cl.setTime(new Date());
-        cl. add(Calendar.MONTH, 1);
         item1.createdAt= cl.getTime();
         item1.price=1000;
         
@@ -177,7 +180,34 @@ public class Test1 {
         assertTrue(user.role.canCreateItem);
         
         Item item = getItem();
+        
+        jnewitem.jNameField.setText("");
+        jnewitem.jCatgoryField.setText("");
+        jnewitem.jDescriptionField.setText("");
+        jnewitem.jPriceField.setText(Integer.toString(-500));
+        
+        boolean result = jnewitem.checkAllValidations();
+        assertFalse(result); //false validation
+
+        jnewitem.jNameField.setText(item.name);
+        jnewitem.jCatgoryField.setText(item.category);
+        jnewitem.jDescriptionField.setText(item.description);
+        jnewitem.jPriceField.setText(Integer.toString(item.price));
+        
+        result = jnewitem.checkAllValidations();
+        assertTrue(result);// true validation
+
+
+
         itemServices.create(item);
+        String exp =  item.toString();
+        String actual =  itemServices.getById(item.id).toString();
+        
+        assertEquals(exp,actual); // create item succesfully
+        
+        assertFalse(user.role.canCreateCustomer);
+        
+        
         
         //user can create customer and item
         
