@@ -25,6 +25,22 @@ public class filterItemsTest {
     
     public filterItemsTest() {
     }
+
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
+
+    @Before
+    public void setUp() throws Exception {
+    }
+
+    @After
+    public void tearDown() throws Exception {
+    }
     
     
     private ArrayList getTestData()
@@ -61,28 +77,6 @@ public class filterItemsTest {
         item3.createdAt= cl.getTime();
         item3.price=12000;
         items.add(item3);
-        
-        Item item4 = new Item();
-        item4.name=" mini playstation";
-        item4.category="toys";
-        item4.description="samsung";
-        cl.setTime(new Date());
-        cl. add(Calendar.MONTH, 1);
-        item4.createdAt= cl.getTime();
-        item4.price=500;
-        items.add(item4);
-        
-        Item item5 = new Item();
-        item5.name="baby strollers";
-        item5.category="baby";
-        item5.description="secure";
-        cl.setTime(new Date());
-        cl. add(Calendar.MONTH, 1);
-        item5.createdAt= cl.getTime();
-        item5.price=6000;
-        items.add(item5);
-
-        
         return items;
     }
 
@@ -99,123 +93,213 @@ public class filterItemsTest {
         Item item1 = items.get(0);
         Item item2 = items.get(1);
         Item item3 = items.get(2);
-        Item item4 = items.get(3);
-        Item item5 = items.get(4);
         
-        //search by name sortby name :
+        //Branch Coverage
+        //Test Case 1
         ArrayList<Item> expResult1 = new ArrayList<>();
         search="m";
         sortitemby="Name";
         toggle=false;
         expResult1.add(item3);
-        expResult1.add(item4);
         result = instance.filter(items, search, sortitemby, toggle);
         assertArrayEquals(expResult1.toArray(), result.toArray());
         
+        //Test Case 2
         ArrayList<Item> expResult2 = new ArrayList<>();
         search="m";
         sortitemby="Name";
         toggle=true;
-        expResult2.add(item4);
         expResult2.add(item3);
         result = instance.filter(items, search, sortitemby, toggle);
         assertArrayEquals(expResult2.toArray(), result.toArray());
         
-        //search by description sortby name 
+        //Test Case 3
         ArrayList<Item> expResult3 = new ArrayList<>();
-        search="sam";
-        sortitemby="Name";
+        search="m";
+        sortitemby="Date";
         toggle=false;
         expResult3.add(item3);
-        expResult3.add(item4);
         result = instance.filter(items, search, sortitemby, toggle);
         assertArrayEquals(expResult3.toArray(), result.toArray());
         
-         ArrayList<Item> expResult4 = new ArrayList<>();
-        search="sam";
-        sortitemby="Name";
+        //Test Case 4
+        ArrayList<Item> expResult4 = new ArrayList<>();
+        search="m";
+        sortitemby="Date";
         toggle=true;
-        expResult4.add(item4);
         expResult4.add(item3);
         result = instance.filter(items, search, sortitemby, toggle);
         assertArrayEquals(expResult4.toArray(), result.toArray());
         
-        //search by catgory sortby name 
-        ArrayList<Item> expResult5 = new ArrayList<>();
-        search="dev";
+        //Test Case 5
+        expResult4 = new ArrayList<>();
+        search="m";
+        sortitemby="";
+        toggle=true;
+        expResult4.add(item3);
+        result = instance.filter(items, search, sortitemby, toggle);
+        assertArrayEquals(expResult4.toArray(), result.toArray());
+        
+        //Condition Coverage
+        //Test Case 1
+        expResult1 = new ArrayList<>();
+        search="";
         sortitemby="Name";
         toggle=false;
-        expResult5.add(item3);
-        expResult5.add(item1);
+        expResult1.add(item3);
+        expResult1.add(item1);
+        expResult1.add(item2);
         result = instance.filter(items, search, sortitemby, toggle);
-        assertArrayEquals(expResult5.toArray(), result.toArray());
+        assertArrayEquals(expResult1.toArray(), result.toArray());
         
-        ArrayList<Item> expResult6 = new ArrayList<>();
-        search="dev";
+        //Test Case 2
+        expResult1 = new ArrayList<>();
+        search="m";
+        sortitemby="Name";
+        toggle=false;
+        expResult1.add(item3);
+        result = instance.filter(items, search, sortitemby, toggle);
+        assertArrayEquals(expResult1.toArray(), result.toArray());
+        
+        //Test Case 3
+        expResult2 = new ArrayList<>();
+        search="m";
         sortitemby="Name";
         toggle=true;
-        expResult6.add(item1);
-        expResult6.add(item3);
+        expResult2.add(item3);
         result = instance.filter(items, search, sortitemby, toggle);
-        assertArrayEquals(expResult6.toArray(), result.toArray());
+        assertArrayEquals(expResult2.toArray(), result.toArray());
         
-        //search and sortby date
-        ArrayList<Item> expResult7 = new ArrayList<>();
-        search="dev";
+        //Test Case 4
+        expResult3 = new ArrayList<>();
+        search="m";
         sortitemby="Date";
         toggle=false;
-        expResult7.add(item1);
-        expResult7.add(item3);
+        expResult3.add(item3);
         result = instance.filter(items, search, sortitemby, toggle);
-        assertArrayEquals(expResult7.toArray(), result.toArray());
+        assertArrayEquals(expResult3.toArray(), result.toArray());
         
-        ArrayList<Item> expResult8 = new ArrayList<>();
-        search="dev";
+        //Test Case 5
+        expResult4 = new ArrayList<>();
+        search="m";
+        sortitemby="Name";
+        toggle=true;
+        expResult4.add(item3);
+        result = instance.filter(items, search, sortitemby, toggle);
+        assertArrayEquals(expResult4.toArray(), result.toArray());
+        
+        //Test Case 6
+        expResult4 = new ArrayList<>();
+        search="m";
+        sortitemby="";
+        toggle=true;
+        expResult4.add(item3);
+        result = instance.filter(items, search, sortitemby, toggle);
+        assertArrayEquals(expResult4.toArray(), result.toArray());
+ 
+        //Multiple Condition Coverage
+        //Test Case 1
+        expResult1 = new ArrayList<>();
+        search="";
+        sortitemby="Name";
+        toggle=false;
+        expResult1.add(item3);
+        expResult1.add(item1);
+        expResult1.add(item2);
+        result = instance.filter(items, search, sortitemby, toggle);
+        assertArrayEquals(expResult1.toArray(), result.toArray());
+        
+        //Test Case 2
+        expResult1 = new ArrayList<>();
+        search="m";
+        sortitemby="Name";
+        toggle=false;
+        expResult1.add(item3);
+        result = instance.filter(items, search, sortitemby, toggle);
+        assertArrayEquals(expResult1.toArray(), result.toArray());
+        
+        //Test Case 3
+        expResult2 = new ArrayList<>();
+        search="m";
+        sortitemby="Name";
+        toggle=true;
+        expResult2.add(item3);
+        result = instance.filter(items, search, sortitemby, toggle);
+        assertArrayEquals(expResult2.toArray(), result.toArray());
+        
+        //Test Case 4
+        expResult3 = new ArrayList<>();
+        search="m";
+        sortitemby="Name";
+        toggle=false;
+        expResult3.add(item3);
+        result = instance.filter(items, search, sortitemby, toggle);
+        assertArrayEquals(expResult3.toArray(), result.toArray());
+        
+        //Test Case 5
+        expResult4 = new ArrayList<>();
+        search="m";
         sortitemby="Date";
         toggle=true;
-        expResult8.add(item3);
-        expResult8.add(item1);
+        expResult4.add(item3);
         result = instance.filter(items, search, sortitemby, toggle);
-        assertArrayEquals(expResult8.toArray(), result.toArray());
+        assertArrayEquals(expResult4.toArray(), result.toArray());
         
-        //search and sortby catgory
-         ArrayList<Item> expResult9 = new ArrayList<>();
-        search="dev";
-        sortitemby="Category";
+        //Test Case 6
+        expResult4 = new ArrayList<>();
+        search="m";
+        sortitemby="Date";
         toggle=false;
-        expResult9.add(item1);
-        expResult9.add(item3);
+        expResult4.add(item3);
         result = instance.filter(items, search, sortitemby, toggle);
-        assertArrayEquals(expResult9.toArray(), result.toArray());
+        assertArrayEquals(expResult4.toArray(), result.toArray());
         
-        ArrayList<Item> expResult10 = new ArrayList<>();
-        search="dev";
-        sortitemby="Category";
-        toggle=true;
-        expResult10.add(item3);
-        expResult10.add(item1);
-        result = instance.filter(items, search, sortitemby, toggle);
-        assertArrayEquals(expResult10.toArray(), result.toArray());
-        
-       //search and sortby Price
-       
-         ArrayList<Item> expResult11 = new ArrayList<>();
-        search="dev";
-        sortitemby="Price";
+        //Path Coverage
+        //Test Case 1 (1 - 2 - 3 - 4 - 1 - 5 -  6 - 7 - 11)
+        expResult1 = new ArrayList<>();
+        search="m";
+        sortitemby="Name";
         toggle=false;
-        expResult11.add(item1);
-        expResult11.add(item3);
+        expResult1.add(item3);
         result = instance.filter(items, search, sortitemby, toggle);
-        assertArrayEquals(expResult11.toArray(), result.toArray());
+        assertArrayEquals(expResult1.toArray(), result.toArray());
         
-        ArrayList<Item> expResult12 = new ArrayList<>();
-        search="dev";
-        sortitemby="Price";
+        //Test Case 2 (1 - 2 - 3 - 4 - 1 - 5 - 6 - 8 - 10 - 11)
+        expResult1 = new ArrayList<>();
+        search="m";
+        sortitemby="";
         toggle=true;
-        expResult12.add(item3);
-        expResult12.add(item1);
+        expResult1.add(item3);
         result = instance.filter(items, search, sortitemby, toggle);
-        assertArrayEquals(expResult12.toArray(), result.toArray());
+        assertArrayEquals(expResult1.toArray(), result.toArray());
+        
+        //Test Case 3 (1 - 2 - 3 - 4 - 1 - 5 - 6 - 8 - 9 - 11)
+        expResult1 = new ArrayList<>();
+        search="m";
+        sortitemby="Name";
+        toggle=true;
+        expResult1.add(item3);
+        result = instance.filter(items, search, sortitemby, toggle);
+        assertArrayEquals(expResult1.toArray(), result.toArray());
+        
+        //Test Case 4 (1 - 5 - 6 - 7 - 11)
+        expResult1 = new ArrayList<>();
+        search="";
+        sortitemby="Name";
+        toggle=false;
+        expResult1.add(item3);
+        expResult1.add(item1);
+        expResult1.add(item2);
+        result = instance.filter(items, search, sortitemby, toggle);
+        assertArrayEquals(expResult1.toArray(), result.toArray());
+        
+        //Test Case 5 (1 - 2 - 4 - 1 - 5 - 6 - 7 - 11)
+        expResult1 = new ArrayList<>();
+        search="ggg";
+        sortitemby="Name";
+        toggle=false;
+        result = instance.filter(items, search, sortitemby, toggle);
+        assertArrayEquals(expResult1.toArray(), result.toArray());
         
     }
 
@@ -364,6 +448,132 @@ public class filterItemsTest {
         expResult8.add(item2);
         result = instance.Sortby(items, sortitemby, toggle);
         assertArrayEquals(expResult8.toArray(), result.toArray());
+    }
+
+    @Test
+    public void testGetLargestPrice() {
+        ArrayList<Float> prices;
+        float expected, a, b, c;
+        filterItems Instance = new filterItems();
+        
+        //Branch Coverage
+        //Test Case 1
+        prices = new ArrayList<>();
+        expected = -1;
+        assertEquals(expected, Instance.getLargestPrice(prices), 0.000001);
+        
+        //Test Case 2
+        prices = new ArrayList<>();
+        a = 1;
+        b = 2;
+        c = 5;
+        prices.add(a);
+        prices.add(b);
+        prices.add(c);
+        expected = c;
+        assertEquals(expected, Instance.getLargestPrice(prices), 0.000001);
+        
+        //Condition Coverage
+        //Test Case 1
+        prices = new ArrayList<>();
+        expected = -1;
+        assertEquals(expected, Instance.getLargestPrice(prices), 0.001);
+        
+        //Test Case 2
+        prices = new ArrayList<>();
+        a = 1;
+        prices.add(a);
+        expected = a;
+        assertEquals(expected, Instance.getLargestPrice(prices), 0.000001);
+        
+        //Test Case 3
+        prices = new ArrayList<>();
+        a = 10;
+        b = 5;
+        c = 3;
+        prices.add(a);
+        prices.add(b);
+        prices.add(c);
+        expected = a;
+        assertEquals(expected, Instance.getLargestPrice(prices), 0.000001);
+        
+        //Test Case 4
+        prices = new ArrayList<>();
+        a = 1;
+        b = 3;
+        c = 5;
+        prices.add(a);
+        prices.add(b);
+        prices.add(c);
+        expected = c;
+        assertEquals(expected, Instance.getLargestPrice(prices), 0.000001);
+        
+        //Multiple Condition Coverage
+        //Test Case 1
+        prices = new ArrayList<>();
+        expected = -1;
+        assertEquals(expected, Instance.getLargestPrice(prices), 0.001);
+        
+        //Test Case 2
+        prices = new ArrayList<>();
+        a = 1;
+        prices.add(a);
+        expected = a;
+        assertEquals(expected, Instance.getLargestPrice(prices), 0.000001);
+        
+        //Test Case 3
+        prices = new ArrayList<>();
+        a = 10;
+        b = 5;
+        c = 3;
+        prices.add(a);
+        prices.add(b);
+        prices.add(c);
+        expected = a;
+        assertEquals(expected, Instance.getLargestPrice(prices), 0.000001);
+        
+        //Test Case 4
+        prices = new ArrayList<>();
+        a = 1;
+        b = 3;
+        c = 5;
+        prices.add(a);
+        prices.add(b);
+        prices.add(c);
+        expected = c;
+        assertEquals(expected, Instance.getLargestPrice(prices), 0.000001);
+        
+        //Path Coverage
+        //Test Case 1 (1 - 2 - 8)
+        prices = new ArrayList<>();
+        expected = -1;
+        assertEquals(expected, Instance.getLargestPrice(prices), 0.001);
+        
+        //Test Case 2 (1 - 3 - 7 - 8)
+        prices = new ArrayList<>();
+        a = 1;
+        prices.add(a);
+        expected = a;
+        assertEquals(expected, Instance.getLargestPrice(prices), 0.000001);
+        
+        //Test Case 3 (1 - 3 - 4 - 6 - 3 - 7 - 8)
+        prices = new ArrayList<>();
+        a = 10;
+        b = 5;
+        prices.add(a);
+        prices.add(b);
+        expected = a;
+        assertEquals(expected, Instance.getLargestPrice(prices), 0.000001);
+        
+        //Test Case 4 (1 - 3 - 4 - 5 - 6 - 3 - 7 - 8)
+        prices = new ArrayList<>();
+        a = 1;
+        b = 3;
+        prices.add(a);
+        prices.add(b);
+        expected = b;
+        assertEquals(expected, Instance.getLargestPrice(prices), 0.000001);
+        
     }
     
 }

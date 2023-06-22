@@ -66,7 +66,7 @@ public class jNewCustomer extends javax.swing.JPanel {
            return false;
         }
         //is valid (Name)
-        for (int i=0 ; i < customer.name.length();i++){
+        for (int i=1 ; i < customer.name.length();i++){
             char x = customer.name.charAt(i);
             if(!(x >= 'a' && x <= 'z')){
                 return false;
@@ -80,17 +80,14 @@ public class jNewCustomer extends javax.swing.JPanel {
         if (!emailAdressen(customer.email)){
             return false;
         }
-        if (!isValidNationalId()){
+        if (!validateNationalId(customer.nationalId)){
             return false;
         }
-        if (!isValidPhoneNo()){
+        if (!validatePhoneNo(customer.phoneNumber)){
             return false;
         }
-        
-        if (!isValidAge()){
-            return false;
-        }
-        return isValidChooseItem();
+
+        return true;
     }
     public boolean validateNationalId(String nationalId){ 
         // is empty (National ID)
@@ -100,7 +97,7 @@ public class jNewCustomer extends javax.swing.JPanel {
         // is valid (National ID)
         for (int i=0 ; i < nationalId.length();i++){
             char x = nationalId.charAt(i);
-            if((x <= 'a' || x >= 'z')){
+            if(((x > '9' || x < '0') || x == ' ')){
                 return false;
             }
         }
