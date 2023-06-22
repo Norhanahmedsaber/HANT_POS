@@ -60,9 +60,75 @@ public class jNewCustomer extends javax.swing.JPanel {
     public void setselecteditems(ArrayList<Item> selecteditems){
         _chosenitems=selecteditems;
     }
+    public boolean validateCustomer(Customer customer){
+        // is empty (nameField)
+        if(customer.name.isEmpty()) {
+           return false;
+        }
+        //is valid (Name)
+        for (int i=0 ; i < customer.name.length();i++){
+            char x = customer.name.charAt(i);
+            if(!(x >= 'a' && x <= 'z')){
+                return false;
+            }
+        }
+        // is empty (Email)
+        if(customer.email.isEmpty()) {
+           return false;
+        }
+        // is valid (email)
+        if (!emailAdressen(customer.email)){
+            return false;
+        }
+        if (!isValidNationalId()){
+            return false;
+        }
+        if (!isValidPhoneNo()){
+            return false;
+        }
+        
+        if (!isValidAge()){
+            return false;
+        }
+        return isValidChooseItem();
+    }
+    public boolean validateNationalId(String nationalId){ 
+        // is empty (National ID)
+        if(nationalId.isEmpty()) {
+            return false;
+        }      
+        // is valid (National ID)
+        for (int i=0 ; i < nationalId.length();i++){
+            char x = nationalId.charAt(i);
+            if((x <= 'a' || x >= 'z')){
+                return false;
+            }
+        }
+        if(nationalId.length() != 14 ) {
+            return false;
+        }
+        return true;
+    }
+    public boolean validatePhoneNo(String phone){
+        // is empty (Phone NO)
+        if(phone.isEmpty()) {
+           return false;
+        }
+        // is valid (Phone NO)
+        try {
+            Integer.valueOf(phone);
+        }catch(NumberFormatException e) {
+            return false;
+        }
+        if(!(phone.startsWith("01")) && !(phone.startsWith("02"))) {
+            return false;
+        }
+        if(phone.length() != 11 && phone.length() != 9) {
+           return false;
+        }
+        return true;
+    }
 
-    
- 
     public boolean isValidName() {
         // is empty (nameField)
         if(jNameField.getText().trim().isEmpty()) {
@@ -171,7 +237,7 @@ public class jNewCustomer extends javax.swing.JPanel {
         if(!isValidName()){
             return false;
         }
-        if (!isValidEmail()){
+        if(!isValidEmail()){
             return false;
         }
         if (!isValidNationalId()){
